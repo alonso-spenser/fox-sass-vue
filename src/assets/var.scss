@@ -1,0 +1,35 @@
+$themeColor: #3E82F7;
+$px: 0.0625rem;
+$gray-600: #6c757d !default;
+$borderColor: #e9ecef;
+$borderRadius: .25rem;
+$transition: all 0.3s;
+
+$colorHeading: #303133;
+$colorNormal: #606266;
+$colorSecondary: #909399;
+$colorPlaceholder: #C0C4CC;
+
+$colorPrimary: #46a0fc;
+$colorSuccess: #67C23A;
+$colorWarning: #E6A23C;
+$colorDanger: #F56C6C;
+$colorInfo: #909399;
+$colorBlue: #1a0dab;
+
+$text-size-main-heading: 20px;
+$text-size-heading: 18px;
+$text-size-small-heading: 16px;
+$text-size-body: 14px;
+$text-size-body-small: 13px;
+$text-size-small: 12px;
+$mainHeading: 20px;
+
+.router-fade-enter-active,
+.router-fade-leave-active {
+  transition: opacity 0.3s;
+}
+.router-fade-enter,
+.router-fade-leave-active {
+  opacity: 0;
+}

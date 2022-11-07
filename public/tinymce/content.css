@@ -1,0 +1,156 @@
+/**
+ * Copyright (c) Tiny Technologies, Inc. All rights reserved.
+ * Licensed under the LGPL or a commercial license.
+ * For LGPL see License.txt in the project root for license information.
+ * For commercial licenses see https://www.tiny.cloud/
+ */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.4;
+  margin: 1rem; }
+
+table {
+  border-collapse: collapse; }
+
+table th,
+table td {
+  border: 1px solid #ccc;
+  padding: 0.4rem; }
+
+figure {
+  display: table;
+  margin: 1rem auto; }
+
+figure figcaption {
+  color: #999;
+  display: block;
+  margin-top: 0.25rem;
+  text-align: center; }
+
+hr {
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 1px 0 0 0; }
+
+/*code {*/
+/*  background-color: #e8e8e8;*/
+/*  border-radius: 3px;*/
+/*  padding: 0.1rem 0.2rem;*/
+/*}*/
+.mce-content-body:not([dir=rtl]) blockquote {
+  border-left: 2px solid #ccc;
+  margin-left: 1.5rem;
+  padding-left: 1rem; }
+
+.mce-content-body[dir=rtl] blockquote {
+  border-right: 2px solid #ccc;
+  margin-right: 1.5rem;
+  padding-right: 1rem; }
+
+img {
+  max-width: 100% !important; }
+
+blockquote {
+  border-left: .25rem solid #d1d1d1;
+  margin-bottom: .625rem;
+  margin-top: .625rem;
+  padding: 1rem;
+  text-align: left;
+  background: #f7f8f9;
+  display: block; }
+
+/*code,pre {*/
+/*  display: block;*/
+/*  margin-bottom: .625rem;*/
+/*  margin-top: .625rem;*/
+/*  background-color: rgba(0,0,0,.6);*/
+/*  color: #f8f8f2;*/
+/*  padding: 1rem;*/
+/*  overflow: visible*/
+/*}*/
+table:not(.fixed-width) {
+  width: 100% !important;
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0.0625rem solid #dee2e6 !important;
+  border-left: 0.0625rem solid #dee2e6 !important;
+  overflow-x: scroll;
+  display: inline-table; }
+
+table:not(.fixed-width) tbody + tbody {
+  border-top: 0.125rem solid #dee2e6 !important; }
+
+table:not(.fixed-width) td, table:not(.fixed-width) th {
+  padding: 0.75rem !important;
+  border-left: 0 !important;
+  border-bottom: 0 !important;
+  border-top: 0.0625rem solid #dee2e6 !important;
+  border-right: 0.0625rem solid #dee2e6 !important;
+  vertical-align: top !important; }
+
+table:not(.fixed-width) th {
+  border-bottom: 0.125rem solid #dee2e6 !important;
+  vertical-align: bottom !important; }
+
+@media (max-width: 48rem) {
+  table:not(.fixed-width) {
+    display: block; } }
+table + * {
+  margin-top: 0.9375rem !important; }
+
+ol li {
+  list-style: decimal;
+  margin-left: 1.25rem; }
+
+ul li {
+  list-style: disc;
+  margin-left: 1.25rem; }
+
+[style*=lower-alpha] li {
+  list-style: lower-alpha; }
+
+[style*=lower-greek] li {
+  list-style: lower-greek; }
+
+[style*=lower-roman] li {
+  list-style: lower-roman; }
+
+[style*=upper-roman] li {
+  list-style: upper-roman; }
+
+[style*=upper-alpha] li {
+  list-style: upper-alpha; }
+
+[style*=circle] li {
+  list-style: circle; }
+
+[style*=square] li {
+  list-style: square; }
+
+@media (max-width: 768px) {
+  .table, .table.fixed-width {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; } }
+.section-paragraph-heading {
+  background-color: #ccc;
+  padding-left: 2rem;
+  position: relative;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  overflow: hidden;
+  margin-bottom: 0.75rem; }
+  .section-paragraph-heading:not(:first-child) {
+    margin-top: 0.75rem; }
+  .section-paragraph-heading:after {
+    width: 0;
+    height: 0;
+    border-bottom: 2.5rem solid rgba(0, 0, 0, 0.1);
+    border-right: 2rem solid transparent;
+    content: " ";
+    top: 0;
+    left: 0;
+    position: absolute; }
+
+/*# sourceMappingURL=content.css.map */
