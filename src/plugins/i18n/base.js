@@ -13,6 +13,7 @@ import enPassport from './en/passport'
 import enMerchant from './en/merchant'
 import enAside from './en/aside'
 import enBase from './en/base'
+import enEmail from './en/email'
 
 Vue.use(VueI18n)
 
@@ -32,7 +33,8 @@ const i18n = new VueI18n({
       ...enPassport,
       ...enMerchant,
       ...enAside,
-      ...enBase
+      ...enBase,
+      ...enEmail
     }
   }
 })

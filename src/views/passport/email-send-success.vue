@@ -52,270 +52,72 @@
           </g>
         </g>
       </svg>
-
       <h1>
-        {{ $t('passport.login.title') }}
+        {{$t('passport.emailSendSuccess.h1')}}
       </h1>
-      <p class="text-secondary">
-        {{ $t('passport.login.tips') }}
-      </p>
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="ruleForm">
-        <p class="clearfix mb-2">
-          <a
-            @click="redirectForget"
-            href="javascript:void(0)"
-            class="text-link float-right"
-          >
-            {{ $t("passport.login.forgetTip") }}
-          </a>
-          {{ $t('passport.login.entity.account.label') }}
-        </p>
-        <el-form-item prop="account">
-          <el-input
-            maxlength="64"
-            v-model="entity.account"
-            @blur="accountBlur"
-            :placeholder="$t('passport.login.entity.account.placeholder')"
-            auto-complete="off">
-          </el-input>
-        </el-form-item>
-        <p class="mb-2">
-          {{ $t('passport.login.entity.password.label') }}
-        </p>
-        <el-form-item prop="password">
-          <el-input
-            maxlength="30"
-            type="password"
-            v-model="entity.password"
-            :placeholder="$t('passport.login.entity.password.placeholder')"
-            auto-complete="off">
-          </el-input>
-        </el-form-item>
-        <el-form-item class="mt-7 mb-0">
-          <el-button
-            type="primary"
-            :loading="loading"
-            class="el-submit"
-            @click="formValidation('ruleForm')"
-          >
-            {{ $t('passport.login.button') }}
-          </el-button>
-        </el-form-item>
-      </el-form>
       <p>
-        <label class="text-secondary">
-          {{ $t('passport.login.noAccount') }}
-        </label>
-        <el-button
-          type="text"
-          class="text-link"
-          @click="redirectRegister"
-        >
-          {{ $t('passport.login.register') }}
+        {{$t('passport.emailSendSuccess.tips').replace('{email}', email)}}
+      </p>
+      <p class="mt-3">
+        {{$t('passport.emailSendSuccess.p')}}
+      </p>
+      <h3 class="mt-5">
+        <b>{{$t('passport.emailSendSuccess.p1')}}</b>
+      </h3>
+      <p>
+        {{$t('passport.emailSendSuccess.p2')}}
+      </p>
+      <p>
+        {{$t('passport.emailSendSuccess.p3')}}
+      </p>
+      <p class="mt-5">
+        <el-button type="text" icon="el-icon-refresh" @click="redirectForget">
+          {{ $t("passport.emailSendSuccess.resend") }}
+        </el-button>
+      </p>
+      <p>
+        <el-button type="text" icon="el-icon-arrow-left" @click="redirectLogin">
+          {{ $t("passport.emailSendSuccess.login") }}
         </el-button>
       </p>
     </div>
   </div>
 </template>
+
 <script>
-import extend from '@/plugins/page/base'
-import passport from '@/plugins/passport'
-import { fetchMerchantLogin, fetchMerchantLogout } from '@/plugins/api/passport'
+import extend from '../../plugins/page/base'
 import {
-  mapMutations,
   mapState
 } from 'vuex'
-
 export default {
-  name: 'passport-login',
+  name: 'passport-forget',
   extends: extend,
   data () {
     return {
-      entity: {
-        account: 'devin@gmail.com',
-        password: 'admin@2022',
-        areaCode: '',
-        captcha: ''
-      },
-      formRules: {
-        account: [
-          { required: true, message: this.$t('passport.login.entity.account.required'), trigger: 'blur' }
-        ],
-        password: [
-          { required: true, message: this.$t('passport.login.entity.password.required'), trigger: 'blur' }
-        ]
-      },
-      siteList: [],
-      signed: true,
-      logging: false,
-      authLoading: true,
-      authorizedToken: ''
-    }
-  },
-  mounted () {
-    this.keyboardEvents(() => {
-      this.formValidation()
-    })
-  },
-  computed: {
-    ...mapState(['merchantModel']),
-    canCreate () {
-      let keep = this.siteList.filter((o) => {
-        return !(o.payMonth > 0 && !o.isExpired)
-      })
-      return keep.length === 0
-    }
-  },
-  watch: {
-    $route: {
-      handler: function (route) {
-        this.authorizedToken = route.query && route.query.auth
-        this.authLoading = this.utility.isNotEmpty(this.authorizedToken)
-      },
-      immediate: true
+      email: '',
+      isMobile: false
     }
   },
   created () {
-    if (this.utility.isNotEmpty(this.authorizedToken)) {
-      passport.login({
-        'account': '',
-        'avatar': '',
-        'id': '',
-        'realName': 'Guest',
-        'roles': [],
-        'token': this.authorizedToken
-      })
-      this.getSession()
-    } else {
-      this.logged()
-    }
+    this.email = localStorage.getItem('forget')
+    this.isMobile = this.utility.mobile()
+    this.pageValid()
+  },
+  computed: {
+    ...mapState(['merchantModel', 'agentModel'])
   },
   methods: {
-    ...mapMutations(['setMerchantModel']),
     /**
-     * 获取缓存
+     * 找回密码
      */
-    getSession () {
-      fetchMerchantSession({})
-        .then(result => {
-          this.resultMessage(result, (success) => {
-            if (success) {
-              this.setMerchantModel(result.data)
-              this.getMySite((data) => {
-                this.ownedSite(data)
-              })
-            }
-          })
-        })
-        .finally(() => {
-          this.authLoading = false
-        })
-    },
-    logged () {
-      if (this.merchantModel && this.utility.isNotEmpty(this.merchantModel.token)) {
-        this.siteList = []
-        this.getMySite((data) => {
-          this.ownedSite(data)
-        })
-      }
-    },
-    /**
-     * 我的站点
-     */
-    getMySite (func) {
-      fetchMySite()
-        .then((result) => {
-          if (result.success) {
-            if (func && typeof (func) === 'function') {
-              this.setMySite(result.data)
-              func.call(this, result.data)
-            }
-          }
-        })
-        .catch(() => {
-          this.logout()
-          func.call(this, [])
-        })
-    },
-    /**
-     * 首页
-     */
-    redirectDashboard () {
-      if (this.$route.query.redirect) {
-        location.href = this.$route.query.redirect
-      } else {
-        this.$router.push('/dashboard')
-      }
+    redirectForget () {
+      this.$router.push('/passport/forget')
     },
     /**
      * 登录
      */
-    formValidation () {
-      const formName = 'ruleForm'
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          fetchMerchantLogin(this.entity)
-            .then(result => {
-              this.resultMessage(result, (success) => {
-                if (success) {
-                  this.setMerchantModel(result.data)
-                  this.redirectDashboard()
-                }
-              })
-            })
-            .catch(error => {
-              this.networkMistake(error)
-            })
-        }
-      })
-    },
-    /**
-     * 删除帐号中的空格
-     */
-    accountBlur () {
-      this.entity.account = this.utility.removeAllSpace(this.entity.account)
-    },
-    /**
-     * 我的站点
-     * @param data
-     */
-    ownedSite (data) {
-      this.signed = false
-      // document.title = `${this.$t('site.dashboard.title')}-${this.agentModel.shortForm || this.agentModel.agentName}`
-      if (data.length > 0) {
-        this.siteList = data
-        // this.setMySite(data)
-        // this.setSiteModel(data[0])
-      }
-    },
-    /**
-     * 退出登录
-     */
-    logout () {
-      fetchMerchantLogout()
-      // this.setPageTitle()
-      this.setMerchantModel({})
-    },
-    /**
-     * 创建新网站
-     */
-    redirectCreate () {
-      this.$router.push('/startup/create-site')
-    },
-    /**
-     * 注册
-     */
-    redirectRegister () {
-      this.$router.push('/passport/register')
-    },
-    /**
-     * 忘记密码
-     */
-    redirectForget () {
-      this.$router.push('/passport/forget')
+    redirectLogin () {
+      this.$router.push('/passport')
     }
   }
 }

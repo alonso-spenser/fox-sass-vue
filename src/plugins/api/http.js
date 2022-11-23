@@ -19,7 +19,10 @@ http.interceptors.request.use(
     config.headers.version = '0.0.1'
     config.headers.timestamp = new Date().getTime()
     config.headers['fo-os'] = 0
-    config.headers['fo-app'] = 7000
+    config.headers['fo-app'] = 1000
+    config.headers['fo-platform'] = '1400692472106991622'
+    config.headers['fo-agent'] = '1400691824514842630'
+    // config.headers['fo-region'] = store.state.globalRegionModel ? store.state.globalRegionModel.code : 'en'
     config.headers['fo-token'] = passport.token()
     return config
   },

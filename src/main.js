@@ -19,12 +19,14 @@ import moment from 'moment'
 import echarts from 'echarts'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import cnLocale from 'element-ui/lib/locale/lang/zh-CN'
+import countdown from './components/countdown/index'
 
 let locale = util.getLanguage() === 'en' ? enLocale : cnLocale
 Vue.prototype.$moment = moment
 Vue.prototype.$echarts = echarts
 Vue.use(foUI)
 Vue.use(elementUI, {locale})
+Vue.component('Countdown', countdown)
 
 Vue.directive('permission', {
   inserted: function (el, binding) {

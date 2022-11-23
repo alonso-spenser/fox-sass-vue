@@ -4,7 +4,7 @@ export default {
   logoSVG,
   env: {
     api: {
-      development: 'http://127.0.0.1:8300',
+      development: 'http://127.0.0.1:9721',
       test: 'http://192.168.11.247:8300',
       production: 'https://api.fomille.site'
     },

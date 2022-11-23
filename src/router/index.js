@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import PassportRouter from '../layout/passport-router'
+import blankRouter from '../layout/blank-router'
+import accountLayout from '../views/account/layout'
 import i18n from '../plugins/i18n/base'
 import lib from '../plugins/utility'
 import store from '../store'
@@ -8,6 +10,45 @@ import checkPermission from '../plugins/permission'
 
 Vue.use(Router)
 const routes = [
+  {
+    path: '/startup',
+    component: blankRouter,
+    redirect: '/startup/create-site',
+    name: 'startup',
+    meta: {
+      title: i18n.t('startup.title'),
+      requireAuth: true
+    },
+    children: [
+      {
+        path: 'create-site',
+        name: 'startup-create-site',
+        meta: {
+          siteType: [1, 2, 3, 4],
+          requireAuth: true,
+          title: i18n.t('startup.pageTitle'),
+          crumbs: [
+            {
+              title: i18n.t('startup.pageTitle'),
+              path: '/shop/shop'
+            }
+          ]
+        },
+        component: () => import('../views/startup/create-site')
+      },
+      {
+        path: 'clone/:cloneId',
+        name: 'startup-clone-site',
+        component: () => import('../views/startup/clone.vue'),
+        meta: {
+          title: i18n.t('startup.clone.pageTitle'),
+          siteType: [1, 2, 3, 4],
+          header: false,
+          requireAuth: true
+        }
+      }
+    ]
+  },
   {
     path: '/passport',
     component: PassportRouter,
@@ -17,6 +58,7 @@ const routes = [
         name: 'passport-login',
         component: () => import('../views/passport/index'),
         meta: {
+          title: i18n.t('passport.login.pageTitle'),
           css: 'fixed'
         }
       },
@@ -25,7 +67,147 @@ const routes = [
         name: 'passport-login-app',
         component: () => import('../views/passport/index'),
         meta: {
+          title: i18n.t('passport.login.pageTitle'),
           css: 'fixed'
+        }
+      },
+      {
+        path: 'register',
+        name: 'passport-register',
+        component: () => import('../views/passport/register'),
+        meta: {
+          title: i18n.t('passport.register.pageTitle'),
+          siteType: [1, 2, 3, 4],
+          css: 'register'
+        }
+      },
+      {
+        path: 'forget',
+        name: 'passport-forget',
+        component: () => import('../views/passport/forget'),
+        meta: {
+          siteType: [1, 2, 3, 4],
+          title: i18n.t('passport.forget.pageTitle')
+        }
+      },
+      {
+        path: 'email-send-success',
+        name: 'passport-email-send-success',
+        component: () => import('../views/passport/email-send-success'),
+        meta: {
+          siteType: [1, 2, 3, 4],
+          title: i18n.t('passport.emailSendSuccess.pageTitle')
+        }
+      },
+      {
+        path: 'reset/:code/:key',
+        name: 'passport-reset-password',
+        component: () => import('../views/passport/reset'),
+        meta: {
+          siteType: [1, 2, 3, 4],
+          title: i18n.t('passport.reset.pageTitle')
+        }
+      }
+    ]
+  },
+  {
+    path: '/account',
+    component: accountLayout,
+    name: 'account',
+    meta: {
+      requireAuth: true,
+      siteType: [1, 2, 3, 4],
+      title: i18n.t('merchant.paging.title')
+    },
+    children: [
+      {
+        path: '',
+        name: 'account-dashboard',
+        component: () => import('../views/account/index'),
+        meta: {
+          requireAuth: true,
+          siteType: [1, 2, 3, 4],
+          title: i18n.t('merchant.account.dashboard')
+        }
+      },
+      {
+        path: 'corp',
+        name: 'account-corp',
+        component: () => import('../views/account/corp'),
+        meta: {
+          editable: true,
+          requireAuth: true,
+          siteType: [1, 2, 3, 4],
+          title: i18n.t('merchant.corp'),
+          parent: {
+            title: i18n.t('merchant.heading'),
+            url: '/account/corp',
+            previous: '/account'
+          }
+        }
+      },
+      {
+        path: 'personal',
+        name: 'account-personal',
+        component: () => import('../views/account/personal'),
+        meta: {
+          requireAuth: true,
+          siteType: [1, 2, 3, 4],
+          editable: true,
+          title: i18n.t('merchant.personal.title'),
+          parent: {
+            title: i18n.t('merchant.heading'),
+            url: '/account/password',
+            previous: '/account'
+          }
+        }
+      },
+      {
+        path: 'role',
+        name: 'account-role',
+        component: () => import('../views/account/role'),
+        meta: {
+          requireAuth: true,
+          editable: true,
+          siteType: [1, 2, 3, 4],
+          title: i18n.t('merchant.role.paging.title'),
+          parent: {
+            title: i18n.t('merchant.employee.paging.heading'),
+            url: '/account/role',
+            previous: '/account/employee'
+          }
+        }
+      },
+      {
+        path: 'employee',
+        name: 'account-employee',
+        component: () => import('../views/account/employee'),
+        meta: {
+          requireAuth: true,
+          siteType: [1, 2, 3, 4],
+          editable: true,
+          title: i18n.t('merchant.employee.paging.title'),
+          parent: {
+            title: i18n.t('merchant.heading'),
+            url: '/account/password',
+            previous: '/account'
+          }
+        }
+      },
+      {
+        path: 'password',
+        name: 'account-password',
+        component: () => import('../views/account/password'),
+        meta: {
+          requireAuth: true,
+          siteType: [1, 2, 3, 4],
+          editable: true,
+          title: i18n.t('merchant.password.title'),
+          parent: {
+            title: i18n.t('merchant.heading'),
+            url: '/account/password',
+            previous: '/account'
+          }
         }
       }
     ]
@@ -121,7 +303,8 @@ const setTitle = (meta) => {
   if (meta.parent && meta.parent.title && titles.indexOf(meta.parent.title) === -1) {
     titles.push(meta.parent.title)
   }
-  titles.push(i18n.t('title'))
+  titles.push('Hey!MySite')
+  // titles.push(store.state.agentModel.shortForm || store.state.agentModel.agentName)
   document.title = titles.join('-')
 }
 

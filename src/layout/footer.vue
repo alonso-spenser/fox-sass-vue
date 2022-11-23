@@ -1,5 +1,5 @@
 <template>
-  <footer class="global-footer">&copy; {{ year }} MyTask</footer>
+  <footer class="global-footer">&copy; {{ year }} Hey!MySite</footer>
 </template>
 
 <script>

@@ -1,9 +1,8 @@
 import lib from './utility'
-import {
-  mapMutations
-} from 'vuex'
+import { mapMutations } from 'vuex'
+import store from '@/store'
 /**
-/**
+ /**
  * 用户登录
  */
 export default {
@@ -53,7 +52,8 @@ export default {
   },
   logout () {
     localStorage.removeItem(this.tokenName)
-    this.setMerchantModel({})
+    // this.setMerchantModel({})
+    store.commit('setMerchantModel', {})
   },
   status () {
     return !lib.isEmpty(localStorage.getItem(this.tokenName))

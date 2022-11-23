@@ -19,7 +19,7 @@
     "echarts": "^5.4.0",
     "element-ui": "^2.13.0",
     "extract-text-webpack-plugin": "^0.1.0",
-    "fo-vue-ui": "^0.0.13",
+    "fo-vue-ui": "^0.0.26385",
     "html2canvas": "^1.0.0-rc.5",
     "js-cookie": "^2.2.0",
     "js-md5": "^0.7.3",
@@ -52,7 +52,6 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0-0",
     "sass-loader": "^13.1.0",
-    "vue-eslint-parser": "^9.1.0",
     "webpack-aliyun-oss": "^0.3.1"
   }
 }
