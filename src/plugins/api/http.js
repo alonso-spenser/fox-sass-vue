@@ -16,14 +16,14 @@ const http = axios.create({
 
 http.interceptors.request.use(
   (config) => {
+    let admin = router.currentRoute.fullPath.indexOf('/main') === 0
     config.headers.version = '0.0.1'
     config.headers.timestamp = new Date().getTime()
     config.headers['fo-os'] = 0
-    config.headers['fo-app'] = 1000
+    config.headers['fo-app'] = admin ? 3000 : 1000
     config.headers['fo-platform'] = '1400692472106991622'
     config.headers['fo-agent'] = '1400691824514842630'
-    // config.headers['fo-region'] = store.state.globalRegionModel ? store.state.globalRegionModel.code : 'en'
-    config.headers['fo-token'] = passport.token()
+    config.headers['fo-token'] = passport.token(admin)
     return config
   },
   (error) => {
@@ -37,8 +37,9 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   (response) => {
     if (response.data.code === 13010000) {
+      let admin = router.currentRoute.fullPath.indexOf('/main') === 0
       router.push({
-        path: '/passport',
+        path: `${admin ? '/main' : ''}/passport`,
         query: {
           // redirect: router.currentRoute.fullPath
         }

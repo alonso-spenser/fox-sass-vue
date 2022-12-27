@@ -64,7 +64,15 @@ const mutations = {
     state.merchantModel = data
     localStorage.setItem('merchantModel', JSON.stringify(data))
   },
-
+  /**
+   * 后台信息
+   * @param state
+   * @param data
+   */
+  setAgentModel: (state, data) => {
+    state.merchantModel = data
+    localStorage.setItem('agentModel', JSON.stringify(data))
+  },
   /**
    * 权限
    */

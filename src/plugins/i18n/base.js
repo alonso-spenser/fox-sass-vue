@@ -12,8 +12,20 @@ import enEnumerate from './en/enumerate'
 import enPassport from './en/passport'
 import enMerchant from './en/merchant'
 import enAside from './en/aside'
-import enBase from './en/base'
+import enBackstage from './en/backstage'
 import enEmail from './en/email'
+import enCore from './en/core'
+import enTheme from './en/theme'
+import enSite from './en/site'
+import enEnquiry from './en/enquiry'
+import enGoods from './en/goods'
+import enArticle from './en/article'
+import enOptimize from './en/optimize'
+import enCustomizePage from './en/customizePage'
+import enNavigation from './en/navigation'
+import enSettings from './en/settings'
+import enDesign from './en/design'
+import enDashboard from './en/dashboard'
 
 Vue.use(VueI18n)
 
@@ -33,8 +45,20 @@ const i18n = new VueI18n({
       ...enPassport,
       ...enMerchant,
       ...enAside,
-      ...enBase,
-      ...enEmail
+      ...enBackstage,
+      ...enEmail,
+      ...enCore,
+      ...enTheme,
+      ...enSite,
+      ...enEnquiry,
+      ...enGoods,
+      ...enArticle,
+      ...enOptimize,
+      ...enCustomizePage,
+      ...enNavigation,
+      ...enSettings,
+      ...enDesign,
+      ...enDashboard
     }
   }
 })

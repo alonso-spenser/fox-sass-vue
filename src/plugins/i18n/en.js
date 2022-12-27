@@ -51,6 +51,7 @@ export default {
       edit: 'Edit',
       more: 'More',
       back: 'Return',
+      paste: 'Paste',
       duplicate: 'Duplicate',
       confirm: 'Confirm',
       cancel: 'Cancel',
@@ -192,5 +193,16 @@ export default {
       submit: '复制站点',
       error: '原网站信息不存在'
     }
+  },
+  /**
+   * 站点类型
+   */
+  siteType: {
+    '1': '商品单页',
+    '2': '企业单页',
+    '3': '企业网站',
+    '4': '在线商店',
+    '11': '视频B2B',
+    '12': '视频B2C'
   }
 }

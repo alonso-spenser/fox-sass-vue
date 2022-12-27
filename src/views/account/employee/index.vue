@@ -98,11 +98,6 @@ export default {
             label: this.$t('merchant.employee.paging.tableHeader.account')
           },
           {
-            prop: 'departmentName',
-            width: 100,
-            label: this.$t('merchant.employee.paging.tableHeader.departmentName')
-          },
-          {
             prop: 'roleName',
             width: 110,
             label: this.$t('merchant.employee.paging.tableHeader.roleName')
@@ -110,7 +105,7 @@ export default {
           {
             button: true,
             label: '',
-            width: 50,
+            width: 80,
             group: [
               {
                 type: 'text',

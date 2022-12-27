@@ -483,5 +483,30 @@ export default {
         format: this.dateFormat(last, format)
       }
     }
+  },
+  /**
+   * day 想要获取之前的天数
+   * 获取当前时间几天之前时间戳
+   */
+  getBeforeDayTimeString (day) {
+    let now = new Date(new Date(new Date().toLocaleDateString()).getTime())
+    now.setDate(now.getDate() - day)
+    return now.getTime()
+  },
+  /**
+   * 删除不要的属性
+   */
+  deleteObjType (data, typeName) {
+    data.forEach((item, index) => {
+      if (typeof item === 'object') {
+        if (item.hasOwnProperty(typeName)) {
+          delete item[typeName]
+        }
+      } else {
+        if (item === typeName) {
+          data.splice(index, 1)
+        }
+      }
+    })
   }
 }

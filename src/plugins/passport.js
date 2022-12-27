@@ -1,6 +1,7 @@
 import lib from './utility'
 import { mapMutations } from 'vuex'
 import store from '@/store'
+
 /**
  /**
  * 用户登录
@@ -8,8 +9,8 @@ import store from '@/store'
 export default {
   tokenName: 'merchantModel',
   ...mapMutations(['setMerchantModel']),
-  getUser () {
-    let data = localStorage.getItem(this.tokenName)
+  getUser (admin) {
+    let data = localStorage.getItem(admin ? 'agentModel' : this.tokenName)
     if (!lib.isEmpty(data)) {
       return JSON.parse(data)
     }
@@ -18,9 +19,7 @@ export default {
       'avatar': '',
       'id': '',
       'realName': 'Guest',
-      'roles': [
-
-      ],
+      'roles': [],
       'token': ''
     }
   },
@@ -58,8 +57,8 @@ export default {
   status () {
     return !lib.isEmpty(localStorage.getItem(this.tokenName))
   },
-  token () {
-    let data = this.getUser()
+  token (admin) {
+    let data = this.getUser(admin)
     if (!data) {
       return ''
     } else {

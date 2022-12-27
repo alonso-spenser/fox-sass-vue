@@ -1,7 +1,6 @@
 <template>
   <header
     class="global-header"
-    :class="shadow ? 'active' : ''"
     ref="globalHeader">
     <div class="logo-wrap">
       <img
@@ -180,9 +179,11 @@ export default {
   z-index: 10;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  //background-color: #fff;
   color: $themeColor;
   transition: all 0.3s;
+  background: none;
+  box-shadow: none;
 
   .logo-wrap {
     cursor: pointer;
@@ -198,8 +199,8 @@ export default {
 
   //&.full,
   &.active {
-    border-bottom: 1px solid #e9ecef;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    //border-bottom: 1px solid #e9ecef;
+    //box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
   .user-avatar {

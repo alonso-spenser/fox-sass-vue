@@ -1,0 +1,245 @@
+@charset "UTF-8";
+
+$pixel: 0.0625rem;
+$tran: all 0.25s;
+$successColor: #67C23A;
+$successBorder: #e4f2da;
+$successBackground: #f2f9ec;
+
+$warningColor: #E6A23C;
+$warningBorder: #f8ecda;
+$warningBackground: #fcf6ed;
+
+$dangerColor: #F56C6C;
+$dangerBorder: #f9e3e2;
+$dangerBackground: #fcf0f0;
+
+$infoColor: #909399;
+$infoBorder: #e9e9eb;
+$infoBackground: #f4f4f5;
+
+$colorTheme: #152c43;
+$mobileRatio: 0.75;
+$mobileBodyRatio: 0.9;
+
+// 移动端字体变量
+$mobileHeadline: 46 * $pixel;
+$mobileHeading: 18 * $pixel;
+$mobileSubheading: 18 * $pixel;
+$mobileBody: 16 * $pixel;
+$mobileMenu: 16 * $pixel;
+$mobileContentHeading: 16 * $pixel;
+
+$grid-gutter-width:           24 * $pixel !default;
+
+:root {
+  // 主题色
+  --colorTheme: #{$colorTheme};
+
+  // 大标题字体
+  --typeHeadline: "Arial, 'Helvetica Neue', Helvetica, sans-serif";
+  // 大标题字号
+  --fontSizeHeadline: 46;
+
+  // 标题字体
+  --typeHeading: 'Bebas Neue';
+  // 标题字号
+  --fontSizeHeading: 20;
+  // 标题文字
+  --colorHeading: #222;
+
+  // 副标题字体(slide show subheading, title and button, footer)
+  --typeSubheading: "Codystar";
+  // 副标题字号(buttons, and slide show subheading)
+  --fontSizeSubheading: 18;
+  // 副标题文字
+  --colorSubheading: #222;
+
+  // 正文字体
+  --typeBody: 'Cinzel';
+  // 正文字号
+  --fontSizeBody: 14;
+  // 正文
+  --colorBody: #42b0d5;
+
+  // 菜单字体
+  --typeMenu: "Arial, 'Helvetica Neue', Helvetica, sans-serif";
+  // 菜单字号
+  --fontSizeMenu: 16; // 菜单字号
+
+  // 内容标题字体
+  --typeContentHeading: 'Do Hyeon';
+  // 内容标题写号
+  --fontSizeContentHeading: 16;
+
+  // 次要文字颜色
+  --colorSecondary: #909399;
+
+  // 线条
+  --colorBorder: #1a5de5;
+  // 价格颜色
+  --colorPrice: #b09869;
+  --colorCopyright: #112336;
+  --colorCopyrightText: #fff;
+
+  // 按钮
+  --colorButton: #152C43;
+  --colorButtonLabel: #FFFFFF;
+  --colorButtonHover: #b09869;
+  --colorButtonHoverLabel: #FFFFFF;
+  // 圆形按钮
+  --colorRoundButton: #000;
+  --colorRoundButtonLabel: #fff;
+  --colorLink: #1688D3;
+  --colorLinkHover: #B09869;
+  // 按钮圆角
+  --borderRadius: #{10 * $pixel};
+  // 卡片圆角
+  --cardBorderRadius: 4;
+  // 内边距
+  --paddingHeight: 40;
+  // 外边距
+  --marginHeight: 40;
+  --buttonPadding: 30;
+  // 线样式
+  --borderStyle: dotted;
+  // 线宽
+  --borderWidth: 3;
+
+  // 移动端
+  --fontSizeHeadlineMob: 20;
+  --fontSizeHeadingMob: 18;
+  --fontSizeSubheadingMob: 16;
+  --fontSizeBodyMob: 14;
+  --fontSizeMenuMob: 16;
+  --fontSizeContentHeadingMob: 16;
+}
+/**
+ * ----------------------------------------------------------------------------
+ * 大标题、标题、副标题、正文、菜单、内容标题
+ * ----------------------------------------------------------------------------
+ */
+.text {
+  &-price {
+    color: var(--colorPrice);
+  }
+
+  &-secondary {
+    color: var(--colorSecondary) !important;
+  }
+
+  &-primary {
+    color: var(--colorTheme) !important;
+  }
+
+  &-headline {
+    font-family: var(--typeHeadline);
+    font-size: calc(var(--fontSizeHeadline) * 1px);
+  }
+
+  &-heading {
+    font-family: var(--typeHeading);
+    font-size: calc(var(--fontSizeHeading) * 1px);
+    color: var(--colorHeading);
+  }
+
+  &-subheading {
+    font-family: var(--typeSubheading);
+    font-size: calc(var(--fontSizeSubheading) * 1px);
+    color: var(--colorSubheading);
+  }
+
+  &-content-heading {
+    font-family: var(--typeContentHeading);
+    font-size: calc(var(--fontSizeContentHeading) * 1px);
+  }
+
+  &-menu {
+    font-size: calc(var(--fontSizeMenu) * 1px);
+    font-family: var(--typeMenu);
+  }
+
+  &-body {
+    font-family: var(--typeBody);
+    font-size: calc(var(--fontSizeBody) * 1px);
+    color: var(--colorBody);
+    word-wrap: break-word;
+    word-break: break-word;
+
+    li,
+    p {
+      color: var(--colorBody);
+      word-wrap: break-word;
+      word-break: break-word;
+
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    & + & {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+[class*="text-"] {
+  & + & {
+    margin-top: 0.5rem;
+  }
+
+  & + .text-neighbor {
+    margin-top: calc(var(--marginHeight) * 1px);
+  }
+
+  @media (max-width: 768px) {
+    & + .text-neighbor {
+      margin-top: 0.75rem;
+    }
+  }
+}
+
+h1 {
+  font-family: var(--colorHeading);
+  font-size: calc(var(--fontSizeHeading) * 1px);
+  color: var(--colorHeading);
+}
+
+.section-paragraph-heading {
+  font-family: var(--typeBody);
+  font-size: var(--colorBody) !important;
+}
+
+// 移动端
+@media (max-width: 768px) {
+  h1 {
+    font-size: calc(var(--fontSizeHeadingMob) * 1px);
+  }
+
+  .text {
+
+    &-headline {
+      font-size: calc(var(--fontSizeHeadlineMob) * 1px);
+    }
+
+    &-heading {
+      font-size: calc(var(--fontSizeHeadingMob) * 1px);
+    }
+
+    &-subheading {
+      font-size: calc(var(--fontSizeSubheadingMob) * 1px);
+    }
+
+    &-content-heading {
+      font-size: calc(var(--fontSizeContentHeadingMob) * 1px);
+    }
+
+    &-menu {
+      font-size: calc(var(--fontSizeMenuMob) * 1px);
+    }
+
+    &-body {
+      font-size: calc(var(--fontSizeBodyMob) * 1px);
+    }
+  }
+}

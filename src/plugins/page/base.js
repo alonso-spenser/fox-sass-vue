@@ -4,6 +4,8 @@ import {
   mapMutations,
   mapState
 } from 'vuex'
+import router from '@/router'
+import { fetchMySite } from '@/plugins/api/site'
 
 /**
  * 页面基类
@@ -38,17 +40,26 @@ export default {
     }
   },
   computed: {
-    ...mapState(['agentModel', 'agentId']),
+    ...mapState(['agentModel', 'agentId', 'siteModel', 'globalRegionModel']),
     /**
      * 语言
      * @returns {*|string}
      */
     language () {
       return this.utility.getLanguage()
+    },
+    regionCode () {
+      if (!this.globalRegionModel) {
+        return 'en'
+      }
+      return this.globalRegionModel.code
+    },
+    defaultDomain () {
+      return this.siteModel ? (this.siteModel.mainDomain || this.siteModel.systemDomain) : ''
     }
   },
   methods: {
-    ...mapMutations(['setAgentModel', 'setAgentId', 'setMySite']),
+    ...mapMutations(['setAgentModel', 'setAgentId', 'setMySite', 'setAutoSyncH1']),
     /**
      * 键盘事件
      * @param func 回调事件
@@ -116,16 +127,18 @@ export default {
      * @param func 回调方法
      */
     resultMessage (result, func) {
+      let admin = router.currentRoute.fullPath.indexOf('/main') === 0
       if (result.code === 13010000) {
         this.$message({
           type: 'error',
           message: this.$t('errorCode.timeOut')
         })
         this.$router.push({
-          path: '/passport',
+          path: `${admin ? '/main' : ''}/passport`,
           query: {
             redirect: location.href
           }
+        }).then(() => {
         })
         return false
       }
@@ -195,11 +208,46 @@ export default {
         func.call(this, result.success)
       }
       if (!this.utility.isEmpty(result.options.url)) {
-        this.$router.replace(result.options.url)
+        this.$router.push({
+          path: result.options.url
+        }).then(() => {
+        })
       }
+    },
+    /**
+     * 退出
+     */
+    logout () {
+      window.localStorage.clear()
+      this.setMerchantModel({
+        avatar: '',
+        firstName: '',
+        lastName: '',
+        name: ''
+      })
+    },
+    /**
+     * 我的站点
+     */
+    getMySite (func) {
+      fetchMySite()
+        .then((result) => {
+          if (result.success) {
+            if (func && typeof (func) === 'function') {
+              this.setMySite(result.data)
+              func.call(this, result.data)
+            }
+          }
+        })
+        .catch((e) => {
+          console.log('catch', e)
+          // this.logout()
+          func.call(this, [])
+        })
     }
   },
   created () {
     this.id = this.$route.params.id
+    this.siteId = this.$route.params.siteId || ''
   }
 }

@@ -6,7 +6,7 @@ import store from './store'
 import 'normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/base.scss'
-import elementUI from 'element-ui';
+import elementUI from 'element-ui'
 import util from './plugins/utility'
 import resource from './plugins/resource'
 import ajax from './plugins/api/http'
@@ -20,17 +20,25 @@ import echarts from 'echarts'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import cnLocale from 'element-ui/lib/locale/lang/zh-CN'
 import countdown from './components/countdown/index'
+import LinkPicker from './components/link-picker/index'
+import SearchEnginePreview from './components/search-engine-preview'
+import AddToCollection from './components/article/add-to-collection'
+import Sorting from './components/article/sorting'
 
+Vue.component('Countdown', countdown)
+Vue.component('SearchEnginePreview', SearchEnginePreview)
+Vue.component('AddToCollection', AddToCollection)
+Vue.component('Sorting', Sorting)
+Vue.component('LinkPicker', LinkPicker)
 let locale = util.getLanguage() === 'en' ? enLocale : cnLocale
 Vue.prototype.$moment = moment
 Vue.prototype.$echarts = echarts
 Vue.use(foUI)
-Vue.use(elementUI, {locale})
-Vue.component('Countdown', countdown)
+Vue.use(elementUI, { locale })
 
 Vue.directive('permission', {
   inserted: function (el, binding) {
-    const {value} = binding
+    const { value } = binding
     const roles = store.getters && store.getters.roles
 
     if (value && value instanceof Array && value.length > 0) {

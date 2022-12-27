@@ -1,6 +1,10 @@
 <template>
-  <div class="global-page" v-loading="loading">
-    <div class="global-header create-site-header active" v-if="canCreate">
+  <div
+    class="global-page"
+    v-loading="loading">
+    <div
+      class="global-header create-site-header active"
+      v-if="canCreate">
       <div class="container">
         <h3 v-if="activeIndex === 0">
           {{ $t("startup.siteType.heading") }}
@@ -27,30 +31,38 @@
               :type="o.id === tagId ? 'primary' : ''"
               @click="tagsChange(o.id)"
               size="small">
-              {{o.tagName}}
+              {{ o.tagName }}
             </el-button>
           </div>
         </template>
         <h3 v-if="activeIndex === 2">
-          {{$t('startup.siteTheme')}}
+          {{ $t('startup.siteTheme') }}
           <small class="text-primary">
             （{{ $t("siteType")[entity.siteType.toString()] }}）
           </small>
         </h3>
         <div class="create-site-logout">
-          <el-button size="small" @click="logout">
+          <el-button
+            size="small"
+            @click="logout">
             {{ $t('passport.login.logout') }}
           </el-button>
         </div>
       </div>
     </div>
-    <main class="editable" v-if="canCreate">
+    <main
+      class="editable"
+      v-if="canCreate">
       <template v-if="activeIndex === 0">
         <div class="global-page-container">
           <div class="container">
-            <el-row :gutter="20" class="mt-7">
+            <el-row
+              :gutter="20"
+              class="mt-7">
               <el-col :span="12">
-                <div :class="`create-site el-icon-check ${entity.siteType === 3 ? ' active' : ''}`" @click="selectedSite(3)">
+                <div
+                  :class="`create-site el-icon-check ${entity.siteType === 3 ? ' active' : ''}`"
+                  @click="selectedSite(3)">
                   <h2>
                     {{ $t("startup.siteType.b2b.heading") }}
                   </h2>
@@ -61,7 +73,9 @@
                 </div>
               </el-col>
               <el-col :span="12">
-                <div :class="`create-site el-icon-check ${entity.siteType === 2 ? ' active' : ''}`" @click="selectedSite(2)">
+                <div
+                  :class="`create-site el-icon-check ${entity.siteType === 2 ? ' active' : ''}`"
+                  @click="selectedSite(2)">
                   <h2 v-html="$t('startup.siteType.lp.heading')"></h2>
                   <p v-html="$t('startup.siteType.lp.subheading')"></p>
                   <p>
@@ -85,17 +99,22 @@
           <div class="container">
             <el-row :gutter="20">
               <el-col :span="12">
-                <router-link class="text-primary el-button el-button--text" to="/owned">
+                <a
+                  class="text-primary el-button el-button--text"
+                  href="/owned">
                   <i class="el-icon-d-arrow-left"></i>
                   {{ $t("startup.mySites") }}
-                </router-link>
+                </a>
               </el-col>
-              <el-col :span="12" class="text-right">
+              <el-col
+                :span="12"
+                class="text-right">
                 <el-button
                   :loading="loading"
                   @click="stepChange(0, 1)"
                   type="primary"
-                >{{ $t("startup.nextStep") }}</el-button>
+                >{{ $t("startup.nextStep") }}
+                </el-button>
               </el-col>
             </el-row>
           </div>
@@ -104,15 +123,20 @@
       <template v-if="activeIndex === 1">
         <div class="global-page-container">
           <div class="container">
-            <el-row :gutter="20" class="site-template">
+            <el-row
+              :gutter="20"
+              class="site-template">
               <el-col
                 v-for="o in dataset"
                 class="mt-4"
                 :key="o.id"
                 :span="6">
                 <div
-                  class="embed-responsive embed-responsive-5by4" :class="o.id === entity.themeId ? ' active' : ''">
-                  <img class="embed-responsive-item" :src="o.screenshot">
+                  class="embed-responsive embed-responsive-5by4"
+                  :class="o.id === entity.themeId ? ' active' : ''">
+                  <img
+                    class="embed-responsive-item"
+                    :src="o.screenshot">
                   <div class="site-template-mask">
                     <el-button
                       type="primary"
@@ -121,14 +145,20 @@
                     >
                       {{ $t("startup.selected") }}
                     </el-button>
-                    <a :href="o.demoUrl" target="_blank" v-if="o.demoUrl">
-                      <el-button type="primary" round plain>
+                    <a
+                      :href="o.demoUrl"
+                      target="_blank"
+                      v-if="o.demoUrl">
+                      <el-button
+                        type="primary"
+                        round
+                        plain>
                         {{ $t("startup.preview") }}
                       </el-button>
                     </a>
                   </div>
                 </div>
-                <p class="text-center">{{o.name}}</p>
+                <p class="text-center">{{ o.name }}</p>
               </el-col>
             </el-row>
           </div>
@@ -138,12 +168,16 @@
           <div class="container">
             <el-row :gutter="40">
               <el-col :span="12">
-                <router-link class="text-primary el-button el-button--text" to="/">
+                <a
+                  class="text-primary el-button el-button--text"
+                  href="/">
                   <i class="el-icon-d-arrow-left"></i>
                   {{ $t("startup.mySites") }}
-                </router-link>
+                </a>
               </el-col>
-              <el-col :span="12" class="text-right">
+              <el-col
+                :span="12"
+                class="text-right">
                 <el-button
                   @click="stepChange(1, 0)"
                   type="text"
@@ -162,7 +196,8 @@
                   type="primary"
                   class="ml-5"
                   @click="stepChange(1, 2)"
-                >{{ $t("startup.nextStep") }}</el-button>
+                >{{ $t("startup.nextStep") }}
+                </el-button>
               </el-col>
             </el-row>
           </div>
@@ -180,7 +215,9 @@
             <div class="container mt-7">
               <el-row :gutter="20">
                 <el-col :span="8">
-                  <el-form-item prop="siteName" :label="$t('startup.entity.siteName.label')">
+                  <el-form-item
+                    prop="siteName"
+                    :label="$t('startup.entity.siteName.label')">
                     <el-input
                       v-model="entity.siteName"
                       :placeholder="$t('startup.entity.siteName.placeholder')"
@@ -190,7 +227,9 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="8">
-                  <el-form-item prop="langCode" :label="$t('startup.entity.langCode.label')">
+                  <el-form-item
+                    prop="langCode"
+                    :label="$t('startup.entity.langCode.label')">
                     <el-select
                       v-model="entity.langCode"
                       filterable
@@ -203,7 +242,7 @@
                         :label="`${item.languageName} - ${item.nativeName}`"
                         :value="item.code"
                       >
-                        {{item.languageName}} - {{item.nativeName}}
+                        {{ item.languageName }} - {{ item.nativeName }}
                       </el-option>
                     </el-select>
                   </el-form-item>
@@ -213,7 +252,9 @@
                 <h3>{{ $t("startup.original") }}</h3>
                 <div class="create-site-browser">
                   <el-row>
-                    <el-col :span="4" class="text-center">
+                    <el-col
+                      :span="4"
+                      class="text-center">
                       <i class="el-icon-back"></i>
                       <i class="el-icon-right"></i>
                       <i class="el-icon-refresh"></i>
@@ -235,7 +276,11 @@
                   </el-row>
                 </div>
                 <ul class="create-site-tips">
-                  <li v-for="(o, index) in $t('startup.tips')" :key="index" v-html="o">{{o}}</li>
+                  <li
+                    v-for="(o, index) in $t('startup.tips')"
+                    :key="index"
+                    v-html="o">{{ o }}
+                  </li>
                 </ul>
               </div>
             </div>
@@ -246,12 +291,16 @@
           <div class="container">
             <el-row :gutter="40">
               <el-col :span="12">
-                <router-link class="text-primary el-button el-button--text" to="/">
+                <a
+                  class="text-primary el-button el-button--text"
+                  href="/">
                   <i class="el-icon-d-arrow-left"></i>
                   {{ $t("startup.mySites") }}
-                </router-link>
+                </a>
               </el-col>
-              <el-col :span="12" class="text-right">
+              <el-col
+                :span="12"
+                class="text-right">
                 <el-button
                   @click="stepChange(1, 0)"
                   type="text"
@@ -262,7 +311,8 @@
                   :loading="loading"
                   type="primary"
                   @click="formValidation('ruleForm')"
-                >{{ $t("startup.create") }}</el-button>
+                >{{ $t("startup.create") }}
+                </el-button>
               </el-col>
             </el-row>
           </div>
@@ -280,6 +330,7 @@ import { fetchThemeTag, fetchTheme } from '@/plugins/api/assembler'
 import {
   mapMutations
 } from 'vuex'
+
 export default {
   name: 'createSite',
   extends: extend,
@@ -621,6 +672,7 @@ export default {
 
 <style lang='scss'>
 @import "../../assets/var";
+
 .embed-responsive {
   border: 4px solid #fff;
   border-radius: 6px;
@@ -695,10 +747,12 @@ export default {
       padding-bottom: 50px;
     }
   }
+
   &-logout {
     position: absolute;
     right: 40px;
     top: calc(50% - 16px);
+
     .el-button {
       border-radius: 16px;
     }
@@ -710,6 +764,7 @@ export default {
     background-color: #fff;
     border-top: 1px solid #f5f5f5;
   }
+
   h2 {
     color: $colorHeading;
     margin-bottom: 30px;
