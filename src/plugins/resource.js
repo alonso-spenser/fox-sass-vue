@@ -9,12 +9,12 @@ export default {
     api: {
       development: 'http://127.0.0.1:9721',
       test: 'http://192.168.11.247:8300',
-      production: 'https://api.fomille.site'
+      production: 'https://api.6fox.com'
     },
     upload: {
       development: 'http://127.0.0.1:8300/common/api/oss/upload',
       test: 'http://192.168.11.247:8300/common/api/oss/upload',
-      production: 'https://api.fomille.site/common/api/oss/upload'
+      production: 'https://api.6fox.com/common/api/oss/upload'
     },
     excelAddress: {
       development: 'http://127.0.0.1:8300/stat/api/report/submit-report',
@@ -22,7 +22,7 @@ export default {
       production: '/api/stat/api/report/submit-report'
     }
   },
-  domain: '.gicto.com',
+  domain: '.6fox.com',
   keepDomain: 'theme|verification|www|design|fomille|fomile|file|devin|jason|admin|console|agent|sass|shop|shopify|nginx|phone|jenkins|site|zabbix|nacos|code|test',
   /**
    * 信息类型
