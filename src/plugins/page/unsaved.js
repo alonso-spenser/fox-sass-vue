@@ -3,14 +3,24 @@
  */
 import extend from './paging'
 import passport from '../passport'
+import {
+  mapState
+} from 'vuex'
 
 export default {
   extends: extend,
   data () {
     return {
       updating: false,
-      unsaved: false
+      unsaved: false,
+      autoSyncH1Title: false
     }
+  },
+  computed: {
+    ...mapState(['autoSyncH1'])
+  },
+  created () {
+    this.autoSyncH1Title = this.autoSyncH1
   },
   methods: {
     /**

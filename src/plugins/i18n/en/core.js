@@ -1,5 +1,6 @@
 export default {
   core: {
+    title: '基础数据',
     appTypeList: [
       {
         label: 'Merchant',

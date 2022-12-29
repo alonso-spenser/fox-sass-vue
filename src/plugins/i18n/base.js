@@ -26,6 +26,10 @@ import enNavigation from './en/navigation'
 import enSettings from './en/settings'
 import enDesign from './en/design'
 import enDashboard from './en/dashboard'
+import enClient from './en/client'
+import enCollect from './en/collect'
+import cnPlug from './en/plug'
+import cnDownload from './en/download'
 
 Vue.use(VueI18n)
 
@@ -58,7 +62,11 @@ const i18n = new VueI18n({
       ...enNavigation,
       ...enSettings,
       ...enDesign,
-      ...enDashboard
+      ...enDashboard,
+      ...enClient,
+      ...enCollect,
+      ...cnPlug,
+      ...cnDownload
     }
   }
 })

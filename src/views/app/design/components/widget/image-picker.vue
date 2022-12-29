@@ -54,7 +54,7 @@
             :span="2">
             <el-upload
               multiple
-              :action="resource.serviceAddress"
+              :action="utility.uploadURL()"
               :show-file-list="false"
               :limit="100"
               v-loading="fileUploading"

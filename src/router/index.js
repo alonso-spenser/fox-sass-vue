@@ -362,7 +362,7 @@ const routes = [
               requireAuth: true,
               title: i18n.t('settings.domain.title'),
               parent: {
-                title: i18n.t('client.address.paging.title'),
+                title: i18n.t('settings.heading'),
                 url: '/site/:siteId:/domain',
                 previous: '/site/:siteId:/settings/'
               }
@@ -1130,18 +1130,6 @@ const routes = [
         }
       },
       {
-        path: 'customs',
-        name: 'site-customs',
-        component: () => import('../views/app/customs'),
-        meta: {
-          siteType: [1, 2, 3, 4],
-          header: true,
-          sidebar: true,
-          // requireAuth: true,
-          title: i18n.t('customs.paging.title')
-        }
-      },
-      {
         path: 'optimize',
         name: 'site-optimize',
         component: () => import('../views/app/site/optimize'),
@@ -1498,7 +1486,7 @@ const routes = [
           requireAuth: true,
           title: '批量添加',
           parent: {
-            title: i18n.t('client.mine.title'),
+            title: i18n.t('core.title'),
             url: '/dict/:alias:',
             previous: '/client'
           }

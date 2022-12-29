@@ -119,7 +119,7 @@
                     :alt="entity.coverAlt"
                     :size-limit="10"
                     :oss-bucket="resource.ossBucket"
-                    :server-address="resource.serviceAddress"
+                    :server-address="utility.uploadURL()"
                     :file-folder="siteId"
                     @updateAlt="updateCoverAlt"
                   ></fo-image-single>
@@ -147,7 +147,7 @@
                     :alt="entity.bannerAlt"
                     :size-limit="10"
                     :oss-bucket="resource.ossBucket"
-                    :server-address="resource.serviceAddress"
+                    :server-address="utility.uploadURL()"
                     :file-folder="siteId"
                     :alt-visible="false"
                     @updateAlt="updateBannerAlt"

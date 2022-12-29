@@ -6,10 +6,10 @@
       </h6>
       <p>
         <el-input
-            v-model="model[schemeData.field]"
-            :placeholder="schemeData.placeholder && schemeData.placeholder[language] || schemeData.name[language]"
-            type="textarea"
-            :rows="6"></el-input>
+          v-model="model[schemeData.field]"
+          :placeholder="schemeData.placeholder && schemeData.placeholder[language] || schemeData.name[language]"
+          type="textarea"
+          :rows="6"></el-input>
       </p>
     </template>
     <template v-else-if="schemeData.type === 'divider'">
@@ -18,10 +18,10 @@
     <template v-else-if="schemeData.type === 'switch'">
       <p>
         <el-switch
-            v-model="model[schemeData.field]"
-            :active-value="true"
-            :inactive-value="false"
-            active-color="#13ce66"
+          v-model="model[schemeData.field]"
+          :active-value="true"
+          :inactive-value="false"
+          active-color="#13ce66"
         >
         </el-switch>
         {{ schemeData.name[language] }}
@@ -33,38 +33,38 @@
       </h6>
       <p>
         <el-select
-            v-model="model[schemeData.field]"
-            :placeholder="$t('base.placeholder.select')"
-            size="small"
-            v-if="schemeData.group"
-            filterable
-            width="100%">
+          v-model="model[schemeData.field]"
+          :placeholder="$t('base.placeholder.select')"
+          size="small"
+          v-if="schemeData.group"
+          filterable
+          width="100%">
           <el-option-group
-              v-for="g in groups"
-              :key="g"
-              :label="g">
+            v-for="g in groups"
+            :key="g"
+            :label="g">
             <el-option
-                v-for="o in schemeData.options.filter((fo)=> { return fo.group === g })"
-                :key="o.value"
-                :label="o.name[language]"
-                :value="o.value">
-              {{o.name[language]}}
+              v-for="o in schemeData.options.filter((fo)=> { return fo.group === g })"
+              :key="o.value"
+              :label="o.name[language]"
+              :value="o.value">
+              {{ o.name[language] }}
             </el-option>
           </el-option-group>
         </el-select>
         <el-select
-            v-model="model[schemeData.field]"
-            :placeholder="$t('base.placeholder.select')"
-            size="small"
-            filterable
-            v-else
-            width="100%">
+          v-model="model[schemeData.field]"
+          :placeholder="$t('base.placeholder.select')"
+          size="small"
+          filterable
+          v-else
+          width="100%">
           <el-option
-              v-for="o in schemeData.options"
-              :key="o.value"
-              :label="o.name[language]"
-              :value="o.value">
-            {{o.name[language]}}
+            v-for="o in schemeData.options"
+            :key="o.value"
+            :label="o.name[language]"
+            :value="o.value">
+            {{ o.name[language] }}
           </el-option>
         </el-select>
 
@@ -75,7 +75,7 @@
         {{ schemeData.name[language] }}
       </h6>
       <icon-picker
-          v-model="model[schemeData.field]"
+        v-model="model[schemeData.field]"
       >
       </icon-picker>
     </template>
@@ -84,11 +84,11 @@
         {{ schemeData.name[language] }}
       </h6>
       <image-picker
-          :alt="this.imageAlt"
-          :alt-button="displayAlt"
-          :site-id="siteId"
-          v-model="model[schemeData.field]"
-          @updateAlt="updateAlt"
+        :alt="this.imageAlt"
+        :alt-button="displayAlt"
+        :site-id="siteId"
+        v-model="model[schemeData.field]"
+        @updateAlt="updateAlt"
       >
       </image-picker>
       <!--      <fo-image-single-->
@@ -97,7 +97,7 @@
       <!--        :alt="imageAlt"-->
       <!--        :size-limit="10"-->
       <!--        :oss-bucket="resource.ossBucket"-->
-      <!--        :server-address="resource.serviceAddress"-->
+      <!--        :server-address="utility.uploadURL()"-->
       <!--        :file-folder="siteId"-->
       <!--        @updateAlt="updateAlt"-->
       <!--      ></fo-image-single>-->
@@ -107,31 +107,33 @@
         {{ schemeData.name[language] }}
       </h6>
       <link-picker
-          :site-type="siteModel.siteType.toString()"
-          :width="220"
-          size="small"
-          v-model="model[schemeData.field]"
+        :site-type="siteModel.siteType.toString()"
+        :width="220"
+        size="small"
+        v-model="model[schemeData.field]"
       ></link-picker>
     </template>
     <template v-else-if="schemeData.type === 'inquiryFormPicker'">
       <inquiry-form-picker
-          :name="schemeData.name"
-          :picker-type="schemeData.type"
-          v-model="model"
+        :name="schemeData.name"
+        :picker-type="schemeData.type"
+        v-model="model"
       >
       </inquiry-form-picker>
     </template>
     <template v-else-if="schemeData.type === 'productCollectionPicker' || schemeData.type === 'articleCollectionPicker'">
       <collection-picker
-          :name="schemeData.name"
-          :picker-type="schemeData.type"
-          v-model="model"
+        :name="schemeData.name"
+        :picker-type="schemeData.type"
+        v-model="model"
       >
       </collection-picker>
     </template>
     <template v-else-if="schemeData.type === 'colorPicker'">
       <p>
-        <el-color-picker v-model="model[schemeData.field]" show-alpha></el-color-picker>
+        <el-color-picker
+          v-model="model[schemeData.field]"
+          show-alpha></el-color-picker>
         {{ schemeData.name[language] }}
       </p>
     </template>
@@ -141,11 +143,11 @@
       </h6>
       <p>
         <el-slider
-            v-model="model[schemeData.field]"
-            :min="schemeData.min"
-            :max="schemeData.max"
-            show-stops
-            :step="schemeData.step">
+          v-model="model[schemeData.field]"
+          :min="schemeData.min"
+          :max="schemeData.max"
+          show-stops
+          :step="schemeData.step">
         </el-slider>
       </p>
     </template>
@@ -154,7 +156,7 @@
         {{ schemeData.name[language] }}
       </h6>
       <positive-integer
-          v-model="model[schemeData.field]"
+        v-model="model[schemeData.field]"
       ></positive-integer>
     </template>
     <template v-else-if="schemeData.type === 'richText'">
@@ -162,17 +164,17 @@
         {{ schemeData.name[language] }}
       </h6>
       <fo-editor
-          model-type="simple"
-          :height="500"
-          v-model="model[schemeData.field]"
+        model-type="simple"
+        :height="500"
+        v-model="model[schemeData.field]"
       ></fo-editor>
     </template>
     <template v-else-if="schemeData.type === 'googleMapPicker'">
-<!--      <h6>-->
-<!--        {{ schemeData.name[language] }}-->
-<!--      </h6>-->
+      <!--      <h6>-->
+      <!--        {{ schemeData.name[language] }}-->
+      <!--      </h6>-->
       <google-map-picker
-          v-model="model[schemeData.field]"
+        v-model="model[schemeData.field]"
       ></google-map-picker>
     </template>
     <template v-else-if="schemeData.type === 'videoPicker'">
@@ -188,7 +190,7 @@
         {{ schemeData.name[language] }}
       </h6>
       <positive-integer
-          v-model="model[schemeData.field]"
+        v-model="model[schemeData.field]"
       ></positive-integer>
     </template>
     <template v-else-if="schemeData.type ==='svgIcon'">
@@ -197,12 +199,12 @@
       </h6>
       <p>
         <el-input
-            size="small"
-            v-model="model[schemeData.field]"
-            type="textarea"
-            :rows="8"
-            @blur="filterSVG"
-            :placeholder="schemeData.placeholder && schemeData.placeholder[language] || schemeData.name[language]"
+          size="small"
+          v-model="model[schemeData.field]"
+          type="textarea"
+          :rows="8"
+          @blur="filterSVG"
+          :placeholder="schemeData.placeholder && schemeData.placeholder[language] || schemeData.name[language]"
         ></el-input>
       </p>
     </template>
@@ -212,20 +214,23 @@
       </h6>
       <p>
         <el-input
-            size="small"
-            v-model="model[schemeData.field]"
-            :class="schemeData.type === 'textarea' ? 'is-textarea' : ''"
-            type="textarea"
-            @blur="elementBlur"
-            :rows="3"
-            :placeholder="schemeData.placeholder && schemeData.placeholder[language] || schemeData.name[language]"
+          size="small"
+          v-model="model[schemeData.field]"
+          :class="schemeData.type === 'textarea' ? 'is-textarea' : ''"
+          type="textarea"
+          @blur="elementBlur"
+          :rows="3"
+          :placeholder="schemeData.placeholder && schemeData.placeholder[language] || schemeData.name[language]"
         ></el-input>
       </p>
     </template>
     <h6 v-if="schemeData.info && schemeData.info[language] && schemeData.type === 'divider'">
       | {{ schemeData.info[language] }}
     </h6>
-    <p class="editor-section-item-info" v-if="schemeData.info && schemeData.info[language] && schemeData.type !== 'divider'" v-html="schemeData.info[language]">
+    <p
+      class="editor-section-item-info"
+      v-if="schemeData.info && schemeData.info[language] && schemeData.type !== 'divider'"
+      v-html="schemeData.info[language]">
       <small>
         {{ schemeData.info[language] }}
       </small>
@@ -244,6 +249,7 @@ import googleMapPicker from './google-map-picker'
 import resource from '@/plugins/resource'
 import extend from '@/plugins/page/base'
 import richText from '@/assets/image/rich-text.jpg'
+
 export default {
   name: 'section-widget',
   extends: extend,
@@ -280,8 +286,7 @@ export default {
     value: {
       type: Object,
       default: () => {
-        return {
-        }
+        return {}
       }
     },
     /**
@@ -290,8 +295,7 @@ export default {
     schema: {
       type: Object,
       default: () => {
-        return {
-        }
+        return {}
       }
     },
     visible: {
@@ -396,7 +400,7 @@ export default {
 </script>
 
 <style lang='scss'>
-$color-info: rgba(255,255,255, .7);
+$color-info: rgba(255, 255, 255, .7);
 .editor-section-item {
   .editor-section-link {
     color: $color-info !important;

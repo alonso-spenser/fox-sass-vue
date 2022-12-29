@@ -48,7 +48,7 @@
               :key="o.value"
               :label="o.name[language]"
               :value="o.value">
-              {{o.name[language]}}
+              {{ o.name[language] }}
             </el-option>
           </el-option-group>
         </el-select>
@@ -64,7 +64,7 @@
             :key="o.value"
             :label="o.name[language]"
             :value="o.value">
-            {{o.name[language]}}
+            {{ o.name[language] }}
           </el-option>
         </el-select>
 
@@ -97,7 +97,7 @@
       <!--        :alt="imageAlt"-->
       <!--        :size-limit="10"-->
       <!--        :oss-bucket="resource.ossBucket"-->
-      <!--        :server-address="resource.serviceAddress"-->
+      <!--        :server-address="utility.uploadURL()"-->
       <!--        :file-folder="siteId"-->
       <!--        @updateAlt="updateAlt"-->
       <!--      ></fo-image-single>-->
@@ -131,7 +131,9 @@
     </template>
     <template v-else-if="schema.type === 'colorPicker'">
       <p>
-        <el-color-picker v-model="model[schema.field]" show-alpha></el-color-picker>
+        <el-color-picker
+          v-model="model[schema.field]"
+          show-alpha></el-color-picker>
         {{ schema.name[language] }}
       </p>
     </template>
@@ -217,7 +219,10 @@
     <h6 v-if="schema.info && schema.info[language] && schema.type === 'divider'">
       | {{ schema.info[language] }}
     </h6>
-    <p class="section-design-info" v-if="schema.info && schema.info[language] && schema.type !== 'divider'" v-html="schema.info[language]">
+    <p
+      class="section-design-info"
+      v-if="schema.info && schema.info[language] && schema.type !== 'divider'"
+      v-html="schema.info[language]">
       <small>
         {{ schema.info[language] }}
       </small>
@@ -235,6 +240,7 @@ import PositiveInteger from './positive-integer'
 import resource from '@/plugins/resource'
 import extend from '@/plugins/page/base'
 import richText from '@/assets/image/rich-text.jpg'
+
 export default {
   name: 'section-design-widget',
   extends: extend,
@@ -269,8 +275,7 @@ export default {
     value: {
       type: Object,
       default: () => {
-        return {
-        }
+        return {}
       }
     },
     /**
@@ -279,8 +284,7 @@ export default {
     schema: {
       type: Object,
       default: () => {
-        return {
-        }
+        return {}
       }
     },
     visible: {

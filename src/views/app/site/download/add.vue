@@ -29,7 +29,7 @@
                 <fo-attachment-upload
                   v-model="entity.fileList"
                   :oss-bucket="resource.ossBucket"
-                  :server-address="resource.serviceAddress"
+                  :server-address="utility.uploadURL()"
                   :file-folder="siteId"
                   :down-pass="true"
                   :inactive-value="1"

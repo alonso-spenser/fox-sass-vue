@@ -17,7 +17,9 @@
         <fo-page-section>
           <el-row :gutter="20">
             <el-col :span="18">
-              <el-form-item prop="title" :label="$t('site.resource.update.entity.title.label')">
+              <el-form-item
+                prop="title"
+                :label="$t('site.resource.update.entity.title.label')">
                 <el-input
                   type="textarea"
                   autosize
@@ -27,7 +29,9 @@
                   :placeholder="$t('site.resource.update.entity.title.placeholder')"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="description" :label="$t('site.resource.update.entity.description.label')">
+              <el-form-item
+                prop="description"
+                :label="$t('site.resource.update.entity.description.label')">
                 <el-input
                   show-word-limit
                   type="textarea"
@@ -49,7 +53,7 @@
                     :alt="entity.coverAlt"
                     :size-limit="10"
                     :oss-bucket="resource.ossBucket"
-                    :server-address="resource.serviceAddress"
+                    :server-address="utility.uploadURL()"
                     :file-folder="siteId"
                   ></fo-image-single>
                 </el-form-item>
@@ -130,8 +134,8 @@ export default {
       this.$router.push(`/site/${this.siteId}/down`)
     },
     /**
-       * 表单校验
-       */
+     * 表单校验
+     */
     formValidation () {
       let formName = 'update'
       this.$refs[formName].validate((valid) => {
@@ -142,8 +146,8 @@ export default {
       })
     },
     /**
-       * 添加数据
-       */
+     * 添加数据
+     */
     addResource () {
       resourceUpdate(this.entity)
         .then(result => {
@@ -274,6 +278,7 @@ export default {
           color: #fff;
         }
       }
+
       &:not(:first-child) {
         margin-left: 5px;
       }

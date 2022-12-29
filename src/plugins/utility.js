@@ -120,6 +120,22 @@ export default {
     return this.isEmpty(value) ? '' : value.replace(/\s+/g, '')
   },
   /**
+   * 删除换行符
+   * @param value
+   * @returns {string|*}
+   */
+  clearLineSymbol (value) {
+    return this.isEmpty(value) ? '' : value.replace(/[\r\n]/g, '')
+  },
+  /**
+   * 删除换行符
+   * @param value
+   * @returns {string|*}
+   */
+  clearLineSymbolAndCapitalize (value) {
+    return this.charAtToUpperCase(this.isEmpty(value) ? '' : value.replace(/[\r\n]/g, ''))
+  },
+  /**
    * 清理HTML内容
    * @param html 内容
    * @param tagName 元素
@@ -185,14 +201,6 @@ export default {
    */
   firstLowerCase (value) {
     return value.replace(/( |^)[a-z]/g, (l) => l.toLowerCase())
-  },
-  /**
-   * 删除换行符
-   * @param value
-   * @returns {string|*}
-   */
-  clearLineSymbol (value) {
-    return this.isEmpty(value) ? '' : value.replace(/[\r\n]/g, '')
   },
   /**
    * 是否为空
@@ -483,6 +491,17 @@ export default {
         format: this.dateFormat(last, format)
       }
     }
+  },
+  /**
+   * 单个首字大写
+   * @param value
+   */
+  charAtToUpperCase (value) {
+    if (this.isEmpty(value)) {
+      return ''
+    }
+    value = value.trim()
+    return value.replace(value.charAt(0), value.charAt(0).toUpperCase())
   },
   /**
    * day 想要获取之前的天数

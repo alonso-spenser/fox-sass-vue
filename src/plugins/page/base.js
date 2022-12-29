@@ -31,12 +31,13 @@ export default {
        * 操作类型
        */
       actionType: {
-        save: 96,
         delete: 97,
         addition: 98,
         update: 99
       },
-      resource
+      siteId: '',
+      requestProtocol: 'https://',
+      resource: resource
     }
   },
   computed: {

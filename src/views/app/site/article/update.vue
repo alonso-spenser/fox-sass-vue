@@ -85,7 +85,7 @@
                 v-model="entity.imageList"
                 :file-limit="10"
                 :oss-bucket="resource.ossBucket"
-                :server-address="resource.serviceAddress"
+                :server-address="utility.uploadURL()"
                 :file-folder="siteId"
               ></fo-image-upload>
             </fo-page-section>
@@ -97,7 +97,7 @@
                   v-model="entity.description"
                   :file-folder="siteId"
                   @upload="ossUpload"
-                  :server-address="resource.serviceAddress"
+                  :server-address="utility.uploadURL()"
                   :placeholder="$t('article.update.entity.description.placeholder')"
                 ></fo-editor>
               </el-form-item>
@@ -158,7 +158,7 @@
                         v-model="item.blockDescription"
                         model-type="simple"
                         :file-folder="siteId"
-                        :server-address="resource.serviceAddress"
+                        :server-address="utility.uploadURL()"
                         :placeholder="$t('article.update.entity.description.placeholder')"
                       ></fo-editor>
                     </el-form-item>
@@ -223,7 +223,7 @@
               <fo-attachment-upload
                 v-model="entity.attachmentList"
                 :oss-bucket="resource.ossBucket"
-                :server-address="resource.serviceAddress"
+                :server-address="utility.uploadURL()"
                 :file-folder="siteId"
                 :down-pass="true"
                 :inactive-value="1"

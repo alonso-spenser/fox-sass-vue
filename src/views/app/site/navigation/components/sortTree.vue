@@ -1,5 +1,7 @@
 <template>
-  <fo-page-section :heading="heading" :content="subheading">
+  <fo-page-section
+    :heading="heading"
+    :content="subheading">
     <el-tree
       :data="dataset"
       :props="defaultProps"
@@ -9,7 +11,9 @@
       @node-drop="dragSort"
       default-expand-all
     >
-      <div class="custom-tree-node" slot-scope="{ node, data }">
+      <div
+        class="custom-tree-node"
+        slot-scope="{ node, data }">
         <div class="float-right">
           <el-button
             icon="el-icon-plus"
@@ -48,8 +52,15 @@
       :show-close="true"
       :close-on-click-modal="false"
       width="600px">
-      <el-form :model="entity" :rules="formRules" ref="update" label-width="100px" label-position="top">
-        <el-form-item prop="title" :label="$t('navigation.update.entity.title.label')">
+      <el-form
+        :model="entity"
+        :rules="formRules"
+        ref="update"
+        label-width="100px"
+        label-position="top">
+        <el-form-item
+          prop="title"
+          :label="$t('navigation.update.entity.title.label')">
           <el-input
             :maxlength="100"
             show-word-limit
@@ -57,7 +68,9 @@
             :placeholder="$t('navigation.update.entity.title.placeholder')"
           ></el-input>
         </el-form-item>
-        <el-form-item prop="link" :label="$t('navigation.update.entity.link.label')">
+        <el-form-item
+          prop="link"
+          :label="$t('navigation.update.entity.link.label')">
           <link-picker
             ref="linkPicker"
             :width="560"
@@ -67,7 +80,9 @@
           ></link-picker>
         </el-form-item>
         <!-- 导航方式-->
-        <el-form-item prop="target" :label="$t('navigation.update.entity.target.label')">
+        <el-form-item
+          prop="target"
+          :label="$t('navigation.update.entity.target.label')">
           <el-select
             class="w-100"
             v-model="entity.target"
@@ -83,8 +98,11 @@
         </el-form-item>
         <el-form-item prop="avatar">
           <template slot="label">
-            {{$t('navigation.update.entity.avatar.label')}}
-            <label class="text-primary cursor-pointer" @click="loadGallery('coverImage')" :title="$t('resourceSelector.lib')">
+            {{ $t('navigation.update.entity.avatar.label') }}
+            <label
+              class="text-primary cursor-pointer"
+              @click="loadGallery('coverImage')"
+              :title="$t('resourceSelector.lib')">
               <i class="el-icon-picture-outline-round"></i>
             </label>
           </template>
@@ -93,21 +111,32 @@
             :width="180"
             :size-limit="10"
             :oss-bucket="resource.ossBucket"
-            :server-address="resource.serviceAddress"
+            :server-address="utility.uploadURL()"
             :file-folder="siteId"
           ></fo-image-single>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button size="small" @click="closeDialog">
+      <div
+        slot="footer"
+        class="dialog-footer">
+        <el-button
+          size="small"
+          @click="closeDialog">
           {{ this.$t('base.operate.cancel') }}
         </el-button>
-        <el-button size="small" :loading="loading" type="primary" @click="formValidation">
+        <el-button
+          size="small"
+          :loading="loading"
+          type="primary"
+          @click="formValidation">
           {{ this.$t('base.operate.save') }}
         </el-button>
       </div>
     </el-dialog>
-    <resource-selector :visible.sync="gallery.visible" @close="resourceSelector" :info-type="0"></resource-selector>
+    <resource-selector
+      :visible.sync="gallery.visible"
+      @close="resourceSelector"
+      :info-type="0"></resource-selector>
   </fo-page-section>
 </template>
 
@@ -120,6 +149,7 @@ import {
   fetchSiteNavigationTreeData,
   fetchSiteNavigationUpdate
 } from '@/plugins/api/navigation'
+
 export default {
   name: 'sort-tree',
   extends: extend,
@@ -442,7 +472,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style
+  lang="scss"
+  scoped>
 .el-tree-node__content {
   padding: 0;
   margin: 0;

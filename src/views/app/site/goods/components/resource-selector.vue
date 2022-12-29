@@ -51,7 +51,7 @@
         v-if="searchCondition.infoType===0">
         <el-upload
           multiple
-          :action="resource.serviceAddress"
+          :action="utility.uploadURL()"
           :show-file-list="false"
           :limit="100"
           :accept="'image/*'"
