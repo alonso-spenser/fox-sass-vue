@@ -190,7 +190,7 @@ export default {
     sectionEditor,
     clonePage
   },
-  data() {
+  data () {
     return {
       pageLoading: true,
       displaySection: true,
@@ -289,14 +289,14 @@ export default {
   },
   watch: {
     value: {
-      handler(val) {
+      handler (val) {
         this.pageId = val
       },
       immediate: true,
       deep: true
     },
     pageId: {
-      handler(val, newVal) {
+      handler (val, newVal) {
         if (this.utility.isNotEmpty(val) && val !== newVal) {
           this.pageLoading = true
           // this.getPageSection(val)
@@ -305,15 +305,15 @@ export default {
       immediate: true,
       deep: true
     },
-    unsaved(val) {
+    unsaved (val) {
       this.unsavedStatus = val
     },
-    unsavedStatus(val) {
+    unsavedStatus (val) {
       this.$emit('update:unsaved', val)
       // this.$emit('update:overrideUnsaved', val && this.model.supportCustom && this.utility.isNotEmpty(this.collectionId))
     }
   },
-  created() {
+  created () {
     this.unsavedStatus = this.unsaved
     this.themeId = this.$route.params.themeId
     this.pageId = this.value
@@ -327,7 +327,7 @@ export default {
     /**
      * 清理全局
      */
-    clearSchema() {
+    clearSchema () {
       this.clearSchemaLoading = true
       fetchClearSchema({
         siteId: this.siteId
@@ -345,7 +345,7 @@ export default {
     /**
      * 整页复制
      */
-    clonePage() {
+    clonePage () {
       if (this.utility.isNotEmpty(this.pageId)) {
         localStorage.setItem(this.clonePageCacheKey, this.pageId)
         this.getPagePasteState()
@@ -355,7 +355,7 @@ export default {
         })
       }
     },
-    getPagePasteState() {
+    getPagePasteState () {
       let pageId = localStorage.getItem(this.clonePageCacheKey)
       if (this.model.isCustom === 0 && this.utility.isNotEmpty(pageId) && pageId !== this.pageId) {
         this.pagePasteVisible = true
@@ -366,7 +366,7 @@ export default {
     /**
      * 从剪贴板中复制组件
      */
-    pastePageFormClipboard() {
+    pastePageFormClipboard () {
       let pageId = localStorage.getItem(this.clonePageCacheKey)
       if (pageId === this.pageId) {
         this.$message({
@@ -400,7 +400,7 @@ export default {
     /**
      * 关闭设置面板
      */
-    closeSettingPanel() {
+    closeSettingPanel () {
       this.sectionSelectorData.sectionId = ''
       this.sectionSelectorData.themeSectionId = ''
       this.sectionEditorData.visible = false
@@ -408,7 +408,7 @@ export default {
     /**
      * 关闭SECTION选择面板
      */
-    closeSectionPanel() {
+    closeSectionPanel () {
       this.sectionSelectorData.visible = false
       this.sectionSelectorData.sectionType = ''
       this.sectionSelectorData.sectionGroup = 3000
@@ -421,7 +421,7 @@ export default {
      * @param sectionId 新增加的SECTION ID
      * @param fun 回调
      */
-    getPageSection(pageId, sectionId, fun) {
+    getPageSection (pageId, sectionId, fun) {
       this.themeId = this.themeId || this.$route.params.themeId
       this.closeSettingPanel()
       this.closeSectionPanel()
@@ -470,7 +470,7 @@ export default {
     /**
      * 设置组件
      */
-    hasConfigSection(sectionType) {
+    hasConfigSection (sectionType) {
       return this.configSection.global.filter((o) => {
         return o.sectionType === sectionType
       }).length > 0
@@ -478,7 +478,7 @@ export default {
     /**
      * 全局组件
      */
-    hasGlobalSection(sectionType) {
+    hasGlobalSection (sectionType) {
       return this.model.globalSectionList.filter((o) => {
         return o.sectionType === sectionType
       }).length > 0
@@ -486,7 +486,7 @@ export default {
     /**
      * 全局组件
      */
-    getGlobalSection(sectionType) {
+    getGlobalSection (sectionType) {
       let s = this.model.globalSectionList.filter((o) => {
         return o.sectionType === sectionType
       })
@@ -495,7 +495,7 @@ export default {
     /**
      * 剪贴板状态
      */
-    getClipboardState() {
+    getClipboardState () {
       let clip = localStorage.getItem('sectionClip')
       this.sectionPasteVisible = clip != null && clip !== undefined
       this.getPagePasteState()
@@ -503,7 +503,7 @@ export default {
     /**
      * 从剪贴板中粘贴
      */
-    pasteFormClipboard() {
+    pasteFormClipboard () {
       let sectionCache = localStorage.getItem('sectionClip')
       if (sectionCache) {
         let data = JSON.parse(sectionCache)
@@ -585,7 +585,7 @@ export default {
      * 获取编辑器
      * @returns {null|Window}
      */
-    getEditor() {
+    getEditor () {
       let editor = document.getElementById('editor')
       if (editor && editor.contentWindow) {
         return editor.contentWindow
@@ -596,7 +596,7 @@ export default {
      * 组件显示状态
      * @param data
      */
-    sectionVisible(data) {
+    sectionVisible (data) {
       this.sendMessage({
         action: 'visible',
         data: data
@@ -606,7 +606,7 @@ export default {
      * 发送post message通知
      * @param data
      */
-    sendMessage(data) {
+    sendMessage (data) {
       if (data.action && data.action === 'update') {
         if (this.designCallData.dataId.indexOf('?') > -1) {
           this.designCallData.dataId = this.designCallData.dataId.split('?')[0]
@@ -630,7 +630,7 @@ export default {
      * 更新锚钉
      * 保存锚点更新的时候，顺手更新锚钉导航
      */
-    updateAnchorNavigation(id, title) {
+    updateAnchorNavigation (id, title) {
       let pins = []
       let sectionId = ''
       this.model.sectionList.forEach((o, index) => {
@@ -658,7 +658,7 @@ export default {
     /**
      * 锚钉导航菜单数据
      */
-    anchorNavigation(data) {
+    anchorNavigation (data) {
       let pins = []
       let sectionId = ''
       let sectionData = {}
@@ -699,7 +699,7 @@ export default {
      * 删除Section [通知客户端]
      * @param id
      */
-    removeSection(id) {
+    removeSection (id) {
       this.sendMessage({
         action: 'removeSection',
         data: {
@@ -711,13 +711,13 @@ export default {
      * 删除Section [客户端删除成功回调执行]
      * @param result
      */
-    removeSectionExecute(result) {
+    removeSectionExecute (result) {
       this.getPageSection(this.model.id)
     },
     /**
      * 客户端执行后回调通知
      */
-    clientCallMessage(e) {
+    clientCallMessage (e) {
       if (e.data['fomille']) {
         this.messageStatus = e.data.message
         switch (e.data.message.action) {
@@ -744,7 +744,7 @@ export default {
      * 显示对应的设置参数
      * @param data
      */
-    loadSettingPanel(data) {
+    loadSettingPanel (data) {
       this.sectionEditorData.visible = true
       this.sectionSelectorData.visible = false
       if (this.hasConfigSection(data.sectionType)) {
@@ -768,7 +768,7 @@ export default {
     /**
      * 更改SECTION
      */
-    changeSection(data) {
+    changeSection (data) {
       if (!this.hasConfigSection(data.sectionType)) {
         this.sectionSelectorData.visible = true
         this.sectionSelectorData.sectionType = data.sectionType
@@ -781,7 +781,7 @@ export default {
     /**
      * 添加组件
      */
-    loadAddSection() {
+    loadAddSection () {
       this.sectionSelectorData.visible = true
       this.sectionSelectorData.sectionType = ''
       this.sectionSelectorData.sectionGroup = 3000
@@ -799,7 +799,7 @@ export default {
      * 添加 & 修改SECTION
      * @param data
      */
-    sectionMount(data) {
+    sectionMount (data) {
       fetchSectionMount({
         ...data,
         pageId: this.model.id,
@@ -840,7 +840,7 @@ export default {
      * SECTION RELOAD
      * @param data
      */
-    sectionChange(data) {
+    sectionChange (data) {
       this.getPageSection(this.model.id, data.id, (section) => {
         this.previewSection({
           ...section,
@@ -851,7 +851,7 @@ export default {
     /**
      * SECTION排序
      */
-    sectionSorting() {
+    sectionSorting () {
       let list = []
       this.model.sectionList.forEach((o, index) => {
         list.push({
@@ -877,19 +877,19 @@ export default {
     /**
      * 子组件套娃事件
      */
-    matryoshkaEvent() {
+    matryoshkaEvent () {
       this.$refs.sectionEditor.formValidation()
     },
     /**
      * 子组件套娃事件（覆盖）
      */
-    overrideMatryoshkaEvent() {
+    overrideMatryoshkaEvent () {
       this.$refs.sectionEditor.overrideFormValidation()
     },
     /**
      * 预览SECTION
      */
-    previewSection(data) {
+    previewSection (data) {
       this.sendMessage({
         action: 'update',
         data: {

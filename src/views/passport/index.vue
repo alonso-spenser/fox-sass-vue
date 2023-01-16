@@ -225,8 +225,8 @@ export default {
   data () {
     return {
       entity: {
-        account: 'devin@6fox.com',
-        password: 'admin@2023',
+        account: '',
+        password: '',
         areaCode: '',
         captcha: ''
       },

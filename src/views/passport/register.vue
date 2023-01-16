@@ -53,13 +53,18 @@
         </g>
       </svg>
       <h1>
-        {{$t('passport.register.h1')}}
+        {{ $t('passport.register.h1') }}
       </h1>
       <p class="text-secondary">
-        {{$t('passport.register.tips')}}
+        {{ $t('passport.register.tips') }}
       </p>
-      <el-form :model="entity" :rules="formRules" ref="ruleForm">
-        <el-row :gutter="20" class="el-form-item">
+      <el-form
+        :model="entity"
+        :rules="formRules"
+        ref="ruleForm">
+        <el-row
+          :gutter="20"
+          class="el-form-item">
           <el-col :span="12">
             <el-form-item prop="lastName">
               <el-input
@@ -81,7 +86,9 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-form-item prop="name" v-if="false">
+        <el-form-item
+          prop="name"
+          v-if="false">
           <el-input
             maxlength="100"
             v-model="entity.name"
@@ -113,14 +120,15 @@
                 v-if="!counting.visible"
                 @click="getCode"
               >
-                {{$t('passport.register.getCode')}}
+                {{ $t('passport.register.getCode') }}
               </el-button>
               <countdown
                 :deadline.sync="counting.data"
                 date-format="S"
                 v-if="counting.visible"
                 @finish="resendCode"
-              >00</countdown>
+              >00
+              </countdown>
             </template>
           </el-input>
         </el-form-item>
@@ -154,14 +162,14 @@
       </el-form>
       <p>
         <label class="text-secondary">
-          {{$t('passport.register.haveAccount')}}
+          {{ $t('passport.register.haveAccount') }}
         </label>
         <el-button
           type="text"
           class="text-link"
           @click="redirectLogin"
         >
-          {{$t('passport.register.login')}}
+          {{ $t('passport.register.login') }}
         </el-button>
       </p>
     </div>
@@ -171,10 +179,8 @@
 <script>
 import { fetchAccountCheck, fetchCodeForRegister, fetchMerchantRegister } from '@/plugins/api/passport'
 import extend from '@/plugins/page/base'
-import {
-  mapMutations,
-  mapState
-} from 'vuex'
+import { mapMutations, mapState } from 'vuex'
+
 export default {
   name: 'passport-register',
   extends: extend,
@@ -417,12 +423,11 @@ export default {
     getCode () {
       let that = this
       Promise.all(['firstName', 'lastName', 'account'].map(item => {
-        let p = new Promise(function (resolve, reject) {
+        return new Promise(function (resolve, reject) {
           that.$refs['ruleForm'].validateField(item, (error) => {
             resolve(error)
           })
         })
-        return p
       })).then((data) => {
         let m = data.filter((s) => {
           return this.utility.isNotEmpty(s)

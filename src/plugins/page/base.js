@@ -233,16 +233,18 @@ export default {
     getMySite (func) {
       fetchMySite()
         .then((result) => {
-          if (result.success) {
+          if (result['success']) {
             if (func && typeof (func) === 'function') {
               this.setMySite(result.data)
               func.call(this, result.data)
             }
+          } else if (result['code'] === 13010000) {
+            this.logout()
+            func.call(this, [])
           }
         })
         .catch((e) => {
-          console.log('catch', e)
-          // this.logout()
+          this.logout()
           func.call(this, [])
         })
     }

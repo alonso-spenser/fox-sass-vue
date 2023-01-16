@@ -115,8 +115,8 @@ export default {
   data () {
     return {
       entity: {
-        account: 'devin@gicto.com',
-        password: 'admin@2023',
+        account: '',
+        password: '',
         areaCode: '',
         captcha: ''
       },
