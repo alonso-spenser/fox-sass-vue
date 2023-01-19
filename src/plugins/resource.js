@@ -11,8 +11,8 @@ export default {
       production: 'https://api.6fox.com'
     },
     upload: {
-      development: 'http://127.0.0.1:9721/common/api/oss/upload',
-      production: 'https://api.6fox.com/common/api/oss/upload'
+      development: 'http://127.0.0.1:9721/api/common/oss/upload',
+      production: 'https://api.6fox.com/api/common/oss/upload'
     },
     excelAddress: {
       development: 'http://127.0.0.1:9721/stat/api/report/submit-report',
