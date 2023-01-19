@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     isPassport () {
-      return ['passport-register', 'passport-login', 'passport-forget', 'email-send-success', 'passport-reset-password'].indexOf(this.$route.name) > -1
+      return ['passport-register', 'passport-login', 'passport-forget', 'email-send-success', 'passport-reset-password', 'passport-email-send-success'].indexOf(this.$route.name) > -1
     },
     sidebar: function () {
       return this.$route.meta['sidebar'] === undefined ? true : this.$route.meta['sidebar']
