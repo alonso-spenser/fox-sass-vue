@@ -512,7 +512,7 @@ export default {
       fetchTheme({
         current: 1,
         orderBy: '',
-        size: 16,
+        size: 40,
         params: {
           siteType: this.entity.siteType,
           tagIds: ids
