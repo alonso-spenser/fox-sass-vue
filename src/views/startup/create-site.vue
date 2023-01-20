@@ -505,17 +505,13 @@ export default {
      * 模版
      */
     getTemplate () {
-      let ids = []
-      if (this.tagId) {
-        ids.push(this.tagId)
-      }
       fetchTheme({
         current: 1,
         orderBy: '',
         size: 40,
         params: {
           siteType: this.entity.siteType,
-          tagIds: ids
+          tagId: this.tagId || ''
         }
       })
         .then(result => {
