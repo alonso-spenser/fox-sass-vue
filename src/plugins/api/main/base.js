@@ -23,9 +23,9 @@ export const fetchIpDetail = (params = {}) => http.post('/api/ops/base/ip/detail
 /**
  * GOOGLE API KEY分页数据
  */
-export const fetchSiteGoogleApiPaging = (params = {}) => http.post('/site/admin/google-api/paging', params)
+export const fetchSiteGoogleApiPaging = (params = {}) => http.post('/api/ga/config/paging', params)
 
 /**
  * 删除GOOGLE API KEY
  */
-export const fetchSiteGoogleApiDelete = (params = {}) => http.post('/site/admin/google-api/delete', params)
+export const fetchSiteGoogleApiDelete = (params = {}) => http.post('/api/ga/config/delete', params)

@@ -1,5 +1,6 @@
 <template>
-  <el-main style="width: 60%" v-title="$t('settings.domain.connect.title')">
+  <el-main
+    style="width: 60%">
     <fo-page-header></fo-page-header>
     <fo-page-section v-show="inputVisible">
       <el-form
@@ -10,7 +11,9 @@
         label-position="top"
         @keydown.native.enter.prevent
       >
-        <el-form-item prop="domain" :label="$t('settings.domain.connect.entity.domain.label')">
+        <el-form-item
+          prop="domain"
+          :label="$t('settings.domain.connect.entity.domain.label')">
           <el-input
             @blur="domainCapital"
             v-model="entity.domain"
@@ -22,18 +25,22 @@
             type="primary"
             size="small"
             @click="formValidation('ruleForm')"
-          >{{ $t("settings.domain.connect.nextStep") }}</el-button>
+          >{{ $t("settings.domain.connect.nextStep") }}
+          </el-button>
         </el-form-item>
       </el-form>
     </fo-page-section>
-    <fo-page-section v-show="verifyVisible" v-loading="verifyLoading">
+    <fo-page-section
+      v-show="verifyVisible"
+      v-loading="verifyLoading">
       <h4>{{ $t("settings.domain.connect.domainName") }}</h4>
       <p>
         <el-button
           @click="switchStep(1)"
           class="float-right"
           type="text"
-        >{{ $t("settings.domain.connect.edit") }}</el-button>
+        >{{ $t("settings.domain.connect.edit") }}
+        </el-button>
         <label class="text-info">{{ entity.domain }}</label>
       </p>
       <h4 class="mt-7">{{ $t("settings.domain.connect.settings") }}</h4>
@@ -43,14 +50,19 @@
           {{ $t("settings.domain.connect.guide") }}
           <i class="fo-help"></i>
         </router-link> -->
-        <el-link href="/support/page-1163370602154270722.html" type="primary" :underline="false" target="_blank" v-if="false">
+        <el-link
+          href="/support/page-1163370602154270722.html"
+          type="primary"
+          :underline="false"
+          target="_blank"
+          v-if="false">
           {{ $t("settings.domain.connect.guide") }}
           <i class="fo-help"></i>
         </el-link>
       </p>
       <p class="text-info">
         <label v-html="$t('settings.domain.connect.cname')"></label>
-        <b class="text-danger ml-3">{{cname}}</b>
+        <b class="text-danger ml-3">{{ cname }}</b>
       </p>
       <h4 class="mt-7">{{ $t("settings.domain.connect.verify") }}</h4>
       <p class="text-info">{{ $t("settings.domain.connect.checkTips") }}</p>
@@ -59,10 +71,13 @@
           size="small"
           :loading="loading"
           @click="domainVerify"
-        >{{ $t("settings.domain.connect.verify") }}</el-button>
+        >{{ $t("settings.domain.connect.verify") }}
+        </el-button>
       </p>
     </fo-page-section>
-    <fo-page-section v-show="verifyFailed" v-loading="verifyLoading">
+    <fo-page-section
+      v-show="verifyFailed"
+      v-loading="verifyLoading">
       <h4>{{ $t("settings.domain.connect.validate.failed.heading") }}</h4>
       <p>
         <label class="text-info">{{ $t("settings.domain.connect.validate.failed.subheading") }}</label>
@@ -70,11 +85,11 @@
       <h4 class="mt-7">{{ $t("settings.domain.connect.validate.record") }}</h4>
       <p class="text-info">
         {{ $t("settings.domain.connect.validate.current") }}
-        <b class="text-danger">{{currentIP}}</b>
+        <b class="text-danger">{{ currentIP }}</b>
       </p>
       <p class="text-info">
         {{ $t("settings.domain.connect.validate.required") }}
-        <b>{{cname}}</b>
+        <b>{{ cname }}</b>
       </p>
       <h4 class="mt-7">{{ $t("settings.domain.connect.setting.heading") }}</h4>
       <p class="text-info">
@@ -93,12 +108,14 @@
         <el-button
           @click="switchStep(1)"
           type="text"
-        >{{ $t("settings.domain.connect.edit") }}</el-button>
+        >{{ $t("settings.domain.connect.edit") }}
+        </el-button>
         <el-button
           size="small"
           :loading="loading"
           @click="domainVerify"
-        >{{ $t("settings.domain.connect.verifyAgain") }}</el-button>
+        >{{ $t("settings.domain.connect.verifyAgain") }}
+        </el-button>
       </p>
     </fo-page-section>
     <fo-page-section v-show="verifySuccess">
@@ -118,10 +135,14 @@
       </p>
       <p class="text-info">
         {{ $t("settings.domain.connect.validate.required") }}
-        <b>{{cname}}</b>
+        <b>{{ cname }}</b>
       </p>
       <p class="text-right">
-        <el-button size="small" :loading="loading" @click="finishVerify">{{ $t("base.operate.complete") }}</el-button>
+        <el-button
+          size="small"
+          :loading="loading"
+          @click="finishVerify">{{ $t("base.operate.complete") }}
+        </el-button>
       </p>
     </fo-page-section>
   </el-main>
@@ -164,7 +185,7 @@ export default {
       verifyFailed: false,
       verifyLoading: false,
       currentIP: '127.0.0.1',
-      cname: 'dns.fomille.site',
+      cname: 'dns.11af.com',
       entity: {
         domain: ''
       },

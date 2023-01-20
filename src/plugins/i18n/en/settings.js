@@ -309,7 +309,7 @@ export default {
         entity: {
           domain: {
             label: '域名',
-            placeholder: '例如 fomille.com',
+            placeholder: '例如 www.11af.com',
             required: '请输入您需要连接的域名',
             custom: '域名格式不正确'
           }
