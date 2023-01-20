@@ -15,7 +15,7 @@
               shadow="hover"
               :class="o.id === siteModel.id ? 'active' : ''">
               <div class="sites-items-cover">
-                <img :src="o.thumbnail || '/theme/img/web.webp'" />
+                <img :src="o.thumbnail || '/css/img/web.webp'" />
                 <div class="sites-items-cover-mask">
                   <p class="text-center">
                     <label>

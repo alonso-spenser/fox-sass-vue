@@ -44,7 +44,7 @@
                     v-if="column.prop === 'coverImage'">
                     <img
                       class="embed-responsive-item"
-                      :src="scope.row.coverImage || '/theme/img/placeholder.jpg'">
+                      :src="scope.row.coverImage || '/css/img/placeholder.jpg'">
                   </div>
                   <div v-else>
                     <div

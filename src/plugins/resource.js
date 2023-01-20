@@ -3,7 +3,7 @@ import logoSVG from '../assets/image/logo.svg'
 export default {
   logoSVG,
   image: {
-    avatar: '/theme/img/avator.png'
+    avatar: '/css/img/avator.png'
   },
   env: {
     api: {

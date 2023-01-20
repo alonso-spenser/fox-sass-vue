@@ -526,7 +526,7 @@ export default {
                   id: 'fo-startup-initial',
                   demoUrl: '',
                   name: this.$t('startup.initial').toString(),
-                  screenshot: '/theme/img/design.png',
+                  screenshot: '/css/img/design.png',
                   updateTime: 1624585419331,
                   version: '0.01'
                 }
