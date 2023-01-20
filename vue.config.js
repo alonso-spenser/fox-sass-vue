@@ -20,11 +20,11 @@ module.exports = {
           '^/ntp': ''
         }
       },
-      '/theme': {
+      '/css': {
         target: process.env.VUE_APP_THEME,
         changeOrigin: true,
         pathRewrite: {
-          '^/theme': ''
+          '^/css': ''
         }
       }
     }

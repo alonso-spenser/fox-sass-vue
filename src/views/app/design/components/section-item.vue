@@ -11,7 +11,7 @@
       >
         <div
           v-html="model.sectionIcon"
-          v-if="model.sectionIcon && model.sectionIcon.indexOf('/theme') === -1"></div>
+          v-if="model.sectionIcon && model.sectionIcon.indexOf('/css') === -1"></div>
         <img
           class="element-icon-img"
           v-else

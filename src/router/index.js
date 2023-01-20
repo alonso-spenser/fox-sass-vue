@@ -1769,32 +1769,32 @@ router.onError((error) => {
   }
 })
 
-let s = []
-s.push('DELETE FROM security_function WHERE app_type = 7000;')
-routes.forEach((o) => {
-  let pid = `7000${o.name}`
-  if (o.meta && o.meta.requireAuth !== undefined && o.meta.requireAuth === true) {
-    s.push(`INSERT INTO security_function (id, app_type, function_code, function_name, parent_id, router_name ) VALUES('7000${o.name}', 7000, '${o.name}', '${(o.meta && o.meta.title) || ''}', '0', '' );`)
-    if (o.children && typeof (o.children) === 'object') {
-      o.children.forEach((sb) => {
-        if (sb.meta.children) {
-          sb.meta.children.forEach((m) => {
-            s.push(`INSERT INTO security_function ( id, app_type, function_code, function_name, parent_id, router_name ) VALUES('7000${m.name}', 7000, '${m.name}', '${m.title}', '${pid}', '' );`)
-          })
-        }
-        if (sb.meta && sb.meta.requireAuth === true) {
-          s.push(`INSERT INTO security_function ( id, app_type, function_code, function_name, parent_id, router_name ) VALUES('7000${sb.name}', 7000, '${sb.name}', '${(sb.meta && sb.meta.title) || ''}', '${pid}', '' );`)
-          if (sb.children && sb.children.length > 0) {
-            sb.children.forEach((sbb) => {
-              if (sbb.meta && sbb.meta.requireAuth === true) {
-                s.push(`INSERT INTO security_function ( id, app_type, function_code, function_name, parent_id, router_name ) VALUES('7000${sbb.name}', 7000, '${sbb.name}', '${(sbb.meta && sbb.meta.title) || ''}', '${pid}', '' );`)
-              }
-            })
-          }
-        }
-      })
-    }
-  }
-})
+// let s = []
+// s.push('DELETE FROM security_function WHERE app_type = 7000;')
+// routes.forEach((o) => {
+//   let pid = `7000${o.name}`
+//   if (o.meta && o.meta.requireAuth !== undefined && o.meta.requireAuth === true) {
+//     s.push(`INSERT INTO security_function (id, app_type, function_code, function_name, parent_id, router_name ) VALUES('7000${o.name}', 7000, '${o.name}', '${(o.meta && o.meta.title) || ''}', '0', '' );`)
+//     if (o.children && typeof (o.children) === 'object') {
+//       o.children.forEach((sb) => {
+//         if (sb.meta.children) {
+//           sb.meta.children.forEach((m) => {
+//             s.push(`INSERT INTO security_function ( id, app_type, function_code, function_name, parent_id, router_name ) VALUES('7000${m.name}', 7000, '${m.name}', '${m.title}', '${pid}', '' );`)
+//           })
+//         }
+//         if (sb.meta && sb.meta.requireAuth === true) {
+//           s.push(`INSERT INTO security_function ( id, app_type, function_code, function_name, parent_id, router_name ) VALUES('7000${sb.name}', 7000, '${sb.name}', '${(sb.meta && sb.meta.title) || ''}', '${pid}', '' );`)
+//           if (sb.children && sb.children.length > 0) {
+//             sb.children.forEach((sbb) => {
+//               if (sbb.meta && sbb.meta.requireAuth === true) {
+//                 s.push(`INSERT INTO security_function ( id, app_type, function_code, function_name, parent_id, router_name ) VALUES('7000${sbb.name}', 7000, '${sbb.name}', '${(sbb.meta && sbb.meta.title) || ''}', '${pid}', '' );`)
+//               }
+//             })
+//           }
+//         }
+//       })
+//     }
+//   }
+// })
 // console.log(s.join('\n'))
 export default router

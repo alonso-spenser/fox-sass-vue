@@ -1,6 +1,5 @@
 <template>
   <div
-    v-title="$t('design.title')"
     v-loading="pageLoading"
     :class="`editor-container ${toolbarPosition}`"
   >

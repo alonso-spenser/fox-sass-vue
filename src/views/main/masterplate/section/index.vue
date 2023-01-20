@@ -475,7 +475,7 @@ export default {
      * 修改跳转
      */
     updateSection (row) {
-      this.$router.push(`/masterplate/element/update/${row.id}`)
+      this.$router.push(`/main/masterplate/element/update/${row.id}`)
     },
     /**
      * 删除
