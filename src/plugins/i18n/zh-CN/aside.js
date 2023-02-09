@@ -72,7 +72,7 @@ export default {
   ],
   mainMenuList: [
     {
-      title: 'dashboard',
+      title: '首页',
       code: ['dashboard'],
       submenu: [
         {

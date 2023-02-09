@@ -1359,6 +1359,8 @@ export default {
               sectionSchema: JSON.stringify(this.entity.sectionSchema),
               translateField: JSON.stringify(this.entity.sectionSchema.translate),
               once: this.entity.sectionSchema.onlyOnce ? 0 : 1,
+              sectionName: this.entity.sectionSchema.name['zh-CN'],
+              sectionEnName: this.entity.sectionSchema.name['en'],
               id: this.dataId
             })
             this.$emit('update:visible', false)

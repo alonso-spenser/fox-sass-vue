@@ -117,7 +117,7 @@ export default {
     },
     menuList: [
       {
-        title: 'Dashboard',
+        title: '首页',
         abbr: '首页',
         submenu: [],
         icon: 'fo-ico-home',
@@ -126,7 +126,7 @@ export default {
         siteType: [2, 3, 4]
       },
       {
-        title: 'Enquiries',
+        title: '询盘管理',
         abbr: '询盘',
         icon: '',
         url: '/site/:siteId:/enquiry',
@@ -134,21 +134,21 @@ export default {
         siteType: [2, 3, 4],
         submenu: [
           {
-            title: 'Inquiry',
+            title: '我的询盘',
             icon: 'fo-ico-message',
             code: ['site-enquiry-record'],
             url: '/site/:siteId:/enquiry',
             siteType: [2, 3, 4]
           },
           {
-            title: 'Form',
+            title: '询盘表单',
             icon: 'fo-ico-info',
             code: ['site-enquiry-form'],
             url: '/site/:siteId:/enquiry/form',
             siteType: [2, 3, 4]
           },
           {
-            title: 'Mailbox',
+            title: '收件邮箱',
             icon: 'fo-ico-email',
             code: ['site-enquiry-email'],
             url: '/site/:siteId:/enquiry/email',
@@ -157,7 +157,7 @@ export default {
         ]
       },
       {
-        title: 'Data board',
+        title: '数据看板',
         abbr: '数据',
         submenu: [],
         icon: 'fo-ico-pie',
@@ -166,7 +166,7 @@ export default {
         siteType: [2, 3, 4]
       },
       {
-        title: 'Ranking',
+        title: '排名管理',
         abbr: '排名',
         submenu: [],
         code: ['site-ranking'],
@@ -175,7 +175,7 @@ export default {
         siteType: []
       },
       {
-        title: 'SEO',
+        title: 'SEO设置',
         abbr: 'SEO',
         submenu: [],
         icon: 'fo-ico-sorting',
@@ -184,7 +184,7 @@ export default {
         siteType: [2, 3, 4]
       },
       {
-        title: 'Client',
+        title: '客户管理',
         abbr: '客户',
         submenu: [],
         icon: 'fo-ico-smile',
@@ -193,7 +193,7 @@ export default {
         siteType: [2, 3, 4]
       },
       {
-        title: 'Content',
+        title: '网站管理',
         abbr: '网站',
         icon: 'fo-ico-wangzhanshezhi',
         url: '/site/:siteId:/dashboard',
@@ -201,15 +201,15 @@ export default {
         code: ['site'],
         submenu: [
           {
-            title: 'My site',
+            title: '我的网站',
             icon: 'fo-ico-english',
             code: ['dashboard-site'],
             url: '/owned',
             siteType: [2, 3, 4]
           },
           {
-            title: 'Product collection',
-            abbr: 'Product',
+            title: '产品集合',
+            abbr: '产品',
             submenu: [],
             icon: 'fo-ico-package',
             code: ['site-article-collection'],
@@ -217,15 +217,15 @@ export default {
             siteType: [3, 4]
           },
           {
-            title: 'Products',
+            title: '所有产品',
             icon: 'fo-ico-app',
             code: ['site-goods'],
             url: '/site/:siteId:/goods',
             siteType: [3, 4]
           },
           {
-            title: 'Article collection',
-            abbr: 'Article',
+            title: '文章集合',
+            abbr: '文章',
             submenu: [],
             code: ['site-article-collection'],
             icon: 'fo-ico-package',
@@ -233,8 +233,8 @@ export default {
             siteType: [3, 4]
           },
           {
-            title: 'Articles',
-            abbr: 'Articles',
+            title: '所有文章',
+            abbr: '文章',
             submenu: [],
             code: ['site-article'],
             icon: 'fo-ico-article',
@@ -242,8 +242,8 @@ export default {
             siteType: [3, 4]
           },
           {
-            title: 'Pages',
-            abbr: 'Pages',
+            title: '页面管理',
+            abbr: '页面',
             submenu: [],
             code: ['site-page'],
             icon: 'fo-ico-frame',
@@ -251,8 +251,8 @@ export default {
             siteType: [3, 4]
           },
           {
-            title: 'Menu',
-            abbr: 'Menu',
+            title: '导航菜单',
+            abbr: '菜单',
             submenu: [],
             icon: 'fo-ico-menu',
             code: ['site-navigation'],
@@ -260,8 +260,8 @@ export default {
             siteType: [3, 4]
           },
           {
-            title: 'Download',
-            abbr: 'Download',
+            title: '下载中心',
+            abbr: '下载',
             submenu: [],
             icon: 'fo-ico-download',
             code: ['site-download'],
@@ -269,8 +269,8 @@ export default {
             siteType: [3, 4]
           },
           {
-            title: 'Theme',
-            abbr: 'Theme',
+            title: '主题风格 ',
+            abbr: '主题',
             submenu: [],
             code: ['site-masterplate'],
             icon: 'fo-ico-palette',
@@ -278,8 +278,8 @@ export default {
             siteType: [2, 3, 4]
           },
           {
-            title: 'Settings',
-            abbr: 'Settings',
+            title: '网站设置',
+            abbr: '设置',
             submenu: [],
             code: ['site-settings'],
             icon: 'fo-ico-setting',
@@ -306,9 +306,9 @@ export default {
     }
   },
   siteStatus: {
-    '0': 'Enable',
-    '1': 'Deactivate',
-    '2': 'Frozen'
+    '0': '启用',
+    '1': '停用',
+    '2': '冻结'
   },
   /**
    * 站点类型
@@ -316,10 +316,10 @@ export default {
   siteType: {
     '1': '商品单页',
     '2': '企业单页',
-    '3': 'B2B',
-    '4': 'Mall',
-    '11': 'Video B2B',
-    '12': 'Video B2C'
+    '3': '企业网站',
+    '4': '在线商店',
+    '11': '视频B2B',
+    '12': '视频B2C'
   },
   site: {
     title: '网站管理',
@@ -336,20 +336,20 @@ export default {
       }
     },
     dashboard: {
-      title: 'My site',
-      createNew: 'New',
-      editButton: 'Manage site',
-      subscription: 'Renew',
-      clone: 'Duplicate',
-      expired: 'Expired',
+      title: '我的网站',
+      createNew: '添加新网站',
+      editButton: '管理网站',
+      subscription: '续费',
+      clone: '复制站点',
+      expired: '已过期',
       trial: {
         label: '延长试用',
         tips: '未付费网站最多可以次延长 5 次试用时间，每次增加 7 天时间。连续点"延长试用" 不会累加到时间。但会消耗 1 次操作次数，请不要连续点击。',
         keep: '您只能保留一个试用网站，您可以付费后再创建一个新的试用网站。'
       },
       remove: {
-        label: 'Remove',
-        tips: 'Deleting the website will completely delete all the data you uploaded: products, articles, forms, website decoration, etc., and the data cannot be recovered. '
+        label: '删除网站',
+        tips: '删除网站将会使您上传的：产品、文章、表单、网站装修等所有数据彻底删除，且数据不可恢复。请确认是否继续执行删除操作？'
       },
       paging: {
         administrationButton: '管理网站',
@@ -360,28 +360,26 @@ export default {
         setSite: '设计网站'
       },
       statistics: {
-        languageType: 'Multilingual',
-        products: 'Products',
-        articles: 'Articles',
-        inquiry: 'Inquiries',
-        online: 'Online',
-        usable: 'Usable'
+        languageType: '多语言版本',
+        products: '产品数量',
+        articles: '文章数量',
+        inquiry: '询盘数量'
       },
       tableHeader: {
-        languageName: 'Language',
-        nativeName: 'Native language',
-        onlineTime: 'Online time',
-        state: 'State'
+        languageName: '语言名称',
+        nativeName: '原生语言',
+        onlineTime: '上线时间',
+        state: '状态'
       },
       state: {
-        stop: 'Disable',
-        enable: 'Enable'
+        stop: '停用',
+        enable: '启用'
       },
       language: {
-        heading: 'Tips',
-        translate: 'Translate and save',
-        clone: 'Copy data only',
-        tips: 'The content is provided by the translation tool. If you need more accurate translation, please go to this site to edit the sub-language site. There is no such product.'
+        heading: '温馨提示',
+        translate: '翻译并保存',
+        clone: '仅复制数据',
+        tips: '内容由翻译工具提供，如需更精准翻译，请自行到该站点编辑子语言站没该条产品。会同步相关数据。有，则不会覆盖相关数据'
       }
     },
     resource: {
@@ -481,25 +479,25 @@ export default {
         heading: '默认主题',
         subheading: '当前用户访问您的网站时，他们看到的是这个主题'
       },
-      design: 'Design',
-      preview: 'Visit',
-      active: 'Using',
-      edit: 'Manage',
-      get: 'Add theme',
+      design: '设计网页',
+      preview: '查看网站',
+      active: '使用中',
+      edit: '内容管理',
+      get: '添加主题',
       owned: {
-        heading: 'Theme',
-        subheading: 'Manage all themes for this site. You can add or modify more themes, and choose one to publish as the current theme.'
+        heading: '我的主题',
+        subheading: '管理此网站的全部主题。您可以添加或修改更多的主题，并且选择其中一个发布为当前主题。'
       },
       publish: {
-        title: 'Publish',
-        content: 'Publishing your website will bring all unpublished content online where your visitors will see it. Are you sure ?',
-        success: 'Published successfully'
+        title: '发布网站',
+        content: '发布网站将会让所有未发布的内容同步到线上，您的访客将会看到此内容。是否确认发布？',
+        success: '发布成功'
       },
       rename: {
-        title: 'Rename',
-        content: 'Modify the name. Your visitors won\'t see this part.',
-        placeholder: 'Please enter a name',
-        error: 'Limit 32 characters'
+        title: '重命名',
+        content: '修改此主题的名称。您的访客不会看到这部分内容。',
+        placeholder: '请输入主题名称',
+        error: '主题名称长度在32位以内'
       },
       duplicate: {
         title: '复制主题',
@@ -512,9 +510,9 @@ export default {
           buttonLabel: '添加网站主题'
         },
         tableHeader: {
-          name: 'Name',
-          state: 'Default',
-          version: 'Version'
+          name: '主题名称',
+          state: '默认',
+          version: '版本'
         }
       }
     },

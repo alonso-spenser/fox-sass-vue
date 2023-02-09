@@ -29,10 +29,11 @@ export default {
     datePlaceholder: '请选择时间',
     query: 'SEARCH',
     home: 'HOME',
+    dataEmpty: 'no data',
     leave: {
-      unsaved: '未保存的更改',
-      content: '当前页面内容尚未保存，离开将会丢失未保存的内容。是否确认离开？',
-      button: '离开'
+      unsaved: 'UNSAVED CHANGES',
+      content: 'The content of the current page has not been saved, leaving will lose the unsaved content. Are you sure?',
+      button: 'Leave'
     },
     cancel: 'Cancel',
     change: 'Change',
@@ -42,6 +43,8 @@ export default {
     orderBy: 'Order by',
     notData: 'No data',
     upload: 'Upload',
+    startTime: 'Starting time',
+    endTime: 'End time',
     operate: {
       add: 'Add',
       setting: 'Setting',
@@ -70,13 +73,13 @@ export default {
       stopUse: 'StopUse'
     },
     file: {
-      size: '文件不可以超过{size}M'
+      size: 'Limit {size} M'
     },
     placeholder: {
-      input: '请输入内容',
-      search: '请输入关键词',
+      input: 'Content',
+      search: 'Keyword',
       select: 'Select',
-      date: '请选择时间'
+      date: 'Time'
     },
     addition: {
       button: 'Add',
@@ -106,7 +109,7 @@ export default {
       multiple: '已选中 {0} 个'
     },
     formValidation: {
-      inadequate: '请完善内容信息'
+      inadequate: 'Please complete the form content'
     }
   },
   header: {

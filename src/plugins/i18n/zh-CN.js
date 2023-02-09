@@ -26,6 +26,7 @@ export default {
     a3: '稍后再重试'
   },
   base: {
+    dataEmpty: '数据为空',
     datePlaceholder: '请选择时间',
     query: '查询',
     home: '首页',
@@ -34,6 +35,8 @@ export default {
       content: '当前页面内容尚未保存，离开将会丢失未保存的内容。是否确认离开？',
       button: '离开'
     },
+    startTime: '开始时间',
+    endTime: '结束时间',
     cancel: '取消',
     save: '确定',
     language: '语言',

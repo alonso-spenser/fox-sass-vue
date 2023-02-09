@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import cnLang from './zh-CN'
-import cnErrorCode from './zh-CN/errorCode'
-import cnEnumerate from './zh-CN/enumerate'
-import cnPassport from './zh-CN/passport'
 import utility from '../utility'
 
 import enLang from './en'
@@ -28,8 +24,35 @@ import enDesign from './en/design'
 import enDashboard from './en/dashboard'
 import enClient from './en/client'
 import enCollect from './en/collect'
-import cnPlug from './en/plug'
-import cnDownload from './en/download'
+import enPlug from './en/plug'
+import enDownload from './en/download'
+import enGa from './en/ga'
+
+import cnLang from './zh-CN'
+import cnErrorCode from './zh-CN/errorCode'
+import cnEnumerate from './zh-CN/enumerate'
+import cnPassport from './zh-CN/passport'
+import cnMerchant from './zh-CN/merchant'
+import cnAside from './zh-CN/aside'
+import cnBackstage from './zh-CN/backstage'
+import cnEmail from './zh-CN/email'
+import cnCore from './zh-CN/core'
+import cnTheme from './zh-CN/theme'
+import cnSite from './zh-CN/site'
+import cnEnquiry from './zh-CN/enquiry'
+import cnGoods from './zh-CN/goods'
+import cnArticle from './zh-CN/article'
+import cnOptimize from './zh-CN/optimize'
+import cnCustomizePage from './zh-CN/customizePage'
+import cnNavigation from './zh-CN/navigation'
+import cnSettings from './zh-CN/settings'
+import cnDesign from './zh-CN/design'
+import cnDashboard from './zh-CN/dashboard'
+import cnClient from './zh-CN/client'
+import cnCollect from './zh-CN/collect'
+import cnPlug from './zh-CN/plug'
+import cnDownload from './zh-CN/download'
+import cnGa from './zh-CN/ga'
 
 Vue.use(VueI18n)
 
@@ -40,7 +63,28 @@ const i18n = new VueI18n({
       ...cnLang,
       ...cnErrorCode,
       ...cnEnumerate,
-      ...cnPassport
+      ...cnPassport,
+      ...cnMerchant,
+      ...cnAside,
+      ...cnBackstage,
+      ...cnEmail,
+      ...cnCore,
+      ...cnTheme,
+      ...cnSite,
+      ...cnEnquiry,
+      ...cnGoods,
+      ...cnArticle,
+      ...cnOptimize,
+      ...cnCustomizePage,
+      ...cnNavigation,
+      ...cnSettings,
+      ...cnDesign,
+      ...cnDashboard,
+      ...cnClient,
+      ...cnCollect,
+      ...cnPlug,
+      ...cnDownload,
+      ...cnGa
     },
     en: {
       ...enLang,
@@ -65,8 +109,9 @@ const i18n = new VueI18n({
       ...enDashboard,
       ...enClient,
       ...enCollect,
-      ...cnPlug,
-      ...cnDownload
+      ...enPlug,
+      ...enDownload,
+      ...enGa
     }
   }
 })

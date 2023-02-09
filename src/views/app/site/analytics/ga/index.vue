@@ -1,50 +1,51 @@
 <template>
   <main>
+    <fo-page-header></fo-page-header>
     <fo-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
+      :percentage="100"
     >
-      <fo-page-header></fo-page-header>
       <el-descriptions
         class="no-gutter"
         :column="1"
-        :label-style="{width: '100px'}"
+        :label-style="{width: '150px'}"
         border
       >
         <small
           class="text-secondary"
           slot="title">
-          我们将获取GA的数据，并且以简单明了的方式展示给您，您不再需要登录GA后台去查看繁琐而且乏味的数据。
+          {{ $t('ga.tips') }}
         </small>
-        <el-descriptions-item label="第一步">
-          <span class="text-secondary mr-5">为网站添加 Google Analytics 追踪代码</span>
+        <el-descriptions-item :label="$t('ga.step1.title')">
+          <span class="text-secondary mr-5">{{ $t('ga.step1.content') }}</span>
           <el-link
             href="https://admin.fomille.com/support/page-1163371572317757442.html"
             type="primary"
-            target="_blank">如何添加？
+            target="_blank">{{ $t('ga.step1.how') }}
           </el-link>
         </el-descriptions-item>
-        <el-descriptions-item label="第二步">
-          <span class="text-secondary mr-5">绑定 Google Analytics 数据视图ID</span>
+        <el-descriptions-item :label="$t('ga.step2.title')">
+          <span class="text-secondary mr-5">{{ $t('ga.step2.content') }}</span>
           <el-link
             href="https://admin.fomille.com/support/page-1199891480274219010.html"
             type="primary"
-            target="_blank">如何设置？
+            target="_blank">{{ $t('ga.step2.how') }}
           </el-link>
         </el-descriptions-item>
-        <el-descriptions-item label="授权邮箱">
+        <el-descriptions-item :label="$t('ga.step3.title')">
           <b>{{ !entity.viewId && gaAccount.id ? gaAccount.gmail : entity.gmail }}</b>
           <label
             class="ml-3 text-secondary"
-            v-if="!entity.viewId && gaAccount.id">[ 阅读和分析 ] 权限</label>
+            v-if="!entity.viewId && gaAccount.id">{{ $t('ga.step3.content') }}</label>
         </el-descriptions-item>
-        <el-descriptions-item label="数据视图ID">
-          <span class="text-secondary">{{ entity.viewId || '未设置' }}</span>
+        <el-descriptions-item :label="$t('ga.step4.title')">
+          <span class="text-secondary">{{ entity.viewId || $t('ga.step3.not') }}</span>
           <el-button
             class="ml-4"
             type="text"
             @click="() => entity.viewId ? unBindGA() : setViewId()"
-          >{{ entity.viewId ? '解绑' : '绑定' }}
+          >{{ entity.viewId ? $t('ga.step4.unbind') : $t('ga.step4.bind') }}
           </el-button>
         </el-descriptions-item>
       </el-descriptions>
@@ -129,13 +130,13 @@ export default {
       if (this.utility.isEmpty(this.gaAccount.id)) {
         this.gaConfigAvailable()
       }
-      this.$prompt('请输入数据视图ID', '绑定视图', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$prompt(this.$t('ga.view.content'), this.$t('ga.view.title'), {
+        confirmButtonText: this.$t('base.operate.save'),
+        cancelButtonText: this.$t('base.operate.cancel'),
         dangerouslyUseHTMLString: true,
-        inputPlaceholder: '请输入数据视图ID',
+        inputPlaceholder: this.$t('ga.view.content'),
         inputPattern: /^[A-Za-z0-9]{2,50}$/,
-        inputErrorMessage: '数据视图ID格式不正确'
+        inputErrorMessage: this.$t('ga.view.error')
       }).then(({ value }) => {
         fetchSetViewId({
           siteId: this.siteId,
@@ -157,11 +158,11 @@ export default {
      */
     unBindGA () {
       this.$confirm(
-        '解除绑定将移除数据视图ID ，并清除已同步的数据。您确定要解绑吗？',
-        '解绑',
+        this.$t('ga.view.cancel'),
+        this.$t('ga.step4.unbind'),
         {
-          confirmButtonText: '解绑',
-          cancelButtonText: '取消',
+          confirmButtonText: this.$t('ga.step4.unbind'),
+          cancelButtonText: this.$t('base.operate.cancel'),
           type: 'warning',
           beforeClose: (action, instance, done) => {
             if (action === 'confirm') {

@@ -3,12 +3,12 @@ export default {
    * 图片ALT编辑弹窗
    */
   imageAlt: {
-    heading: 'ALT',
-    subheading: 'Add a short description to the picture to increase the chance of being indexed by search engines',
+    heading: '编辑图片 Alt 信息',
+    subheading: '为图片添加简短的描述，提高被搜索引擎收录机会',
     entity: {
       alt: {
-        label: 'ALT Description',
-        placeholder: 'ALT',
+        label: 'ALT',
+        placeholder: '请输入ALT文本',
         required: ''
       }
     }
@@ -20,8 +20,8 @@ export default {
     placeholder: '请输入大于0的数字'
   },
   inquiryFormPicker: {
-    edit: 'edit form',
-    select: 'inquiry form',
+    edit: '编辑表单',
+    select: '选择表单',
     add: '添加表单'
   },
   collectionPicker: {
@@ -43,26 +43,20 @@ export default {
     get: '获取Google地图代码'
   },
   design: {
-    title: 'Design',
-    addPage: 'Add page',
+    title: '网站设计',
+    addPage: '添加页面',
     editMenu: '编辑菜单',
-    settings: 'Theme',
-    selected: 'OK',
-    remove: 'Remove section',
-    copy: 'Copy to current page',
-    copyItem: 'Copy',
-    hide: 'Hide',
-    visible: 'Visible',
-    apply: {
-      current: 'Apply to current',
-      all: 'Apply to all'
-    },
-    copyToClip: 'Copy to clipboard',
-    copySucceeded: 'Copy successfully',
-    override: 'Save and set as default',
-    clear: 'clear',
-    manage: 'Manage',
-    cancelManage: 'Cancel management',
+    settings: '主题',
+    selected: '选择',
+    remove: '删除当前模块',
+    copy: '复制到当前页',
+    copyItem: '复制',
+    copyToClip: '复制到剪贴板',
+    copySucceeded: '复制成功',
+    override: '保存并设为默认值',
+    clear: '清空',
+    manage: '管理',
+    cancelManage: '取消管理',
     clearTips: '该操作会移除当前模块内已添加的项目，你可以在清空之后重新添加新的项目。确认要清空吗？',
     clearHeading: '清空确认',
     addSection: '添加模块',
@@ -78,43 +72,43 @@ export default {
       author: '作者'
     },
     imageBlock: {
-      button: 'Gallery',
-      change: 'Change',
-      clear: 'Clear',
-      selected: 'OK',
-      heading: 'Gallery'
+      button: '选择图片',
+      change: '更换',
+      clear: '清除',
+      selected: '选择',
+      heading: '图片'
     },
     section: {
-      title: 'Section',
+      title: '模块',
       addition: {
         sectionType: 'globalAddition',
-        sectionName: 'Add section',
+        sectionName: '添加模块',
         sectionIcon: '<svg t="1625654526306" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21618"><path d="M469.333333 469.333333V170.666667h85.333334v298.666666h298.666666v85.333334h-298.666666v298.666666h-85.333334v-298.666666H170.666667v-85.333334h298.666666z" p-id="21619"></path></svg>'
       },
       global: [
         {
           sectionType: 'globalColorsSchema',
-          sectionName: 'Color',
+          sectionName: '颜色',
           sectionIcon: '<svg t="1625656472269" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22147"><path d="M512 853.333333c-55.466667 0-21.333333-38.4-85.333333-102.4-59.733333-64-256-25.6-256-238.933333 0-187.733333 153.6-341.333333 341.333333-341.333333s341.333333 153.6 341.333333 341.333333-153.6 341.333333-341.333333 341.333333z m256-341.333333c0-140.8-115.2-256-256-256s-256 115.2-256 256c0 68.266667 21.333333 89.6 81.066667 110.933333 4.266667 0 12.8 4.266667 21.333333 4.266667 4.266667 0 17.066667 4.266667 21.333333 8.533333 55.466667 17.066667 81.066667 29.866667 106.666667 55.466667 21.333333 21.333333 34.133333 42.666667 46.933333 64 0 4.266667 4.266667 8.533333 4.266667 12.8 128-12.8 230.4-123.733333 230.4-256z m-128-85.333333c-25.6 0-42.666667-17.066667-42.666667-42.666667s17.066667-42.666667 42.666667-42.666667 42.666667 17.066667 42.666667 42.666667-17.066667 42.666667-42.666667 42.666667z m-119.466667-55.466667c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666666 42.666667 17.066667 42.666667 42.666666-17.066667 42.666667-42.666667 42.666667z m183.466667 162.133333c-25.6 0-42.666667-17.066667-42.666667-42.666666s17.066667-42.666667 42.666667-42.666667 42.666667 17.066667 42.666667 42.666667-17.066667 42.666667-42.666667 42.666666zM392.533333 413.866667c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667 42.666667 17.066667 42.666667 42.666667-17.066667 42.666667-42.666667 42.666667z m196.266667 298.666666c-34.133333 0-64-29.866667-64-64s29.866667-64 64-64 64 29.866667 64 64c-4.266667 34.133333-29.866667 64-64 64z" p-id="22148"></path></svg>'
         },
         {
           sectionType: 'globalTypographySchema',
-          sectionName: 'Typography',
+          sectionName: '字体',
           sectionIcon: '<svg t="1625657033215" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22278"><path d="M144.03361929 197.71467996h577.14255451V392.00065088H695.46068263s-48.57185482-118.57123374-105.71457446-128.57166231-97.14298547-2.85767913-97.14298546-2.85767912l-1.42811536 495.71463167s15.71433842 32.85679221 42.85722076 35.71447135H592.60306311v34.28563177H274.03267276l1.42883956-35.71447134 51.42880976-1.42811536s38.57070208-11.42854392 38.57070209-40.00026583c0-28.57099771 1.42883956-487.14304268 1.42883955-487.1430427s-62.85662949-8.57158898-95.7141459-1.42883956C238.31892562 269.14289844 181.17548179 316.28591371 172.6053412 386.28529262l-25.71476698 1.42883957V197.71395576z" p-id="22279"></path><path d="M604.03305542 516.2857945h277.14273334v92.85719097h-12.85738349s-22.85708785-57.14271964-51.42808556-61.42851413c-27.14288235-4.2857945-47.14301527-1.42883956-47.14301527-1.42883956v238.57203126s7.14274942 15.71361422 20.00013292 17.14172959h28.57099772v17.14317799h-152.85614133v-17.14245379h24.28520321s18.57129336-5.71390987 18.57129336-18.57129336V550.57070208s-29.99983729-4.2850703-45.7141757 0-42.85722077 27.14288235-47.14301528 60.00039875H602.60421586V516.2850703z" p-id="22280"></path></svg>'
         },
         {
           sectionType: 'globalSocialSchema',
-          sectionName: 'Social media',
+          sectionName: '社交媒体',
           sectionIcon: '<svg t="1625657146375" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22406"><path d="M503.466667 384L469.333333 298.666667H384v426.666666h384V384h-264.533333zM298.666667 298.666667V213.333333h256l25.6 85.333334H853.333333v512H298.666667V298.666667zM170.666667 298.666667h85.333333v512H170.666667V298.666667z" p-id="22407"></path></svg>'
         },
         {
           sectionType: 'globalGeneralSchema',
-          sectionName: 'General',
+          sectionName: '通用设置',
           sectionIcon: '<svg t="1625657199728" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22537"><path d="M533.333333 853.333333c-196.266667 0-354.133333-153.6-354.133333-341.333333s157.866667-341.333333 354.133333-341.333333 354.133333 153.6 354.133334 341.333333-157.866667 341.333333-354.133334 341.333333z m0-85.333333c149.333333 0 268.8-115.2 268.8-256S682.666667 256 533.333333 256s-268.8 115.2-268.8 256 123.733333 256 268.8 256z" p-id="22538"></path></svg>'
         },
         {
           sectionType: 'globalFaviconSchema',
-          sectionName: 'Favicon',
+          sectionName: '收藏图标',
           sectionIcon: '<svg t="1625657254576" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22668"><path d="M512 776.533333l-238.933333 85.333334 8.533333-251.733334L128 405.333333l243.2-72.533333L512 128l140.8 209.066667L896 405.333333l-153.6 200.533334 8.533333 251.733333-238.933333-81.066667z m0-93.866666l149.333333 51.2-4.266666-157.866667 98.133333-123.733333-153.6-42.666667L512 277.333333 422.4 409.6l-153.6 42.666667 98.133333 123.733333-4.266666 157.866667L512 682.666667z" p-id="22669"></path></svg>'
         }
       ]
@@ -152,16 +146,16 @@ export default {
       mineCouponPage: '用户中心-优惠券'
     },
     sectionSelector: {
-      title: 'Add section',
-      change: 'Change section',
+      title: '添加组件',
+      change: '更换组件',
       action: {
-        add: 'Add',
-        change: 'Change'
+        add: '添加',
+        change: '更换'
       }
     },
     sectionAlias: {
-      heading: 'Section remark',
-      placeholder: 'Section remark'
+      heading: '模块备注',
+      placeholder: '请输入备注'
     },
     productCollectionPicker: {
       type: 'number',

@@ -8,9 +8,7 @@
       :invalid="pageIsValid"
       :fullScreen="true"
     >
-      <fo-page-section
-        :content="$t('enquiry.email.desc')"
-      >
+      <fo-page-section>
         <el-form
           :model="entity"
           :rules="formRules"

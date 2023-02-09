@@ -394,6 +394,9 @@ export default {
     // 文件类型，1图片，2视频，3文稿，4压缩包
     return result
   },
+  suffix (fileName) {
+    return fileName.indexOf('.') === -1 ? fileName : fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase()
+  },
   fileName (fileName) {
     return fileName.indexOf('.') === -1 ? fileName : fileName.substring(0, fileName.lastIndexOf('.'))
   },

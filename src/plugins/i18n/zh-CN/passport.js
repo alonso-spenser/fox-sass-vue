@@ -4,106 +4,149 @@ export default {
       title: 'Logout'
     },
     login: {
-      pageTitle: '登录',
-      title: '登录',
+      pageTitle: 'Sign in',
+      title: 'Sign in',
       registerTip: 'Create an account',
-      forgetTip: '忘记密码 ?',
-      button: '登录',
-      tips: '助力企业 营销全球',
-      noAccount: '没有帐号？',
-      register: '立即注册',
+      forgetTip: 'Forgot password?',
+      button: 'Sign in',
+      tips: 'Continue to MySite',
+      noAccount: 'New to MySite?',
+      register: 'Get started',
       mine: '我的网站',
-      logout: '退出登录',
+      logout: 'log out',
       create: '创建一个新网站',
       other: '登录其它帐号',
       entity: {
         password: {
-          label: '密码',
-          placeholder: '密码（6-20位字母、数字或下划线）',
-          required: '请输入密码'
+          label: 'Password',
+          placeholder: 'Password',
+          required: 'Please enter a password.'
         },
         account: {
-          label: '帐号',
-          placeholder: '手机 / 邮箱',
-          required: '请输入帐号',
-          custom: '请输入正确的手机或邮箱'
+          label: 'Account',
+          placeholder: 'Email',
+          required: 'Please enter your account',
+          custom: 'Please enter the correct email address'
         }
       }
     },
     register: {
-      pageTitle: '注册',
-      haveAccount: '已有帐号？',
-      login: '立即登录',
-      getCode: '发送验证码',
-      firstCode: '请先获取手机验证码',
-      button: '注册',
-      loginTips: '帐号已注册，',
+      pageTitle: 'Create A ID',
+      haveAccount: 'Already have a ID？',
+      login: 'Log in',
+      h1: 'Create ID',
+      tips: 'One last step before starting your free trial.',
+      getCode: 'Get A Code',
+      firstCode: 'Please get a code first',
+      button: 'Register',
+      loginTips: 'Email has already been taken.',
       entity: {
         name: {
-          label: '公司 / 个人名称',
+          label: 'Company / Studio Name',
           tips: '',
-          placeholder: '公司 / 个人名称',
-          required: '请输入公司 / 个人名称',
+          placeholder: 'Company / Studio Name',
+          required: 'Please enter Company / Studio Name',
           custom: ''
         },
         firstName: {
-          label: '名字',
+          label: 'First name',
           tips: '',
-          placeholder: '名字',
-          required: '请输入名字',
+          placeholder: 'First name',
+          required: 'Please enter first name',
           custom: ''
         },
         lastName: {
-          label: '姓氏',
+          label: 'Last name',
           tips: '',
-          placeholder: '姓氏',
-          required: '请输入姓氏',
+          placeholder: 'Last name',
+          required: 'Please enter last name',
           custom: ''
         },
         password: {
-          label: '密码',
-          placeholder: '密码（6-20位字母、数字或下划线）',
-          required: '请输入密码',
-          custom: '密码格式为（6-20位字母、数字或下划线的组合）'
+          label: 'Password',
+          placeholder: 'Password(6-20 digit,numbers or underscores)',
+          required: 'Please enter Password',
+          custom: 'Password format error'
         },
         confirmPassword: {
-          label: '确认密码',
-          placeholder: '密码（6-20位字母、数字或下划线）',
-          required: '请输入确认密码',
-          custom: '两次密码不一样'
+          label: 'Confirm new password',
+          placeholder: 'Confirm new password',
+          required: 'Please enter password',
+          custom: 'Password confirmation does not match.'
         },
         account: {
-          label: '手机',
-          placeholder: '请输入手机号',
-          required: '请输入手机号',
-          custom: '请输入有效的手机号',
-          exists: '此手机号已被注册',
+          label: 'Email',
+          placeholder: 'Please enter email',
+          required: 'Please enter email',
+          custom: 'Email format error',
+          exists: 'Email has already been taken.',
           validationFailed: '手机号验证失败'
         },
         captcha: {
           label: '验证码',
-          placeholder: '请输入验证码',
-          required: '请输入验证码',
+          placeholder: 'Please enter验证码',
+          required: 'Please enter验证码',
           custom: '',
           tip: '数字运算结果'
         },
-        mobile: {
-          label: '手机',
-          placeholder: '请输入手机号码',
-          required: '请输入手机号码',
-          custom: '请输入正确的手机号码'
-        },
         code: {
-          label: '手机验证码',
-          placeholder: '请输入手机验证码',
-          required: '请输入手机验证码',
-          custom: '请先获取手机验证码'
+          label: 'Verification Code',
+          placeholder: 'Verification Code',
+          required: 'Please enter verification Code',
+          custom: 'Please get a code first'
         }
       },
       success: {
-        heading: '注册成功',
+        heading: 'Register was successful',
         tips: '请使用电脑登录以下网址创建或管理您的网站'
       }
+    },
+    forget: {
+      pageTitle: 'Forgot Password',
+      nextStep: 'Next',
+      tips: 'Please enter your email',
+      entity: {
+        account: {
+          label: 'Email',
+          placeholder: 'Email',
+          required: 'Please enter your email',
+          custom: 'Email format error',
+          exists: 'Sorry, we could not find your account.'
+        }
+      }
+    },
+    reset: {
+      pageTitle: 'Reset Password',
+      success: 'Reset succeeded, please login again',
+      entity: {
+        password: {
+          label: 'Password',
+          placeholder: 'Password(6-20 digit,numbers or underscores)',
+          required: 'Please enter Password',
+          custom: 'Password format error'
+        },
+        passAgain: {
+          label: 'Confirm new password',
+          placeholder: 'Confirm new password',
+          required: 'Please enter password',
+          custom: 'Password confirmation does not match.'
+        }
+      }
+    },
+    codeExpired: {
+      pageTitle: 'Link has expired',
+      tips: 'This link has expired, please click to resend'
+    },
+    emailSendSuccess: {
+      pageTitle: 'Rest password mail has been sent.',
+      h1: 'The reset mail has been sent. ',
+      tips: 'We have sent your email {email} with a link to reset your password.',
+      p: 'This may take several minutes, please be patient. After you receive the email, please click the link in the email to complete the password reset. The link is valid for 24 hours from the time you send the email. Please click the link within the valid time.',
+      p1: 'If you did not receive an email:',
+      p2: '• Please check your junk mailbox',
+      p3: '• Please check your email address',
+      resend: 'Resend',
+      login: 'Back to Login'
     }
   }
 }

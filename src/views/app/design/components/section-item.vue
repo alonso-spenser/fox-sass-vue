@@ -21,7 +21,7 @@
         @click.native="displaySetting"
         class="text-truncate"
         :span="model.sectionType === 'anchorPin' ? 16 : 13">
-        {{ model.sectionName }}
+        {{ regionCode === 'en' ? model.sectionEnName || model.sectionName : model.sectionName }}
       </el-col>
       <el-col
         :span="3"
@@ -53,26 +53,26 @@
               command="scope"
               icon="el-icon-house"
               v-if="privatelySection">
-              {{ hasRefId ? `适用于当前${textTips}` : `适用于全部${textTips}` }}
+              {{ hasRefId ? `${$t('design.apply.current')}${textTips}` : `${$t('design.apply.all')}${textTips}` }}
             </el-dropdown-item>
             <el-dropdown-item
               :divided="privatelySection "
               icon="el-icon-view"
               command="visible">
-              {{ model.visible === 0 ? '隐藏组件' : '显示组件' }}
+              {{ model.visible === 0 ? $t('design.hide') : $t('design.visible') }}
             </el-dropdown-item>
             <el-dropdown-item
               icon="el-icon-plus"
-              command="copy">复制到本页
+              command="copy">{{ $t('design.copy') }}
             </el-dropdown-item>
             <el-dropdown-item
               icon="el-icon-document-copy"
-              command="clip">复制到剪贴板
+              command="clip">{{ $t('design.copyToClip') }}
             </el-dropdown-item>
             <el-dropdown-item
               icon="el-icon-delete"
               divided
-              command="remove">删除组件
+              command="remove">{{ $t('design.remove') }}
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>

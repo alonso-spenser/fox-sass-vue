@@ -3,25 +3,50 @@
     :visible.sync="dialogVisible"
     :before-close="closeDialog"
   >
-    <h3>{{$t('site.dashboard.language.heading')}}</h3>
-    <p style="font-size: 14px">{{$t('site.dashboard.language.tips')}}</p>
+    <h3>{{ $t('site.dashboard.language.heading') }}</h3>
+    <p style="font-size: 14px">{{ $t('site.dashboard.language.tips') }}</p>
     <div style="margin-top: 16px;padding-bottom: 16px">
-      <el-checkbox-group class="lang-group" v-model="langList" size="small" :max="siteInfo.surplusLang" @change="langChange">
+      <el-checkbox-group
+        class="lang-group"
+        v-model="langList"
+        size="small"
+        :max="siteInfo.surplusLang"
+        @change="langChange">
         <template v-for="o in dataset">
-          <el-checkbox :label="o.id" border :key="o.id" :value="o.id" v-if="hasOwned(o.code)">
-            {{ o.languageName }}
+          <el-checkbox
+            :label="o.id"
+            border
+            :key="o.id"
+            :value="o.id"
+            :title="o.languageName"
+            v-if="hasOwned(o.code)">
+            {{ o.nativeName }}
           </el-checkbox>
         </template>
       </el-checkbox-group>
     </div>
-    <div slot="footer" class="dialog-footer">
-      <el-button size="small" @click="closeDialog">
+    <div
+      slot="footer"
+      class="dialog-footer">
+      <el-button
+        size="small"
+        @click="closeDialog">
         {{ $t('base.operate.cancel') }}
       </el-button>
-      <el-button size="small" :loading="loading" type="primary" @click="cloneOrTranslate(false)" :disabled="langList.length === 0">
+      <el-button
+        size="small"
+        :loading="loading"
+        type="primary"
+        @click="cloneOrTranslate(false)"
+        :disabled="langList.length === 0">
         {{ $t('site.dashboard.language.clone') }}
       </el-button>
-      <el-button size="small" :loading="loading" type="danger" @click="cloneOrTranslate(true)" :disabled="langList.length === 0">
+      <el-button
+        size="small"
+        :loading="loading"
+        type="danger"
+        @click="cloneOrTranslate(true)"
+        :disabled="langList.length === 0">
         {{ $t('site.dashboard.language.translate') }}
       </el-button>
     </div>
@@ -33,6 +58,7 @@ import extend from '@/plugins/page/paging'
 import { fetchTranslateSite } from '@/plugins/api/site'
 import { fetchBaseLanguage } from '@/plugins/api/core'
 import { mapState } from 'vuex'
+
 export default {
   name: 'languageDialog',
   extends: extend,
@@ -144,14 +170,18 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss">
 .lang-group {
   overflow: hidden;
+
   .el-checkbox {
     display: inline-block;
     width: 20%;
     margin: 0;
     float: left;
+
     & + .el-checkbox {
       margin: 0;
     }

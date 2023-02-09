@@ -168,7 +168,7 @@ export default {
           },
           {
             prop: 'version',
-            width: 60,
+            width: 100,
             label: this.$t('site.theme.paging.tableHeader.version')
           },
           {

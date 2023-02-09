@@ -7,6 +7,7 @@
         @click="goHome"
         :src="resource.logoSVG">
     </div>
+    <div>{{ globalRegionModel.code }}</div>
     <el-dropdown @command="dropCommand">
       <div
         class="user-avatar"
@@ -71,7 +72,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['merchantModel'])
+    ...mapState(['merchantModel', 'globalRegionModel'])
   },
   mounted () {
     window.addEventListener('scroll', this.getScroll)

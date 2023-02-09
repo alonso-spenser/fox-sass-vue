@@ -5,16 +5,20 @@ export default {
      */
     tabPane: [
       {
-        label: 'My inquiry',
+        label: '我的询盘',
         name: 'enquiry-record',
         service: false
       },
+      // {
+      //   label: '询盘分析',
+      //   name: 'enquiry-dashboard'
+      // },
       {
-        label: 'Mailbox',
+        label: '询盘邮箱',
         name: 'enquiry-email',
         service: true
       }, {
-        label: 'Form',
+        label: '询盘表单',
         name: 'enquiry-form',
         service: true
       }
@@ -23,27 +27,27 @@ export default {
      * 详情
      */
     paging: {
-      title: 'Inquiry management'
+      title: '询盘管理'
     },
-    export: 'Export',
-    all: 'All',
+    export: '导出',
+    all: '全选',
     /**
      * 我的询盘记录
      */
     record: {
-      title: 'My inquiry',
-      export: 'Export',
-      clearAllFilter: 'Clean up',
+      title: '我的询盘',
+      export: '导出',
+      clearAllFilter: '清空全部条件',
       tableHeader: {
-        createTime: 'Time',
-        country: 'Country/Region',
-        Name: 'Name',
-        email: 'Email',
-        phone: 'Phone',
-        content: 'Content',
-        sendUrl: 'URL',
-        state: 'State',
-        annex: 'Annex'
+        createTime: '时间',
+        country: '国家',
+        Name: '姓名',
+        email: '邮箱',
+        phone: '电话',
+        content: '询盘内容',
+        sendUrl: '发送地址',
+        annex: '附件',
+        state: '状态'
       },
       /**
        *  搜索类型
@@ -51,12 +55,12 @@ export default {
       searchType: [
         {
           value: 1,
-          label: 'NO.'
+          label: '编号'
         }, {
-          label: 'Client',
+          label: '客户',
           value: 2
         }, {
-          label: 'Form',
+          label: '表单名称',
           value: 3
         }
       ],
@@ -64,27 +68,27 @@ export default {
        * 排序
        */
       recordOrderBy: [{
-        label: 'CreateTime，DESC',
+        label: '创建时间，新到旧',
         value: 'createTime-DESC'
       },
       {
-        label: 'CreateTime，ASC',
+        label: '创建时间，旧到新',
         value: 'createTime-ASC'
       },
       {
-        label: 'ClientName，A-Z',
+        label: '客户，A-Z',
         value: 'clientName-ASC'
       },
       {
-        label: 'ClientName，Z-A',
+        label: '客户，Z-A',
         value: 'clientName-DESC'
       },
       {
-        label: 'FormName，A-Z',
+        label: '表单名称，A-Z',
         value: 'formName-ASC'
       },
       {
-        label: 'FormName，Z-A',
+        label: '表单名称，Z-A',
         value: 'formName-DESC'
       }],
 
@@ -93,27 +97,27 @@ export default {
        */
       recordState: [
         {
-          label: 'Waiting',
+          label: '待处理',
           value: 1,
           type: 'success'
         },
         {
-          label: 'Processing',
+          label: '处理中',
           value: 2,
           type: 'warning'
         },
         {
-          label: 'Processed',
+          label: '已处理',
           value: 3,
           type: 'info'
         },
         {
-          label: 'Abolished',
+          label: '已作废',
           value: 4,
           type: 'danger'
         },
         {
-          label: 'Pending',
+          label: '挂起',
           value: 5,
           type: 'hold'
         }
@@ -123,32 +127,32 @@ export default {
      *  询盘详情
      */
     recordDetails: {
-      title: 'Detail',
-      change: 'Change state',
+      title: '询盘详情',
+      change: '更新状态',
       userInfoLabel: {
-        code: 'ID.',
-        form: 'Form',
+        code: '编号',
+        form: '表单',
         ip: 'IP',
-        time: 'Time',
-        state: 'State',
-        userSubmit: 'Inquiry quantity'
+        time: '时间',
+        state: '状态',
+        userSubmit: '询盘与提交数量'
       }
     },
     /**
      * 设备类型列表
      */
     deviceTypeList: [{
-      label: 'All',
+      label: '所有设备',
       icon: 'fo-all_devices',
       value: ''
     },
     {
-      label: 'Mobile',
+      label: '移动端',
       icon: 'el-icon-mobile-phone',
       value: 1
     },
     {
-      label: 'Desktop',
+      label: 'PC端',
       icon: 'el-icon-monitor',
       value: 2
     }],
@@ -156,86 +160,87 @@ export default {
      * 询盘邮箱
      */
     email: {
-      title: 'Mailbox',
+      title: '询盘邮箱',
       entity: {
-        exists: 'Mailbox already exists'
+        exists: '邮箱已存在'
       },
       update: {
         email: {
-          label: 'Mailbox',
+          label: '收件邮箱',
           tips: '',
-          placeholder: 'Mailbox',
-          formatError: 'E-mail format error',
-          required: 'Please input a email address'
+          placeholder: '邮箱地址',
+          formatError: '邮箱格式错误',
+          required: '请输入邮箱地址'
         },
         userName: {
-          label: 'Recipient',
+          label: '收件人',
           tips: '',
-          placeholder: 'Recipient',
-          required: 'Please enter recipient'
+          placeholder: '收件人',
+          required: '请输入收件人名'
         }
       }
     },
+
     /**
      * 询盘表单
      */
     form: {
-      title: 'Inquiry form',
+      title: '询盘表单',
       section: {
         source: {
-          heading: 'Source',
-          refTitle: 'Title',
-          refUrl: 'URL',
-          userAgent: 'Browser'
+          heading: '询盘来源',
+          refTitle: '页面标题',
+          refUrl: '页面地址',
+          userAgent: '浏览器信息'
         },
         record: {
-          heading: 'Records'
+          heading: '处理记录'
         }
       },
       tableHeader: {
-        buttonLabel: 'Button label',
-        remark: 'Remark',
-        title: 'Form name',
-        updateTime: 'Update time'
+        buttonLabel: '提交按钮',
+        remark: '表单备注',
+        title: '表单名称',
+        updateTime: '更新时间'
       },
       // 更新表单 && 添加表单
       updateForm: {
-        content: 'Form content',
-        addForm: 'Add',
-        editForm: 'Edit',
-        fieldList: 'The form must contain: mail or phone or phone (including country/area code), and it is "required"',
+        content: '表单内容',
+        addForm: '添加表单',
+        editForm: '编辑表单',
+        fieldList: '表单中表必包含：邮件 或 电话 或 电话(含国家/区域代码)，且为"必填"',
         add: {
-          button: 'Add Field',
-          normal: 'Generic',
-          custom: 'Customize',
-          option: 'Add option'
+          button: '添加字段',
+          normal: '常用输入项',
+          custom: '自定义类型',
+          option: '添加选项'
         },
         entity: {
           buttonLabel: {
-            label: 'Button label',
+            label: '提交按钮文本',
             tips: '',
-            placeholder: 'Button label',
-            required: 'Please enter button label',
+            placeholder: '提交按钮文本',
+            required: '请输入提交按钮文本',
             custom: ''
           },
           remark: {
-            label: 'Remark',
+            label: '表单备注',
             tips: '',
-            placeholder: 'Remark',
-            required: 'Please enter remark',
+            placeholder: '表单备注',
+            required: '请输入表单备注',
             custom: ''
           },
           title: {
-            label: 'Form name',
+            label: '表单名称',
             tips: '',
-            placeholder: 'Form name',
-            required: 'Please enter a form name',
+            placeholder: '表单名称',
+            required: '请输入表单名称',
             custom: ''
           }
         },
         fieldType: {
           email: {
-            label: 'Email',
+            label: '邮箱',
             fieldLabel: 'Email',
             placeholder: 'Please enter email',
             required: true,
@@ -245,7 +250,7 @@ export default {
             custom: true
           },
           phone: {
-            label: 'Phone',
+            label: '电话',
             fieldLabel: 'Phone',
             placeholder: 'Please enter phone number',
             required: true,
@@ -255,7 +260,7 @@ export default {
             custom: true
           },
           countryRegion: {
-            label: 'Phone(Include Country/Region code)',
+            label: '电话(含国家/区域代码)',
             fieldLabel: 'Phone',
             placeholder: 'Please enter phone number',
             required: true,
@@ -265,7 +270,7 @@ export default {
             custom: true
           },
           lastName: {
-            label: 'Last name',
+            label: '姓',
             fieldLabel: 'Last name',
             placeholder: 'Please enter last name',
             required: false,
@@ -275,7 +280,7 @@ export default {
             custom: true
           },
           firstName: {
-            label: 'First name',
+            label: '名字',
             fieldLabel: 'First name',
             placeholder: 'Please enter first name',
             required: false,
@@ -285,7 +290,7 @@ export default {
             custom: true
           },
           company: {
-            label: 'Company',
+            label: '公司',
             fieldLabel: 'Company',
             placeholder: 'Please enter company name',
             required: false,
@@ -294,7 +299,7 @@ export default {
             preset: true
           },
           position: {
-            label: 'Position',
+            label: '职位',
             fieldLabel: 'Position',
             placeholder: 'Please enter position',
             required: false,
@@ -303,7 +308,7 @@ export default {
             preset: true
           },
           message: {
-            label: 'Message',
+            label: '消息内容',
             fieldLabel: 'Message',
             placeholder: 'Please tell us the message',
             required: true,
@@ -311,7 +316,7 @@ export default {
             preset: true
           },
           address: {
-            label: 'Address',
+            label: '地址',
             fieldLabel: 'Address',
             placeholder: 'Please enter address',
             required: false,
@@ -338,16 +343,16 @@ export default {
             preset: true
           },
           attachment: {
-            label: 'Attachment',
+            label: '附件',
             fieldLabel: 'Attachment',
             placeholder: 'Upload file',
             required: false,
             filedType: 'file',
             tips: {
-              fileType: 'Type：rar/zip/jpg/png',
-              quantity: 'Quantity：1',
-              size: 'Limit：10MB',
-              notice: 'Note: Guest-submitted attachments take up space in your file'
+              fileType: '附件类型：rar/zip/jpg/png',
+              quantity: '附件数量：1',
+              size: '附件最大容量：10MB',
+              notice: '注意：访客提交的附件会占用您的文件空间'
             },
             quantity: 1,
             preset: true,
@@ -363,7 +368,7 @@ export default {
           //   custom: true
           // },
           select: {
-            label: 'Select',
+            label: '下拉框',
             fieldLabel: '',
             placeholder: 'Please select',
             required: false,
@@ -373,7 +378,7 @@ export default {
             options: []
           },
           checkbox: {
-            label: 'Checkbox',
+            label: '多选框',
             fieldLabel: '',
             placeholder: 'Please select',
             required: false,
@@ -383,7 +388,7 @@ export default {
             options: []
           },
           radio: {
-            label: 'Radio',
+            label: '单选框',
             fieldLabel: '',
             placeholder: 'Please select',
             required: false,
@@ -393,7 +398,7 @@ export default {
             options: []
           },
           text: {
-            label: 'Text',
+            label: '单行文本',
             fieldLabel: '',
             placeholder: '',
             required: false,
@@ -402,7 +407,7 @@ export default {
             custom: true
           },
           textarea: {
-            label: 'Textarea',
+            label: '多行行文本',
             fieldLabel: '',
             placeholder: '',
             required: false,
@@ -412,15 +417,15 @@ export default {
           }
         },
         option: {
-          label: 'Label',
-          value: 'Value',
-          item: 'Option',
-          default: 'Default'
+          label: '标签',
+          value: '值',
+          item: '选项',
+          default: '默认'
         },
         field: {
-          title: 'Name',
-          required: 'Required',
-          placeholder: 'Placeholder'
+          title: '标题',
+          required: '必填',
+          placeholder: '背景提示语'
         }
       },
       paging: {

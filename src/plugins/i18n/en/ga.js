@@ -1,5 +1,32 @@
 export default {
   ga: {
+    tips: 'We will obtain GA data and show it to you in a simple and clear way, you no longer need to log in to the GA background to view tedious and tedious data.',
+    step1: {
+      title: 'First step',
+      content: 'Add the Google Analytics tracking code to your website',
+      how: 'How to add？'
+    },
+    step2: {
+      title: 'Second step',
+      content: 'Bind Google Analytics data view ID',
+      how: 'How to set it up?'
+    },
+    step3: {
+      title: 'Authorized email',
+      content: '[Read and Analyze] Permissions',
+      not: 'Not set'
+    },
+    step4: {
+      bind: 'Setting',
+      unbind: 'Unbind',
+      title: 'View ID'
+    },
+    view: {
+      title: 'Bound view',
+      content: 'Please enter a view ID',
+      error: 'The view ID format is incorrect',
+      cancel: 'Unbinding will remove the view ID and clear synced data. Are you sure?'
+    },
     site: {
       paging: {
         title: '网站信息',

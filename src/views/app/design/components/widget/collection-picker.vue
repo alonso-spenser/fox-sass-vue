@@ -2,20 +2,26 @@
   <div>
     <div class="collection-picker">
       <h6>
-        <router-link target="_blank" class="float-right el-icon-edit" :to="getAddUrl()">
+        <router-link
+          target="_blank"
+          class="float-right el-icon-edit"
+          :to="getAddUrl()">
           {{ $t('collectionPicker.edit') }}
         </router-link>
         {{ name[language] }}
       </h6>
-      <div class="collection-picker-none"
-           @click="displayExplore=true"
-           v-if="!entity.id">
+      <div
+        class="collection-picker-none"
+        @click="displayExplore=true"
+        v-if="!entity.id">
         <p class="text-center">
           <i class="fo-edit"></i>
-          {{ $t('collectionPicker.select') }}
+          {{ $t('collectionPicker.select') }}111
         </p>
       </div>
-      <div class="collection-picker-content" v-if="entity.id">
+      <div
+        class="collection-picker-content"
+        v-if="entity.id">
         <img :src="entity.image === '' ? resource.image.placeholder : entity.image">
         <p>
           {{ entity.title }}
@@ -30,11 +36,17 @@
         </el-button>
       </el-button-group>
     </div>
-    <div v-if="displayExplore" class="editor-section picker">
-      <h4 class="editor-section-title" @click="displayExplore=false">
+    <div
+      v-if="displayExplore"
+      class="editor-section picker">
+      <h4
+        class="editor-section-title"
+        @click="displayExplore=false">
         {{ $t('collectionPicker.select') }}
       </h4>
-      <div class="editor-section-content"  v-loading="dataLoading">
+      <div
+        class="editor-section-content"
+        v-loading="dataLoading">
         <div class="center-link">
           <a
             :href="getAddUrl()"
@@ -45,8 +57,18 @@
           </a>
         </div>
         <div style="padding: 6px 10px;">
-          <el-input size="small" placeholder="keywords" @clear="searchData" :clearable="true" @keyup.enter.native="searchData" v-model="searchKeyword" class="input-with-select">
-            <el-button slot="append" @click="searchData" icon="el-icon-search"></el-button>
+          <el-input
+            size="small"
+            placeholder="keywords"
+            @clear="searchData"
+            :clearable="true"
+            @keyup.enter.native="searchData"
+            v-model="searchKeyword"
+            class="input-with-select">
+            <el-button
+              slot="append"
+              @click="searchData"
+              icon="el-icon-search"></el-button>
           </el-input>
         </div>
 
@@ -59,7 +81,9 @@
             @click="addSection(index, o, false)"
           >
             <div class="editor-section-picker-item">
-              <img v-if="o.image" :src="o.image">
+              <img
+                v-if="o.image"
+                :src="o.image">
               {{ o.title }}
             </div>
           </div>
@@ -67,18 +91,34 @@
       </div>
       <div class="fo-setting-fixed-bottom">
         <el-row class=" w-100">
-          <el-col :span="8" v-if="totalPage > 1 && !dataLoading">
-            <el-button @click="jumpPage(0)" size="small" type="text" icon="el-icon-arrow-left" v-if="currentPage > 1">Prev</el-button>
+          <el-col
+            :span="8"
+            v-if="totalPage > 1 && !dataLoading">
+            <el-button
+              @click="jumpPage(0)"
+              size="small"
+              type="text"
+              icon="el-icon-arrow-left"
+              v-if="currentPage > 1">Prev
+            </el-button>
             <label v-else>&nbsp;</label>
           </el-col>
-          <el-col :span="8"  v-if="totalPage > 1 && !dataLoading">
-            <el-button @click="jumpPage(1)" size="small" type="text" v-if="currentPage < totalPage">
+          <el-col
+            :span="8"
+            v-if="totalPage > 1 && !dataLoading">
+            <el-button
+              @click="jumpPage(1)"
+              size="small"
+              type="text"
+              v-if="currentPage < totalPage">
               Next
               <i class="el-icon-arrow-right el-icon--right"></i>
             </el-button>
             <label v-else>&nbsp;</label>
           </el-col>
-          <el-col :span="totalPage > 1 && !dataLoading ? 8 : 24" class="text-right">
+          <el-col
+            :span="totalPage > 1 && !dataLoading ? 8 : 24"
+            class="text-right">
             <el-button
               @click="selected"
               v-if="displaySelected"
@@ -93,12 +133,15 @@
     </div>
   </div>
 </template>
-<style lang='scss' src="@/assets/design.scss"></style>
+<style
+  lang='scss'
+  src="@/assets/design.scss"></style>
 <script>
 import extend from '@/plugins/page/base'
 import {
   fetchLinkPicker
 } from '@/plugins/api/assembler'
+
 export default {
   name: 'collection-picker',
   extends: extend,

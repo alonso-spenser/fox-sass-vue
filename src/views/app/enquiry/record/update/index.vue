@@ -267,7 +267,7 @@
             ref="stateChangeForm"
             label-position="top"
           >
-            <el-form-item label="状态">
+            <el-form-item :label="$t('enquiry.record.tableHeader.state')">
               <el-select
                 v-model="enquiryStateModel.state"
                 :placeholder="$t('base.placeholder.select')"
@@ -280,7 +280,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="备注记录">
+            <el-form-item :label="$t('enquiry.form.tableHeader.remark')">
               <el-input
                 type="textarea"
                 :autosize="{ minRows: 3, maxRows: 5 }"

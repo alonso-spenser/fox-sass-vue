@@ -6,66 +6,66 @@ export default {
      */
     tabPane: [
       {
-        label: 'Traffic distribution',
+        label: '流量分布',
         name: 'flow'
       },
       {
-        label: 'Inquiry distribution',
+        label: '询盘分布',
         name: 'inquiry'
       }
     ],
     // 统计
     aggregate: {
       inquiry: {
-        label: 'Cumulative inquiries',
-        currentMonth: 'This month: '
+        label: '累积询盘数',
+        currentMonth: '本月询盘数: '
       },
       visit: {
-        label: 'Cumulative (PV)',
-        currentMonth: 'This month (PV): '
+        label: '累积访问量(PV)',
+        currentMonth: '本月访问量: '
       },
       visitor: {
-        label: 'Cumulative (IP)',
-        currentMonth: 'This month (IP): '
+        label: '累积访客数(IP)',
+        currentMonth: '本月访问客人数: '
       }
     },
     // 时间选择
     selectDay: {
-      seven: 'Nearly seven days',
-      thirty: 'Nearly thirty days'
+      seven: '近七天',
+      thirty: '近三十'
     },
     // 流量分布
     flow: {
-      title: 'Traffic ranking',
-      trend: 'Traffic trend',
-      source: 'Traffic source',
+      title: '流量排名',
+      trend: '流量趋势',
+      source: '流量来源',
       ranking: {
         // 所属排名流量
         header: [
           {
-            name: 'Country / region'
+            name: '国家/地区'
           },
           {
-            name: 'Visit(PV)'
+            name: '访问(PV)'
           }, {
-            name: 'Ratio'
+            name: '占比'
           }
         ]
       }
     },
     // 询盘分布
     inquiry: {
-      title: 'Inquiry ranking',
+      title: '询盘排名',
       ranking: {
         // 所属排名流量
         header: [
           {
-            name: 'Country / region'
+            name: '国家/地区'
           },
           {
-            name: 'Inquiries'
+            name: '询盘数'
           }, {
-            name: 'Ratio'
+            name: '占比'
           }
         ]
       }
@@ -75,17 +75,17 @@ export default {
      * 数据中心
      */
     analytics: {
-      title: 'Data dashboard',
+      title: '数据看板',
       /**
        * pane nav
        */
       tabPane: [
         {
-          label: 'Inquiry analysis',
+          label: '询盘分析',
           name: 'inquiry'
         },
         {
-          label: 'Traffic analysis',
+          label: '流量分析',
           name: 'flow'
         }
         // , {
@@ -98,61 +98,64 @@ export default {
        */
       inquiry: {
         radio: {
-          'mobile': 'Mobile',
-          'pc': 'Desktop'
+          'mobile': '移动端',
+          'pc': '桌面端'
         },
         aggregate: {
-          nowMonth: 'This month',
-          previousMonth: 'Last month',
-          total: 'Cumulative inquiries'
+          nowMonth: '本月询盘数',
+          previousMonth: '上月询盘数',
+          total: '累积询盘数'
         },
         // 分布
         distribution: {
-          title: 'Inquiry distribution'
+          title: '询盘分布'
         },
         // 来源
         source: {
-          title: 'Inquiry source'
+          title: '询盘来源'
         },
         // 趋势
         trend: {
-          title: 'Inquiry trend'
+          title: '询盘趋势'
         },
         terminal: {
-          title: 'Terminal ratio'
+          title: '终端占比'
         }
       },
+
       /**
        * 流量分析
        */
       flow: {
         aggregate: {
-          nowMonthVisit: 'This month(IP)',
-          nowMonthVisitNumber: 'This month(UV)',
-          totalPeopleVisit: 'Cumulative(IP)',
-          totalVisitNumber: 'Cumulative(UV)'
+          nowMonthVisit: '本月访问数',
+          nowMonthVisitNumber: '本月访问量',
+          totalPeopleVisit: '累积访客数',
+          totalVisitNumber: '累积访问量'
         },
         radio: {
-          'visitor': 'Visitor（IP）',
-          'visits': 'Visitor (PV)'
+          'visitor': '访客（IP）',
+          'visits': '访问量(PV)'
         },
         // 分布
         distribution: {
-          title: 'Traffic distribution'
+          title: '流量分布'
         },
         // 来源
         source: {
-          title: 'Traffic source'
+          title: '流量来源'
         },
         // 趋势
         trend: {
-          title: 'Traffic trend'
+          title: '流量趋势'
         },
         // 终端
         terminal: {
-          title: 'Terminal'
+          title: '访问终端'
         }
+
       },
+
       /**
        * 访问明细
        */
@@ -172,9 +175,9 @@ export default {
       }
     },
     ga: {
-      title: 'Google Analytics Sync setting',
-      tips: 'Obtain and display more detailed website data by synchronizing Google Analytics account',
-      setting: 'GA Sync setting'
+      title: 'Google Analytics 同步设置',
+      tips: '通过同步Google Analytics的账号，获取并展示更详尽的网站数据',
+      setting: 'GA 同步设置'
     }
   },
   pageNotFund: {

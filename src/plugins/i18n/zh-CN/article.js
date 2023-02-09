@@ -86,12 +86,12 @@ export default {
     }
   },
   orderBy: {
-    updateTimeASC: 'Update time，ASC',
-    updateTimeDESC: 'Update time，DESC',
-    createTimeASC: 'Create time，ASC',
-    createTimeDESC: 'Create time，DESC',
-    initialASC: 'Name，A-Z',
-    initialDESC: 'Name，Z-A'
+    updateTimeASC: '修改时间，旧到新',
+    updateTimeDESC: '修改时间，新到旧',
+    createTimeASC: '创建时间，旧到新',
+    createTimeDESC: '创建时间，新到旧',
+    initialASC: '名称，A-Z',
+    initialDESC: '名称，Z-A'
   },
   /**
    * 新闻集合多选器

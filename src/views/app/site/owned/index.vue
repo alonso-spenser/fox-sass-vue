@@ -134,20 +134,20 @@
             shadow="hover">
             <div class="trans-label">
               <h3 class="mb-3">{{ $t('site.dashboard.statistics.languageType') }}</h3>
-              已有
+              {{ $t('site.dashboard.statistics.online') }}
               <label class="mr-3">
-                <b class="text-success">{{ siteInfo.keepLang }}</b> 种
+                <b class="text-success">{{ siteInfo.keepLang }}</b>
               </label>
 
               <label
                 class="text-info"
                 v-if="siteInfo.surplusLang > 0">
-                剩余可加
+                {{ $t('site.dashboard.statistics.usable') }}
               </label>
               <label
                 v-if="siteInfo.surplusLang > 0"
                 class="text-info">
-                <b class="text-warning">{{ siteInfo.surplusLang }}</b> 种
+                <b class="text-warning">{{ siteInfo.surplusLang }}</b>
               </label>
             </div>
             <div

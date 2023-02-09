@@ -135,8 +135,8 @@
                 range-separator="-"
                 value-format="timestamp"
                 :default-time="['00:00:00', '23:59:59']"
-                :start-placeholder="$t('base.placeholder.date')"
-                :end-placeholder="$t('base.placeholder.date')"
+                :start-placeholder="$t('base.startTime')"
+                :end-placeholder="$t('base.endTime')"
               >
               </el-date-picker>
             </el-col>
@@ -204,7 +204,7 @@ export default {
                 <i
                   class={`${this.utility.getDicType(
                     this.deviceList,
-                    row.formDevice,
+                    row['formDevice'],
                     'icon'
                   )}`}
                 />
@@ -234,7 +234,7 @@ export default {
           },
           {
             width: 150,
-            label: '附件',
+            label: this.$t('enquiry.record.tableHeader.annex'),
             prop: 'hasAnnex',
             render: (row) => {
               return (
