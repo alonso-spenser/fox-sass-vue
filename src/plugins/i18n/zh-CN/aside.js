@@ -150,6 +150,13 @@ export default {
       code: ['base'],
       submenu: [
         {
+          title: '系统',
+          // code: ['main-base-super'],
+          code: [''],
+          url: '/main/base/super',
+          submenu: []
+        },
+        {
           title: '语言',
           code: ['base-lang'],
           url: '/main/base/lang',

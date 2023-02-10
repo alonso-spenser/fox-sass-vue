@@ -119,3 +119,13 @@ export const fetchAgentDictPaging = (params = {}) => http.post('/api/agent/dict'
  * 语言
  */
 export const fetchBaseLanguage = (params = {}) => http.post('/api/base/language', params)
+
+/**
+ * 代理商详情
+ */
+export const fetchAgentDetail = (params = {}) => http.post('/api/base/super', params)
+
+/**
+ * 添加 & 修改代理商
+ */
+export const fetchBaseAgentUpdate = (params = {}) => http.post('/api/ops/base/support/super', params)

@@ -4,11 +4,10 @@ import router from '../../router'
 import passport from '../passport'
 import i18n from '../../plugins/i18n/base'
 import { Message } from 'element-ui'
-import utility from './../utility'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 const http = axios.create({
-  baseURL: utility.apiURL()
+  baseURL: process.env.VUE_APP_API
 })
 /**
  * 请求拦截器

@@ -146,23 +146,30 @@ export default {
       ]
     },
     {
-      title: '基础数据',
+      title: 'Basic data',
       code: ['base'],
       submenu: [
         {
-          title: '语言',
+          title: 'System',
+          // code: ['main-base-super'],
+          code: [''],
+          url: '/main/base/super',
+          submenu: []
+        },
+        {
+          title: 'Language',
           code: ['base-lang'],
           url: '/main/base/lang',
           submenu: []
         },
         {
-          title: 'IP地址库',
+          title: 'IP Address',
           code: ['ip-repository'],
           url: '/main/base/ip',
           submenu: []
         },
         {
-          title: '帮助文档',
+          title: 'Support',
           code: ['base-support'],
           url: '/main/base/support',
           submenu: []
@@ -174,7 +181,7 @@ export default {
           submenu: []
         },
         {
-          title: '应用功能 & 初始角色',
+          title: 'Function & Role',
           code: ['security-function'],
           url: '/main/base/security/function',
           submenu: []

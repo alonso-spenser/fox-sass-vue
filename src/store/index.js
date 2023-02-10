@@ -31,17 +31,6 @@ const state = {
   },
   agentId: '',
   platformId: '',
-  agentModel: {
-    address: '',
-    agentName: '',
-    email: '',
-    icp: null,
-    id: '',
-    logo: '',
-    platformId: '',
-    shortForm: 'Hey!MySite',
-    website: ''
-  },
   mySite: [],
   roles: [],
   autoSyncH1: false,
@@ -51,6 +40,19 @@ const state = {
     languageName: '英语',
     nativeName: 'English',
     siteId: ''
+  },
+  agentModel: {
+    address: '',
+    contact: '',
+    domain: '',
+    email: '',
+    icp: '',
+    id: '',
+    logo: '',
+    mobile: '',
+    name: '',
+    shortForm: 'Hey!MySite',
+    website: ''
   }
 }
 

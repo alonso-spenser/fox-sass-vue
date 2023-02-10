@@ -6,6 +6,7 @@ import {
 } from 'vuex'
 import router from '@/router'
 import { fetchMySite } from '@/plugins/api/site'
+import { fetchAgentDetail } from '@/plugins/api/core'
 
 /**
  * 页面基类
@@ -228,6 +229,21 @@ export default {
       })
     },
     /**
+     * 获取代理商资料
+     */
+    getAgent () {
+      if (this.agentModel && this.agentModel.id) {
+        return
+      }
+      fetchAgentDetail()
+        .then((result) => {
+          if (result['success']) {
+            document.title = `${this.$t('passport.login.pageTitle')}-${result.data.shortForm}`
+            this.setAgentModel(result.data)
+          }
+        })
+    },
+    /**
      * 我的站点
      */
     getMySite (func) {
@@ -252,5 +268,6 @@ export default {
   created () {
     this.id = this.$route.params.id
     this.siteId = this.$route.params.siteId || ''
+    this.getAgent()
   }
 }

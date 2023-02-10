@@ -7,7 +7,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service build --mode test",
-    "prod": "vue-cli-service build --mode production"
+    "prod": "vue-cli-service build --mode production",
+    "build:fox": "vue-cli-service build --mode fox",
+    "build:huazhe": "vue-cli-service build --mode huazhe"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.8",
@@ -56,6 +58,6 @@
     "eslint-plugin-vue": "^5.0.0-0",
     "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.7.0",
-    "webpack-aliyun-oss": "^0.3.1"
+    "webpack-aliyun-oss": "^0.3.9"
   }
 }

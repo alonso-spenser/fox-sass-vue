@@ -250,6 +250,81 @@ export default {
         required: '请输入名称',
         custom: ''
       }
+    },
+    agent: {
+      title: 'System configuration',
+      entity: {
+        address: {
+          label: '联系地址',
+          tips: '',
+          placeholder: '联系地址',
+          required: '请输入联系地址',
+          custom: ''
+        },
+        name: {
+          label: '名称',
+          tips: '',
+          placeholder: '名称',
+          required: '请输入名称',
+          custom: ''
+        },
+        contact: {
+          label: '联系人',
+          tips: '',
+          placeholder: '联系人',
+          required: '请输入联系人',
+          custom: ''
+        },
+        domain: {
+          label: '网站管理域名',
+          tips: '',
+          placeholder: '网站管理域名',
+          required: '请输入网站管理域名',
+          custom: ''
+        },
+        email: {
+          label: '邮件地址',
+          tips: '',
+          placeholder: '邮件地址',
+          required: '请输入邮件地址',
+          custom: ''
+        },
+        icp: {
+          label: '备案号',
+          tips: '',
+          placeholder: '备案号',
+          required: '请输入备案号',
+          custom: ''
+        },
+        logo: {
+          label: 'LOGO',
+          tips: '',
+          placeholder: 'LOGO',
+          required: '请输入LOGO',
+          custom: ''
+        },
+        mobile: {
+          label: '联系手机',
+          tips: '',
+          placeholder: '联系手机',
+          required: '请输入联系手机',
+          custom: ''
+        },
+        shortForm: {
+          label: '简称',
+          tips: '',
+          placeholder: '简称',
+          required: '请输入简称',
+          custom: ''
+        },
+        website: {
+          label: '官网域名',
+          tips: '',
+          placeholder: '官网域名',
+          required: '请输入官网域名',
+          custom: ''
+        }
+      }
     }
   },
   googleApi: {
@@ -362,9 +437,9 @@ export default {
           buttonLabel: '添加审批流程配置'
         },
         tableHeader: {
-          agentId: '代理商ID',
-          goodsId: '代理商产品id',
-          goodsName: '代理商产品id',
+          agentId: 'ID',
+          goodsId: '产品id',
+          goodsName: '产品id',
           name: '名称',
           serviceGoodsId: '系统产品ID',
           tag: 'TAG'
@@ -376,24 +451,24 @@ export default {
         entity: {
 
           agentId: {
-            label: '代理商ID',
+            label: 'ID',
             tips: '',
-            placeholder: '代理商ID',
-            required: '请输入代理商ID',
+            placeholder: 'ID',
+            required: '请输入ID',
             custom: ''
           },
           goodsId: {
-            label: '代理商产品id',
+            label: '产品id',
             tips: '',
-            placeholder: '代理商产品id',
-            required: '请输入代理商产品id',
+            placeholder: '产品id',
+            required: '请输入产品id',
             custom: ''
           },
           goodsName: {
-            label: '代理商产品id',
+            label: '产品id',
             tips: '',
-            placeholder: '代理商产品id',
-            required: '请输入代理商产品id',
+            placeholder: '产品id',
+            required: '请输入产品id',
             custom: ''
           },
           name: {

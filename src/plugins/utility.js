@@ -451,14 +451,14 @@ export default {
    * @returns {*}
    */
   apiURL () {
-    return resource.env.api[process.env.NODE_ENV]
+    return process.env.VUE_APP_API
   },
   /**
    * API URL
    * @returns {*}
    */
   uploadURL () {
-    return resource.env.upload[process.env.NODE_ENV]
+    return process.env.VUE_APP_UPLOAD
   },
   /**
    * 清理CSS变量

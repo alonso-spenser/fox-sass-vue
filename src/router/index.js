@@ -7,6 +7,7 @@ import accountLayout from '../views/account/layout'
 import i18n from '../plugins/i18n/base'
 import lib from '../plugins/utility'
 import checkPermission from '../plugins/permission'
+import store from '../store'
 
 Vue.use(Router)
 const routes = [
@@ -1437,6 +1438,20 @@ const routes = [
         }
       },
       {
+        path: 'base/super',
+        name: 'main-base-super',
+        component: () => import('../views/main/base/super/index'),
+        meta: {
+          title: i18n.t('core.agent.title'),
+          requireAuth: false,
+          parent: {
+            title: i18n.t('core.agent.title'),
+            url: '/main/base/super',
+            previous: ''
+          }
+        }
+      },
+      {
         path: 'base/ip',
         name: 'main-ip',
         component: () => import('../views/main/base/ip/index'),
@@ -1754,8 +1769,8 @@ const setTitle = (meta) => {
   if (meta.parent && meta.parent.title && titles.indexOf(meta.parent.title) === -1) {
     titles.push(meta.parent.title)
   }
-  titles.push('Hey!MySite')
-  // titles.push(store.state.agentModel.shortForm || store.state.agentModel.agentName)
+  // titles.push('Hey!MySite')
+  titles.push(store.state.agentModel.shortForm || store.state.agentModel.agentName)
   document.title = titles.join('-')
 }
 

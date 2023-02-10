@@ -5,7 +5,13 @@
     <div
       class="passport-form"
       v-loading="authLoading">
+      <img
+        class="logo"
+        :src="agentModel.logo"
+        :alt="agentModel.shortForm"
+        v-if="agentModel.logo">
       <svg
+        v-else
         class="logo"
         xmlns="http://www.w3.org/2000/svg">
         <g
