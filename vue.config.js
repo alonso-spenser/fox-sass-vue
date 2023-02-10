@@ -1,6 +1,5 @@
 process.env.AppVersion = require('./package.json').version
 const WebpackAlisunOss = require('webpack-aliyun-oss')
-console.log('webpack', process.env.NODE_ENV)
 module.exports = {
   devServer: {
     port: 9500,
@@ -41,7 +40,7 @@ module.exports = {
   ],
   configureWebpack: (config) => {
     let fun = []
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV === 'production') {
       fun.push(new WebpackAlisunOss({
         // 上传那个文件或文件夹  可以是字符串或数组
         from: ['./dist/**', '!**.map'],
