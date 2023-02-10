@@ -1,5 +1,6 @@
 process.env.AppVersion = require('./package.json').version
 const WebpackAlisunOss = require('webpack-aliyun-oss')
+console.log('webpack', process.env.NODE_ENV)
 module.exports = {
   devServer: {
     port: 9500,
