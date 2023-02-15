@@ -1,12 +1,12 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :fullScreen="true"
       :percentage="100"
     >
-      <fo-page-header
+      <fox-page-header
         :left="140"
         :actions="[
         {
@@ -19,8 +19,8 @@
           }
         }
       ]"
-      ></fo-page-header>
-      <fo-paging-table
+      ></fox-page-header>
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -76,8 +76,8 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
-    </fo-page-loading>
+      </fox-paging-table>
+    </fox-page-loading>
   </main>
 </template>
 

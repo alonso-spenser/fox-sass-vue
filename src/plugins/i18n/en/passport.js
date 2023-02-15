@@ -6,16 +6,15 @@ export default {
     login: {
       pageTitle: 'Sign in',
       title: 'Sign in',
-      registerTip: 'Create an account',
       forgetTip: 'Forgot password?',
       button: 'Sign in',
       tips: 'Continue to MySite',
       noAccount: 'New to MySite?',
       register: 'Get started',
-      mine: '我的网站',
-      logout: 'log out',
-      create: '创建一个新网站',
-      other: '登录其它帐号',
+      mine: 'My sites',
+      logout: 'Log out',
+      create: 'Create a new website',
+      other: 'Login to another account',
       entity: {
         password: {
           label: 'Password',
@@ -24,9 +23,9 @@ export default {
         },
         account: {
           label: 'Account',
-          placeholder: 'Email',
+          placeholder: 'Email address',
           required: 'Please enter your account',
-          custom: 'Please enter the correct email address'
+          custom: 'Email format error'
         }
       }
     },
@@ -69,7 +68,7 @@ export default {
           custom: 'Password format error'
         },
         confirmPassword: {
-          label: 'Confirm new password',
+          label: 'Confirm password',
           placeholder: 'Confirm new password',
           required: 'Please enter password',
           custom: 'Password confirmation does not match.'
@@ -80,35 +79,28 @@ export default {
           required: 'Please enter email',
           custom: 'Email format error',
           exists: 'Email has already been taken.',
-          validationFailed: '手机号验证失败'
-        },
-        captcha: {
-          label: '验证码',
-          placeholder: 'Please enter验证码',
-          required: 'Please enter验证码',
-          custom: '',
-          tip: '数字运算结果'
+          validationFailed: 'Email validation failed'
         },
         code: {
           label: 'Verification Code',
-          placeholder: 'Verification Code',
+          placeholder: 'Please get the verification code first',
           required: 'Please enter verification Code',
-          custom: 'Please get a code first'
+          custom: 'Please get a verification code first'
         }
       },
       success: {
         heading: 'Register was successful',
-        tips: '请使用电脑登录以下网址创建或管理您的网站'
+        tips: 'Please use your computer to log in to the following website to create or manage your website'
       }
     },
     forget: {
-      pageTitle: 'Forgot Password',
+      pageTitle: 'Forgot password',
       nextStep: 'Next',
       tips: 'Please enter your email',
       entity: {
         account: {
           label: 'Email',
-          placeholder: 'Email',
+          placeholder: 'Email address',
           required: 'Please enter your email',
           custom: 'Email format error',
           exists: 'Sorry, we could not find your account.'
@@ -116,17 +108,17 @@ export default {
       }
     },
     reset: {
-      pageTitle: 'Reset Password',
+      pageTitle: 'Reset password',
       success: 'Reset succeeded, please login again',
       entity: {
         password: {
           label: 'Password',
-          placeholder: 'Password(6-20 digit,numbers or underscores)',
+          placeholder: '6-20 digit,numbers or underscores',
           required: 'Please enter Password',
           custom: 'Password format error'
         },
         passAgain: {
-          label: 'Confirm new password',
+          label: 'Confirm password',
           placeholder: 'Confirm new password',
           required: 'Please enter password',
           custom: 'Password confirmation does not match.'

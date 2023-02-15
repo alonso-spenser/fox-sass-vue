@@ -1,5 +1,5 @@
 <template>
-  <fo-page-loading
+  <fox-page-loading
     :loading="pageLoading"
     :invalid="pageIsValid"
   >
@@ -90,7 +90,7 @@
         </el-col>
       </el-row>
     </el-card>
-  </fo-page-loading>
+  </fox-page-loading>
 </template>
 
 <script>

@@ -1,20 +1,20 @@
 <template>
   <main class="editable">
-    <div class="fo-page-header-editable">
+    <div class="fox-page-header-editable">
       <section class="global-page-container">
         <section class="global-page-content">
           <section class="global-page-main">
-            <fo-page-header></fo-page-header>
+            <fox-page-header></fox-page-header>
           </section>
         </section>
       </section>
     </div>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
       <div class="global-editable-container">
-        <fo-page-section>
+        <fox-page-section>
           <el-form
             :model="entity"
             :rules="formRules"
@@ -22,8 +22,10 @@
             label-width="100px"
             label-position="top"
           >
-            <el-form-item prop="avatar" :label="$t('merchant.employee.update.entity.avatar.label')">
-              <fo-image-single
+            <el-form-item
+              prop="avatar"
+              :label="$t('merchant.employee.update.entity.avatar.label')">
+              <fox-image-single
                 v-model="entity.avatar"
                 :width="180"
                 :size-limit="10"
@@ -31,66 +33,82 @@
                 :oss-bucket="resource.ossBucket"
                 :server-address="utility.uploadURL()"
                 :file-folder="siteId"
-              ></fo-image-single>
+              ></fox-image-single>
             </el-form-item>
             <el-row :gutter="20">
               <el-col :span="12">
-                <el-form-item prop="firstName" :label="$t('merchant.employee.update.entity.firstName.label')">
-                  <el-input
+                <el-form-item
+                  prop="firstName">
+                  <fox-input
                     v-model="entity.firstName"
-                    :placeholder="$t('merchant.employee.update.entity.firstName.placeholder')"
-                  ></el-input>
+                    shrink
+                    :placeholder="$t('merchant.employee.update.entity.firstName.label')"
+                    :description="$t('merchant.employee.update.entity.firstName.placeholder')"
+                  ></fox-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item prop="lastName" :label="$t('merchant.employee.update.entity.lastName.label')">
-                  <el-input
+                <el-form-item
+                  prop="lastName">
+                  <fox-input
                     v-model="entity.lastName"
-                    :placeholder="$t('merchant.employee.update.entity.lastName.placeholder')"
-                  ></el-input>
+                    shrink
+                    :placeholder="$t('merchant.employee.update.entity.lastName.label')"
+                    :description="$t('merchant.employee.update.entity.lastName.placeholder')"
+                  ></fox-input>
                 </el-form-item>
               </el-col>
             </el-row>
-            <el-form-item class="mt-5"  prop="email" :label="$t('merchant.employee.update.entity.email.label')">
-              <el-input
+            <el-form-item
+              class="mt-5"
+              prop="email">
+              <fox-input
                 v-model="entity.email"
-                :placeholder="$t('merchant.employee.update.entity.email.placeholder')"
-              ></el-input>
+                shrink
+                :placeholder="$t('merchant.employee.update.entity.email.label')"
+                :description="$t('merchant.employee.update.entity.email.placeholder')"
+              ></fox-input>
             </el-form-item>
-<!--            <el-form-item prop="area" label="客户区域">-->
-<!--              <el-cascader-->
-<!--                class="w-100"-->
-<!--                v-model="entity.area"-->
-<!--                :props="cascaderProps"-->
-<!--                clearable-->
-<!--                filterable-->
-<!--                @change="cascaderChange"-->
-<!--                placeholder="请选择客户所在区域"-->
-<!--              ></el-cascader>-->
-<!--            </el-form-item>-->
-            <el-form-item prop="mobile" :label="$t('merchant.employee.update.entity.mobile.label')">
-              <el-input
+            <!--            <el-form-item prop="area" label="客户区域">-->
+            <!--              <el-cascader-->
+            <!--                class="w-100"-->
+            <!--                v-model="entity.area"-->
+            <!--                :props="cascaderProps"-->
+            <!--                clearable-->
+            <!--                filterable-->
+            <!--                @change="cascaderChange"-->
+            <!--                placeholder="请选择客户所在区域"-->
+            <!--              ></el-cascader>-->
+            <!--            </el-form-item>-->
+            <el-form-item
+              prop="mobile">
+              <fox-input
                 v-model="entity.mobile"
-                :placeholder="$t('merchant.employee.update.entity.mobile.placeholder')"
-              ></el-input>
+                shrink
+                :placeholder="$t('merchant.employee.update.entity.mobile.label')"
+                :description="$t('merchant.employee.update.entity.mobile.placeholder')"
+              ></fox-input>
             </el-form-item>
-            <el-form-item prop="phone" :label="$t('merchant.employee.update.entity.phone.label')">
-              <el-input
+            <el-form-item
+              prop="phone">
+              <fox-input
                 v-model="entity.phone"
-                :placeholder="$t('merchant.employee.update.entity.phone.placeholder')"
-              ></el-input>
+                shrink
+                :placeholder="$t('merchant.employee.update.entity.phone.label')"
+                :description="$t('merchant.employee.update.entity.phone.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-form>
-        </fo-page-section>
+        </fox-page-section>
       </div>
-    </fo-page-loading>
-    <fo-fixed-unsaved
+    </fox-page-loading>
+    <fox-unsaved
       :unsaved.sync="unsaved"
       :loading="loading"
       tips=""
       @confirmed="formValidation"
     >
-    </fo-fixed-unsaved>
+    </fox-unsaved>
   </main>
 </template>
 

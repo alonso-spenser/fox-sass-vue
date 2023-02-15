@@ -1,5 +1,7 @@
 <template>
-  <div class="fo-countdown" v-html="timeLabel">
+  <div
+    class="fox-countdown"
+    v-html="timeLabel">
   </div>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
  <main>
-   <fo-page-header :actions="crumbAction"></fo-page-header>
-   <fo-page-loading
+   <fox-page-header :actions="crumbAction"></fox-page-header>
+   <fox-page-loading
      :loading="pageLoading"
      :invalid="pageIsValid"
      :percentage="100"
    >
-     <fo-paging-table
+     <fox-paging-table
        :multiSelect="false"
        :actions="dataConfig.actions"
        :columns="dataConfig.columns"
@@ -18,8 +18,8 @@
        :record-count="pagingOptions.recordCount"
        :rows-class-name="dataConfig.rowsClassName"
      >
-     </fo-paging-table>
-   </fo-page-loading>
+     </fox-paging-table>
+   </fox-page-loading>
  </main>
 </template>
 

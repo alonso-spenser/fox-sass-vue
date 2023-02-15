@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`fo-section ${model.sectionType}`"
+    :class="`fox-section ${model.sectionType}`"
     :data-id="model && model.id ? model.id : ''"
   >
     <el-row>
@@ -26,7 +26,7 @@
       <el-col
         :span="3"
         :offset="sorting ? 0 : 3"
-        class="fo-section-refresh"
+        class="fox-section-refresh"
         v-if="model.sectionGroup === 1000 || model.sectionGroup === 2000"
         @click.native="sectionChange"
         :title="$t('design.changeSection')"
@@ -80,7 +80,7 @@
       <el-col
         :span="4"
         v-if="sorting"
-        class="fo-section-move"
+        class="fox-section-move"
       >
         <img
           class="element-icon-img"

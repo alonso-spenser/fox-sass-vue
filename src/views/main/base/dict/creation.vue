@@ -1,19 +1,21 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :fullScreen="true"
     >
-      <fo-page-header></fo-page-header>
-      <fo-page-section>
+      <fox-page-header></fox-page-header>
+      <fox-page-section>
         <el-form
           :model="entity"
           :rules="formRules"
           ref="update"
           label-position="top"
         >
-          <el-form-item prop="masterId" :label="$t('core.dict.dicType.label')">
+          <el-form-item
+            prop="masterId"
+            :label="$t('core.dict.dicType.label')">
             <el-select
               class="block w-100"
               v-model="entity.dicType"
@@ -26,21 +28,23 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <draggable handle=".el-move" :list="entity.dictList">
+          <draggable
+            handle=".el-move"
+            :list="entity.dictList">
             <el-row :gutter="10">
               <el-col :span="7">
                 <small class="text-secondary">
-                  {{$t('core.dict.title.label')}}
+                  {{ $t('core.dict.title.label') }}
                 </small>
               </el-col>
               <el-col :span="3">
                 <small class="text-secondary">
-                  {{$t('core.dict.sort.label')}}
+                  {{ $t('core.dict.sort.label') }}
                 </small>
               </el-col>
               <el-col :span="11">
                 <small class="text-secondary">
-                  {{$t('core.dict.remark.label')}}
+                  {{ $t('core.dict.remark.label') }}
                 </small>
               </el-col>
             </el-row>
@@ -51,7 +55,9 @@
               :gutter="10"
             >
               <el-col :span="7">
-                <el-form-item :prop="`dictList.${index}.title`" :rules="formRules.title">
+                <el-form-item
+                  :prop="`dictList.${index}.title`"
+                  :rules="formRules.title">
                   <el-input
                     :placeholder="$t('core.dict.title.placeholder')"
                     :maxlength="100"
@@ -115,15 +121,15 @@
             </el-button>
           </p>
         </el-form>
-      </fo-page-section>
+      </fox-page-section>
       <!--保存按钮-->
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 
@@ -131,6 +137,7 @@
 import extend from '@/plugins/page/unsaved'
 import Draggable from 'vuedraggable'
 import { fetchAgentDictBatchAdd } from '@/plugins/api/core'
+
 export default {
   name: 'enquiryEmail',
   extends: extend,

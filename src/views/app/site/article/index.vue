@@ -1,17 +1,45 @@
 <template>
   <main>
-    <fo-page-header
-      :actions="headerAction"
-      :drop-actions="dropAction"
+    <fox-header-ops
+      :title="$t('article.paging.title')"
+      :description="$t('article.paging.description')"
+      divider
     >
-    </fo-page-header>
-    <fo-page-loading
+      <div class="header-ops-item">
+        <el-button
+          type="text"
+          icon="el-icon-download"
+          v-if="pagingOptions.recordCount > 0"
+          :loading="loading"
+          @click="exportData"
+        >
+          {{ $t("enquiry.export") }}
+        </el-button>
+      </div>
+    </fox-header-ops>
+    <!--    <fox-page-header-->
+    <!--      :actions="headerAction"-->
+    <!--      :drop-actions="dropAction"-->
+    <!--    >-->
+    <!--    </fox-page-header>-->
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
-      :percentage="100"
+      :percentage="90"
       :full-screen="true"
     >
-      <fo-paging-table
+      <el-tabs
+        v-model="tabPane"
+        class="setting-tabs"
+        :before-leave="beforeLeave">
+        <el-tab-pane
+          name="article"
+          :label="$t('article.paging.title')"></el-tab-pane>
+        <el-tab-pane
+          name="collection"
+          :label="$t('article.collection.article.title')"></el-tab-pane>
+      </el-tabs>
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -127,7 +155,7 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
+      </fox-paging-table>
       <collection-multiple-selector
         :info-type="resource.infoType.article"
         :articles="selectedItems"
@@ -140,7 +168,7 @@
         :display="tagsVisible"
         @close="updateTag"
       ></tags-multiple-selector>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 
@@ -371,6 +399,7 @@ export default {
   },
   data () {
     return {
+      tabPane: 'article',
       translateVisible: false,
       headerAction: [
         {
@@ -689,6 +718,8 @@ export default {
     },
     updateTag () {
       this.tagsVisible = false
+    },
+    beforeLeave () {
     }
   }
 }

@@ -24,38 +24,38 @@
       <el-row :gutter="20">
         <el-col :span="8">
           <el-form-item prop="screenshot" :label="$t('theme.update.entity.screenshot.label')">
-            <fo-image-single
+            <fox-image-single
               v-model="entity.screenshot"
               :alt-visible="false"
               :size-limit="10"
               :oss-bucket="resource.ossBucket"
               :server-address="utility.uploadURL()"
               file-folder="theme"
-            ></fo-image-single>
+            ></fox-image-single>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item prop="longImage" :label="$t('theme.update.entity.longImage.label')">
-            <fo-image-single
+            <fox-image-single
               v-model="entity.longImage"
               :alt-visible="false"
               :size-limit="10"
               :oss-bucket="resource.ossBucket"
               :server-address="utility.uploadURL()"
               file-folder="theme"
-            ></fo-image-single>
+            ></fox-image-single>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item prop="mobileImage" :label="$t('theme.update.entity.mobileImage.label')">
-            <fo-image-single
+            <fox-image-single
               v-model="entity.mobileImage"
               :alt-visible="false"
               :size-limit="10"
               :oss-bucket="resource.ossBucket"
               :server-address="utility.uploadURL()"
               file-folder="theme"
-            ></fo-image-single>
+            ></fox-image-single>
           </el-form-item>
         </el-col>
       </el-row>

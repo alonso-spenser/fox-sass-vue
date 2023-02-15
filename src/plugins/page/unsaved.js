@@ -61,6 +61,22 @@ export default {
           message: s.join(',')
         })
       }
+    },
+    /**
+     * 表单验证
+     * @param formName 表单名
+     * @param func 回调
+     * @param msg 是否显示错提示
+     */
+    formValidate (formName, func, msg = false) {
+      if (this.$refs[formName] && this.$refs[formName].$children.length > 0) {
+        this.$refs[formName].$children[0].validate((verified, fields) => {
+          func.call(this, verified, fields)
+          if (!verified && msg) {
+            this.unverified(fields)
+          }
+        })
+      }
     }
   },
   /**

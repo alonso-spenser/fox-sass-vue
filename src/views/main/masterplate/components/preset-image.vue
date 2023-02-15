@@ -14,7 +14,7 @@
         <i class="el-icon-edit"></i>
       </div>
     </div>
-    <fo-dialog
+    <fox-dialog
       :visible="imageVisible"
       @close="dialogClose"
     >
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-    </fo-dialog>
+    </fox-dialog>
   </div>
 </template>
 

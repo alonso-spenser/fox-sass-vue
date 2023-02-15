@@ -1,6 +1,6 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
@@ -23,7 +23,7 @@
           </el-card>
         </el-col>
       </el-row>
-      <fo-paging-table
+      <fox-paging-table
         class="section-neighbor"
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
@@ -77,8 +77,8 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
-    </fo-page-loading>
+      </fox-paging-table>
+    </fox-page-loading>
   </main>
 </template>
 

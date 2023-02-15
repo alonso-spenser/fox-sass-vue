@@ -85,9 +85,9 @@ export default {
           required: '请选择系统单位'
         },
         address: {
-          label: '公司完整地址（用于网页展示）',
+          label: 'Address',
           tips: '',
-          placeholder: '公司完整地址（用于网页展示）',
+          placeholder: 'Full address for web page display',
           required: '请输入公司完整地址'
         },
         coordinate: {

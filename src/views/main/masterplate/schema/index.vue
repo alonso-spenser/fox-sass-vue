@@ -1,13 +1,13 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-page-header
+      <fox-page-header
         :previous="true"
-      ></fo-page-header>
-      <fo-page-section>
+      ></fox-page-header>
+      <fox-page-section>
         <el-button @click="loadSchemeEditor('globalColorsSchema', 'globalColorsData')">
           {{ $t('theme.schema.globalColorsSchema') }}
         </el-button>
@@ -26,7 +26,7 @@
         <el-button @click="langData.visible = true">
           系统语言
         </el-button>
-      </fo-page-section>
+      </fox-page-section>
       <el-form
         :model="entity"
         :rules="formRules"
@@ -34,7 +34,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fo-page-section>
+        <fox-page-section>
           <el-form-item
             prop="pageLayout"
             :label="$t('theme.schema.pageLayout.label')">
@@ -45,8 +45,8 @@
               :placeholder="$t('theme.schema.pageLayout.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
-        <fo-page-section>
+        </fox-page-section>
+        <fox-page-section>
           <el-form-item prop="globalCss">
             <label class="el-form-item__label">{{ $t('theme.schema.globalCss.label') }}</label>
             <el-button
@@ -61,13 +61,13 @@
               :placeholder="$t('theme.schema.globalCss.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
+        </fox-page-section>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
+      </fox-unsaved>
       <schema-editor
         :visible.sync="schemaData.visible"
         :dataset="schemaData.entity"
@@ -83,7 +83,7 @@
         @translate="getDetail"
         :schema-id="entity.id"
         v-model="langData.data"></global-language>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

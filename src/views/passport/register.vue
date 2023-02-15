@@ -1,7 +1,13 @@
 <template>
   <div class="passport-content">
     <div class="passport-form">
+      <img
+        class="logo"
+        :src="agentModel.logo"
+        :alt="agentModel.shortForm"
+        v-if="agentModel.logo">
       <svg
+        v-else
         class="logo"
         xmlns="http://www.w3.org/2000/svg">
         <g
@@ -59,59 +65,68 @@
         {{ $t('passport.register.tips') }}
       </p>
       <el-form
+        class="material-form shrink"
         :model="entity"
         :rules="formRules"
         ref="ruleForm">
         <el-row
-          :gutter="20"
-          class="el-form-item">
+          :gutter="20">
           <el-col :span="12">
             <el-form-item prop="lastName">
-              <el-input
+              <fox-input
+                shrink
                 maxlength="30"
                 v-model="entity.lastName"
-                :placeholder="$t('passport.register.entity.lastName.placeholder')"
+                :placeholder="$t('passport.register.entity.lastName.label')"
+                :description="$t('passport.register.entity.lastName.placeholder')"
                 auto-complete="off">
-              </el-input>
+              </fox-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item prop="firstName">
-              <el-input
+              <fox-input
+                shrink
                 maxlength="30"
                 v-model="entity.firstName"
-                :placeholder="$t('passport.register.entity.firstName.placeholder')"
+                :placeholder="$t('passport.register.entity.firstName.label')"
+                :description="$t('passport.register.entity.firstName.placeholder')"
                 auto-complete="off">
-              </el-input>
+              </fox-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-form-item
           prop="name"
           v-if="false">
-          <el-input
+          <fox-input
+            shrink
             maxlength="100"
             v-model="entity.name"
-            :placeholder="$t('passport.register.entity.name.placeholder')"
+            :placeholder="$t('passport.register.entity.name.label')"
             auto-complete="off">
-          </el-input>
+          </fox-input>
         </el-form-item>
         <el-form-item prop="account">
-          <el-input
+          <fox-input
+            shrink
             maxlength="64"
             v-model="entity.account"
             @blur="accountBlur"
-            :placeholder="$t('passport.register.entity.account.placeholder')"
+            :placeholder="$t('passport.register.entity.account.label')"
+            :description="$t('passport.register.entity.account.placeholder')"
             auto-complete="off">
-          </el-input>
+          </fox-input>
         </el-form-item>
         <el-form-item prop="code">
-          <el-input
+          <fox-input
+            shrink
             maxlength="64"
             v-model="entity.code"
             :class="`passport-code${counting.visible ? ' counting' : ''}`"
             @blur="accountBlur"
-            :placeholder="$t('passport.register.entity.code.placeholder')"
+            :placeholder="$t('passport.register.entity.code.label')"
+            :description="$t('passport.register.entity.code.placeholder')"
             auto-complete="off">
             <template slot="append">
               <el-button
@@ -130,25 +145,29 @@
               >00
               </countdown>
             </template>
-          </el-input>
+          </fox-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input
+          <fox-input
+            shrink
             maxlength="30"
             type="password"
             v-model="entity.password"
-            :placeholder="$t('passport.register.entity.password.placeholder')"
+            :placeholder="$t('passport.register.entity.password.label')"
+            :description="$t('passport.register.entity.password.placeholder')"
             auto-complete="off">
-          </el-input>
+          </fox-input>
         </el-form-item>
         <el-form-item prop="confirmPassword">
-          <el-input
+          <fox-input
+            shrink
             maxlength="30"
             type="password"
             v-model="entity.confirmPassword"
-            :placeholder="$t('passport.register.entity.confirmPassword.placeholder')"
+            :placeholder="$t('passport.register.entity.confirmPassword.label')"
+            :description="$t('passport.register.entity.confirmPassword.placeholder')"
             auto-complete="off">
-          </el-input>
+          </fox-input>
         </el-form-item>
         <el-form-item class="mt-7">
           <el-button
@@ -197,13 +216,13 @@ export default {
         areaCode: this.entity.areaCode
       })
         .then((result) => {
-          if (result.success) {
+          if (result['success']) {
             callback()
           } else {
-            if (result.code === 13010001) {
+            if (result['code'] === 13010001) {
               this.confirmLogin()
             }
-            callback(new Error(this.$t('errorCode')[result.code]))
+            callback(new Error(this.$t('errorCode')[result['code']]))
           }
         })
         .catch(error => {
@@ -351,6 +370,9 @@ export default {
     this.entity.referralCode = this.$route.query.referral || ''
   },
   methods: {
+    getRegion () {
+      return this.utility.getLanguage()
+    },
     ...mapMutations(['setMerchantModel', 'setMySite', 'setSiteModel']),
     /**
      * 帐号和权限都在的时候，确认登录
@@ -451,7 +473,8 @@ export default {
         account: this.entity.account,
         areaCode: '',
         content: this.$t('email.register.success'),
-        title: this.$t('email.register.title')
+        title: this.$t('email.register.title'),
+        region: this.utility.getLanguage()
       })
         .then(result => {
           this.resultMessage(result, (success) => {

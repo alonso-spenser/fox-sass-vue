@@ -1,10 +1,10 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -53,7 +53,7 @@
               <el-button @click="routeVisible = true">{{ $t('base.operate.paste') }}</el-button>
             </el-col>
           </el-row>
-          <fo-page-section
+          <fox-page-section
             class="mt-5"
             v-if="routeVisible">
             <el-alert
@@ -71,10 +71,10 @@
               @click="analyseRoute">
               {{ $t('base.operate.save') }}
             </el-button>
-          </fo-page-section>
+            </fox-page-section>
         </template>
-      </fo-paging-table>
-    </fo-page-loading>
+        </fox-paging-table>
+        </fox-page-loading>
   </main>
 </template>
 

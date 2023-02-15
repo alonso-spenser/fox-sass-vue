@@ -1,8 +1,8 @@
 <template>
   <el-main
     style="width: 60%">
-    <fo-page-header></fo-page-header>
-    <fo-page-section v-show="inputVisible">
+    <fox-page-header></fox-page-header>
+    <fox-page-section v-show="inputVisible">
       <el-form
         :model="entity"
         :rules="formRules"
@@ -29,8 +29,8 @@
           </el-button>
         </el-form-item>
       </el-form>
-    </fo-page-section>
-    <fo-page-section
+    </fox-page-section>
+    <fox-page-section
       v-show="verifyVisible"
       v-loading="verifyLoading">
       <h4>{{ $t("settings.domain.connect.domainName") }}</h4>
@@ -48,7 +48,7 @@
         {{ $t("settings.domain.connect.settingTips") }}
         <!-- <router-link to="/" class="text-primary">
           {{ $t("settings.domain.connect.guide") }}
-          <i class="fo-help"></i>
+          <i class="fox-help"></i>
         </router-link> -->
         <el-link
           href="/support/page-1163370602154270722.html"
@@ -57,7 +57,7 @@
           target="_blank"
           v-if="false">
           {{ $t("settings.domain.connect.guide") }}
-          <i class="fo-help"></i>
+          <i class="fox-help"></i>
         </el-link>
       </p>
       <p class="text-info">
@@ -74,8 +74,8 @@
         >{{ $t("settings.domain.connect.verify") }}
         </el-button>
       </p>
-    </fo-page-section>
-    <fo-page-section
+    </fox-page-section>
+    <fox-page-section
       v-show="verifyFailed"
       v-loading="verifyLoading">
       <h4>{{ $t("settings.domain.connect.validate.failed.heading") }}</h4>
@@ -101,7 +101,7 @@
           v-if="false"
         >
           {{ $t("settings.domain.connect.setting.guide") }}
-          <i class="fo-help"></i>
+          <i class="fox-help"></i>
         </a>
       </p>
       <p class="text-right">
@@ -117,8 +117,8 @@
         >{{ $t("settings.domain.connect.verifyAgain") }}
         </el-button>
       </p>
-    </fo-page-section>
-    <fo-page-section v-show="verifySuccess">
+    </fox-page-section>
+    <fox-page-section v-show="verifySuccess">
       <h4>{{ $t("settings.domain.connect.validate.success.heading") }}</h4>
       <p>
         <label class="text-info">{{ $t("settings.domain.connect.validate.success.subheading") }}</label>
@@ -126,7 +126,7 @@
       <h4 class="mt-7">
         {{ $t("settings.domain.connect.validate.record") }}
         <label class="text-success">
-          <i class="fo-checked"></i>
+          <i class="fox-checked"></i>
         </label>
       </h4>
       <p class="text-info">
@@ -144,7 +144,7 @@
           @click="finishVerify">{{ $t("base.operate.complete") }}
         </el-button>
       </p>
-    </fo-page-section>
+    </fox-page-section>
   </el-main>
 </template>
 

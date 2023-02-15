@@ -118,7 +118,7 @@ export default {
     menuList: [
       {
         title: 'Dashboard',
-        abbr: '首页',
+        abbr: 'Dashboard',
         submenu: [],
         icon: 'fo-ico-home',
         code: ['dashboard-startup'],
@@ -343,9 +343,9 @@ export default {
       clone: 'Duplicate',
       expired: 'Expired',
       trial: {
-        label: '延长试用',
-        tips: '未付费网站最多可以次延长 5 次试用时间，每次增加 7 天时间。连续点"延长试用" 不会累加到时间。但会消耗 1 次操作次数，请不要连续点击。',
-        keep: '您只能保留一个试用网站，您可以付费后再创建一个新的试用网站。'
+        label: 'extended trial period',
+        tips: 'Unpaid sites can extend the trial time up to 5 times at a time, each time adding 7 days. Clicking "Extend Trial" consecutively will not add up to the time. But it will consume 1 operation times, please don\'t click continuously.',
+        keep: 'You can only keep one trial site, and you can create a new trial site for a fee.'
       },
       remove: {
         label: 'Remove',

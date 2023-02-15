@@ -1,12 +1,12 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :page-loading="pageLoading"
       :page-is-valid="pageIsValid"
     >
-      <fo-page-header
+      <fox-page-header
         :previous="true"
-      ></fo-page-header>
+      ></fox-page-header>
       <el-form
         :model="entity"
         :rules="formRules"
@@ -14,7 +14,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fo-page-section>
+        <fox-page-section>
           <el-row :gutter="20">
             <el-col :span="18">
               <el-form-item
@@ -43,11 +43,11 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <fo-page-section
+              <fox-page-section
                 :heading="$t('site.resource.update.entity.coverImage.label')"
               >
                 <el-form-item>
-                  <fo-image-single
+                  <fox-image-single
                     v-model="entity.coverImage"
                     :alt-visible="false"
                     :alt="entity.coverAlt"
@@ -55,24 +55,24 @@
                     :oss-bucket="resource.ossBucket"
                     :server-address="utility.uploadURL()"
                     :file-folder="siteId"
-                  ></fo-image-single>
+                  ></fox-image-single>
                 </el-form-item>
-              </fo-page-section>
+              </fox-page-section>
               <collection-select
                 :info-type="resource.infoType.download"
                 v-model="entity.collectionList"
               ></collection-select>
             </el-col>
           </el-row>
-        </fo-page-section>
+        </fox-page-section>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

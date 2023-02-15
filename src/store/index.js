@@ -72,7 +72,7 @@ const mutations = {
    * @param data
    */
   setAgentModel: (state, data) => {
-    state.merchantModel = data
+    state.agentModel = data
     localStorage.setItem('agentModel', JSON.stringify(data))
   },
   /**

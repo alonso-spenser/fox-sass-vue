@@ -1,12 +1,12 @@
 <template>
   <main>
-    <fo-page-header :actions="crumbAction"></fo-page-header>
-    <fo-page-loading
+    <fox-page-header :actions="crumbAction"></fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
     >
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -18,9 +18,9 @@
         :record-count="pagingOptions.recordCount"
         :rows-class-name="dataConfig.rowsClassName"
         @paging="getData">
-      </fo-paging-table>
+      </fox-paging-table>
       <update-dialog v-if="dialogVisible" @close="dialogClose" :model="model"></update-dialog>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

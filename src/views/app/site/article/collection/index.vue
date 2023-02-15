@@ -1,6 +1,6 @@
 <template>
   <main>
-    <fo-page-header :actions="crumbAction">
+    <fox-page-header :actions="crumbAction">
       <el-breadcrumb
         class="breadcrumb-wrap"
         separator="/">
@@ -14,13 +14,13 @@
         </el-breadcrumb-item>
         <el-breadcrumb-item>{{ $t(`article.collection.${collectionType}.title`) }}</el-breadcrumb-item>
       </el-breadcrumb>
-    </fo-page-header>
-    <fo-page-loading
+    </fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
-      :percentage="100"
+      :percentage="90"
     >
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -55,8 +55,8 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
-    </fo-page-loading>
+      </fox-paging-table>
+    </fox-page-loading>
   </main>
 </template>
 

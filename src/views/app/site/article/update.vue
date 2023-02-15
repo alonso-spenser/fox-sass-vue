@@ -1,13 +1,13 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :actions="crumbAction"
       @previous="previous"
-    ></fo-page-header>
-    <fo-page-loading
+    ></fox-page-header>
+    <fox-page-loading
       :fo-page-loading="pageLoading"
       :page-is-valid="pageIsValid"
-      :percentage="100"
+      :percentage="90"
     >
       <el-form
         :model="entity"
@@ -17,17 +17,18 @@
         label-position="top">
         <el-row :gutter="20">
           <el-col :span="18">
-            <fo-page-section>
+            <fox-page-section>
               <el-form-item
-                prop="title"
-                :label="$t('article.update.entity.title.label')">
-                <el-input
+                prop="title">
+                <fox-input
                   show-word-limit
+                  shrink
                   maxlength="200"
                   class="small-append"
                   v-model="entity.title"
                   @blur="setCapitalize"
-                  :placeholder="$t('article.update.entity.title.placeholder')"
+                  :placeholder="$t('article.update.entity.title.label')"
+                  :description="$t('article.update.entity.title.placeholder')"
                 >
                   <el-checkbox
                     v-model="autoSyncH1Title"
@@ -35,42 +36,34 @@
                     slot="append"
                     v-if="id">H1
                   </el-checkbox>
-                </el-input>
+                </fox-input>
               </el-form-item>
               <el-form-item prop="subtitle">
-                <label class="el-form-item__label">
-                  {{ $t('article.update.entity.subtitle.label') }}
-                  <small class="text-warning">
-                    {{ $t('article.update.entity.subtitle.tips') }}
-                  </small>
-                </label>
-                <el-input
+                <fox-input
                   show-word-limit
+                  shrink
                   type="textarea"
                   v-model="entity.subtitle"
                   maxlength="255"
                   :autosize="{ minRows: 2, maxRows: 5}"
+                  :description="$t('article.update.entity.subtitle.tips')"
                   :placeholder="$t('article.update.entity.subtitle.placeholder')"
-                ></el-input>
+                ></fox-input>
               </el-form-item>
               <el-form-item prop="summary">
-                <label class="el-form-item__label">
-                  {{ $t('article.update.entity.summary.label') }}
-                  <small class="text-warning">
-                    {{ $t('article.update.entity.summary.tips') }}
-                  </small>
-                </label>
-                <el-input
+                <fox-input
                   show-word-limit
+                  shrink
                   type="textarea"
+                  :description="$t('article.update.entity.summary.tips')"
+                  :placeholder="$t('article.update.entity.summary.placeholder')"
                   v-model="entity.summary"
                   maxlength="255"
                   :autosize="{ minRows: 3, maxRows: 5}"
-                  :placeholder="$t('article.update.entity.summary.placeholder')"
-                ></el-input>
+                ></fox-input>
               </el-form-item>
-            </fo-page-section>
-            <fo-page-section
+            </fox-page-section>
+            <fox-page-section
               :heading="$t('article.update.entity.coverImage.label')"
             >
               <template slot="header">
@@ -81,29 +74,29 @@
                   {{ $t('resourceSelector.lib') }}
                 </el-button>
               </template>
-              <fo-image-upload
+              <fox-image-upload
                 v-model="entity.imageList"
                 :file-limit="10"
                 :oss-bucket="resource.ossBucket"
                 :server-address="utility.uploadURL()"
                 :file-folder="siteId"
-              ></fo-image-upload>
-            </fo-page-section>
-            <fo-page-section>
+              ></fox-image-upload>
+            </fox-page-section>
+            <fox-page-section>
               <el-form-item
                 prop="description"
                 :label="$t('article.update.entity.description.label')">
-                <fo-editor
+                <fox-editor
                   v-model="entity.description"
                   :file-folder="siteId"
                   @upload="ossUpload"
                   :server-address="utility.uploadURL()"
                   :placeholder="$t('article.update.entity.description.placeholder')"
-                ></fo-editor>
+                ></fox-editor>
               </el-form-item>
-            </fo-page-section>
+            </fox-page-section>
             <!--扩展属性-->
-            <fo-page-section v-if="false">
+            <fox-page-section v-if="false">
               <el-row>
                 <el-col :span="18">
                   {{ $t("article.update.attribute.heading") }}
@@ -154,18 +147,18 @@
                       :label="$t('article.update.attribute.content.label')"
                       :prop="`blockList.${index}.blockDescription`"
                     >
-                      <fo-editor
+                      <fox-editor
                         v-model="item.blockDescription"
                         model-type="simple"
                         :file-folder="siteId"
                         :server-address="utility.uploadURL()"
                         :placeholder="$t('article.update.entity.description.placeholder')"
-                      ></fo-editor>
+                      ></fox-editor>
                     </el-form-item>
                   </div>
                 </el-tab-pane>
               </el-tabs>
-            </fo-page-section>
+            </fox-page-section>
             <search-engine-preview
               :temp-title="entity.title"
               :temp-desc="entity.description"
@@ -177,7 +170,7 @@
             </search-engine-preview>
           </el-col>
           <el-col :span="6">
-            <!--<fo-page-section>-->
+            <!--<fox-page-section>-->
             <!--  <el-form-item :label="$t('article.update.entity.state.label')">-->
             <!--    <el-switch-->
             <!--      v-model="entity.state"-->
@@ -189,22 +182,22 @@
             <!--      :inactive-value="1">-->
             <!--    </el-switch>-->
             <!--  </el-form-item>-->
-            <!--</fo-page-section>-->
+            <!--</fox-page-section>-->
             <!--时间-->
-            <fo-page-section>
+            <fox-page-section>
               <el-form-item
-                prop="createTime"
-                :label="$t('article.update.entity.createTime.label')">
-                <el-date-picker
+                prop="createTime">
+                <fox-date-picker
+                  shrink
                   v-model="entity.createTime"
                   type="datetime"
                   class="w-100"
                   value-format="timestamp"
                   :placeholder="$t('article.update.entity.createTime.placeholder')"
                 >
-                </el-date-picker>
+                </fox-date-picker>
               </el-form-item>
-            </fo-page-section>
+            </fox-page-section>
             <!--集合-->
             <collection-select
               :inlay="true"
@@ -219,8 +212,8 @@
             >
             </tag-select>
             <!--附件-->
-            <fo-page-section v-if="false">
-              <fo-attachment-upload
+            <fox-page-section v-if="false">
+              <fox-attachment-upload
                 v-model="entity.attachmentList"
                 :oss-bucket="resource.ossBucket"
                 :server-address="utility.uploadURL()"
@@ -233,22 +226,22 @@
                 :size-limit="15"
                 form-prop-name="attachmentList."
               >
-              </fo-attachment-upload>
-            </fo-page-section>
+              </fox-attachment-upload>
+            </fox-page-section>
           </el-col>
         </el-row>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
+      </fox-unsaved>
       <resource-selector
         :visible.sync="resourceVisible"
         @close="resourceSelector"
         :info-type="1"></resource-selector>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

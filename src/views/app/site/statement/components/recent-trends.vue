@@ -1,6 +1,6 @@
 <template>
   <div v-if="this.model.id">
-    <fo-page-section>
+    <fox-page-section>
       <div>
         <el-table
           :data="model.trendData"
@@ -57,7 +57,7 @@
       <div style="margin: 50px 0">
         <xianXing :optio="model.trendFigure"></xianXing>
       </div>
-    </fo-page-section>
+    </fox-page-section>
   </div>
   <el-empty
     description="暂无数据"

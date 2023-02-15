@@ -1,5 +1,5 @@
 <template>
-  <fo-page-loading
+  <fox-page-loading
     :loading="pageLoading"
     :invalid="pageIsValid"
   >
@@ -87,7 +87,7 @@
         {{ dataset.address.countryName }}
       </p>
     </el-card>
-  </fo-page-loading>
+  </fox-page-loading>
 </template>
 
 <script>

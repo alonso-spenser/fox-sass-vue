@@ -11,7 +11,7 @@
           :keyWords="model.surveyData"></pieTemp>
       </el-col>
     </el-row>
-    <fo-page-section
+    <fox-page-section
       class="mt-5"
       heading="情况表"
     >
@@ -56,7 +56,7 @@
           </el-table>
         </el-col>
       </el-row>
-    </fo-page-section>
+    </fox-page-section>
   </div>
   <el-empty
     description="暂无数据"

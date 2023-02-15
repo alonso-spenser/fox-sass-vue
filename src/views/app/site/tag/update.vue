@@ -1,10 +1,10 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-page-header
+      <fox-page-header
         :previous="true"
         :actions="[
         {
@@ -18,7 +18,7 @@
         }
     ]"
       >
-      </fo-page-header>
+      </fox-page-header>
       <el-form
         :model="entity"
         :rules="formRules"
@@ -26,8 +26,10 @@
         label-width="100px"
         label-position="top"
       >
-        <fo-page-section>
-          <el-form-item prop="tagName" :label="$t('article.tag.update.entity.tagName.label')">
+        <fox-page-section>
+          <el-form-item
+            prop="tagName"
+            :label="$t('article.tag.update.entity.tagName.label')">
             <el-input
               v-model="entity.tagName"
               @blur="tagBlur"
@@ -35,23 +37,25 @@
             ></el-input>
           </el-form-item>
 
-          <el-form-item prop="tagUrl" :label="$t('article.tag.update.entity.tagUrl.label')">
+          <el-form-item
+            prop="tagUrl"
+            :label="$t('article.tag.update.entity.tagUrl.label')">
             <el-input
               v-model="entity.tagUrl"
               @blur="urlBlur"
               :placeholder="urlPlaceholder"
             >
-              <template slot="prepend">{{requestProtocol}}{{ defaultDomain }}/tag/</template>
+              <template slot="prepend">{{ requestProtocol }}{{ defaultDomain }}/tag/</template>
             </el-input>
           </el-form-item>
-        </fo-page-section>
+        </fox-page-section>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

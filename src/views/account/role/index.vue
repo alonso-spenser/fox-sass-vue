@@ -1,28 +1,41 @@
 <template>
   <main class="editable">
-    <div class="fo-page-header-editable">
+    <div class="fox-page-header-editable">
       <section class="global-page-container">
         <section class="global-page-content">
-          <fo-page-header :actions="crumbAction"></fo-page-header>
+          <fox-page-header :actions="crumbAction"></fox-page-header>
         </section>
       </section>
     </div>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
       <el-card shadow="hover">
-        <div class="fo-table">
-          <div class="fo-table-content">
-            <el-table :data="pagingOptions.dataset" stripe v-loading="tableOptions.loading">
-              <el-table-column prop="roleName" :label="$t('merchant.role.paging.tableHeader.roleName')" min-width="120"></el-table-column>
+        <div class="fox-table">
+          <div class="fox-table-content">
+            <el-table
+              :data="pagingOptions.dataset"
+              stripe
+              v-loading="tableOptions.loading">
+              <el-table-column
+                prop="roleName"
+                :label="$t('merchant.role.paging.tableHeader.roleName')"
+                min-width="120"></el-table-column>
               <!--        v-if="$checkPermission(['security-role-detail'])"-->
-              <el-table-column width="120" align="right">
+              <el-table-column
+                width="120"
+                align="right">
                 <template slot-scope="scope">
-                  <el-button type="text" @click.native="updateRole(scope.row)">
-                    {{ scope.row.roleCode !== 'ROLE_SUPER' ? $t('base.update.button') : $t('base.operate.view')}}
+                  <el-button
+                    type="text"
+                    @click.native="updateRole(scope.row)">
+                    {{ scope.row.roleCode !== 'ROLE_SUPER' ? $t('base.update.button') : $t('base.operate.view') }}
                   </el-button>
-                  <el-button type="text" @click.native="roleDelete(scope.row, scope.$index)" v-if="scope.row.roleCode !== 'ROLE_SUPER'">
+                  <el-button
+                    type="text"
+                    @click.native="roleDelete(scope.row, scope.$index)"
+                    v-if="scope.row.roleCode !== 'ROLE_SUPER'">
                     {{ $t('base.delete.button') }}
                   </el-button>
                 </template>
@@ -31,8 +44,13 @@
           </div>
         </div>
       </el-card>
-      <role-dialog :visible.sync="visible" :appType="1000" :role-info="roleInfo" @save="getData"  @close="closeDialog"></role-dialog>
-    </fo-page-loading>
+      <role-dialog
+        :visible.sync="visible"
+        :appType="1000"
+        :role-info="roleInfo"
+        @save="getData"
+        @close="closeDialog"></role-dialog>
+    </fox-page-loading>
   </main>
 </template>
 
@@ -40,6 +58,7 @@
 import extend from '@/plugins/page/paging'
 import { fetchRoleList, fetchRoleDelete } from '@/plugins/api/merchant'
 import roleDialog from './components/roleDialog'
+
 export default {
   name: 'account-role',
   extends: extend,
@@ -67,8 +86,7 @@ export default {
      * 面包屑下拉操作
      */
     crumbDropAction () {
-      return [
-      ]
+      return []
     }
   },
   data () {
@@ -190,8 +208,10 @@ export default {
           }
         }
       })
-        .then(() => {})
-        .catch(() => {})
+        .then(() => {
+        })
+        .catch(() => {
+        })
     },
     /**
      * 关闭弹窗

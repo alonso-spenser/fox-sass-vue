@@ -1,9 +1,9 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :previous="true"
-    ></fo-page-header>
-    <fo-page-loading
+    ></fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
@@ -11,7 +11,7 @@
         <el-row :gutter="20">
           <el-col :span="17">
             <!--询盘详情-->
-            <fo-page-section class="enquiry-content">
+            <fox-page-section class="enquiry-content">
               <div class="enquiry-state">
                 <el-tag
                   size="small"
@@ -66,10 +66,10 @@
                   >下载附件</a>
                 </el-col>
               </el-row>
-            </fo-page-section>
+            </fox-page-section>
 
             <!--询盘来源-->
-            <fo-page-section
+            <fox-page-section
               :heading="$t('enquiry.form.section.source.heading')"
               class="enquiry-content"
             >
@@ -144,9 +144,9 @@
                   {{ this.utility.dateFormat(new Date(enquiryDetail.createTime), 'yyyy-MM-dd hh:mm:ss') }}
                 </el-col>
               </el-row>
-            </fo-page-section>
+            </fox-page-section>
             <!--跟踪记录-->
-            <fo-page-section
+            <fox-page-section
               :heading="$t('enquiry.form.section.record.heading')"
               class="enquiry-record">
               <div>
@@ -196,10 +196,10 @@
                   </el-timeline-item>
                 </el-timeline>
               </div>
-            </fo-page-section>
+            </fox-page-section>
           </el-col>
           <el-col :span="7">
-            <fo-page-section>
+            <fox-page-section>
               <div
                 class="user-info"
                 @click="clientPage">
@@ -226,8 +226,8 @@
                 <div class="mt-7">{{ $t('enquiry.recordDetails.userInfoLabel.userSubmit') }}</div>
                 <div class="count mt-3">{{ enquiryDetail.client.enquires }}</div>
               </div>
-            </fo-page-section>
-            <fo-page-section
+            </fox-page-section>
+            <fox-page-section
               v-if="enquiryDetail.refImg"
             >
               <el-image
@@ -246,7 +246,7 @@
               >
                 {{ $t('enquiry.recordDetails.change') }}
               </el-button>
-            </fo-page-section>
+            </fox-page-section>
             <el-button
               class="w-100"
               type="primary"
@@ -304,7 +304,7 @@
         </span>
         </el-dialog>
       </div>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 
@@ -539,7 +539,7 @@ export default {
     text-decoration: underline;
   }
 
-  .fo-page-section-title {
+  .fox-page-section-title {
     margin: 16px 0;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :actions="crumbAction"
       :previous="true"
     >
@@ -25,11 +25,11 @@
           }}
         </el-breadcrumb-item>
       </el-breadcrumb>
-    </fo-page-header>
-    <fo-page-loading
+    </fox-page-header>
+    <fox-page-loading
       :fo-page-loading="pageLoading"
       :page-is-valid="pageIsValid"
-      :percentage="100"
+      :percentage="90"
     >
       <el-form
         :model="entity"
@@ -37,7 +37,7 @@
         ref="update"
         label-width="100px"
         label-position="top">
-        <fo-page-section>
+        <fox-page-section>
           <el-row
             :gutter="20"
             type="flex"
@@ -48,11 +48,11 @@
                 :gutter="20">
                 <el-col :span="infoType === 3 ? 18 : 24">
                   <el-form-item
-                    prop="title"
-                    :label="$t('article.collection.update.entity.title.label')">
-                    <el-input
+                    prop="title">
+                    <fox-input
                       show-word-limit
                       maxlength="100"
+                      shrink
                       v-model="entity.title"
                       @blur="setCapitalize"
                       class="small-append"
@@ -67,35 +67,35 @@
                           v-if="id">H1
                         </el-checkbox>
                       </div>
-                    </el-input>
+                    </fox-input>
                   </el-form-item>
                 </el-col>
                 <el-col
                   :span="6"
                   v-if="infoType === 3">
                   <el-form-item
-                    prop="accessPassword"
-                    :label="$t('article.collection.update.entity.accessPassword.label')">
-                    <el-input
+                    prop="accessPassword">
+                    <fox-input
+                      shrink
                       show-word-limit
                       maxlength="6"
                       v-model="entity.accessPassword"
                       :placeholder="$t('article.collection.update.entity.accessPassword.placeholder')"
                     >
-                    </el-input>
+                    </fox-input>
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-form-item
-                prop="description"
-                :label="$t('article.collection.update.entity.description.label')">
-                <el-input
+                prop="description">
+                <fox-input
+                  shrink
                   v-model="entity.description"
                   maxlength="3000"
                   type="textarea"
                   rows="4"
                   :placeholder="$t('article.collection.update.entity.description.placeholder')"
-                ></el-input>
+                ></fox-input>
               </el-form-item>
             </el-col>
             <el-col style="width: 186px">
@@ -113,7 +113,7 @@
                   </label>
                 </div>
                 <div class="el-form-item__content">
-                  <fo-image-single
+                  <fox-image-single
                     v-model="entity.coverImage"
                     :width="180"
                     :alt="entity.coverAlt"
@@ -122,7 +122,7 @@
                     :server-address="utility.uploadURL()"
                     :file-folder="siteId"
                     @updateAlt="updateCoverAlt"
-                  ></fo-image-single>
+                  ></fox-image-single>
                 </div>
               </div>
             </el-col>
@@ -141,7 +141,7 @@
                   </label>
                 </div>
                 <div class="el-form-item__content">
-                  <fo-image-single
+                  <fox-image-single
                     v-model="entity.banner"
                     :width="180"
                     :alt="entity.bannerAlt"
@@ -151,13 +151,13 @@
                     :file-folder="siteId"
                     :alt-visible="false"
                     @updateAlt="updateBannerAlt"
-                  ></fo-image-single>
+                  ></fox-image-single>
                 </div>
               </div>
             </el-col>
           </el-row>
-        </fo-page-section>
-        <fo-page-section
+        </fox-page-section>
+        <fox-page-section
           :heading="$t('article.conditionFilter.collectionType.label')"
           :content="$t('article.conditionFilter.collectionType.tips')"
         >
@@ -305,8 +305,8 @@
             >
             </el-button>
           </div>
-        </fo-page-section>
-        <fo-page-section
+        </fox-page-section>
+        <fox-page-section
           v-if="id"
           :heading="$t(`article.collection.${collectionType}.label`)"
         >
@@ -387,7 +387,7 @@
               </template>
             </el-table-column>
           </el-table>
-        </fo-page-section>
+        </fox-page-section>
         <search-engine-preview
           :temp-title="entity.title"
           :temp-desc="entity.description"
@@ -398,12 +398,12 @@
         >
         </search-engine-preview>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
+      </fox-unsaved>
       <add-to-collection
         :collection-type="infoType"
         :collection-id="id"
@@ -416,7 +416,7 @@
         :info-type="infoType"
         :visible="sortingVisible"
       ></sorting>
-    </fo-page-loading>
+    </fox-page-loading>
     <resource-selector
       :visible.sync="gallery.visible"
       @close="resourceSelector"

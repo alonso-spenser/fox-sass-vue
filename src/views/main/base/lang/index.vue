@@ -1,11 +1,11 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
     >
-      <fo-page-header
+      <fox-page-header
         :actions="[
         {
           label: $t('base.addition.button'),
@@ -18,44 +18,44 @@
         }
       ]"
       >
-      </fo-page-header>
-      <fo-paging-table
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="tableOptions.loading"
-        :first-loading="pagingOptions.firstLoading"
-        :empty="dataConfig.empty"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :rows-class-name="dataConfig.rowsClassName"
-        @paging="getData"
-      >
-        <template slot="header">
-          <el-row
-            class="dataset-search"
-            :gutter="20">
-            <el-col :span="14">
-              <el-input
-                :placeholder="$t('base.placeholder.search')"
-                v-model="searchConditions.keyword"
-                clearable
-                @change="searchConditionChange"
-                @clear="clearSearchCondition"
-                class="input-with-select">
-                <el-button
-                  slot="append"
-                  icon="el-icon-search"
-                  :loading="loading"
-                  @click="getData(false)"
-                ></el-button>
-              </el-input>
-            </el-col>
-          </el-row>
-        </template>
-      </fo-paging-table>
-    </fo-page-loading>
+        </fox-page-header>
+        <fox-paging-table
+          :columns="dataConfig.columns"
+          :actions="dataConfig.actions"
+          :dataset="pagingOptions.dataset"
+          :loading="tableOptions.loading"
+          :first-loading="pagingOptions.firstLoading"
+          :empty="dataConfig.empty"
+          :page-index.sync="pagingOptions.pageIndex"
+          :page-size.sync="pagingOptions.pageSize"
+          :record-count="pagingOptions.recordCount"
+          :rows-class-name="dataConfig.rowsClassName"
+          @paging="getData"
+        >
+          <template slot="header">
+            <el-row
+              class="dataset-search"
+              :gutter="20">
+              <el-col :span="14">
+                <el-input
+                  :placeholder="$t('base.placeholder.search')"
+                  v-model="searchConditions.keyword"
+                  clearable
+                  @change="searchConditionChange"
+                  @clear="clearSearchCondition"
+                  class="input-with-select">
+                  <el-button
+                    slot="append"
+                    icon="el-icon-search"
+                    :loading="loading"
+                    @click="getData(false)"
+                  ></el-button>
+                </el-input>
+              </el-col>
+            </el-row>
+          </template>
+          </fox-paging-table>
+          </fox-page-loading>
   </main>
 </template>
 

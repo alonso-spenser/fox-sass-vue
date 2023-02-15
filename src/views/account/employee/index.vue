@@ -1,19 +1,21 @@
 <template>
   <main class="editable">
-    <div class="fo-page-header-editable">
+    <div class="fox-page-header-editable">
       <section class="global-page-container">
         <section class="global-page-content">
           <section class="global-page-main">
-            <fo-page-header :actions="crumbAction" :drop-actions="crumbDropAction"></fo-page-header>
+            <fox-page-header
+              :actions="crumbAction"
+              :drop-actions="crumbDropAction"></fox-page-header>
           </section>
         </section>
       </section>
     </div>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-paging-table
+      <fox-paging-table
         :multi-select="false"
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
@@ -28,7 +30,9 @@
         @paging="getData"
       >
         <template slot="header">
-          <el-row class="dataset-search" :gutter="20">
+          <el-row
+            class="dataset-search"
+            :gutter="20">
             <el-col :span="14">
               <el-input
                 :placeholder="$t('base.placeholder.search')"
@@ -47,9 +51,12 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
-      <edit-employee :visible.sync="visible" :employee-id="currentId"  @save="getData"></edit-employee>
-    </fo-page-loading>
+      </fox-paging-table>
+      <edit-employee
+        :visible.sync="visible"
+        :employee-id="currentId"
+        @save="getData"></edit-employee>
+    </fox-page-loading>
   </main>
 </template>
 
@@ -60,6 +67,7 @@ import editEmployee from './components/employeeDialog'
 import {
   mapState
 } from 'vuex'
+
 export default {
   name: 'account-employee',
   extends: extend,
@@ -72,8 +80,7 @@ export default {
       visible: false,
       stateList: [],
       dataConfig: {
-        actions: {
-        },
+        actions: {},
         columns: [
           {
             prop: 'name',
@@ -124,8 +131,10 @@ export default {
             width: 50,
             render: (row) => {
               return (
-                <div class={row.state === 1 ? 'el-button el-button--text text-danger' : 'el-button text-info el-button--text'} onClick={e => this.updateBubblePlug(e, row)}>
-                  { this.utility.getDicType(this.stateList, row.state) }
+                <div
+                  class={row.state === 1 ? 'el-button el-button--text text-danger' : 'el-button text-info el-button--text'}
+                  onClick={e => this.updateBubblePlug(e, row)}>
+                  {this.utility.getDicType(this.stateList, row.state)}
                 </div>
               )
             }
@@ -178,8 +187,7 @@ export default {
      * 面包屑下拉操作
      */
     crumbDropAction () {
-      return [
-      ]
+      return []
     }
   },
   methods: {

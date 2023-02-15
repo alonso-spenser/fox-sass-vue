@@ -1,8 +1,10 @@
 <template>
-  <fo-page-section
+  <fox-page-section
     :heading="inlay ? '' : heading"
   >
-    <div class="fo-page-section-header negative" v-if="inlay">
+    <div
+      class="fox-page-section-header negative"
+      v-if="inlay">
       <div class="el-form-item__label">
         {{ heading }}
       </div>
@@ -12,7 +14,9 @@
         {{ $t('article.update.collection.manage') }}
       </el-button>
     </div>
-    <template slot="header" v-else>
+    <template
+      slot="header"
+      v-else>
       <el-button
         @click="manageCollection"
         type="text">
@@ -20,6 +24,7 @@
       </el-button>
     </template>
     <el-select
+      shrink
       v-model="collectionList"
       multiple
       filterable
@@ -43,10 +48,10 @@
         :key="`tag-${item.id}-${index}`"
         :label="item.title"
         :value="item">
-        {{item.title}}
+        {{ item.title }}
       </el-option>
     </el-select>
-  </fo-page-section>
+  </fox-page-section>
 </template>
 
 <script>

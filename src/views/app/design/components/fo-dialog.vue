@@ -1,28 +1,32 @@
 <template>
   <div
     v-if="visible"
-    class="fo-dialog middle">
-    <div class="fo-dialog-container" :style="cssText">
-      <div class="fo-dialog-header">
-        <span class="el-icon-close" @click="close"></span>
-        {{heading || 'OOPS'}}
+    class="fox-dialog middle">
+    <div
+      class="fox-dialog-container"
+      :style="cssText">
+      <div class="fox-dialog-header">
+        <span
+          class="el-icon-close"
+          @click="close"></span>
+        {{ heading || 'OOPS' }}
       </div>
-      <div class="fo-dialog-content">
+      <div class="fox-dialog-content">
         <slot></slot>
       </div>
-      <div class="fo-dialog-footer">
+      <div class="fox-dialog-footer">
         <el-button
           size="small"
           type="button"
           @click="close"
         >
-          {{$t('base.operate.cancel')}}
+          {{ $t('base.operate.cancel') }}
         </el-button>
         <el-button
           size="small"
           type="button"
         >
-          {{$t('base.operate.save')}}
+          {{ $t('base.operate.save') }}
         </el-button>
       </div>
     </div>
@@ -73,13 +77,13 @@ export default {
 
 <style lang="scss">
 $pixel: 0.0625rem;
-$red:     #dc3545 !default;
+$red: #dc3545 !default;
 
-.fo-dialog-overflow {
-  overflow: hidden!important;
+.fox-dialog-overflow {
+  overflow: hidden !important;
 }
 
-.fo-dialog {
+.fox-dialog {
   position: fixed;
   left: 0;
   top: 0;
@@ -98,19 +102,19 @@ $red:     #dc3545 !default;
     left: 0;
     top: 0;
     z-index: 3999;
-    background-color: rgba(0,0, 0, .5);
+    background-color: rgba(0, 0, 0, .5);
   }
 
-  .fo-dialog-container {
+  .fox-dialog-container {
     width: 500  * $pixel;
     margin: 60 * $pixel auto;
     border-radius: 4  * $pixel;
     padding: 20  * $pixel 25  * $pixel;
     position: relative;
     z-index: 4001;
-    max-width: 90%!important;
+    max-width: 90% !important;
 
-    .fo-dialog-header {
+    .fox-dialog-header {
       position: relative;
       font-size: 16  * $pixel;
       overflow: hidden;
@@ -139,7 +143,7 @@ $red:     #dc3545 !default;
       }
     }
 
-    .fo-dialog-content {
+    .fox-dialog-content {
       position: relative;
       margin: 0;
       padding-top: 10px;
@@ -147,12 +151,12 @@ $red:     #dc3545 !default;
       font-size: 14  * $pixel;
     }
 
-    .fo-dialog-footer {
+    .fox-dialog-footer {
       margin-top: 1rem;
       text-align: right;
     }
 
-    &:not(.fo-dialog-loading) {
+    &:not(.fox-dialog-loading) {
       box-shadow: 0 2  * $pixel 12  * $pixel 0 rgba(0, 0, 0, 0.3);
       background-color: #fff;
     }
@@ -169,7 +173,7 @@ $red:     #dc3545 !default;
       vertical-align: middle;
     }
 
-    .fo-dialog-container {
+    .fox-dialog-container {
       text-align: left;
       display: inline-block;
       vertical-align: middle;

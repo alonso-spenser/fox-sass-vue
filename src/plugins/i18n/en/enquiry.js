@@ -157,20 +157,21 @@ export default {
      */
     email: {
       title: 'Mailbox',
+      description: 'Enquiry recipient',
       entity: {
         exists: 'Mailbox already exists'
       },
       update: {
         email: {
           label: 'Mailbox',
-          tips: '',
+          description: 'E-mail address',
           placeholder: 'Mailbox',
           formatError: 'E-mail format error',
           required: 'Please input a email address'
         },
         userName: {
           label: 'Recipient',
-          tips: '',
+          description: '',
           placeholder: 'Recipient',
           required: 'Please enter recipient'
         }

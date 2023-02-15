@@ -1,6 +1,8 @@
 <template>
   <main>
-    <el-row :gutter="20" class="article-page">
+    <el-row
+      :gutter="20"
+      class="article-page">
       <el-col :span="5">
         <div class="article-tree">
           <el-tree
@@ -47,7 +49,9 @@
           >
             <el-row :gutter="20">
               <el-col :span="20">
-                <el-form-item label="文章名称" prop="title">
+                <el-form-item
+                  label="文章名称"
+                  prop="title">
                   <el-input
                     :maxlength="64"
                     show-word-limit
@@ -55,7 +59,9 @@
                     placeholder="文章名称"
                   ></el-input>
                 </el-form-item>
-                <el-form-item label="摘要" prop="summary">
+                <el-form-item
+                  label="摘要"
+                  prop="summary">
                   <el-input
                     type="textarea"
                     :autosize="{ minRows: 2, maxRows: 4}"
@@ -67,36 +73,45 @@
                 </el-form-item>
               </el-col>
               <el-col :span="4">
-                <el-form-item label="封面图" prop="coverImage">
-                  <fo-image-single
+                <el-form-item
+                  label="封面图"
+                  prop="coverImage">
+                  <fox-image-single
                     :alt-visible="false"
                     v-model="entity.coverImage"
                     :limit="1024"
                     file-folder="support"
                     :server-address="utility.uploadURL()"
                     :width="125">
-                  </fo-image-single>
+                  </fox-image-single>
                 </el-form-item>
               </el-col>
             </el-row>
-            <el-form-item label="内容" prop="content">
-              <fo-editor
+            <el-form-item
+              label="内容"
+              prop="content">
+              <fox-editor
                 model-type="full"
                 v-model="entity.content"
-              ></fo-editor>
+              ></fox-editor>
             </el-form-item>
           </el-form>
         </div>
       </el-col>
     </el-row>
-    <fo-fixed-unsaved
+    <fox-unsaved
       :unsaved.sync="unsaved"
       :loading="updateLoading"
       @confirmed="formValidation"
     >
-    </fo-fixed-unsaved>
+    </fox-unsaved>
     <div class="fixed-action">
-      <el-button plain type="primary" icon="el-icon-plus" round @click="addArticle"></el-button>
+      <el-button
+        plain
+        type="primary"
+        icon="el-icon-plus"
+        round
+        @click="addArticle"></el-button>
     </div>
   </main>
 </template>
@@ -399,13 +414,16 @@ export default {
       display: none;
     }
   }
+
   .el-form-item__label {
     padding-bottom: 5px;
   }
+
   .el-form-item {
     margin-bottom: 5px;
   }
 }
+
 .fixed-action {
   position: fixed;
   right: 16px;

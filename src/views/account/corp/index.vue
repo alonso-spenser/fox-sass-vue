@@ -1,20 +1,20 @@
 <template>
   <main class="editable">
-    <div class="fo-page-header-editable">
+    <div class="fox-page-header-editable">
       <section class="global-page-container">
         <section class="global-page-content">
           <section class="global-page-main">
-            <fo-page-header></fo-page-header>
+            <fox-page-header></fox-page-header>
           </section>
         </section>
       </section>
     </div>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
       <div class="global-editable-container">
-        <fo-page-section>
+        <fox-page-section>
           <el-form
             :model="entit"
             :rules="formRules"
@@ -23,21 +23,27 @@
             label-position="top"
             label-width="100px"
           >
-            <el-form-item prop="shortForm" :label="$t('merchant.update.entity.shortForm.label')">
+            <el-form-item
+              prop="shortForm"
+              :label="$t('merchant.update.entity.shortForm.label')">
               <el-input
                 v-model="entit.shortForm"
                 :maxlength="200"
                 :placeholder="$t('merchant.update.entity.shortForm.placeholder')"
               ></el-input>
             </el-form-item>
-            <el-form-item prop="name" :label="$t('merchant.update.entity.name.label')">
+            <el-form-item
+              prop="name"
+              :label="$t('merchant.update.entity.name.label')">
               <el-input
                 v-model="entit.name"
                 :maxlength="200"
                 :placeholder="$t('merchant.update.entity.name.placeholder')"
               ></el-input>
             </el-form-item>
-            <el-form-item prop="email" :label="$t('merchant.update.entity.email.label')">
+            <el-form-item
+              prop="email"
+              :label="$t('merchant.update.entity.email.label')">
               <el-input
                 v-model="entit.email"
                 :maxlength="100"
@@ -45,7 +51,9 @@
                 :placeholder="$t('merchant.update.entity.email.placeholder')"
               ></el-input>
             </el-form-item>
-            <el-form-item prop="contact" :label="$t('merchant.update.entity.contact.label')">
+            <el-form-item
+              prop="contact"
+              :label="$t('merchant.update.entity.contact.label')">
               <el-input
                 v-model="entit.contact"
                 :maxlength="32"
@@ -53,7 +61,9 @@
               >
               </el-input>
             </el-form-item>
-            <el-form-item prop="mobile" :label="$t('merchant.update.entity.phone.label')">
+            <el-form-item
+              prop="mobile"
+              :label="$t('merchant.update.entity.phone.label')">
               <el-input
                 v-model="entit.mobile"
                 :maxlength="32"
@@ -113,18 +123,18 @@
               </el-form-item>
             </el-form-item>
           </el-form>
-        </fo-page-section>
+        </fox-page-section>
       </div>
       <!--保存按钮-->
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         :height="126"
         tips=""
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

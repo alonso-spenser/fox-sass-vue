@@ -1,7 +1,13 @@
 <template>
   <div class="passport-content">
     <div class="passport-form">
+      <img
+        class="logo"
+        :src="agentModel.logo"
+        :alt="agentModel.shortForm"
+        v-if="agentModel.logo">
       <svg
+        v-else
         class="logo"
         xmlns="http://www.w3.org/2000/svg">
         <g
@@ -53,30 +59,36 @@
         </g>
       </svg>
       <h1>
-        {{$t('passport.emailSendSuccess.h1')}}
+        {{ $t('passport.emailSendSuccess.h1') }}
       </h1>
       <p>
-        {{$t('passport.emailSendSuccess.tips').replace('{email}', email)}}
+        {{ $t('passport.emailSendSuccess.tips').replace('{email}', email) }}
       </p>
       <p class="mt-3">
-        {{$t('passport.emailSendSuccess.p')}}
+        {{ $t('passport.emailSendSuccess.p') }}
       </p>
       <h3 class="mt-5">
-        <b>{{$t('passport.emailSendSuccess.p1')}}</b>
+        <b>{{ $t('passport.emailSendSuccess.p1') }}</b>
       </h3>
       <p>
-        {{$t('passport.emailSendSuccess.p2')}}
+        {{ $t('passport.emailSendSuccess.p2') }}
       </p>
       <p>
-        {{$t('passport.emailSendSuccess.p3')}}
+        {{ $t('passport.emailSendSuccess.p3') }}
       </p>
       <p class="mt-5">
-        <el-button type="text" icon="el-icon-refresh" @click="redirectForget">
+        <el-button
+          type="text"
+          icon="el-icon-refresh"
+          @click="redirectForget">
           {{ $t("passport.emailSendSuccess.resend") }}
         </el-button>
       </p>
       <p>
-        <el-button type="text" icon="el-icon-arrow-left" @click="redirectLogin">
+        <el-button
+          type="text"
+          icon="el-icon-arrow-left"
+          @click="redirectLogin">
           {{ $t("passport.emailSendSuccess.login") }}
         </el-button>
       </p>
@@ -89,6 +101,7 @@ import extend from '../../plugins/page/base'
 import {
   mapState
 } from 'vuex'
+
 export default {
   name: 'passport-forget',
   extends: extend,

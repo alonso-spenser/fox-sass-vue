@@ -1,39 +1,41 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-page-header>
-      </fo-page-header>
+      <fox-page-header>
+      </fox-page-header>
       <div class="section-neighbor">
-        {{spuDetail.title}}
+        {{ spuDetail.title }}
       </div>
-<!--      <div class="go-back el-icon-arrow-left"  @click="redirectGoodsDetail">-->
-<!--        {{ spuDetail.title }}-->
-<!--      </div>-->
-<!--      <h3 class="page-title">-->
-<!--        <small class="float-right pointer" v-if="skuId" @click="confirmDeleteVariant">-->
-<!--          <i class="el-icon-delete"></i>-->
-<!--          {{ $t('goods.variant.delete')}}-->
-<!--        </small>-->
-<!--        {{ $t('goods.variant.edit')}}-->
-<!--      </h3>-->
-      <el-row class="variant-page section-neighbor" :gutter="20">
+      <!--      <div class="go-back el-icon-arrow-left"  @click="redirectGoodsDetail">-->
+      <!--        {{ spuDetail.title }}-->
+      <!--      </div>-->
+      <!--      <h3 class="page-title">-->
+      <!--        <small class="float-right pointer" v-if="skuId" @click="confirmDeleteVariant">-->
+      <!--          <i class="el-icon-delete"></i>-->
+      <!--          {{ $t('goods.variant.delete')}}-->
+      <!--        </small>-->
+      <!--        {{ $t('goods.variant.edit')}}-->
+      <!--      </h3>-->
+      <el-row
+        class="variant-page section-neighbor"
+        :gutter="20">
         <el-col :span="6">
-<!--          <fo-page-section class="mt-0">-->
-<!--            <el-row type="flex" class="pointer" @click.native="redirectGoodsDetail">-->
-<!--              <el-avatar-->
-<!--                class="mr-4"-->
-<!--                :size="96"-->
-<!--                shape="square"-->
-<!--                :src="spuDetail.coverImage || imagePlaceholder"-->
-<!--                style="flex: none"-->
-<!--              ></el-avatar>-->
-<!--              {{ spuDetail.title }}-->
-<!--            </el-row>-->
-<!--          </fo-page-section>-->
-          <fo-page-section>
+          <!--          <fox-page-section class="mt-0">-->
+          <!--            <el-row type="flex" class="pointer" @click.native="redirectGoodsDetail">-->
+          <!--              <el-avatar-->
+          <!--                class="mr-4"-->
+          <!--                :size="96"-->
+          <!--                shape="square"-->
+          <!--                :src="spuDetail.coverImage || imagePlaceholder"-->
+          <!--                style="flex: none"-->
+          <!--              ></el-avatar>-->
+          <!--              {{ spuDetail.title }}-->
+          <!--            </el-row>-->
+          <!--          </fox-page-section>-->
+          <fox-page-section>
             <div class="variant-list">
               <div
                 class="variant-item"
@@ -70,7 +72,8 @@
                   :key="subIndex"
                   :data-id="item.variantValue"
                 >
-                  <template v-if="subIndex"
+                  <template
+                    v-if="subIndex"
                   >/</template
                   >
                   {{ item.variantValue }}
@@ -78,7 +81,7 @@
                 </div>
               </div>
             </div>
-          </fo-page-section>
+          </fox-page-section>
         </el-col>
         <el-col :span="18">
           <el-form
@@ -88,7 +91,7 @@
             label-position="top"
             size="small"
           >
-            <fo-page-section class="mt-0">
+            <fox-page-section class="mt-0">
               <el-row type="flex">
                 <div style="flex: auto">
                   <el-form-item
@@ -104,7 +107,9 @@
                       v-model="variant.variantValue"
                     ></el-input>
                   </el-form-item>
-                  <el-input type="hidden" v-model="entity.skuImage"></el-input>
+                  <el-input
+                    type="hidden"
+                    v-model="entity.skuImage"></el-input>
                 </div>
                 <div class="pl-4 ml-7">
                   <el-avatar
@@ -117,11 +122,13 @@
                   ></el-avatar>
                 </div>
               </el-row>
-            </fo-page-section>
-            <fo-page-section>
+            </fox-page-section>
+            <fox-page-section>
               <el-row :gutter="20">
                 <el-col :span="12">
-                  <el-form-item prop="salePrice" :label="$t('goods.sku.update.entity.salePrice.label')">
+                  <el-form-item
+                    prop="salePrice"
+                    :label="$t('goods.sku.update.entity.salePrice.label')">
                     <el-input
                       v-model="entity.salePrice"
                       :placeholder="$t('goods.sku.update.entity.salePrice.placeholder')"
@@ -131,7 +138,9 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item prop="marketPrice" :label="$t('goods.sku.update.entity.marketPrice.label')">
+                  <el-form-item
+                    prop="marketPrice"
+                    :label="$t('goods.sku.update.entity.marketPrice.label')">
                     <el-input
                       v-model="entity.marketPrice"
                       :placeholder="$t('goods.sku.update.entity.marketPrice.placeholder')"
@@ -141,7 +150,9 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item prop="surplusStock" :label="$t('goods.sku.update.entity.surplusStock.label')">
+                  <el-form-item
+                    prop="surplusStock"
+                    :label="$t('goods.sku.update.entity.surplusStock.label')">
                     <el-input
                       v-model="entity.surplusStock"
                       :placeholder="$t('goods.sku.update.entity.surplusStock.placeholder')"
@@ -150,7 +161,9 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item prop="barcode" :label="$t('goods.sku.update.entity.barcode.label')">
+                  <el-form-item
+                    prop="barcode"
+                    :label="$t('goods.sku.update.entity.barcode.label')">
                     <el-input
                       v-model="entity.barcode"
                       :placeholder="$t('goods.sku.update.entity.barcode.placeholder')"
@@ -166,7 +179,9 @@
                 <!--                </el-form-item>-->
                 <!--              </el-col>-->
                 <el-col :span="12">
-                  <el-form-item prop="width" :label="$t('goods.sku.update.entity.width.label')">
+                  <el-form-item
+                    prop="width"
+                    :label="$t('goods.sku.update.entity.width.label')">
                     <el-input
                       v-model="entity.width"
                       :placeholder="$t('goods.sku.update.entity.width.placeholder')"
@@ -176,7 +191,9 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item prop="shelfLife" :label="$t('goods.sku.update.entity.shelfLife.label')">
+                  <el-form-item
+                    prop="shelfLife"
+                    :label="$t('goods.sku.update.entity.shelfLife.label')">
                     <el-input
                       v-model="entity.shelfLife"
                       :placeholder="$t('goods.sku.update.entity.shelfLife.placeholder')"
@@ -188,7 +205,9 @@
               </el-row>
               <el-row :gutter="20">
                 <el-col :span="12">
-                  <el-form-item prop="height" :label="$t('goods.sku.update.entity.height.label')">
+                  <el-form-item
+                    prop="height"
+                    :label="$t('goods.sku.update.entity.height.label')">
                     <el-input
                       v-model="entity.height"
                       :placeholder="$t('goods.sku.update.entity.height.placeholder')"
@@ -198,7 +217,9 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item prop="hsCode" :label="$t('goods.sku.update.entity.hsCode.label')">
+                  <el-form-item
+                    prop="hsCode"
+                    :label="$t('goods.sku.update.entity.hsCode.label')">
                     <el-input
                       v-model="entity.hsCode"
                       :placeholder="$t('goods.sku.update.entity.hsCode.placeholder')"
@@ -206,7 +227,9 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item prop="length" :label="$t('goods.sku.update.entity.length.label')">
+                  <el-form-item
+                    prop="length"
+                    :label="$t('goods.sku.update.entity.length.label')">
                     <el-input
                       v-model="entity.length"
                       :placeholder="$t('goods.sku.update.entity.length.placeholder')"
@@ -216,7 +239,9 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item prop="weight" :label="$t('goods.sku.update.entity.weight.label')">
+                  <el-form-item
+                    prop="weight"
+                    :label="$t('goods.sku.update.entity.weight.label')">
                     <el-input
                       v-model="entity.weight"
                       :placeholder="$t('goods.sku.update.entity.weight.placeholder')"
@@ -237,15 +262,15 @@
               <!--                v-model="entity.skuId"-->
               <!--              ></el-input>-->
               <!--            </el-form-item>-->
-            </fo-page-section>
+            </fox-page-section>
           </el-form>
         </el-col>
       </el-row>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
+      </fox-unsaved>
       <!--SKU图片弹窗-->
       <variant-avatar
         :display="variantAvatarVisible"
@@ -253,7 +278,7 @@
         @close="variantAvatarCall"
       >
       </variant-avatar>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 
@@ -613,7 +638,8 @@ export default {
         .then(() => {
           this.deleteVariant()
         })
-        .catch(() => {})
+        .catch(() => {
+        })
     }
   }
 }
@@ -625,28 +651,35 @@ export default {
     margin: -10px -20px;
     max-height: 560px;
     overflow-y: auto;
+
     .variant-item {
       display: flex;
       align-items: center;
       cursor: pointer;
       padding: 10px 10px;
       border-bottom: 1px solid #e4e7ed;
+
       &.active {
         background: #eaf5ff;
       }
+
       &:last-child {
         border-bottom: none;
       }
+
       .variant-name-list {
         margin-left: 10px;
         font-size: 14px;
+
         .variant-name {
           &:nth-child(1) {
             color: #29bc94;
           }
+
           &:nth-child(2) {
             color: #763eaf;
           }
+
           &:nth-child(3) {
             color: #ff9517;
           }
@@ -654,17 +687,21 @@ export default {
       }
     }
   }
+
   .variant-cover {
     border: 1px solid #DCDFE6;
     border-radius: 8px;
     cursor: pointer;
   }
+
   .el-form-item__error {
-    display: none!important;
+    display: none !important;
   }
+
   .el-form-item__label {
     padding: 10px 0 5px 0;
   }
+
   .el-input-group__append,
   .el-input-group__prepend {
     padding: 0 10px;

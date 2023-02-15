@@ -71,40 +71,40 @@
         <p class="text-secondary">
           {{ $t('passport.login.tips') }}
         </p>
-        <el-form
+        <fox-form
           :model="entity"
           :rules="formRules"
           ref="ruleForm">
-          <p class="clearfix mb-2">
-            <a
+          <p class="clearfix mb-2 text-right">
+            <el-button
+              type="text"
+              class="p-0"
               @click="redirectForget"
-              href="javascript:void(0)"
-              class="text-link float-right"
             >
               {{ $t("passport.login.forgetTip") }}
-            </a>
-            {{ $t('passport.login.entity.account.label') }}
+            </el-button>
           </p>
           <el-form-item prop="account">
-            <el-input
+            <fox-input
+              shrink
               maxlength="64"
               v-model="entity.account"
               @blur="accountBlur"
-              :placeholder="$t('passport.login.entity.account.placeholder')"
+              :placeholder="$t('passport.login.entity.account.label')"
+              :description="$t('passport.login.entity.account.placeholder')"
               auto-complete="off">
-            </el-input>
+            </fox-input>
           </el-form-item>
-          <p class="mb-2">
-            {{ $t('passport.login.entity.password.label') }}
-          </p>
           <el-form-item prop="password">
-            <el-input
+            <fox-input
+              shrink
               maxlength="30"
               type="password"
               v-model="entity.password"
-              :placeholder="$t('passport.login.entity.password.placeholder')"
+              :placeholder="$t('passport.login.entity.password.label')"
+              :description="$t('passport.login.entity.password.placeholder')"
               auto-complete="off">
-            </el-input>
+            </fox-input>
           </el-form-item>
           <el-form-item class="mt-7 mb-0">
             <el-button
@@ -116,7 +116,7 @@
               {{ $t('passport.login.button') }}
             </el-button>
           </el-form-item>
-        </el-form>
+        </fox-form>
         <p>
           <label class="text-secondary">
             {{ $t('passport.login.noAccount') }}
@@ -217,7 +217,7 @@
   </div>
 </template>
 <script>
-import extend from '@/plugins/page/base'
+import extend from '@/plugins/page/unsaved'
 import passport from '@/plugins/passport'
 import { fetchMerchantLogin, fetchMerchantLogout, fetchMerchantSession } from '@/plugins/api/passport'
 import {
@@ -238,7 +238,12 @@ export default {
       },
       formRules: {
         account: [
-          { required: true, message: this.$t('passport.login.entity.account.required'), trigger: 'blur' }
+          { required: true, message: this.$t('passport.login.entity.account.required'), trigger: 'blur' },
+          {
+            pattern: this.utility.expression.Email,
+            message: this.$t('passport.login.entity.account.custom'),
+            trigger: 'blur'
+          }
         ],
         password: [
           { required: true, message: this.$t('passport.login.entity.password.required'), trigger: 'blur' }
@@ -257,7 +262,7 @@ export default {
     })
   },
   computed: {
-    ...mapState(['merchantModel']),
+    ...mapState(['merchantModel', 'agentModel']),
     canCreate () {
       let keep = this.siteList.filter((o) => {
         return !(o.payMonth > 0 && !o.isExpired)
@@ -332,9 +337,8 @@ export default {
      * 登录
      */
     formValidation () {
-      const formName = 'ruleForm'
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
+      this.formValidate('ruleForm', (verified) => {
+        if (verified) {
           fetchMerchantLogin(this.entity)
             .then(result => {
               this.resultMessage(result, (success) => {
@@ -510,4 +514,5 @@ export default {
     padding: 6px 20px;
   }
 }
+
 </style>

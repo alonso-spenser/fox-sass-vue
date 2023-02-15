@@ -1,6 +1,6 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
@@ -49,7 +49,7 @@
       <recent-trends
         v-if="activeName==='trend'"
         :model="model"></recent-trends>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

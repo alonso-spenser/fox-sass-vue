@@ -33,13 +33,13 @@
       <el-collapse
         v-model="activeName"
         accordion
-        class="fo-section-collapse">
+        class="fox-section-collapse">
         <template v-for="(o, index) in dataset.schemeData.group">
           <el-collapse-item
             :title="o.name[language]"
             :name="`element-${index}`"
             :key="`collapse-item-${index}`"
-            class="fo-section-item"
+            class="fox-section-item"
           >
             <template v-if="o.multiple === 0">
               <template v-for="(el, elIndex) in o.elements">
@@ -128,9 +128,9 @@
               <el-collapse
                 v-model="subActiveName"
                 accordion
-                class="fo-section-sub-collapse">
+                class="fox-section-sub-collapse">
                 <draggable
-                  handle=".fo-section-sub-move"
+                  handle=".fox-section-sub-move"
                   :list="dataset.sectionData.dataset[o.tag].data"
                 >
                   <template v-for="(sub, subIndex) in dataset.sectionData.dataset[o.tag].data">
@@ -138,13 +138,13 @@
                       :title="o.name[language]"
                       :name="`element-${index}-${subIndex}`"
                       :key="`collapse-item-${index}-${subIndex}`"
-                      class="fo-section-sub-item"
+                      class="fox-section-sub-item"
                     >
                       <template slot="title">
                         <div
-                          class="fo-section-sub-title"
+                          class="fox-section-sub-title"
                           v-html="getPlaceholder(o.elements, sub, o.placeholder[language])"></div>
-                        <div class="fo-section-sub-move el-icon-rank">
+                        <div class="fox-section-sub-move el-icon-rank">
                         </div>
                       </template>
                       <template v-for="(el, elIndex) in o.elements">
@@ -181,14 +181,14 @@
                 :key="`addSlide-${index}`"
                 @click="addSlide(o)"
                 v-if="dataset.sectionData.dataset[o.tag] && dataset.sectionData.dataset[o.tag].data.length < o.max"
-                class="fo-slide-add">
+                class="fox-slide-add">
                 <i class="el-icon-plus"></i>
                 {{ $t('base.operate.add') }}
               </div>
               <div
                 :key="`clearSlide-${index}`"
                 @click="clearSlide(o)"
-                class="fo-slide-add">
+                class="fox-slide-add">
                 <i class="el-icon-refresh"></i>
                 {{ $t('design.clear') }}
               </div>
@@ -266,7 +266,7 @@ export default {
     sectionWidget,
     resourceSelector
   },
-  data() {
+  data () {
     return {
       siteId: '',
       themeId: '',
@@ -344,14 +344,14 @@ export default {
     }
   },
   watch: {
-    visible(val) {
+    visible (val) {
       if (val) {
         this.removeLoading = false
         this.getData()
       }
     },
     'dataset.sectionData': {
-      handler() {
+      handler () {
         this.fixedUnsaved(true)
       },
       immediate: true,
@@ -363,17 +363,17 @@ export default {
     /**
      * 修改SECTION NAME
      */
-    sectionNameVisible() {
+    sectionNameVisible () {
       return !this.sectionData.global && 'footer|header|floatMenu'.indexOf(this.sectionData.data.sectionType) === -1
     },
     /**
      * 修改SECTION NAME
      */
-    changeVisible() {
+    changeVisible () {
       return this.presetSection[this.sectionData.data.sectionType]
     }
   },
-  created() {
+  created () {
     this.themeId = this.$route.params.themeId
     this.siteId = this.$route.params.siteId
     this.presetSection = this.$t('design.presetSection')
@@ -384,7 +384,7 @@ export default {
      * 图片选择结果
      * @param list 图片
      */
-    resourceSelector(list) {
+    resourceSelector (list) {
       let tag = this.batchImage.tag
       if (tag && this.dataset.sectionData.dataset[tag] && this.dataset.schemeData.default.dataset[tag]) {
         let s = this.dataset.schemeData.group.filter((row) => {
@@ -415,7 +415,7 @@ export default {
     /**
      * 批量选图
      */
-    loadBatchImage(tag) {
+    loadBatchImage (tag) {
       this.batchImage.visible = true
       this.batchImage.tag = tag
     },
@@ -424,7 +424,7 @@ export default {
      * @param o
      * @returns {boolean}
      */
-    getBatchImage(o) {
+    getBatchImage (o) {
       let s = this.dataset.schemeData.group.filter((row) => {
         return row.tag === o.tag
       })
@@ -438,7 +438,7 @@ export default {
     /**
      * 参数变更,发送通知给 iframe进行同步参数
      */
-    valueChanged() {
+    valueChanged () {
       if (!this.firstLoading) {
         this.$emit('update:unsavedStatus', this.saveStatus)
         this.funcStatus.loading = true
@@ -461,14 +461,14 @@ export default {
     /**
      * 关闭窗体
      */
-    dialogClose() {
+    dialogClose () {
       this.$emit('update:visible', false)
       this.fixedUnsaved(false)
     },
     /**
      * 关闭窗体
      */
-    parentChange(data) {
+    parentChange (data) {
       this.$emit('update:visible', false)
       this.$emit('change', data)
       this.fixedUnsaved(false)
@@ -476,7 +476,7 @@ export default {
     /**
      * 数据保存
      */
-    fixedUnsaved(status) {
+    fixedUnsaved (status) {
       this.saveStatus = status
       if (this.debouncedUpdateView) {
         this.debouncedUpdateView()
@@ -488,7 +488,7 @@ export default {
      * @param data 数据
      * @param defaultValue
      */
-    getPlaceholder(fields, data, defaultValue) {
+    getPlaceholder (fields, data, defaultValue) {
       let image = ''
       let heading = ''
       let icon = ''
@@ -524,7 +524,7 @@ export default {
     /**
      * 获取数据
      */
-    getData() {
+    getData () {
       this.dataset = {
         id: '',
         sectionType: '',
@@ -574,7 +574,7 @@ export default {
      * 数据校验
      * @param dt
      */
-    dataValidation(dt) {
+    dataValidation (dt) {
       let nextTicks = true
       dt.schemeData.group.forEach((o) => {
         if (o.multiple !== 0 && !dt.sectionData.dataset[o.tag]) {
@@ -601,7 +601,7 @@ export default {
     /**
      * SECTION更名
      */
-    updateSectionName() {
+    updateSectionName () {
       fetchSectionRename({
         siteId: this.siteId,
         themeId: this.themeId,
@@ -621,20 +621,20 @@ export default {
     /**
      * 数据保存
      */
-    overrideFormValidation() {
+    overrideFormValidation () {
       this.updateSectionData(0)
     },
     /**
      * 数据保存
      */
-    formValidation() {
+    formValidation () {
       this.updateSectionData(1)
     },
     /**
      * 更新内容
      * @param overrideDefault 是否覆盖默认值
      */
-    updateSectionData(overrideDefault) {
+    updateSectionData (overrideDefault) {
       fetchSectionUpdate({
         id: this.dataset.id,
         siteId: this.siteId,
@@ -670,7 +670,7 @@ export default {
      * 添加
      * @param o
      */
-    addSlide(o) {
+    addSlide (o) {
       // console.log('addSlide', o.tag, this.dataset.sectionData.dataset[o.tag] && this.dataset.schemeData.default.dataset[o.tag], this.dataset.schemeData.default.dataset[o.tag].data)
       // console.log(JSON.stringify(this.dataset.sectionData.dataset[o.tag]))
       if (o.tag && this.dataset.sectionData.dataset[o.tag] && this.dataset.schemeData.default.dataset[o.tag] && this.dataset.schemeData.default.dataset[o.tag].data) {
@@ -684,7 +684,7 @@ export default {
     /**
      * clear slides
      */
-    clearSlide(o) {
+    clearSlide (o) {
       this.$confirm(this.$t('design.clearTips').toString(), this.$t('design.clearHeading').toString(), {
         confirmButtonText: this.$t('base.operate.confirm'),
         cancelButtonText: this.$t('base.operate.cancel'),
@@ -703,7 +703,7 @@ export default {
      * remove slide
      * @param index
      */
-    removeSlide(o, index) {
+    removeSlide (o, index) {
       if (o.tag && this.dataset.sectionData.dataset[o.tag]) {
         this.dataset.sectionData.dataset[o.tag].data.splice(index, 1)
       }
@@ -711,7 +711,7 @@ export default {
     /**
      * copy slide
      */
-    copySlide(o, index) {
+    copySlide (o, index) {
       if (o.tag && this.dataset.sectionData.dataset[o.tag] && this.dataset.sectionData.dataset[o.tag]) {
         this.dataset.sectionData.dataset[o.tag].data.push(
           JSON.parse(JSON.stringify(this.dataset.sectionData.dataset[o.tag].data[index]))
@@ -721,7 +721,7 @@ export default {
     /**
      * COPY SECTION
      */
-    copySection() {
+    copySection () {
       fetchSectionClone({
         id: this.dataset.id,
         siteId: this.siteId,
@@ -745,7 +745,7 @@ export default {
     /**
      * COPY TO CLIP
      */
-    copyToClip() {
+    copyToClip () {
       localStorage.setItem('sectionClip', JSON.stringify({
         id: this.dataset.id,
         siteId: this.siteId
@@ -758,7 +758,7 @@ export default {
     /**
      * REMOVE SECTION
      */
-    removeSection() {
+    removeSection () {
       this.$confirm('你确定要删除此组件吗？', 'Oops', {
         confirmButtonText: this.$t('base.operate.confirm'),
         cancelButtonText: this.$t('base.operate.cancel'),
@@ -783,9 +783,9 @@ export default {
                 this.removeLoading = false
                 this.networkMistake(error)
               }).finally(() => {
-              instance.confirmButtonLoading = false
-              done()
-            })
+                instance.confirmButtonLoading = false
+                done()
+              })
           } else {
             instance.confirmButtonLoading = false
             done()

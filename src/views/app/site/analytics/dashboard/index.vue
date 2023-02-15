@@ -1,6 +1,6 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
@@ -11,7 +11,7 @@
         type="flex"
         class="section-neighbor">
         <el-col :span="8">
-          <fo-page-section
+          <fox-page-section
             class="dashboard-section cursor-pointer"
             v-on:click="jumpToEnquiry">
             <div v-on:click="jumpToEnquiry">
@@ -19,30 +19,30 @@
               <h3>{{ statistics.enquiryTotalNum }}</h3>
               <p>{{ $t('dashboard.aggregate.inquiry.currentMonth') }}{{ statistics.enquiryNum }}</p>
             </div>
-          </fo-page-section>
+            </fox-page-section>
         </el-col>
         <el-col
           :span="8"
           v-if="viewId">
-          <fo-page-section class="dashboard-section">
+          <fox-page-section class="dashboard-section">
             <label class="text-secondary">{{ $t('dashboard.aggregate.visit.label') }}</label>
             <h3>{{ statistics.totalPv }}</h3>
             <p>{{ $t('dashboard.aggregate.visit.currentMonth') }}{{ statistics.monthPv }}</p>
-          </fo-page-section>
+            </fox-page-section>
         </el-col>
         <el-col
           :span="8"
           v-if="viewId">
-          <fo-page-section class="dashboard-section">
+          <fox-page-section class="dashboard-section">
             <label class="text-secondary">{{ $t('dashboard.aggregate.visitor.label') }}</label>
             <h3>{{ statistics.totalIp }}</h3>
             <p>{{ $t('dashboard.aggregate.visitor.currentMonth') }}{{ statistics.monthIp }}</p>
-          </fo-page-section>
+            </fox-page-section>
         </el-col>
         <el-col
           :span="8"
           v-if="!viewId">
-          <fo-page-section class="dashboard-section bound">
+          <fox-page-section class="dashboard-section bound">
             <el-button
               type="primary"
               @click="jumpToGA">
@@ -51,7 +51,7 @@
             <p class="text-secondary">
               {{ $t('dashboard.ga.tips') }}
             </p>
-          </fo-page-section>
+            </fox-page-section>
         </el-col>
       </el-row>
       <el-card
@@ -191,7 +191,7 @@
           </pie-echarts>
         </el-col>
       </el-row>
-    </fo-page-loading>
+      </fox-page-loading>
   </main>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :percentage="100"
     >
       <el-row class="data-center-tap section-neighbor">
@@ -57,7 +57,7 @@
           :website-id="searchConditions.websiteId">
         </visit-temp>
       </div>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

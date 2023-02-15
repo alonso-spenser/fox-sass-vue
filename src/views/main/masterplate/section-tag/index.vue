@@ -1,12 +1,12 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="70"
     >
-      <fo-page-header></fo-page-header>
-      <fo-page-section>
+      <fox-page-header></fox-page-header>
+      <fox-page-section>
         <el-form
           :model="entity"
           :rules="formRules"
@@ -67,13 +67,13 @@
             </div>
           </draggable>
         </el-form>
-      </fo-page-section>
-      <fo-fixed-unsaved
+      </fox-page-section>
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

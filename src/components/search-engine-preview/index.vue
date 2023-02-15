@@ -1,5 +1,5 @@
 <template>
-  <fo-page-section
+  <fox-page-section
     :heading="$t('searchEngine.heading')"
     :content="$t('searchEngine.tips')"
     class="search-engine-section"
@@ -34,63 +34,67 @@
         {{ entity.description || placeholder.description }}
       </div>
     </div>
-    <div v-show="seoVisible">
-      <hr>
+    <div
+      v-show="seoVisible"
+      class="mt-6">
       <div class="el-form-item">
-        <label class="el-form-item__label">
-          {{ $t("searchEngine.entity.seoUrl.label") }}
-        </label>
         <div class="el-form-item__content">
-          <el-input
+          <fox-input
             v-model="entity.url"
+            shrink
             maxlength="255"
             show-word-limit
             @blur="setCapitalize"
             type="textarea"
             :rows="3"
-            :placeholder="placeholder.url"
+            :placeholder="$t('searchEngine.entity.seoUrl.label')"
+            :description="placeholder.url"
           >
             <template slot="prepend">{{ previewDomain }}</template>
-          </el-input>
+          </fox-input>
         </div>
       </div>
       <div class="el-form-item">
         <label class="el-form-item__label">
-          {{ $t("searchEngine.entity.seoTitle.label") }} &lt;title&gt;
+          &lt;title&gt;
           <small class="ml-2 text-secondary">
             {{ $t("searchEngine.entity.seoTitle.description") }}
           </small>
         </label>
         <div class="el-form-item__content">
-          <el-input
+          <fox-input
             v-model="entity.title"
             maxlength="127"
+            shrink
+            :placeholder="$t('searchEngine.entity.seoTitle.label')"
             type="textarea"
             :rows="3"
             show-word-limit
             @blur="setCapitalize"
-            :placeholder="placeholder.title"
-          ></el-input>
+            :description="placeholder.title"
+          ></fox-input>
         </div>
       </div>
       <div class="el-form-item">
         <label class="el-form-item__label">
-          {{ $t("searchEngine.entity.seoDesc.label") }} &lt;meta name=&quot;description&quot;&gt;
+          &lt;meta name=&quot;description&quot;&gt;
           <small class="ml-2 text-secondary">
             {{ $t("searchEngine.entity.seoDesc.description") }}
           </small>
         </label>
         <div class="el-form-item__content">
-          <el-input
+          <fox-input
             v-model="entity.description"
+            :placeholder="$t('searchEngine.entity.seoDesc.label')"
+            shrink
             type="textarea"
             :rows="5"
             :maxlength="maxlength"
             resize="none"
             show-word-limit
             @blur="setCapitalize"
-            :placeholder="placeholder.description"
-          ></el-input>
+            :description="placeholder.description"
+          ></fox-input>
         </div>
       </div>
       <div class="el-form-item">
@@ -101,15 +105,17 @@
           </small>
         </label>
         <div class="el-form-item__content">
-          <el-input
+          <fox-input
             v-model="entity.heading"
+            shrink
             maxlength="127"
             type="textarea"
             :rows="3"
+            :placeholder="$t('searchEngine.entity.seoH1.label')"
             show-word-limit
             @blur="setCapitalize"
-            :placeholder="placeholder.heading"
-          ></el-input>
+            :description="placeholder.heading"
+          ></fox-input>
         </div>
       </div>
       <div class="el-form-item">
@@ -151,7 +157,7 @@
         </div>
       </div>
     </div>
-  </fo-page-section>
+  </fox-page-section>
 </template>
 
 <script>

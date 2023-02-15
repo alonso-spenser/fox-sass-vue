@@ -1,17 +1,17 @@
 <template>
   <main class="editable">
-    <div class="fo-page-header-editable">
+    <div class="fox-page-header-editable">
       <section class="global-page-container">
         <section class="global-page-content">
           <section class="global-page-main">
-            <fo-page-header></fo-page-header>
+            <fox-page-header></fox-page-header>
           </section>
         </section>
       </section>
     </div>
-    <fo-page-loading>
+    <fox-page-loading>
       <div class="global-editable-container">
-        <fo-page-section>
+        <fox-page-section>
           <el-form
             :model="entity"
             :rules="formRules"
@@ -23,58 +23,62 @@
           >
             <el-form-item
               prop="oldPass"
-              :label="$t('merchant.password.entity.oldPass.label')"
             >
-              <el-input
+              <fox-input
                 v-model="entity.oldPass"
                 auto-complete="off"
                 :maxlength="20"
-                :placeholder="$t('merchant.password.entity.oldPass.placeholder')"
-              ></el-input>
+                shrink
+                :placeholder="$t('merchant.password.entity.oldPass.label')"
+                :description="$t('merchant.password.entity.oldPass.placeholder')"
+              ></fox-input>
             </el-form-item>
             <el-form-item
               prop="newPass"
-              :label="$t('merchant.password.entity.newPass.label')"
             >
-              <el-input
+              <fox-input
                 type="password"
                 v-model="entity.newPass"
                 auto-complete="new-password"
                 :maxlength="20"
-                :placeholder="$t('merchant.password.entity.newPass.placeholder')"
-              ></el-input>
+                shrink
+                :placeholder="$t('merchant.password.entity.newPass.label')"
+                :description="$t('merchant.password.entity.newPass.placeholder')"
+              ></fox-input>
             </el-form-item>
             <el-form-item
               class="mb-7"
               prop="checkPass"
-              :label="$t('merchant.password.entity.checkPass.label')"
             >
-              <el-input
+              <fox-input
                 type="password"
                 v-model="entity.checkPass"
                 auto-complete="new-password"
                 :maxlength="20"
-                :placeholder="$t('merchant.password.entity.checkPass.placeholder')"
-              ></el-input>
+                shrink
+                :placeholder="$t('merchant.password.entity.checkPass.label')"
+                :description="$t('merchant.password.entity.checkPass.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-form>
-        </fo-page-section>
-        <fo-fixed-unsaved
+        </fox-page-section>
+        <fox-unsaved
           :unsaved.sync="unsaved"
           :loading="loading"
           :height="126"
           tips=""
           @confirmed="formValidation"
         >
-        </fo-fixed-unsaved>
+        </fox-unsaved>
       </div>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 
 <script>
 import extend from '@/plugins/page/unsaved'
 import { fetchUpdatePassword } from '@/plugins/api/passport'
+
 export default {
   name: 'account-change-password',
   extends: extend,

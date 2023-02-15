@@ -1,5 +1,5 @@
 <template>
-  <fo-page-loading
+  <fox-page-loading
     :loading="pageLoading"
     :fullScreen="true"
     :invalid="pageIsValid">
@@ -44,7 +44,7 @@
       :payment="true"
     >
     </unpaid>
-  </fo-page-loading>
+  </fox-page-loading>
 </template>
 
 <script>

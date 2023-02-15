@@ -1,10 +1,10 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
     >
-      <div class="fo-page-header previous">
-        <div class="fo-page-header-back">
+      <div class="fox-page-header previous">
+        <div class="fox-page-header-back">
           <p
             class="el-icon-arrow-left go-back"
             @click="previous">
@@ -12,7 +12,7 @@
           </p>
           <h3> {{ appName }}</h3>
         </div>
-        <div class="fo-page-header-item"></div>
+        <div class="fox-page-header-item"></div>
       </div>
       <div v-if="modal.entry.length===0">{{ $t('base.notData') }}</div>
       <el-form
@@ -112,12 +112,12 @@
         </p>
       </el-form>
       <!--保存按钮-->
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

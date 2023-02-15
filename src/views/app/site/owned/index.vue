@@ -1,9 +1,9 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
-      :percentage="100"
+      :percentage="90"
     >
       <div class="sites-items section-neighbor">
         <el-row :gutter="20">
@@ -187,7 +187,7 @@
           </el-card>
         </el-col>
       </el-row>
-      <fo-paging-table
+      <fox-paging-table
         class="section-neighbor"
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
@@ -203,12 +203,12 @@
         :rows-class-name="dataConfig.rowsClassName"
         @paging="getData"
       >
-      </fo-paging-table>
+      </fox-paging-table>
       <language-dialog
         @translate="asyncTranslate"
         :dialog-visible.sync="dialogVisible"
         :site-info="siteInfo"></language-dialog>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

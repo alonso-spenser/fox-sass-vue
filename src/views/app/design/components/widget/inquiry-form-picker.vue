@@ -2,9 +2,12 @@
   <div>
     <div class="collection-picker">
       <h6>
-        <router-link target="_blank" class="float-right" :to="getAddUrl()">
+        <router-link
+          target="_blank"
+          class="float-right"
+          :to="getAddUrl()">
           {{ $t('inquiryFormPicker.edit') }}
-          <i class="fo-export"></i>
+          <i class="fox-export"></i>
         </router-link>
         {{ name[language] }}
       </h6>
@@ -13,11 +16,13 @@
         @click="displayExplore = true"
         v-if="entity.id === ''">
         <p class="text-center">
-          <i class="fo-edit"></i>
+          <i class="fox-edit"></i>
           {{ $t('inquiryFormPicker.select') }}
         </p>
       </div>
-      <div class="collection-picker-content" v-if="entity.id !== ''">
+      <div
+        class="collection-picker-content"
+        v-if="entity.id !== ''">
         <p class="form-name">
           {{ entity.title }}
         </p>
@@ -31,8 +36,12 @@
         </el-button>
       </el-button-group>
     </div>
-    <div v-if="displayExplore" class="editor-section picker">
-      <h4 class="editor-section-title" @click="displayExplore=false">
+    <div
+      v-if="displayExplore"
+      class="editor-section picker">
+      <h4
+        class="editor-section-title"
+        @click="displayExplore=false">
         {{ $t('inquiryFormPicker.select') }}
       </h4>
       <div class="editor-section-content">
@@ -58,7 +67,9 @@
           </div>
         </template>
       </div>
-      <div v-if="displaySelected" class="fo-setting-fixed-bottom">
+      <div
+        v-if="displaySelected"
+        class="fox-setting-fixed-bottom">
         <p class="text-right w-100">
           <el-button
             @click="selected"
@@ -72,12 +83,14 @@
     </div>
   </div>
 </template>
-<style lang='scss' src="@/assets/design.scss"></style>
-<style lang="scss" >
-  .form-name {
-    display: flex;
-    align-items: center;
-  }
+<style
+  lang='scss'
+  src="@/assets/design.scss"></style>
+<style lang="scss">
+.form-name {
+  display: flex;
+  align-items: center;
+}
 </style>
 <script>
 import {

@@ -1,5 +1,5 @@
 <template>
-  <fo-page-section
+  <fox-page-section
     :heading="heading"
     :content="subheading">
     <el-tree
@@ -106,14 +106,14 @@
               <i class="el-icon-picture-outline-round"></i>
             </label>
           </template>
-          <fo-image-single
+          <fox-image-single
             v-model="entity.avatar"
             :width="180"
             :size-limit="10"
             :oss-bucket="resource.ossBucket"
             :server-address="utility.uploadURL()"
             :file-folder="siteId"
-          ></fo-image-single>
+          ></fox-image-single>
         </el-form-item>
       </el-form>
       <div
@@ -137,7 +137,7 @@
       :visible.sync="gallery.visible"
       @close="resourceSelector"
       :info-type="0"></resource-selector>
-  </fo-page-section>
+  </fox-page-section>
 </template>
 
 <script>

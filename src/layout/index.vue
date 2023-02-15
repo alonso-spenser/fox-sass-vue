@@ -2,6 +2,12 @@
   <div
     :class="`passport`"
     v-if="isPassport">
+    <div class="region-change">
+      <img
+        @click="changeRegion"
+        src="~@/assets/svg/region.svg"
+        alt="">
+    </div>
     <router-view></router-view>
   </div>
   <section
@@ -39,6 +45,17 @@ export default {
     },
     header: function () {
       return this.$route.meta['header'] === undefined ? true : this.$route.meta['header']
+    }
+  },
+  methods: {
+    /**
+     * 切换语言
+     */
+    changeRegion () {
+      let region = this.utility.getLanguage()
+      region = region === 'zh-CN' ? 'en' : 'zh-CN'
+      localStorage.setItem('foUILanguage', region)
+      this.$i18n.locale = region
     }
   }
 }

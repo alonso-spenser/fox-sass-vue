@@ -1,10 +1,10 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -99,8 +99,8 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
-    </fo-page-loading>
+      </fox-paging-table>
+    </fox-page-loading>
   </main>
 </template>
 

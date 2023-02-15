@@ -1,8 +1,9 @@
 <template>
-  <fo-page-loading
+  <fox-page-loading
     :loading="pageLoading"
     :invalid="pageIsValid"
     :fullScreen="true"
+    :percentage="90"
   >
     <el-form
       class="site-setting-page"
@@ -13,121 +14,131 @@
       label-position="top"
     >
       <!--网站信息-->
-      <fo-page-section
+      <fox-page-section
         :heading="$t('settings.basic.paging.title')"
         :content="$t('settings.basic.paging.desc')"
       >
-        <el-row :gutter="20" class="el-form-row">
+        <el-row
+          :gutter="20"
+          class="el-form-row">
           <el-col :span="24">
             <el-form-item
               prop="siteName"
-              :label="$t('settings.basic.entity.title.label')"
             >
               <!-- 网站名称-->
-              <el-input
+              <fox-input
                 :maxlength="100"
+                shrink
                 show-word-limit
                 v-model="entity.siteName"
-                :placeholder="$t('settings.basic.entity.title.placeholder')"
-              ></el-input>
+                :placeholder="$t('settings.basic.entity.title.label')"
+                :description="$t('settings.basic.entity.title.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-col>
           <!--公司名称-->
           <el-col :span="12">
             <el-form-item
               prop="company"
-              :label="$t('settings.basic.entity.company.label')"
             >
-              <el-input
+              <fox-input
                 :maxlength="64"
+                shrink
                 show-word-limit
                 v-model="entity.company"
-                :placeholder="$t('settings.basic.entity.company.placeholder')"
-              ></el-input>
+                :placeholder="$t('settings.basic.entity.company.label')"
+                :description="$t('settings.basic.entity.company.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-col>
           <!--附加标题-->
           <el-col :span="12">
             <el-form-item
               prop="addOnHeader"
-              :label="$t('settings.basic.entity.addOnHeader.label')"
             >
-              <el-input
+              <fox-input
                 :maxlength="50"
+                shrink
                 show-word-limit
                 v-model="entity.addOnHeader"
-                :placeholder="$t('settings.basic.entity.addOnHeader.placeholder')"
-              ></el-input>
+                :placeholder="$t('settings.basic.entity.addOnHeader.label')"
+                :description="$t('settings.basic.entity.addOnHeader.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-col>
           <!--400电话-->
           <el-col :span="12">
             <el-form-item
               prop="freePhone"
-              :label="$t('settings.basic.entity.freePhone.label')"
             >
-              <el-input
+              <fox-input
                 :maxlength="32"
+                shrink
                 show-word-limit
                 v-model="entity.freePhone"
-                :placeholder="$t('settings.basic.entity.freePhone.placeholder')"
-              ></el-input>
+                :placeholder="$t('settings.basic.entity.freePhone.label')"
+                :description="$t('settings.basic.entity.freePhone.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-col>
           <!--手机？？-->
           <el-col :span="12">
             <el-form-item
               prop="mobile"
-              :label="$t('settings.basic.entity.mobile.label')"
             >
-              <el-input
+              <fox-input
                 :maxlength="32"
+                shrink
                 show-word-limit
                 v-model="entity.mobile"
-                :placeholder="$t('settings.basic.entity.mobile.placeholder')"
-              ></el-input>
+                :placeholder="$t('settings.basic.entity.mobile.label')"
+                :description="$t('settings.basic.entity.mobile.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-col>
           <!--邮箱-->
           <el-col :span="12">
             <el-form-item
               prop="email"
-              :label="$t('settings.basic.entity.email.label')"
             >
-              <el-input
+              <fox-input
+                shrink
                 maxlength="64"
                 show-word-limit
                 v-model="entity.email"
-                :placeholder="$t('settings.basic.entity.email.placeholder')"
-              ></el-input>
+                :placeholder="$t('settings.basic.entity.email.label')"
+                :description="$t('settings.basic.entity.email.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-col>
           <!--联系电话-->
           <el-col :span="12">
             <el-form-item
               prop="phone"
-              :label="$t('settings.basic.entity.phone.label')"
             >
-              <el-input
+              <fox-input
+                shrink
                 :maxlength="32"
                 show-word-limit
                 v-model="entity.phone"
-                :placeholder="$t('settings.basic.entity.phone.placeholder')"
-              ></el-input>
+                :placeholder="$t('settings.basic.entity.phone.label')"
+                :description="$t('settings.basic.entity.phone.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-col>
           <!--联系人-->
           <el-col :span="12">
             <el-form-item
               prop="contact"
-              :label="$t('settings.basic.entity.contact.label')"
             >
-              <el-input
+              <fox-input
                 maxlength="64"
                 show-word-limit
+                shrink
                 v-model="entity.contact"
-                :placeholder="$t('settings.basic.entity.contact.placeholder')"
-              ></el-input>
+                :placeholder="$t('settings.basic.entity.contact.label')"
+                :description="$t('settings.basic.entity.contact.placeholder')"
+              ></fox-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -186,7 +197,9 @@
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :span="4" v-if="displayCity">
+            <el-col
+              :span="4"
+              v-if="displayCity">
               <el-form-item prop="cityId">
                 <el-select
                   filterable
@@ -216,18 +229,19 @@
 
         <el-form-item
           prop="address"
-          :label="$t('settings.basic.entity.address.label')"
         >
-          <el-input
+          <fox-input
+            shrink
             :maxlength="200"
             show-word-limit
             v-model="entity.address"
-            :placeholder="$t('settings.basic.entity.address.placeholder')"
-          ></el-input>
+            :placeholder="$t('settings.basic.entity.address.label')"
+            :description="$t('settings.basic.entity.address.placeholder')"
+          ></fox-input>
         </el-form-item>
-      </fo-page-section>
+      </fox-page-section>
 
-      <fo-page-section
+      <fox-page-section
         :heading="$t('settings.basic.map.title')"
       >
         <el-form-item :label="$t('settings.basic.entity.coordinate.label')">
@@ -239,20 +253,28 @@
                   class="w-100"
                   :placeholder="$t('base.placeholder.select')"
                 >
-                  <el-option v-for="(item,index) in $t('settings.basic.map.searchSelect')" :label="item.label" :value="item.value" :key="index"></el-option>
+                  <el-option
+                    v-for="(item,index) in $t('settings.basic.map.searchSelect')"
+                    :label="item.label"
+                    :value="item.value"
+                    :key="index"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :span="20" v-show="entity.addressType === 1">
+            <el-col
+              :span="20"
+              v-show="entity.addressType === 1">
               <el-input
                 v-model="searchAddress"
                 maxlength="200"
                 :placeholder="$t('settings.basic.entity.coordinate.placeholder')"
               ></el-input>
             </el-col>
-            <el-col :span="6" v-show="entity.addressType === 2">
+            <el-col
+              :span="6"
+              v-show="entity.addressType === 2">
               <div class="form-item-wrap">
-                <span class="label">{{$t('settings.basic.entity.longitude.label')}}</span>
+                <span class="label">{{ $t('settings.basic.entity.longitude.label') }}</span>
                 <el-form-item prop="longitude">
                   <el-input
                     v-model.number="entity.longitude"
@@ -263,9 +285,11 @@
                 </el-form-item>
               </div>
             </el-col>
-            <el-col :span="6" v-show="entity.addressType === 2">
+            <el-col
+              :span="6"
+              v-show="entity.addressType === 2">
               <div class="form-item-wrap">
-                <span class="label">{{$t('settings.basic.entity.latitude.label')}}</span>
+                <span class="label">{{ $t('settings.basic.entity.latitude.label') }}</span>
                 <el-form-item prop="latitude">
                   <el-input
                     v-model.number="entity.latitude"
@@ -282,11 +306,11 @@
           </el-row>
         </el-form-item>
         <p class="text-secondary">
-          {{$t('settings.basic.map.explain.label')}}
-          <label class="text-warning">{{$t('settings.basic.map.explain.content')}}</label>
+          {{ $t('settings.basic.map.explain.label') }}
+          <label class="text-warning">{{ $t('settings.basic.map.explain.content') }}</label>
         </p>
         <p class="text-primary">
-          <b>{{$t('settings.basic.map.explain.primary')}}</b>
+          <b>{{ $t('settings.basic.map.explain.primary') }}</b>
         </p>
         <baidu-map
           class="bm-view"
@@ -298,8 +322,13 @@
           @ready="mapReady"
           @click="getCoordinate"
         >
-          <bm-view class="map" style="width: 100%; height: 400px"></bm-view>
-          <bm-marker :position="addressCenter" :dragging="false" animation="BMAP_ANIMATION_BOUNCE"></bm-marker>
+          <bm-view
+            class="map"
+            style="width: 100%; height: 400px"></bm-view>
+          <bm-marker
+            :position="addressCenter"
+            :dragging="false"
+            animation="BMAP_ANIMATION_BOUNCE"></bm-marker>
           <bm-local-search
             :keyword="searchAddress"
             :auto-viewport="true"
@@ -308,9 +337,9 @@
             @infohtmlset="getCoordinate"
           ></bm-local-search>
         </baidu-map>
-      </fo-page-section>
+      </fox-page-section>
 
-      <fo-page-section
+      <fox-page-section
         :heading="$t('settings.basic.langAndCurrency.heading')"
         :subheading="$t('settings.basic.langAndCurrency.subheading')"
       >
@@ -331,9 +360,9 @@
             </el-option>
           </el-select>
         </el-form-item>
-      </fo-page-section>
+      </fox-page-section>
 
-      <fo-page-section
+      <fox-page-section
         :heading="$t('settings.basic.timeAndUnit.heading')"
         :subheading="$t('settings.basic.timeAndUnit.subheading')"
       >
@@ -378,7 +407,9 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="7" :offset="1">
+          <el-col
+            :span="7"
+            :offset="1">
             <el-form-item
               prop="weightUnit"
               :label="$t('settings.basic.entity.weightUnit.label')"
@@ -398,7 +429,9 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="8" :offset="1">
+          <el-col
+            :span="8"
+            :offset="1">
             <el-form-item
               prop="lengthUnit"
               :label="$t('settings.basic.entity.lengthUnit.label')"
@@ -419,13 +452,15 @@
             </el-form-item>
           </el-col>
         </el-form-item>
-      </fo-page-section>
+      </fox-page-section>
 
       <!--网站状态-->
-      <fo-page-section :heading="$t('settings.basic.siteStatus.heading')">
+      <fox-page-section :heading="$t('settings.basic.siteStatus.heading')">
         <el-row>
           <el-col :span="18">
-            <div class="site-status" v-if="entity.state === 0">
+            <div
+              class="site-status"
+              v-if="entity.state === 0">
               <p class="text-success">
                 <label class="bg-success"></label>
                 {{ $t("settings.basic.siteStatus.normal.label") }}
@@ -434,7 +469,9 @@
                 {{ $t("settings.basic.siteStatus.normal.tips") }}
               </p>
             </div>
-            <div class="site-status" v-if="entity.state === 1">
+            <div
+              class="site-status"
+              v-if="entity.state === 1">
               <p class="text-info">
                 <label class="bg-info"></label>
                 {{ $t("settings.basic.siteStatus.inactive.label") }}
@@ -443,20 +480,26 @@
                 {{ $t("settings.basic.siteStatus.inactive.tips") }}
               </p>
             </div>
-            <div class="site-status" v-if="entity.state === 2">
+            <div
+              class="site-status"
+              v-if="entity.state === 2">
               <p class="text-info">
                 <label class="bg-info"></label>
                 {{ $t("settings.basic.siteStatus.freeze.label") }}
               </p>
               <p>
                 {{ $t("settings.basic.siteStatus.freeze.tips") }}
-                <a class="text-primary ml-6" href="mailto:freeze@fomille.com"
+                <a
+                  class="text-primary ml-6"
+                  href="mailto:freeze@fomille.com"
                 >freeze@fomille.com</a
                 >
               </p>
             </div>
           </el-col>
-          <el-col class="text-right" :span="6">
+          <el-col
+            class="text-right"
+            :span="6">
             <!--停用网站-->
             <el-button
               class="mt-4"
@@ -477,24 +520,28 @@
               >
                 {{ $t("settings.basic.siteStatus.inactive.button") }}
               </el-button>
-              <el-button type="info" class="mt-4" disabled v-else>
+              <el-button
+                type="info"
+                class="mt-4"
+                disabled
+                v-else>
                 {{ $t("settings.basic.siteStatus.inactive.expiredButton") }}
               </el-button>
             </template>
           </el-col>
         </el-row>
-      </fo-page-section>
+      </fox-page-section>
     </el-form>
 
     <!--save-->
-    <fo-fixed-unsaved
+    <fox-unsaved
       :unsaved.sync="unsaved"
       @confirmed="formValidation"
       :loading="loading"
     >
-    </fo-fixed-unsaved>
+    </fox-unsaved>
 
-  </fo-page-loading>
+  </fox-page-loading>
 </template>
 
 <script>
@@ -695,7 +742,8 @@ export default {
     /**
      * 地图初始加载
      */
-    mapReady ({ BMap, map }) {},
+    mapReady ({ BMap, map }) {
+    },
     /**
      * 验证
      */
@@ -1002,10 +1050,12 @@ export default {
   .form-item-wrap {
     display: flex;
     align-items: center;
+
     .label {
       color: #606266;
       margin-right: 10px;
     }
+
     .el-form-item {
       flex: auto;
     }

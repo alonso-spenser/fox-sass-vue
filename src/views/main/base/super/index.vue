@@ -1,12 +1,12 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-page-header
+      <fox-page-header
         :actions="crumbAction"
-      ></fo-page-header>
+      ></fox-page-header>
       <el-form
         :model="entity"
         :rules="formRules"
@@ -14,11 +14,11 @@
         label-position="right"
         label-width="150px"
       >
-        <fo-page-section>
+        <fox-page-section>
           <el-form-item
             prop="logo"
             :label="$t('core.agent.entity.logo.label')">
-            <fo-image-single
+            <fox-image-single
               v-model="entity.logo"
               :alt-visible="false"
               :size-limit="10"
@@ -26,7 +26,7 @@
               :server-address="utility.uploadURL()"
               file-folder="section"
               :width="180"
-            ></fo-image-single>
+            ></fox-image-single>
             <div class="text-secondary">
               最佳尺寸：高度 <b>100PX</b> 以内，宽度随意。<b>PNG</b> <b>SVG</b> 文件格式
             </div>
@@ -107,15 +107,15 @@
               :placeholder="$t('core.agent.entity.address.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
+        </fox-page-section>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

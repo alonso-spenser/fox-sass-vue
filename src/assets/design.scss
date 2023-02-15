@@ -336,7 +336,7 @@ builder容器
 /**
 section 列表容器
  */
-.fo-section-panel {
+.fox-section-panel {
   position: absolute !important;
   height: calc(100% - 108px);
   left: 0;
@@ -374,7 +374,7 @@ section 列表容器
 /**
 * list section items
 */
-.fo-section {
+.fox-section {
   position: relative;
   border-bottom: 1px solid #424257;
   background-color: #535366;
@@ -395,7 +395,7 @@ section 列表容器
     margin: 0;
   }
 
-  .fo-section-refresh {
+  .fox-section-refresh {
     .el-icon-refresh {
       font-size: 14px;
     }
@@ -438,14 +438,14 @@ section 列表容器
     }
   }
 
-  .fo-section-move {
+  .fox-section-move {
     cursor: move !important;
     position: relative;
     z-index: 100;
     text-align: center;
   }
 
-  .fo-section-addition {
+  .fox-section-addition {
     position: relative;
     z-index: 100;
     padding-top: 0;
@@ -484,7 +484,7 @@ section 列表容器
     }
   }
 
-  &.fo-section-independent {
+  &.fox-section-independent {
     margin-bottom: 15px;
     margin-top: 15px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -669,7 +669,7 @@ section 列表容器
     background-color: #535366;
 
 
-    .fo-tag {
+    .fox-tag {
       position: relative;
       border-bottom: 1px solid #424257;
       background-color: #535366;
@@ -737,10 +737,11 @@ section 列表容器
 
 }
 
-.sub-item{
+.sub-item {
   padding: 5px 15px;
-  border-bottom:1px solid #424257;
+  border-bottom: 1px solid #424257;
 }
+
 .editor-section-item {
   .change-section-name {
     .el-input-group__append {
@@ -833,14 +834,14 @@ section 列表容器
 /**
 设置一项
  */
-.fo-section-collapse {
+.fox-section-collapse {
   border: 0;
 
   .el-collapse-item__content {
     padding-bottom: 0;
   }
 
-  .fo-section-item {
+  .fox-section-item {
     .el-collapse-item__header {
       background: #424257;
       color: #ababb4;
@@ -856,14 +857,14 @@ section 列表容器
   }
 }
 
-.fo-section-sub-collapse {
+.fox-section-sub-collapse {
   border: 0;
 
   .el-collapse-item__content {
     padding-bottom: 0;
   }
 
-  .fo-section-sub-item {
+  .fox-section-sub-item {
     .el-collapse-item__arrow {
       display: none;
     }
@@ -877,14 +878,14 @@ section 列表容器
       border-bottom-color: #424257;
 
       &.is-active {
-        .fo-section-sub-title {
+        .fox-section-sub-title {
           &:before {
             transform: rotate(90deg);
           }
         }
       }
 
-      .fo-section-sub-title {
+      .fox-section-sub-title {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -921,7 +922,7 @@ section 列表容器
         }
       }
 
-      .fo-section-sub-move {
+      .fox-section-sub-move {
         cursor: move;
         padding-left: 8px;
         padding-right: 8px;
@@ -940,7 +941,7 @@ section 列表容器
 /**
 添加循环列
  */
-.fo-slide-add {
+.fox-slide-add {
   cursor: pointer;
   color: rgba(255, 255, 255, .5);
   text-indent: 25px;
@@ -1352,7 +1353,7 @@ section 列表容器
 }
 
 
-.fo-setting-fixed-bottom {
+.fox-setting-fixed-bottom {
   height: 50px;
   position: fixed;
   bottom: 0;

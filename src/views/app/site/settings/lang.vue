@@ -1,9 +1,9 @@
 <template>
-  <fo-page-loading
+  <fox-page-loading
     :loading="pageLoading"
     :invalid="pageIsValid"
   >
-    <fo-page-header
+    <fox-page-header
       :dropActions="[
         // {
         //   label: $t('base.addition.button'),
@@ -27,7 +27,7 @@
         }
       ]"
     >
-    </fo-page-header>
+    </fox-page-header>
     <paging-table
       :heading="$t('base.lang.paging.heading')"
       :subheading="$t('base.lang.paging.subheading')"
@@ -62,7 +62,7 @@
         </el-row>
       </template>
     </paging-table>
-  </fo-page-loading>
+  </fox-page-loading>
 </template>
 
 <script>

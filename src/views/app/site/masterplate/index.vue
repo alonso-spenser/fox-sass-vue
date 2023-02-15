@@ -1,19 +1,19 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :drop-actions="dropAction"
       :actions="crumbAction"
     >
-    </fo-page-header>
-    <fo-page-loading
+    </fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-page-section
+      <fox-page-section
         v-if="false"
         :content="$t('site.theme.current.subheading')"
       >
-      </fo-page-section>
+      </fox-page-section>
       <div class="site-theme">
         <div class="site-theme-web">
           <div class="screenShot-container scaled">
@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <fo-page-section
+      <fox-page-section
         :heading="$t('site.theme.owned.heading')"
         :content="$t('site.theme.owned.subheading')"
       >
@@ -53,9 +53,9 @@
             {{ $t("site.theme.get") }}
           </el-button>
         </template>
-      </fo-page-section>
+      </fox-page-section>
 
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -69,9 +69,9 @@
         :rows-class-name="dataConfig.rowsClassName"
         @paging="getData"
       >
-      </fo-paging-table>
+      </fox-paging-table>
 
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 <script>

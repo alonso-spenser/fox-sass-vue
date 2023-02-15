@@ -1,6 +1,6 @@
 <template>
   <div v-loading="pageLoading">
-    <fo-paging-table
+    <fox-paging-table
       :columns="dataConfig.columns"
       :actions="dataConfig.actions"
       :dataset="pagingOptions.dataset"
@@ -16,7 +16,7 @@
       :rows-class-name="dataConfig.rowsClassName"
       @paging="getData"
     >
-    </fo-paging-table>
+    </fox-paging-table>
   </div>
 </template>
 

@@ -91,7 +91,7 @@
         @updateAlt="updateAlt"
       >
       </image-picker>
-      <!--      <fo-image-single-->
+      <!--      <fox-image-single-->
       <!--        v-model="model[schemeData.field]"-->
       <!--        :alt-visible="false"-->
       <!--        :alt="imageAlt"-->
@@ -100,7 +100,7 @@
       <!--        :server-address="utility.uploadURL()"-->
       <!--        :file-folder="siteId"-->
       <!--        @updateAlt="updateAlt"-->
-      <!--      ></fo-image-single>-->
+      <!--      ></fox-image-single>-->
     </template>
     <template v-else-if="schemeData.type === 'linkPicker'">
       <h6>
@@ -163,11 +163,11 @@
       <h6>
         {{ schemeData.name[language] }}
       </h6>
-      <fo-editor
+      <fox-editor
         model-type="simple"
         :height="500"
         v-model="model[schemeData.field]"
-      ></fo-editor>
+      ></fox-editor>
     </template>
     <template v-else-if="schemeData.type === 'googleMapPicker'">
       <!--      <h6>-->

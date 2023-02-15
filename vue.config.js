@@ -46,10 +46,10 @@ module.exports = {
         from: ['./dist/**', '!**.map'],
         // 需要上传到oss上的给定文件目录
         dist: '/',
-        region: process.env.VUE_OSS_RETION,
-        accessKeyId: process.env.VUE_OSS_KEY,
-        accessKeySecret: process.env.VUE_OSS_SECRET,
-        bucket: process.env.VUE_OSS_BUCKET,
+        region: process.env.VUE_APP_OSS_RETION,
+        accessKeyId: process.env.VUE_APP_OSS_KEY,
+        accessKeySecret: process.env.VUE_APP_OSS_SECRET,
+        bucket: process.env.VUE_APP_OSS_BUCKET,
         setOssPath: filePath => {
           let index = filePath.lastIndexOf('dist')
           let Path = filePath.substring(index + 4, filePath.length)

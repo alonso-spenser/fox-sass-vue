@@ -1,7 +1,13 @@
 <template>
   <div class="passport-content">
     <div class="passport-form">
+      <img
+        class="logo"
+        :src="agentModel.logo"
+        :alt="agentModel.shortForm"
+        v-if="agentModel.logo">
       <svg
+        v-else
         class="logo"
         xmlns="http://www.w3.org/2000/svg">
         <g
@@ -53,14 +59,29 @@
         </g>
       </svg>
       <h1>
-        {{$t('passport.reset.pageTitle')}}
+        {{ $t('passport.reset.pageTitle') }}
       </h1>
-      <el-form :model="entity" :rules="formRules" ref="ruleForm">
+      <el-form
+        :model="entity"
+        :rules="formRules"
+        ref="ruleForm">
         <el-form-item prop="password">
-          <el-input type="text" v-model="entity.password" :placeholder="$t('passport.reset.entity.password.placeholder')" auto-complete="off"></el-input>
+          <fox-input
+            shrink
+            type="text"
+            v-model="entity.password"
+            :placeholder="$t('passport.reset.entity.password.label')"
+            :description="$t('passport.reset.entity.password.placeholder')"
+            auto-complete="off"></fox-input>
         </el-form-item>
         <el-form-item prop="passAgain">
-          <el-input type="password" v-model="entity.passAgain" :placeholder="$t('passport.reset.entity.passAgain.placeholder')" auto-complete="off"></el-input>
+          <fox-input
+            shrink
+            type="password"
+            v-model="entity.passAgain"
+            :placeholder="$t('passport.reset.entity.passAgain.label')"
+            :description="$t('passport.reset.entity.passAgain.placeholder')"
+            auto-complete="off"></fox-input>
         </el-form-item>
 
         <el-form-item>
@@ -75,14 +96,14 @@
       </el-form>
       <p>
         <label class="text-secondary">
-          {{$t('passport.register.haveAccount')}}
+          {{ $t('passport.register.haveAccount') }}
         </label>
         <el-button
           type="text"
           class="text-link"
           @click="redirectLogin"
         >
-          {{$t('passport.register.login')}}
+          {{ $t('passport.register.login') }}
         </el-button>
       </p>
     </div>
@@ -95,6 +116,7 @@ import extend from '@/plugins/page/base'
 import {
   mapState
 } from 'vuex'
+
 export default {
   name: 'passport-register',
   extends: extend,

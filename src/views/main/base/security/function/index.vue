@@ -1,21 +1,21 @@
 <template>
   <main>
-    <fo-page-header></fo-page-header>
-    <fo-page-loading :percentage="100">
-      <fo-paging-table
-        :multiSelect="false"
-        :loading="tableOptions.loading"
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-      >
-      </fo-paging-table>
-    </fo-page-loading>
-    <role-dialog
-      :visible.sync="roleVisible"
-      :appType="appType"
-      :roleInfo="roleInfo"
-      @closeDialog="closeRoleDialog"></role-dialog>
+    <fox-page-header></fox-page-header>
+      <fox-page-loading :percentage="100">
+        <fox-paging-table
+          :multiSelect="false"
+          :loading="tableOptions.loading"
+          :columns="dataConfig.columns"
+          :actions="dataConfig.actions"
+          :dataset="pagingOptions.dataset"
+        >
+          </fox-paging-table>
+          </fox-page-loading>
+          <role-dialog
+            :visible.sync="roleVisible"
+            :appType="appType"
+            :roleInfo="roleInfo"
+            @closeDialog="closeRoleDialog"></role-dialog>
   </main>
 </template>
 

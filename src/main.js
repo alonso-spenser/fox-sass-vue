@@ -13,8 +13,6 @@ import ajax from './plugins/api/http'
 import passport from './plugins/passport'
 import checkPermission from './plugins/permission'
 import i18n from './plugins/i18n/base'
-import foUI from 'fo-vue-ui'
-import 'fo-vue-ui/package/theme/lib/index.css'
 import moment from 'moment'
 import echarts from 'echarts'
 import enLocale from 'element-ui/lib/locale/lang/en'
@@ -25,6 +23,10 @@ import SearchEnginePreview from './components/search-engine-preview'
 import AddToCollection from './components/article/add-to-collection'
 import Sorting from './components/article/sorting'
 
+import foxUI from 'fox-vue-ui'
+
+Vue.use(foxUI)
+
 Vue.component('Countdown', countdown)
 Vue.component('SearchEnginePreview', SearchEnginePreview)
 Vue.component('AddToCollection', AddToCollection)
@@ -33,7 +35,6 @@ Vue.component('LinkPicker', LinkPicker)
 let locale = util.getLanguage() === 'en' ? enLocale : cnLocale
 Vue.prototype.$moment = moment
 Vue.prototype.$echarts = echarts
-Vue.use(foUI)
 Vue.use(elementUI, { locale })
 
 Vue.directive('permission', {

@@ -5,20 +5,6 @@ export default {
   image: {
     avatar: '/css/img/avator.png'
   },
-  env: {
-    api: {
-      development: 'http://127.0.0.1:9721',
-      production: 'https://api.6fox.com'
-    },
-    upload: {
-      development: 'http://127.0.0.1:9721/api/common/oss/upload',
-      production: 'https://api.6fox.com/api/common/oss/upload'
-    },
-    excelAddress: {
-      development: 'http://127.0.0.1:9721/stat/api/report/submit-report',
-      production: '/api/stat/api/report/submit-report'
-    }
-  },
   domain: '.11af.com',
   keepDomain: 'theme|verification|www|design|fomille|fomile|file|devin|jason|admin|console|agent|sass|shop|shopify|nginx|phone|jenkins|site|zabbix|nacos|code|test',
   /**

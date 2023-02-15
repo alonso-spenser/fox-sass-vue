@@ -1,27 +1,31 @@
 <template>
   <div
     v-if="visible"
-    class="fo-dialog middle">
-    <div class="fo-dialog-container">
-      <div class="fo-dialog-header">
-        <span class="el-icon-close" @click="close"></span>
-        {{heading || 'OOPS'}}
+    class="fox-dialog middle">
+    <div class="fox-dialog-container">
+      <div class="fox-dialog-header">
+        <span
+          class="el-icon-close"
+          @click="close"></span>
+        {{ heading || 'OOPS' }}
       </div>
-      <div class="fo-dialog-content">
+      <div class="fox-dialog-content">
         <slot></slot>
       </div>
-      <div class="fo-dialog-footer" v-if="false">
+      <div
+        class="fox-dialog-footer"
+        v-if="false">
         <button
           type="button"
-          class="fo-dialog-button"
+          class="fox-dialog-button"
         >
-          {{$t('base.cancel')}}
+          {{ $t('base.cancel') }}
         </button>
         <button
           type="button"
-          class="fo-dialog-button active"
+          class="fox-dialog-button active"
         >
-          {{$t('base.save')}}
+          {{ $t('base.save') }}
         </button>
       </div>
     </div>
@@ -34,8 +38,7 @@ import '@/assets/dialog.scss'
 export default {
   name: 'page-block',
   data () {
-    return {
-    }
+    return {}
   },
   props: {
     heading: {

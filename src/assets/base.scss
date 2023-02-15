@@ -14,14 +14,22 @@ body {
   height: 100%;
   //color: #3c4043;
   color: #606266;
-  background-color: #ecf5ff;
-  font-size: 14px;
+  //background-color: #ecf5ff;
+  font-size: 14 * $px;
+  overflow: hidden;
 
   //line-height: 1.5;
-  font-family: "Open Sans", "Helvetica", Arial, sans-serif;
+  //font-family: "Open Sans", "Helvetica", Arial, sans-serif;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
-  //font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+.clearfix {
+  display: block;
+  clear: both;
+  content: "";
+  overflow: hidden;
 }
 
 p {
@@ -631,7 +639,7 @@ a.text-dark:focus, a.text-dark:hover {
   h1 {
     font-size: 30px;
     font-weight: normal;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-bottom: 0;
   }
 
@@ -646,7 +654,7 @@ a.text-dark:focus, a.text-dark:hover {
 
       .passport-form {
         width: 480px;
-        padding-top: 50px;
+        padding-top: 40px;
         padding-bottom: 50px;
       }
     }
@@ -707,7 +715,7 @@ a.text-dark:focus, a.text-dark:hover {
     }
 
     .el-form {
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     hr {
@@ -1212,8 +1220,8 @@ hr {
   }
 }
 
-.fo-nav-tab,
-.fo-page-header {
+.fox-nav-tab,
+.fox-page-header {
   &:not(.previous) {
     margin-left: 8px;
     margin-right: 8px;
@@ -1239,7 +1247,7 @@ hr {
     margin-bottom: 0 !important;
   }
 
-  .fo-page-header-back {
+  .fox-page-header-back {
     display: flex;
 
     p + h3 {
@@ -1248,7 +1256,7 @@ hr {
   }
 }
 
-.fo-nav-tab {
+.fox-nav-tab {
   .el-tabs__header {
     margin: 0;
   }
@@ -1292,13 +1300,13 @@ hr {
         }
       }
 
-      .fo-fixed-action {
+      .fox-fixed-action {
         width: 200px;
       }
     }
 
     &:not(.editable) {
-      .fo-fixed-action {
+      .fox-fixed-action {
         border-bottom: 1px solid #e9ecef;
       }
     }
@@ -1308,13 +1316,14 @@ hr {
 .global-aside {
   position: fixed;
   z-index: 2;
-  height: calc(100% - 64px);
+  height: calc(100% - 60px);
   overflow-y: auto;
-  top: 64px;
+  top: 60px;
   left: 0;
-  background: none;
   width: 0;
   transition: all 0.3s;
+  border-right: 1px dotted #DEE1E5;
+  background-color: #FAFAFA;
 
   @media (min-width: 1024px) {
     width: 220px;
@@ -1323,6 +1332,7 @@ hr {
 
 .global-aside-menu {
   background: none;
+  padding-top: 1rem;
   border: 0 !important;
 
   .iconfont {
@@ -1422,7 +1432,7 @@ hr {
   margin: 5px 10px 5px 0;
 }
 
-.fo-page-header-editable {
+.fox-page-header-editable {
   border-bottom: 1px solid #dadce0;
 
   .global-page-container {
@@ -1621,5 +1631,22 @@ hr {
     & + & {
       margin-left: 10px;
     }
+  }
+}
+
+.region-change {
+  position: fixed;
+  right: 1.5rem;
+  top: 1.5rem;
+  z-index: 3;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  img {
+    width: 2rem;
+  }
+
+  &:hover {
+    opacity: 0.75;
   }
 }

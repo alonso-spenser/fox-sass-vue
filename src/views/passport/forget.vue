@@ -1,7 +1,13 @@
 <template>
   <div class="passport-content">
     <div class="passport-form">
+      <img
+        class="logo"
+        :src="agentModel.logo"
+        :alt="agentModel.shortForm"
+        v-if="agentModel.logo">
       <svg
+        v-else
         class="logo"
         xmlns="http://www.w3.org/2000/svg">
         <g
@@ -53,22 +59,31 @@
         </g>
       </svg>
       <h1>
-        {{$t('passport.forget.pageTitle')}}
+        {{ $t('passport.forget.pageTitle') }}
       </h1>
       <p class="text-secondary">
-        {{$t('passport.forget.tips')}}
+        {{ $t('passport.forget.tips') }}
       </p>
-      <el-form :model="entity" :rules="formRules" ref="ruleForm">
-        <el-form-item prop="account" v-if="!isMobile">
-          <el-input
+      <el-form
+        :model="entity"
+        :rules="formRules"
+        ref="ruleForm">
+        <el-form-item
+          prop="account"
+          v-if="!isMobile">
+          <fox-input
+            shrink
             maxlength="64"
             v-model="entity.account"
             @blur="accountBlur"
-            :placeholder="$t('passport.forget.entity.account.placeholder')"
+            :placeholder="$t('passport.forget.entity.account.label')"
+            :description="$t('passport.forget.entity.account.placeholder')"
             auto-complete="off">
-          </el-input>
+          </fox-input>
         </el-form-item>
-        <el-form-item prop="code" v-if="isMobile">
+        <el-form-item
+          prop="code"
+          v-if="isMobile">
           <p>{{ entity.account }}</p>
           <el-input
             maxlength="64"
@@ -84,23 +99,32 @@
                 v-if="!counting.visible"
                 @click="getCode"
               >
-                {{$t('passport.register.getCode')}}
+                {{ $t('passport.register.getCode') }}
               </el-button>
               <countdown
                 :deadline.sync="counting.data"
                 date-format="S"
                 v-if="counting.visible"
                 @finish="resendCode"
-              >00</countdown>
+              >00
+              </countdown>
             </template>
           </el-input>
         </el-form-item>
         <template v-if="captcha.sent && isMobile">
           <el-form-item prop="password">
-            <el-input type="password" v-model="entity.password" :placeholder="$t('passport.reset.entity.password.placeholder')" auto-complete="off"></el-input>
+            <el-input
+              type="password"
+              v-model="entity.password"
+              :placeholder="$t('passport.reset.entity.password.placeholder')"
+              auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item prop="passAgain">
-            <el-input type="password" v-model="entity.passAgain" :placeholder="$t('passport.reset.entity.passAgain.placeholder')" auto-complete="off"></el-input>
+            <el-input
+              type="password"
+              v-model="entity.passAgain"
+              :placeholder="$t('passport.reset.entity.passAgain.placeholder')"
+              auto-complete="off"></el-input>
           </el-form-item>
         </template>
 
@@ -126,14 +150,14 @@
       </el-form>
       <p>
         <label class="text-secondary">
-          {{$t('passport.register.haveAccount')}}
+          {{ $t('passport.register.haveAccount') }}
         </label>
         <el-button
           type="text"
           class="text-link"
           @click="redirectLogin"
         >
-          {{$t('passport.register.login')}}
+          {{ $t('passport.register.login') }}
         </el-button>
       </p>
     </div>
@@ -147,6 +171,7 @@ import {
   mapMutations,
   mapState
 } from 'vuex'
+
 export default {
   name: 'passport-register',
   extends: extend,

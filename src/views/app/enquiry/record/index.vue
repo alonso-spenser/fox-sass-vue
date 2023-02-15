@@ -1,6 +1,23 @@
 <template>
   <main>
-    <fo-page-header></fo-page-header>
+    <fox-header-ops
+      :title="$t('enquiry.record.title')"
+      :description="$t('enquiry.email.description')"
+      divider
+    >
+      <div class="header-ops-item">
+        <el-button
+          type="text"
+          icon="el-icon-download"
+          v-if="pagingOptions.recordCount > 0"
+          :loading="loading"
+          @click="exportData"
+        >
+          {{ $t("enquiry.export") }}
+        </el-button>
+      </div>
+    </fox-header-ops>
+    <!--    <fox-page-header></fox-page-header>-->
     <!--    <div class="filter-params">-->
     <!--      <div class="filter-params-element">-->
     <!--        11-->
@@ -9,12 +26,12 @@
     <!--        11-->
     <!--      </div>-->
     <!--    </div>-->
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
-      :percentage="100"
+      :percentage="90"
     >
-      <fo-paging-table
+      <fox-paging-table
         :multiSelect="false"
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
@@ -61,16 +78,6 @@
                       @click="startSearch">
                     </el-button>
                   </el-input>
-                </el-col>
-                <el-col
-                  :span="8"
-                  v-if="pagingOptions.recordCount > 0">
-                  <el-button
-                    :loading="loading"
-                    @click="exportData"
-                  >
-                    {{ $t("enquiry.export") }}
-                  </el-button>
                 </el-col>
               </el-row>
             </el-col>
@@ -169,8 +176,8 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
-    </fo-page-loading>
+      </fox-paging-table>
+    </fox-page-loading>
   </main>
 </template>
 

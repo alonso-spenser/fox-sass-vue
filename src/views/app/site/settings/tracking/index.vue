@@ -1,9 +1,14 @@
 <template>
-  <fo-page-loading
+  <fox-page-loading
     :loading="pageLoading"
     :invalid="pageIsValid">
-    <el-form :model="entity" :rules="formRules" ref="update" label-width="100px" label-position="top">
-      <fo-page-section
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
+      label-width="100px"
+      label-position="top">
+      <fox-page-section
         :heading="$t('settings.tracking.update.entity.scriptHead.label')"
       >
         <el-form-item prop="scriptHead">
@@ -13,12 +18,14 @@
             v-model="entity.scriptHead"
             :placeholder="$t('settings.tracking.update.entity.scriptHead.placeholder')"
           ></el-input>
-          <p class="text-secondary mt-2" v-html="$t('settings.tracking.update.entity.scriptHead.info')">
-            {{$t('settings.tracking.update.entity.scriptHead.info')}}
+          <p
+            class="text-secondary mt-2"
+            v-html="$t('settings.tracking.update.entity.scriptHead.info')">
+            {{ $t('settings.tracking.update.entity.scriptHead.info') }}
           </p>
         </el-form-item>
-      </fo-page-section>
-      <fo-page-section
+      </fox-page-section>
+      <fox-page-section
         :heading="$t('settings.tracking.update.entity.scriptBottom.label')"
       >
         <el-form-item prop="scriptBottom">
@@ -28,24 +35,27 @@
             v-model="entity.scriptBottom"
             :placeholder="$t('settings.tracking.update.entity.scriptBottom.placeholder')"
           ></el-input>
-          <p class="text-secondary mt-2" v-html="$t('settings.tracking.update.entity.scriptBottom.info')">
-            {{$t('settings.tracking.update.entity.scriptBottom.info')}}
+          <p
+            class="text-secondary mt-2"
+            v-html="$t('settings.tracking.update.entity.scriptBottom.info')">
+            {{ $t('settings.tracking.update.entity.scriptBottom.info') }}
           </p>
         </el-form-item>
-      </fo-page-section>
+      </fox-page-section>
       <!--save-->
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
+      </fox-unsaved>
     </el-form>
-  </fo-page-loading>
+  </fox-page-loading>
 </template>
 
 <script>
 import extend from '@/plugins/page/unsaved'
 import { fetchSiteTracking, fetchSiteTrackingUpdate } from '@/plugins/api/settings'
+
 export default {
   name: 'siteSettings',
   extends: extend,

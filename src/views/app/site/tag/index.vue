@@ -1,6 +1,6 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :actions="[
         {
           label: $t('base.addition.button'),
@@ -22,13 +22,13 @@
         >{{ $t(`${tagType}.paging.title`) }}</el-breadcrumb-item>
         <el-breadcrumb-item>{{ $t('article.tag.paging.title') }}</el-breadcrumb-item>
       </el-breadcrumb>
-    </fo-page-header>
-    <fo-page-loading
+    </fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
     >
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -61,8 +61,8 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
-    </fo-page-loading>
+      </fox-paging-table>
+    </fox-page-loading>
   </main>
 </template>
 

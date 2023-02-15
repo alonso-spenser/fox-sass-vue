@@ -1,10 +1,10 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :previous="true"
       :actions="id ? headerActions : []"
-    ></fo-page-header>
-    <fo-page-loading
+    ></fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
@@ -14,25 +14,24 @@
         ref="update"
         label-width="100px"
         label-position="top">
-        <fo-page-section>
-          <el-form-item
-            prop="title"
-            :label="`${$t('customizePage.update.entity.title.label')} <H1>`">
-            <el-input
-              v-model="entity.title"
-              show-word-limit
-              :placeholder="$t('customizePage.update.entity.title.placeholder')"
-              :maxlength="100"
-            >
-              <el-checkbox
-                v-model="autoSyncH1Title"
-                @change="setAutoSyncH1"
-                slot="append"
-                v-if="id">H1
-              </el-checkbox>
-            </el-input>
-          </el-form-item>
-        </fo-page-section>
+        <el-form-item
+          prop="title">
+          <fox-input
+            shrink
+            v-model="entity.title"
+            show-word-limit
+            :placeholder="`${$t('customizePage.update.entity.title.label')}&lt;H1&gt;`"
+            :description="$t('customizePage.update.entity.title.placeholder')"
+            :maxlength="100"
+          >
+            <el-checkbox
+              v-model="autoSyncH1Title"
+              @change="setAutoSyncH1"
+              slot="append"
+              v-if="id">H1
+            </el-checkbox>
+          </fox-input>
+        </el-form-item>
         <el-alert
           class="mt-5 mb-5"
           :title="$t('customizePage.update.tips')"
@@ -48,13 +47,13 @@
         >
         </search-engine-preview>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

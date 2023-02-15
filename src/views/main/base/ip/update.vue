@@ -1,12 +1,12 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-page-header
+      <fox-page-header
         :actions="crumbAction"
-      ></fo-page-header>
+      ></fox-page-header>
       <el-form
         :model="entity"
         :rules="formRules"
@@ -14,7 +14,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fo-page-section>
+        <fox-page-section>
           <el-row
             :gutter="20"
             class="el-form-item">
@@ -129,15 +129,15 @@
               </el-form-item>
             </el-col>
           </el-row>
-        </fo-page-section>
+        </fox-page-section>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

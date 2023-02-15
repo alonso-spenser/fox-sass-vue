@@ -74,14 +74,14 @@
         <!--          ></el-input>-->
         <!--        </el-form-item>-->
         <!--        <el-form-item label="图片" prop="sectionSchema.avatar">-->
-        <!--          <fo-image-single-->
+        <!--          <fox-image-single-->
         <!--            v-model="entity.sectionSchema.avatar"-->
         <!--            :alt-visible="false"-->
         <!--            :size-limit="10"-->
         <!--            :oss-bucket="resource.ossBucket"-->
         <!--            :server-address="utility.uploadURL()"-->
         <!--            file-folder="theme"-->
-        <!--          ></fo-image-single>-->
+        <!--          ></fox-image-single>-->
         <!--        </el-form-item>-->
         <el-row :gutter="20">
           <el-col :span="12">

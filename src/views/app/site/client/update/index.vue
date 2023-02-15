@@ -1,13 +1,13 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :page-loading="pageLoading"
       :page-is-valid="pageIsValid"
     >
-      <fo-page-header
+      <fox-page-header
         :previous="true"
-      ></fo-page-header>
-      <fo-page-section>
+      ></fox-page-header>
+      <fox-page-section>
         <el-form
           class="customer-form"
           :model="entity"
@@ -19,7 +19,11 @@
           <div class="mb-6">{{ $t("client.update.heading") }}</div>
           <el-row type="flex">
             <div class="mr-6">
-              <el-avatar :size="40" style="background: #73B6FD" v-if="avatar">{{avatar}}</el-avatar>
+              <el-avatar
+                :size="40"
+                style="background: #73B6FD"
+                v-if="avatar">{{ avatar }}
+              </el-avatar>
               <el-avatar
                 :size="40"
                 icon="el-icon-user-solid"
@@ -28,7 +32,9 @@
               ></el-avatar>
             </div>
             <div style="flex: auto;">
-              <el-row :gutter="40" class="mb-6">
+              <el-row
+                :gutter="40"
+                class="mb-6">
                 <el-col :span="10">
                   <el-form-item
                     prop="firstName"
@@ -57,7 +63,9 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row :gutter="40" class="mb-6">
+              <el-row
+                :gutter="40"
+                class="mb-6">
                 <el-col :span="10">
                   <el-form-item
                     prop="lastName"
@@ -86,7 +94,9 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row :gutter="40" class="mb-6">
+              <el-row
+                :gutter="40"
+                class="mb-6">
                 <el-col :span="20">
                   <el-form-item
                     prop="remark"
@@ -108,8 +118,8 @@
             </div>
           </el-row>
         </el-form>
-      </fo-page-section>
-      <fo-paging-table
+      </fox-page-section>
+      <fox-paging-table
         class="enquiry-table"
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
@@ -122,20 +132,21 @@
         :rows-class-name="dataConfig.rowsClassName"
         @paging="getData"
         :multi-select="false"
-      ></fo-paging-table>
+      ></fox-paging-table>
       <!--保存按钮-->
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 
 <script>
 import extend from '@/plugins/page/unsaved'
 import { fetchCustomerDetail, fetchUpdateCustomer } from '@/plugins/api/customer'
+
 export default {
   name: 'siteCustomizeUpdate',
   extends: extend,

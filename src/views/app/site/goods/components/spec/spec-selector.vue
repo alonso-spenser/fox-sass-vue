@@ -1,5 +1,5 @@
 <template>
-  <fo-page-section
+  <fox-page-section
     :heading="dataset.length > 0 ? $t('specSelector.heading') : ''"
     :content="dataset.length > 0 ? $t('specSelector.subheading') : ''"
   >
@@ -282,7 +282,7 @@
         </el-button>
       </div>
     </el-dialog>
-  </fo-page-section>
+  </fox-page-section>
 </template>
 
 <script>

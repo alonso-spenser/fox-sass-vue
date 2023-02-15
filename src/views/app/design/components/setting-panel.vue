@@ -22,7 +22,7 @@
       <div
         v-show="displaySection"
         v-loading="pageLoading"
-        class="fo-section-panel"
+        class="fox-section-panel"
         element-loading-background="#535366"
       >
         <!-- header -->
@@ -56,7 +56,7 @@
         <draggable
           :list="model.sectionList"
           :move="draggableMoving"
-          handle=".fo-section-move"
+          handle=".fox-section-move"
           @end="draggableEnd"
           @start="draggableStart"
         >
@@ -106,7 +106,7 @@
       </div>
       <div
         v-show="!displaySection"
-        class="fo-section-panel">
+        class="fox-section-panel">
         <template v-for="(o) in configSection.global">
           <section-item
             :key="o.sectionType"
@@ -120,7 +120,7 @@
         <div
           v-if="false"
           v-loading="clearSchemaLoading"
-          class="fo-section mt-3"
+          class="fox-section mt-3"
           @click="clearSchema">
           <div class="el-row">
             <div class="el-col el-col-3 el-col-offset-1">

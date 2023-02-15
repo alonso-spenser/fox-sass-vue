@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fo-page-section
+    <fox-page-section
       :heading="heading"
       :content="subheading">
       <template
@@ -14,8 +14,8 @@
           {{ $t('settings.domain.add') }}
         </el-button>
       </template>
-    </fo-page-section>
-    <fo-paging-table
+    </fox-page-section>
+    <fox-paging-table
       :multiSelect="false"
       :columns="dataConfig.columns"
       :actions="dataConfig.actions"
@@ -28,7 +28,7 @@
       :record-count="pagingOptions.recordCount"
       :rows-class-name="dataConfig.rowsClassName"
     >
-    </fo-paging-table>
+    </fox-paging-table>
     <!--弹窗-->
     <el-dialog
       :title="$t('settings.domain.change.heading')"

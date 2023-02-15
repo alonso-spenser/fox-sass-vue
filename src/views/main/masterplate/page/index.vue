@@ -1,6 +1,6 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :actions="[
         {
           label: $t('base.addition.button'),
@@ -13,13 +13,13 @@
         }
       ]"
     >
-    </fo-page-header>
-    <fo-page-loading
+    </fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
     >
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -77,12 +77,12 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
+      </fox-paging-table>
       <page-bind-section
         :visible.sync="bindVisible"
         v-model="bindModel"
       ></page-bind-section>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

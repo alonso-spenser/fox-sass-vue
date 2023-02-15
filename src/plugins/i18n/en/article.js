@@ -156,15 +156,13 @@ export default {
       sortDesc: '序号倒序'
     },
     searchType: {
-      name: '文章名称',
-      collection: '文章集合',
-      tag: '文章标签'
+      name: 'Title',
+      collection: 'Collection',
+      tag: 'TAG'
     },
     paging: {
-      title: '所有文章',
-      heading: '',
-      subheading: '',
-      add: '添加文章',
+      title: 'Article',
+      description: '',
       actions: {
         disable: '停用',
         enable: '启用',
@@ -178,8 +176,8 @@ export default {
         }
       },
       empty: {
-        content: '添加的文章信息会被列举在这里。您可以在这里管理所有文章信息，例如批量删除、修改等。',
-        buttonLabel: '添加文章信息'
+        content: 'The added article information will be listed here. You can manage all article information here, such as batch deletion, modification, etc.',
+        buttonLabel: 'Add article'
       },
       tableHeader: {
         comments: '评论数',
@@ -331,7 +329,7 @@ export default {
         add: '添加产品'
       },
       article: {
-        title: '文章集合',
+        title: 'Collection',
         label: '文章',
         add: '添加文章'
       },
@@ -351,16 +349,16 @@ export default {
         },
         empty: {
           content: '添加的文章集合会被列举在这里。您可以在这里管理所有文章集合，例如批量删除、修改等。',
-          buttonLabel: '添加文章集合'
+          buttonLabel: 'Add article'
         },
         tableHeader: {
           banner: '横幅图片',
           collectionType: '类型',
-          coverImage: '封面图片',
+          coverImage: 'Image',
           refCount: '引用数量',
-          state: '状态',
-          title: '标题',
-          updateTime: '更新时间'
+          state: 'State',
+          title: 'Title',
+          updateTime: 'Update Time'
         }
       },
       update: {

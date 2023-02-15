@@ -10,13 +10,13 @@
       <el-collapse
         v-model="activeName"
         accordion
-        class="fo-section-collapse">
+        class="fox-section-collapse">
         <template v-for="(o, index) in schemeData.group">
           <el-collapse-item
             :title="o.name[language]"
             :name="`element-${index}`"
             :key="`collapse-item-${index}`"
-            class="fo-section-item"
+            class="fox-section-item"
           >
             <template v-if="o.multiple === 0">
               <template v-for="(el, elIndex) in o.elements">
@@ -88,9 +88,9 @@
               <el-collapse
                 v-model="subActiveName"
                 accordion
-                class="fo-section-sub-collapse">
+                class="fox-section-sub-collapse">
                 <draggable
-                  handle=".fo-section-sub-move"
+                  handle=".fox-section-sub-move"
                   :list="model.dataset[o.tag].data"
                 >
                   <template v-for="(sub, subIndex) in model.dataset[o.tag].data">
@@ -98,13 +98,13 @@
                       :title="o.name[language]"
                       :name="`element-${index}-${subIndex}`"
                       :key="`collapse-item-${index}-${subIndex}`"
-                      class="fo-section-sub-item"
+                      class="fox-section-sub-item"
                     >
                       <template slot="title">
                         <div
-                          class="fo-section-sub-title"
+                          class="fox-section-sub-title"
                           v-html="getPlaceholder(o.elements, sub, o.placeholder[language])"></div>
-                        <div class="fo-section-sub-move el-icon-rank">
+                        <div class="fox-section-sub-move el-icon-rank">
                         </div>
                       </template>
                       <template v-for="(el, elIndex) in o.elements">
@@ -141,14 +141,14 @@
                 :key="`addSlide-${index}`"
                 @click="addSlide(o)"
                 v-if="model.dataset[o.tag] && model.dataset[o.tag].data.length < o.max"
-                class="fo-slide-add">
+                class="fox-slide-add">
                 <i class="el-icon-plus"></i>
                 {{ $t('base.operate.add') }}
               </div>
               <div
                 :key="`clearSlide-${index}`"
                 @click="clearSlide(o)"
-                class="fo-slide-add">
+                class="fox-slide-add">
                 <i class="el-icon-refresh"></i>
                 {{ $t('design.clear') }}
               </div>
@@ -175,7 +175,7 @@ export default {
     Draggable,
     sectionWidget
   },
-  data() {
+  data () {
     return {
       resource,
       model: {},
@@ -225,21 +225,21 @@ export default {
   },
   watch: {
     sectionData: {
-      handler(val) {
+      handler (val) {
         this.model = val
       },
       immediate: true,
       deep: true
     },
     model: {
-      handler() {
+      handler () {
         this.fixedUnsaved(true)
       },
       immediate: true,
       deep: true
     }
   },
-  created() {
+  created () {
     this.model = this.sectionData
     this.schemeData = schemeData.designSection
     this.presetSection = this.$t('design.presetSection')
@@ -249,13 +249,13 @@ export default {
     /**
      * 参数变更,发送通知给 iframe进行同步参数
      */
-    valueChanged() {
+    valueChanged () {
       this.$emit('change', this.model)
     },
     /**
      * 数据保存
      */
-    fixedUnsaved() {
+    fixedUnsaved () {
       if (this.debouncedUpdateView) {
         this.debouncedUpdateView()
       }
@@ -266,7 +266,7 @@ export default {
      * @param data 数据
      * @param defaultValue
      */
-    getPlaceholder(fields, data, defaultValue) {
+    getPlaceholder (fields, data, defaultValue) {
       let image = ''
       let heading = ''
       let icon = ''
@@ -303,7 +303,7 @@ export default {
      * 添加
      * @param o
      */
-    addSlide(o) {
+    addSlide (o) {
       if (o.tag && this.model.dataset[o.tag] && this.schemeData.default.dataset[o.tag] && this.schemeData.default.dataset[o.tag].data) {
         let max = parseFloat((o.max || '99'))
         if (max > 0 && this.model.dataset[o.tag].data.length < max) {
@@ -315,7 +315,7 @@ export default {
     /**
      * clear slides
      */
-    clearSlide(o) {
+    clearSlide (o) {
       this.$confirm(this.$t('design.clearTips').toString(), this.$t('design.clearHeading').toString(), {
         confirmButtonText: this.$t('base.operate.confirm'),
         cancelButtonText: this.$t('base.operate.cancel'),
@@ -334,7 +334,7 @@ export default {
      * remove slide
      * @param index
      */
-    removeSlide(o, index) {
+    removeSlide (o, index) {
       if (o.tag && this.model.dataset[o.tag]) {
         this.model.dataset[o.tag].data.splice(index, 1)
       }
@@ -342,7 +342,7 @@ export default {
     /**
      * copy slide
      */
-    copySlide(o, index) {
+    copySlide (o, index) {
       if (o.tag && this.model.dataset[o.tag] && this.model.dataset[o.tag]) {
         this.model.dataset[o.tag].data.push(
           JSON.parse(JSON.stringify(this.model.dataset[o.tag].data[index]))

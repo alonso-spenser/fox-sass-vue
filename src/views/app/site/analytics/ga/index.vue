@@ -1,7 +1,7 @@
 <template>
   <main>
-    <fo-page-header></fo-page-header>
-    <fo-page-loading
+    <fox-page-header></fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
@@ -49,7 +49,7 @@
           </el-button>
         </el-descriptions-item>
       </el-descriptions>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

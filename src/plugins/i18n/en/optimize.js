@@ -75,9 +75,9 @@ export default {
    */
   searchEngine: {
     heading: 'SEO',
-    tips: '设置该页面的SEO元信息',
-    engine: '搜索引擎列表预览',
-    edit: '编辑SEO信息',
+    tips: 'SEO meta information',
+    engine: 'Google search result preview',
+    edit: 'Edit SEO information',
     visible: '添加标题和说明，以了解此页面在搜索引擎列表中的显示方式',
     title: {
       goods: {
@@ -119,37 +119,37 @@ export default {
     },
     entity: {
       seoTitle: {
-        label: '页面标题',
-        placeholder: '请输入标题',
-        required: '页面标题不能为空',
-        description: '重要，该部分内容会显示在搜索引擎的搜索结果当中'
+        label: 'Page title',
+        placeholder: 'Page title',
+        required: 'Page title can\'t be empty',
+        description: 'Important, page title will be displayed in the search results of the search engine'
       },
       seoDesc: {
-        label: '页面描述',
-        placeholder: '页面描述',
+        label: 'Page description',
+        placeholder: 'Page description',
         required: '',
-        description: '建议填写，该部分内容会显示在搜索引擎的搜索结果当中'
+        description: 'Important, page description will be displayed in the search results of the search engine'
       },
       seoUrl: {
         label: 'URL',
-        placeholder: '请输入语义化的URL',
+        placeholder: 'Please enter a semantic URL',
         required: ''
       },
       seoKeywords: {
-        label: 'Meta关键字',
+        label: 'Meta Keywords',
         placeholder: '请输入关键词',
         required: '',
-        description: '除谷歌以外的部分搜索引擎会抓取这部分内容（例如百度），按需填写，不宜过多',
-        addTag: '+ 新增关键词',
-        batchAddTag: '+ 批量添加',
-        batchInfo: '多个关键词用逗号分隔',
-        batchUpdate: '更新关键词'
+        description: 'Most of the search engines except Google will include keywords (such as Baidu), fill in as needed, 3~5 keywords',
+        addTag: '+ Add keyword',
+        batchAddTag: '+ Batch add',
+        batchInfo: 'Multiple keywords are separated by commas',
+        batchUpdate: 'Update keywords'
       },
       seoH1: {
-        label: 'H1标题',
-        placeholder: 'H1标题',
+        label: 'H1 title',
+        placeholder: 'H1 title',
         required: '',
-        description: '建议填写，该部分内容会显示在搜索引擎的搜索结果以及浏览器的页签当中'
+        description: 'Important, h1 title will be displayed in the search results of the search engine and in the tab of the browser'
       }
     }
   }

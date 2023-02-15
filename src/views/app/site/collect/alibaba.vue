@@ -1,22 +1,27 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <div class="fo-page-header previous">
-        <div class="fo-page-header-back">
+      <div class="fox-page-header previous">
+        <div class="fox-page-header-back">
           <p class="el-icon-arrow-left go-back">所有产品</p>
           <h3>阿里国际站产品</h3>
         </div>
-        <div class="fo-page-header-item"></div>
+        <div class="fox-page-header-item"></div>
       </div>
-      <div class="fo-fixed-action">
-        <div class="fo-fixed-action-label">
+      <div class="fox-fixed-action">
+        <div class="fox-fixed-action-label">
           采集使用异步方式执行，不会直接返回结果。
         </div>
-        <div class="fo-fixed-action-button">
-          <el-button type="danger" size="small" @click="formValidation(false)" :disabled="loading">提交</el-button>
+        <div class="fox-fixed-action-button">
+          <el-button
+            type="danger"
+            size="small"
+            @click="formValidation(false)"
+            :disabled="loading">提交
+          </el-button>
         </div>
       </div>
       <el-form
@@ -26,10 +31,12 @@
         label-width="100px"
         label-position="top"
       >
-        <fo-page-section
+        <fox-page-section
           content="基础数据"
         >
-          <el-form-item prop="goodsIdList" :label="$t('collect.alibaba.ids.label')">
+          <el-form-item
+            prop="goodsIdList"
+            :label="$t('collect.alibaba.ids.label')">
             <el-input
               type="textarea"
               :rows="10"
@@ -38,14 +45,15 @@
             >
             </el-input>
           </el-form-item>
-        </fo-page-section>`
+        </fox-page-section>
+        `
         <collection-select
           :inlay="true"
           :info-type.sync="infoType"
           v-model="entity.collectionList"
         ></collection-select>
       </el-form>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 
@@ -59,6 +67,7 @@ import {
 import {
   mapState
 } from 'vuex'
+
 export default {
   name: 'collectSpider',
   extends: extend,

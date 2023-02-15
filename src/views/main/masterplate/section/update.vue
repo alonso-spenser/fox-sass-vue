@@ -1,10 +1,10 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-page-header
+      <fox-page-header
         :drop-actions="[
       ]"
         :actions="[
@@ -19,7 +19,7 @@
         }
     ]"
       >
-      </fo-page-header>
+      </fox-page-header>
       <el-form
         :model="entity"
         :rules="formRules"
@@ -28,20 +28,20 @@
         label-position="top"
       >
 
-        <fo-page-section>
+        <fox-page-section>
           <el-row :gutter="20">
             <el-col :span="6">
               <el-form-item
                 prop="sectionImage"
                 :label="$t('theme.section.update.entity.sectionImage.label')">
-                <fo-image-single
+                <fox-image-single
                   v-model="entity.sectionImage"
                   :alt-visible="false"
                   :size-limit="10"
                   :oss-bucket="resource.themeBucket"
                   :server-address="utility.uploadURL()"
                   file-folder="section"
-                ></fo-image-single>
+                ></fox-image-single>
               </el-form-item>
             </el-col>
             <el-col :span="18">
@@ -231,8 +231,8 @@
               </el-form-item>
             </el-col>
           </el-row>
-        </fo-page-section>
-        <fo-page-section
+        </fox-page-section>
+        <fox-page-section
           heading="AMP"
           v-if="false">
           <el-form-item prop="ampCss">
@@ -255,8 +255,8 @@
               :placeholder="$t('theme.section.update.entity.ampTemplate.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
-        <fo-page-section heading="CSS">
+        </fox-page-section>
+        <fox-page-section heading="CSS">
           <el-form-item prop="baseCss">
             <label class="el-form-item__label">{{ $t('theme.section.update.entity.baseCss.label') }}</label>
             <el-button
@@ -286,8 +286,8 @@
               :placeholder="$t('theme.section.update.entity.variableCss.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
-        <fo-page-section heading="JAVASCRIPT">
+        </fox-page-section>
+        <fox-page-section heading="JAVASCRIPT">
           <el-form-item
             prop="scriptCode"
             :label="$t('theme.section.update.entity.scriptCode.label')">
@@ -298,8 +298,8 @@
               :placeholder="$t('theme.section.update.entity.scriptCode.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
-        <fo-page-section heading="TEMPLATE">
+        </fox-page-section>
+        <fox-page-section heading="TEMPLATE">
           <el-form-item
             prop="artTemplate"
             :label="$t('theme.section.update.entity.artTemplate.label')"
@@ -321,8 +321,8 @@
               :placeholder="$t('theme.section.update.entity.thymeleafTemplate.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
-        <fo-page-section heading="LANGUAGE">
+        </fox-page-section>
+        <fox-page-section heading="LANGUAGE">
           <el-form-item
             prop="language"
             :label="$t('theme.section.update.entity.language.label')">
@@ -333,8 +333,8 @@
               :placeholder="$t('theme.section.update.entity.language.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
-        <fo-page-section heading="INFO">
+        </fox-page-section>
+        <fox-page-section heading="INFO">
           <el-form-item
             prop="description"
             :label="$t('theme.section.update.entity.description.label')">
@@ -354,20 +354,20 @@
               :placeholder="$t('theme.section.update.entity.sectionIcon.placeholder')"
             ></el-input>
           </el-form-item>
-        </fo-page-section>
+        </fox-page-section>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
+      </fox-unsaved>
       <css-variable
         v-model="cssData.value"
         :visible.sync="cssData.visible"
         @change="callCSSVariable"
       ></css-variable>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

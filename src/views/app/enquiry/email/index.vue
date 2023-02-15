@@ -1,14 +1,16 @@
 <template>
   <main>
-    <fo-page-header
-      :previous="true"
-    ></fo-page-header>
-    <fo-page-loading
+    <fox-header-ops
+      :title="$t('enquiry.email.title')"
+      :description="$t('enquiry.email.description')"
+    >
+    </fox-header-ops>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
-      :fullScreen="true"
+      :percentage="90"
     >
-      <fo-page-section>
+      <fox-page-section>
         <el-form
           :model="entity"
           :rules="formRules"
@@ -18,18 +20,6 @@
           <draggable
             handle=".el-move"
             :list="entity.data">
-            <el-row :gutter="10">
-              <el-col :span="10">
-                <small class="text-secondary">
-                  {{ $t('enquiry.email.update.email.label') }}
-                </small>
-              </el-col>
-              <el-col :span="10">
-                <small class="text-secondary">
-                  {{ $t('enquiry.email.update.userName.label') }}
-                </small>
-              </el-col>
-            </el-row>
             <el-row
               v-for="(o, index) in entity.data"
               :key="`spec-${index}`"
@@ -41,10 +31,12 @@
                   :prop="`data.${index}.email`"
                   :rules="formRules.email"
                 >
-                  <el-input
+                  <fox-input
+                    shrink
+                    :description="$t('enquiry.email.update.email.description')"
                     :placeholder="$t('enquiry.email.update.email.placeholder')"
                     v-model="o.email"
-                  ></el-input>
+                  ></fox-input>
                 </el-form-item>
               </el-col>
               <el-col :span="10">
@@ -52,12 +44,13 @@
                   :prop="`data.${index}.name`"
                   :rules="formRules.userName"
                 >
-                  <el-input
+                  <fox-input
+                    shrink
                     :maxlength="255"
                     show-word-limit
                     :placeholder="$t('enquiry.email.update.userName.placeholder')"
                     v-model="o.name"
-                  ></el-input>
+                  ></fox-input>
                 </el-form-item>
               </el-col>
               <el-col
@@ -93,15 +86,15 @@
             </el-button>
           </p>
         </el-form>
-      </fo-page-section>
+      </fox-page-section>
       <!--保存按钮-->
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

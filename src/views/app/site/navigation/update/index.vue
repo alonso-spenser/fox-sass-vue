@@ -1,9 +1,9 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :previous="true"
-      :actions="crumbAction"></fo-page-header>
-    <fo-page-loading
+      :actions="crumbAction"></fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
@@ -15,7 +15,7 @@
         :nav-type="menuType"
         :limit="menuTypeData.limit">
       </sort-tree>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

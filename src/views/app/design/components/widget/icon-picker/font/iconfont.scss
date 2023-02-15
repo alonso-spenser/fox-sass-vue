@@ -1,10 +1,10 @@
 @font-face {
   font-family: "fo-site-font"; /* Project id 2701642 */
   src: url('iconfont.woff2?t=1661744958251') format('woff2'),
-       url('iconfont.woff?t=1661744958251') format('woff');
+  url('iconfont.woff?t=1661744958251') format('woff');
 }
 
-.fo-site-font,[class*=" ic-"], [class^=ic-] {
+.fox-site-font, [class*=" ic-"], [class^=ic-] {
   font-family: "fo-site-font" !important;
   font-size: 16px;
   font-style: normal;
@@ -320,6 +320,7 @@ $themeColor: #46a0fc;
 
     &.clear {
       float: right;
+
       i {
         color: $themeColor;
       }
@@ -334,6 +335,7 @@ $themeColor: #46a0fc;
     }
   }
 }
+
 .icon-picker-button {
   padding: 0;
   width: 30px;

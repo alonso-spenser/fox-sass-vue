@@ -15,7 +15,7 @@
         @click="displayExplore=true"
         v-if="!entity.id">
         <p class="text-center">
-          <i class="fo-edit"></i>
+          <i class="fox-edit"></i>
           {{ $t('collectionPicker.select') }}111
         </p>
       </div>
@@ -89,7 +89,7 @@
           </div>
         </template>
       </div>
-      <div class="fo-setting-fixed-bottom">
+      <div class="fox-setting-fixed-bottom">
         <el-row class=" w-100">
           <el-col
             :span="8"

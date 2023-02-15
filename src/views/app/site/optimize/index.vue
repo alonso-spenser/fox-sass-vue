@@ -11,7 +11,7 @@
           v-if="validSiteType(item.siteType)"></el-tab-pane>
       </template>
     </el-tabs>
-    <fo-page-loading
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
@@ -183,12 +183,12 @@
           :total="pagingOptions.recordCount">
         </el-pagination>
       </div>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="update"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
   <main>
-    <fo-page-loading
+    <fox-page-loading
       :full-screen="true"
       :loading="pageLoading"
       :invalid="pageIsValid"
       :half="true"
     >
-      <fo-page-header
+      <fox-page-header
         :actions="[
         {
           label: $t('base.delete.button'),
@@ -19,7 +19,7 @@
         }
     ]"
       >
-      </fo-page-header>
+      </fox-page-header>
       <el-form
         :model="entity"
         :rules="formRules"
@@ -27,7 +27,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fo-page-section>
+        <fox-page-section>
           <el-form-item
             prop="languageName"
             :label="$t('core.base.lang.update.entity.languageName.label')">
@@ -91,14 +91,14 @@
             </el-switch>
           </el-form-item>
 
-        </fo-page-section>
+        </fox-page-section>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

@@ -1,9 +1,9 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :previous="true"
-    ></fo-page-header>
-    <fo-page-loading
+    ></fox-page-header>
+    <fox-page-loading
       :page-loading="pageLoading"
       :page-is-valid="pageIsValid"
     >
@@ -14,7 +14,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fo-page-section>
+        <fox-page-section>
           <el-row :gutter="20">
             <el-col :span="18">
               <div class="files-upload">
@@ -26,7 +26,7 @@
                     {{ entity.fileList.length }} / {{ limit }}
                   </small>
                 </div>
-                <fo-attachment-upload
+                <fox-attachment-upload
                   v-model="entity.fileList"
                   :oss-bucket="resource.ossBucket"
                   :server-address="utility.uploadURL()"
@@ -41,7 +41,7 @@
                   :size-limit="60"
                   class="files"
                 >
-                </fo-attachment-upload>
+                </fox-attachment-upload>
               </div>
             </el-col>
             <el-col :span="6">
@@ -51,14 +51,14 @@
               ></collection-select>
             </el-col>
           </el-row>
-        </fo-page-section>
+        </fox-page-section>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
-    </fo-page-loading>
+      </fox-unsaved>
+    </fox-page-loading>
   </main>
 </template>
 

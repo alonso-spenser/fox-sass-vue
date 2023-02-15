@@ -1,7 +1,7 @@
 <template>
   <main>
-    <fo-page-header :actions="crumbAction"></fo-page-header>
-    <fo-page-loading
+    <fox-page-header :actions="crumbAction"></fox-page-header>
+    <fox-page-loading
       :fo-page-loading="pageLoading"
       :page-is-valid="pageIsValid"
       :percentage="100"
@@ -15,7 +15,7 @@
         label-position="top">
         <el-row :gutter="20">
           <el-col :span="18">
-            <fo-page-section>
+            <fox-page-section>
               <el-form-item
                 prop="title"
                 :label="`${$t('goods.update.entity.title.label')}`">
@@ -67,8 +67,8 @@
                   :placeholder="$t('goods.update.entity.summary.placeholder')"
                 ></el-input>
               </el-form-item>
-            </fo-page-section>
-            <fo-page-section
+            </fox-page-section>
+            <fox-page-section
               :heading="$t('goods.update.entity.coverImage.label')"
             >
               <template slot="header">
@@ -79,15 +79,15 @@
                   {{ $t('resourceSelector.lib') }}
                 </el-button>
               </template>
-              <fo-image-upload
+              <fox-image-upload
                 v-model="entity.imageList"
                 :file-limit="10"
                 :oss-bucket="resource.ossBucket"
                 :server-address="utility.uploadURL()"
                 :file-folder="siteId"
-              ></fo-image-upload>
-            </fo-page-section>
-            <fo-page-section>
+              ></fox-image-upload>
+            </fox-page-section>
+            <fox-page-section>
               <el-row :gutter="20">
                 <el-col :span="4">
                   <label class="el-form-item__label">
@@ -159,8 +159,8 @@
                   </el-table>
                 </el-col>
               </el-row>
-            </fo-page-section>
-            <fo-page-section
+            </fox-page-section>
+            <fox-page-section
               :heading="$t('variant.heading')"
               :content="$t('variant.subheading')"
               v-if="entity.priceType > 0">
@@ -211,9 +211,9 @@
                   </template>
                 </div>
                 <div
-                  class="fo-table"
+                  class="fox-table"
                   v-if="entity.priceType > 0">
-                  <div class="fo-table-content">
+                  <div class="fox-table-content">
                     <el-table
                       ref="multipleTable"
                       :data="entity.skuList"
@@ -401,22 +401,22 @@
                   </div>
                 </div>
               </template>
-            </fo-page-section>
-            <fo-page-section
+            </fox-page-section>
+            <fox-page-section
               :heading="$t('goods.update.entity.description.label')"
             >
               <el-form-item prop="description">
-                <fo-editor
+                <fox-editor
                   v-model="entity.description"
                   :file-folder="siteId"
                   model-type="full"
                   @upload="ossUpload"
                   :server-address="utility.uploadURL()"
                   :placeholder="$t('goods.update.entity.description.placeholder')"
-                ></fo-editor>
+                ></fox-editor>
               </el-form-item>
-            </fo-page-section>
-            <fo-page-section
+            </fox-page-section>
+            <fox-page-section
               v-if="siteModel.designArticle === 0"
               :heading="designMap.dataset.imageList.data.length > 0 ? $t('goods.update.design.title') : ''"
               :content="designMap.dataset.imageList.data.length > 0 ? $t('goods.update.design.content') : ''"
@@ -466,10 +466,10 @@
                   </el-col>
                 </el-row>
               </div>
-            </fo-page-section>
+            </fox-page-section>
             <spec-selector v-model="entity.specList"></spec-selector>
             <!--扩展属性-->
-            <fo-page-section
+            <fox-page-section
               :heading="entity.blockList.length > 0 ? $t('goods.update.attribute.heading') : ''"
               :content="entity.blockList.length > 0 ? $t('goods.update.attribute.desc') : ''"
             >
@@ -535,18 +535,18 @@
                       :label="$t('goods.update.attribute.content.label')"
                       :prop="`blockList.${index}.blockDescription`"
                     >
-                      <fo-editor
+                      <fox-editor
                         v-model="item.blockDescription"
                         model-type="simple"
                         :file-folder="siteId"
                         :server-address="utility.uploadURL()"
                         :placeholder="$t('goods.update.entity.description.placeholder')"
-                      ></fo-editor>
+                      ></fox-editor>
                     </el-form-item>
                   </div>
                 </el-tab-pane>
               </el-tabs>
-            </fo-page-section>
+            </fox-page-section>
             <search-engine-preview
               :temp-title="entity.title"
               :temp-desc="entity.description"
@@ -558,7 +558,7 @@
             </search-engine-preview>
           </el-col>
           <el-col :span="6">
-            <fo-page-section>
+            <fox-page-section>
               <div class="el-form-item">
                 <div class="d-flex justify-space-between align-items-center mb-10">
                   <label class="el-form-item__label p-0">{{
@@ -573,18 +573,18 @@
                   </label>
                 </div>
                 <div class="el-form-item__content">
-                  <fo-image-single
+                  <fox-image-single
                     v-model="entity.qrcode"
                     :size-limit="10"
                     :oss-bucket="resource.ossBucket"
                     :server-address="utility.uploadURL()"
                     :file-folder="siteId"
                     :alt-visible="false"
-                  ></fo-image-single>
+                  ></fox-image-single>
                 </div>
               </div>
-            </fo-page-section>
-            <!--<fo-page-section>-->
+            </fox-page-section>
+            <!--<fox-page-section>-->
             <!--  <el-form-item :label="$t('article.update.entity.state.label')">-->
             <!--    <el-switch-->
             <!--      v-model="entity.state"-->
@@ -596,7 +596,7 @@
             <!--      :inactive-value="1">-->
             <!--    </el-switch>-->
             <!--  </el-form-item>-->
-            <!--</fo-page-section>-->
+            <!--</fox-page-section>-->
             <!--集合-->
             <collection-select
               :inlay="true"
@@ -611,7 +611,7 @@
             >
             </tag-select>
             <!--附件-->
-            <fo-page-section>
+            <fox-page-section>
               <div class="goods-sub-action">
                 <el-button
                   class="float-right"
@@ -623,7 +623,7 @@
                   {{ $t('goods.update.attachment') }}
                 </label>
               </div>
-              <fo-attachment-upload
+              <fox-attachment-upload
                 v-model="entity.attachmentList"
                 :oss-bucket="resource.ossBucket"
                 :server-address="utility.uploadURL()"
@@ -636,25 +636,25 @@
                 :size-limit="15"
                 form-prop-name="attachmentList."
               >
-              </fo-attachment-upload>
-            </fo-page-section>
-            <fo-page-section>
+              </fox-attachment-upload>
+            </fox-page-section>
+            <fox-page-section>
               <div class="goods-sub-action">
                 <label class="el-form-item__label">
                   {{ $t('buyButton.title') }}
                 </label>
               </div>
               <buy-button v-model="entity.linkList"></buy-button>
-            </fo-page-section>
-            <fo-page-section>
+            </fox-page-section>
+            <fox-page-section>
               <el-form-item :label="$t('goods.update.entity.coverVideo.label')">
                 <video-picker
                   v-model="entity.coverVideo">
                 </video-picker>
               </el-form-item>
-            </fo-page-section>
+            </fox-page-section>
             <!--时间-->
-            <fo-page-section>
+            <fox-page-section>
               <el-form-item
                 prop="createTime"
                 :label="$t('goods.update.entity.createTime.label')">
@@ -667,16 +667,16 @@
                 >
                 </el-date-picker>
               </el-form-item>
-            </fo-page-section>
+            </fox-page-section>
           </el-col>
         </el-row>
       </el-form>
-      <fo-fixed-unsaved
+      <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
         @confirmed="formValidation"
       >
-      </fo-fixed-unsaved>
+      </fox-unsaved>
       <!--SKU批量图片-->
       <variant-avatar
         :display="variantBatchVisible.avatar.visible"
@@ -718,7 +718,7 @@
         @close="resourceSelector"
         :info-type="2"></resource-selector>
       <download-pass :visible.sync="downloadPassVisible"></download-pass>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

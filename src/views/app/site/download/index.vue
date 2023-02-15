@@ -1,15 +1,15 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :actions="crumbAction"
     >
-    </fo-page-header>
-    <fo-page-loading
+    </fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
       :percentage="100"
     >
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -45,14 +45,14 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
+      </fox-paging-table>
       <collection-multiple-selector
         :info-type="resource.infoType.download"
         :articles="selectedItems"
         :display="collectionVisible"
         @close="updateCollection"
       ></collection-multiple-selector>
-    </fo-page-loading>
+    </fox-page-loading>
   </main>
 </template>
 

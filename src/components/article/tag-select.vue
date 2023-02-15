@@ -1,8 +1,10 @@
 <template>
-  <fo-page-section
+  <fox-page-section
     :heading="inlay ? '' : heading"
   >
-    <div class="fo-page-section-header negative" v-if="inlay">
+    <div
+      class="fox-page-section-header negative"
+      v-if="inlay">
       <div class="el-form-item__label">
         {{ heading }}
       </div>
@@ -12,7 +14,9 @@
         {{ $t('tagSelect.manage') }}
       </el-button>
     </div>
-    <template slot="header" v-else>
+    <template
+      slot="header"
+      v-else>
       <el-button
         @click="tagsManagerVisible=true"
         type="text">
@@ -44,7 +48,7 @@
         :key="`tag-${item.id}-${index}`"
         :label="item.tagName"
         :value="item">
-        {{item.tagName}}
+        {{ item.tagName }}
       </el-option>
     </el-select>
     <tags-manager
@@ -53,7 +57,7 @@
       @close="tagsRemove"
     >
     </tags-manager>
-  </fo-page-section>
+  </fox-page-section>
 </template>
 
 <script>

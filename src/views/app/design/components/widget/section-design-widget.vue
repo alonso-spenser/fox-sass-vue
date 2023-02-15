@@ -91,7 +91,7 @@
         @updateAlt="updateAlt"
       >
       </image-picker>
-      <!--      <fo-image-single-->
+      <!--      <fox-image-single-->
       <!--        v-model="model[schema.field]"-->
       <!--        :alt-visible="false"-->
       <!--        :alt="imageAlt"-->
@@ -100,7 +100,7 @@
       <!--        :server-address="utility.uploadURL()"-->
       <!--        :file-folder="siteId"-->
       <!--        @updateAlt="updateAlt"-->
-      <!--      ></fo-image-single>-->
+      <!--      ></fox-image-single>-->
     </template>
     <template v-else-if="schema.type === 'linkPicker'">
       <h6>
@@ -163,11 +163,11 @@
       <h6>
         {{ schema.name[language] }}
       </h6>
-      <fo-editor
+      <fox-editor
         model-type="simple"
         :height="500"
         v-model="model[schema.field]"
-      ></fo-editor>
+      ></fox-editor>
     </template>
     <template v-else-if="schema.type === 'videoPicker'">
       <h6>

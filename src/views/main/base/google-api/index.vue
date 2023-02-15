@@ -1,15 +1,15 @@
 <template>
   <main>
-    <fo-page-header
+    <fox-page-header
       :actions="crumbAction"
       :drop-actions="crumbDropAction"
     >
-    </fo-page-header>
-    <fo-page-loading
+    </fox-page-header>
+    <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
     >
-      <fo-paging-table
+      <fox-paging-table
         :columns="dataConfig.columns"
         :actions="dataConfig.actions"
         :dataset="pagingOptions.dataset"
@@ -44,8 +44,8 @@
             </el-col>
           </el-row>
         </template>
-      </fo-paging-table>
-    </fo-page-loading>
+      </fox-paging-table>
+    </fox-page-loading>
     <edit-api
       :visible.sync="updateVisible"
       :theme-id="updateId"
