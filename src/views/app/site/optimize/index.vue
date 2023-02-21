@@ -1,6 +1,12 @@
 <template>
-  <main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="100"
+  >
     <el-tabs
+      slot="header"
       v-model="searchConditions.activeName"
       class="opt-tabs">
       <template v-for="(item,index) in tabPane">
@@ -11,185 +17,183 @@
           v-if="validSiteType(item.siteType)"></el-tab-pane>
       </template>
     </el-tabs>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="100"
-    >
-      <!--table-->
-      <div class="section-neighbor">
-        <el-form
-          :model="dataset"
-          :rules="formRules"
-          ref="update"
-          label-width="100px"
-          label-position="top">
-          <el-table
-            v-loading="tableOptions.loading"
-            :data="dataset.infoList"
-            :expand-row-keys="expendKey"
-            :row-key="getRowKeys"
-            @expand-change="expandChange"
-            class="optimize-table"
-          >
-            <template v-for="(column, index) in columns">
-              <el-table-column
-                :prop="column.prop"
-                :width="column.width"
-                :label="column.label"
-                :key="index">
-                <template slot-scope="scope">
-                  <div
-                    class="embed-responsive embed-responsive-4by3 el-button"
-                    v-if="column.prop === 'coverImage'">
-                    <img
-                      class="embed-responsive-item"
-                      :src="scope.row.coverImage || '/css/img/placeholder.jpg'">
-                  </div>
-                  <div v-else>
-                    <div
-                      class="optimize-preview text-secondary text-truncate"
-                      v-if="searchConditions.activeName !== 'commonPage'">
-                      https://{{ siteModel.mainDomain }}
-                      <i class="el-icon-arrow-right"></i>
-                      {{ catalog }}
-                      <i class="el-icon-arrow-right"></i>
-                      {{ scope.row.seoUrl }}
-                      <i class="el-icon-more rotate-90"></i>
-                    </div>
-                    <h4 class="text-blue mt-0 mb-2 text-truncate">
-                      {{ scope.row.title }}
-                    </h4>
-                    <div class="text-secondary word-wrap text-description">
-                      {{ scope.row.seoDescription }}
-                    </div>
-                  </div>
-                </template>
-              </el-table-column>
-            </template>
-            <el-table-column type="expand">
+    <div class="section-neighbor">
+      <fox-form
+        :model="dataset"
+        :rules="formRules"
+        ref="update"
+        borderless>
+        <el-table
+          v-loading="tableOptions.loading"
+          :data="dataset.infoList"
+          :expand-row-keys="expendKey"
+          :row-key="getRowKeys"
+          @expand-change="expandChange"
+          class="optimize-table"
+        >
+          <template v-for="(column, index) in columns">
+            <el-table-column
+              :prop="column.prop"
+              :width="column.width"
+              :label="column.label"
+              :key="index">
               <template slot-scope="scope">
-                <el-form-item
-                  :label="$t(`searchEngine.title.${activeName}.label`)"
-                  :prop="`infoList.${scope.$index}.title`"
-                  :rules="formRules.specKey"
-                >
-                  <el-input
-                    size="small"
-                    maxlength="127"
-                    show-word-limit
-                    :placeholder="$t(`searchEngine.title.${activeName}.placeholder`)"
-                    v-model="scope.row.title"
-                    @blur="setCapitalize"
-                    :data-index="scope.$index"
-                  >
-                  </el-input>
-                </el-form-item>
-                <el-form-item
-                  :label="`${$t('searchEngine.entity.seoTitle.label')} &lt;title&gt;`"
-                  :prop="`infoList.${scope.$index}.seoTitle`"
-                  :rules="formRules.specKey"
-                >
-                  <el-input
-                    size="small"
-                    :placeholder="$t('searchEngine.entity.seoTitle.placeholder')"
-                    v-model="scope.row.seoTitle"
-                    @blur="setCapitalize"
-                    :data-index="scope.$index"
-                  >
-                  </el-input>
-                </el-form-item>
-                <el-form-item
-                  :label="`${$t('searchEngine.entity.seoDesc.label')} &lt;meta name=&quot;description&quot;&gt;`"
-                  :prop="`infoList.${scope.$index}.seoDescription`"
-                  :rules="formRules.specKey"
-                >
-                  <el-input
-                    size="small"
-                    type="textarea"
-                    autosize
-                    maxlength="320"
-                    show-word-limit
-                    :placeholder="$t('searchEngine.entity.seoDesc.placeholder')"
-                    v-model="scope.row.seoDescription"
-                    @blur="setCapitalize"
-                    :data-index="scope.$index"
-                  >
-                  </el-input>
-                </el-form-item>
-                <el-form-item
-                  :label="`${$t('searchEngine.entity.seoKeywords.label')} &lt;meta name=&quot;keywords&quot;&gt;`"
-                  :prop="`infoList.${scope.$index}.seoKeywords`"
-                  :rules="formRules.specKey"
-                >
-                  <el-input
-                    size="small"
-                    type="textarea"
-                    autosize
-                    maxlength="320"
-                    show-word-limit
-                    :placeholder="$t('searchEngine.entity.seoKeywords.placeholder')"
-                    v-model="scope.row.seoKeywords"
-                    @blur="setCapitalize"
-                    :data-index="scope.$index"
-                  >
-                  </el-input>
-                </el-form-item>
-                <el-form-item
-                  :label="$t('searchEngine.entity.seoH1.label')"
-                  :prop="`infoList.${scope.$index}.seoH1`"
-                  :rules="formRules.specKey"
-                >
-                  <el-input
-                    size="small"
-                    type="textarea"
-                    autosize
-                    :placeholder="$t('searchEngine.entity.seoH1.placeholder')"
-                    v-model="scope.row.seoH1"
-                    @blur="setCapitalize"
-                    :data-index="scope.$index"
-                  >
-                  </el-input>
-                </el-form-item>
-                <el-form-item
-                  :label="$t('searchEngine.entity.seoUrl.label')"
-                  :prop="`infoList.${scope.$index}.seoUrl`"
-                  :rules="formRules.seoUrl"
-                  v-if="searchConditions.activeName !== 'commonPage'"
-                >
-                  <el-input
-                    size="small"
-                    maxlength="200"
-                    show-word-limit
-                    :placeholder="$t('searchEngine.entity.seoUrl.placeholder')"
-                    v-model="scope.row.seoUrl"
-                  >
-                  </el-input>
-                </el-form-item>
+                <div
+                  class="embed-responsive embed-responsive-4by3 el-button"
+                  v-if="column.prop === 'coverImage'">
+                  <img
+                    class="embed-responsive-item"
+                    :src="scope.row.coverImage || '/css/img/placeholder.jpg'">
+                </div>
+                <div v-else>
+                  <div
+                    class="optimize-preview text-secondary text-truncate"
+                    v-if="searchConditions.activeName !== 'commonPage'">
+                    https://{{ siteModel.mainDomain }}
+                    <i class="el-icon-arrow-right"></i>
+                    {{ catalog }}
+                    <i class="el-icon-arrow-right"></i>
+                    {{ scope.row.seoUrl }}
+                    <i class="el-icon-more rotate-90"></i>
+                  </div>
+                  <h4 class="text-blue mt-0 mb-2 text-truncate">
+                    {{ scope.row.title }}
+                  </h4>
+                  <div class="text-secondary word-wrap text-description">
+                    {{ scope.row.seoDescription }}
+                  </div>
+                </div>
               </template>
             </el-table-column>
-          </el-table>
-        </el-form>
-      </div>
-      <div class="section-neighbor text-right">
-        <el-pagination
-          v-if="pagingOptions.recordCount"
-          background
-          :current-page="pagingOptions.pageIndex"
-          :page-sizes="pagingOptions.pageSizes"
-          :page-size="pagingOptions.pageSize"
-          layout="prev, pager, next"
-          @current-change="pageChange"
-          :total="pagingOptions.recordCount">
-        </el-pagination>
-      </div>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        @confirmed="update"
-      >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+          </template>
+          <el-table-column type="expand">
+            <template slot-scope="scope">
+              <el-form-item
+                :prop="`infoList.${scope.$index}.title`"
+                :rules="formRules.specKey"
+              >
+                <fox-input
+                  shrink
+                  size="small"
+                  maxlength="127"
+                  show-word-limit
+                  :placeholder="$t(`searchEngine.title.${activeName}.label`)"
+                  :description="$t(`searchEngine.title.${activeName}.placeholder`)"
+                  v-model="scope.row.title"
+                  @blur="setCapitalize"
+                  :data-index="scope.$index"
+                >
+                </fox-input>
+              </el-form-item>
+              <el-form-item
+                :prop="`infoList.${scope.$index}.seoTitle`"
+                :rules="formRules.specKey"
+              >
+                <fox-input
+                  shrink
+                  size="small"
+                  :placeholder="`${$t('searchEngine.entity.seoTitle.label')} &lt;title&gt;`"
+                  :description="$t('searchEngine.entity.seoTitle.placeholder')"
+                  v-model="scope.row.seoTitle"
+                  @blur="setCapitalize"
+                  :data-index="scope.$index"
+                >
+                </fox-input>
+              </el-form-item>
+              <el-form-item
+                :prop="`infoList.${scope.$index}.seoDescription`"
+                :rules="formRules.specKey"
+              >
+                <fox-input
+                  shrink
+                  size="small"
+                  type="textarea"
+                  autosize
+                  maxlength="320"
+                  show-word-limit
+                  :placeholder="`${$t('searchEngine.entity.seoDesc.label')} &lt;meta name=&quot;description&quot;&gt;`"
+                  :description="$t('searchEngine.entity.seoDesc.placeholder')"
+                  v-model="scope.row.seoDescription"
+                  @blur="setCapitalize"
+                  :data-index="scope.$index"
+                >
+                </fox-input>
+              </el-form-item>
+              <el-form-item
+                :prop="`infoList.${scope.$index}.seoKeywords`"
+                :rules="formRules.specKey"
+              >
+                <fox-input
+                  shrink
+                  size="small"
+                  type="textarea"
+                  autosize
+                  maxlength="320"
+                  show-word-limit
+                  :placeholder="`${$t('searchEngine.entity.seoKeywords.label')} &lt;meta name=&quot;keywords&quot;&gt;`"
+                  :description="$t('searchEngine.entity.seoKeywords.placeholder')"
+                  v-model="scope.row.seoKeywords"
+                  @blur="setCapitalize"
+                  :data-index="scope.$index"
+                >
+                </fox-input>
+              </el-form-item>
+              <el-form-item
+                :prop="`infoList.${scope.$index}.seoH1`"
+                :rules="formRules.specKey"
+              >
+                <fox-input
+                  shrink
+                  size="small"
+                  type="textarea"
+                  autosize
+                  :placeholder="$t('searchEngine.entity.seoH1.label')"
+                  :description="$t('searchEngine.entity.seoH1.placeholder')"
+                  v-model="scope.row.seoH1"
+                  @blur="setCapitalize"
+                  :data-index="scope.$index"
+                >
+                </fox-input>
+              </el-form-item>
+              <el-form-item
+                :prop="`infoList.${scope.$index}.seoUrl`"
+                :rules="formRules.seoUrl"
+                v-if="searchConditions.activeName !== 'commonPage'"
+              >
+                <fox-input
+                  shrink
+                  size="small"
+                  maxlength="200"
+                  show-word-limit
+                  :placeholder="$t('searchEngine.entity.seoUrl.label')"
+                  :description="$t('searchEngine.entity.seoUrl.placeholder')"
+                  v-model="scope.row.seoUrl"
+                >
+                </fox-input>
+              </el-form-item>
+            </template>
+          </el-table-column>
+        </el-table>
+      </fox-form>
+    </div>
+    <div class="section-neighbor text-right">
+      <el-pagination
+        v-if="pagingOptions.recordCount"
+        background
+        :current-page="pagingOptions.pageIndex"
+        :page-sizes="pagingOptions.pageSizes"
+        :page-size="pagingOptions.pageSize"
+        layout="prev, pager, next"
+        @current-change="pageChange"
+        :total="pagingOptions.recordCount">
+      </el-pagination>
+    </div>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      @confirmed="update"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -457,7 +461,6 @@ export default {
           this.pageInvalid(error)
         })
     },
-
     /**
      * 更新
      */
@@ -510,44 +513,8 @@ export default {
 <style lang="scss">
 .optimize-table {
   .el-form-item {
-    &:not(:last-child) {
-      margin-bottom: 10px;
-    }
-
-    .el-form-item__label {
-      margin: 0;
-      padding: 0;
-      font-size: 12px;
-
-      &:before {
-        display: none;
-      }
-    }
-
-    &:after,
-    &:before {
-      display: none;
-    }
-
     .el-form-item__error {
       display: none;
-    }
-
-    .el-input {
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
-
-    .el-form-item__content {
-      display: flex;
-      padding: 0;
-      margin: 0;
-
-      &:after,
-      &:before {
-        display: none;
-      }
     }
   }
 
@@ -560,8 +527,9 @@ export default {
   .el-table__expanded-cell {
     border: 1px solid #eceef4;
     border-top: 0;
-    padding: 20px 30px;
-    //background-color: #f5f7fa;
+    padding: 15px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
   }
 
   .optimize-preview {
@@ -574,9 +542,21 @@ export default {
       top: calc(50% - 5px);
     }
   }
+
+  .el-table__row {
+    &.expanded {
+      .el-table__cell {
+        border: 1px solid #eceef4;
+      }
+    }
+  }
 }
 
 .opt-tabs {
+  .el-tabs__header {
+    margin: 0;
+  }
+
   .el-tabs__nav {
     margin-left: 20px;
   }

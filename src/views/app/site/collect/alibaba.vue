@@ -31,7 +31,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section
+        <fox-section
           content="基础数据"
         >
           <el-form-item
@@ -45,7 +45,7 @@
             >
             </el-input>
           </el-form-item>
-        </fox-page-section>
+        </fox-section>
         `
         <collection-select
           :inlay="true"

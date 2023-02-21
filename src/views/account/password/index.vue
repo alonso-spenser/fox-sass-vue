@@ -11,7 +11,7 @@
     </div>
     <fox-page-loading>
       <div class="global-editable-container">
-        <fox-page-section>
+        <fox-section>
           <el-form
             :model="entity"
             :rules="formRules"
@@ -61,7 +61,7 @@
               ></fox-input>
             </el-form-item>
           </el-form>
-        </fox-page-section>
+        </fox-section>
         <fox-unsaved
           :unsaved.sync="unsaved"
           :loading="loading"

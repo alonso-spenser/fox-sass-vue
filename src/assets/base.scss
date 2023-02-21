@@ -428,7 +428,6 @@ a {
   margin-bottom: 10px
 }
 
-.el-button--text,
 .text-primary {
   color: $colorPrimary !important;
 
@@ -1063,8 +1062,8 @@ form {
 }
 
 .input-with-select {
-  .el-input-group__prepend {
-    //padding: 0;
+  .el-select {
+    min-width: 120px;
   }
 }
 
@@ -1608,11 +1607,8 @@ hr {
 .filter-params {
   display: flex;
   justify-items: center;
-  border: 1px solid red;
 
   .time-select {
-    margin-top: 0;
-    margin-bottom: 0;
     width: 150px;
   }
 
@@ -1630,6 +1626,10 @@ hr {
 
     & + & {
       margin-left: 10px;
+    }
+
+    .el-material-button {
+      margin-top: 5px;
     }
   }
 }
@@ -1650,3 +1650,63 @@ hr {
     opacity: 0.75;
   }
 }
+
+.fox-section-action {
+  .el-button--mini {
+    &.el-button--text {
+      margin-top: -6px;
+    }
+  }
+}
+
+.header-ops-item {
+  .el-button--text {
+    color: $colorSecondary;
+
+    &:hover {
+      color: $colorPrimary
+    }
+  }
+}
+
+.el-tabs-nav {
+  .el-tabs__header {
+    &.is-top {
+      margin-bottom: 0;
+    }
+  }
+
+  .el-tabs__nav-scroll {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.el-tabs__nav-wrap {
+  &:after {
+    height: 1px;
+  }
+}
+
+.el-drawer__header {
+  margin-bottom: 0;
+
+  .el-drawer-title {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+}
+
+.fox-fixed-action {
+  &.border {
+    -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+    border-bottom: 1px solid #EBEEF5;
+  }
+}
+
+.script-tips {
+  line-height: 20px;
+}
+

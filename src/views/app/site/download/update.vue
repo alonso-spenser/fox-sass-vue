@@ -14,7 +14,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section>
+        <fox-section>
           <el-row :gutter="20">
             <el-col :span="18">
               <el-form-item
@@ -43,7 +43,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <fox-page-section
+              <fox-section
                 :heading="$t('site.resource.update.entity.coverImage.label')"
               >
                 <el-form-item>
@@ -57,14 +57,14 @@
                     :file-folder="siteId"
                   ></fox-image-single>
                 </el-form-item>
-              </fox-page-section>
+              </fox-section>
               <collection-select
                 :info-type="resource.infoType.download"
                 v-model="entity.collectionList"
               ></collection-select>
             </el-col>
           </el-row>
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

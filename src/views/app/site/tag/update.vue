@@ -26,7 +26,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section>
+        <fox-section>
           <el-form-item
             prop="tagName"
             :label="$t('article.tag.update.entity.tagName.label')">
@@ -48,7 +48,7 @@
               <template slot="prepend">{{ requestProtocol }}{{ defaultDomain }}/tag/</template>
             </el-input>
           </el-form-item>
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

@@ -1,25 +1,27 @@
 <template>
-  <fox-page-loading
-    :page-loading="pageLoading"
-    :page-is-valid="pageIsValid"
+  <div
+    v-loading="pageLoading"
   >
     <!--      <fox-page-header></fox-page-header>-->
     <el-form
       :model="entity"
       :rules="formRules"
       ref="update"
-      label-width="100px"
-      label-position="top"
     >
-      <el-tabs v-model="activeName">
+      <el-tabs
+        v-model="activeName"
+        type="card">
+        11
         <el-tab-pane
           :label="$t('settings.legal.update.entity.privacyPolicy.label')"
           name="privacyPolicy">
-          <fox-page-section class="section-container">
+          <fox-section
+            :heading="$t('settings.legal.update.entity.privacyPolicy.label')"
+          >
             <template slot="header">
               <el-button
                 type="text"
-                size="small"
+                size="mini"
                 @click="replaceTemplate('privacyPolicy')">{{ $t('settings.legal.update.template') }}
               </el-button>
             </template>
@@ -28,12 +30,12 @@
                 v-model="entity.privacyPolicy"
                 model-type="simple"></fox-editor>
             </el-form-item>
-          </fox-page-section>
+          </fox-section>
         </el-tab-pane>
         <el-tab-pane
           :label="$t('settings.legal.update.entity.termsOfService.label')"
           name="termsOfService">
-          <fox-page-section class="section-container">
+          <fox-section class="section-container">
             <template slot="header">
               <el-button
                 type="text"
@@ -46,12 +48,12 @@
                 v-model="entity.termsOfService"
                 model-type="simple"></fox-editor>
             </el-form-item>
-          </fox-page-section>
+          </fox-section>
         </el-tab-pane>
         <el-tab-pane
           :label="$t('settings.legal.update.entity.refundPolicy.label')"
           name="refundPolicy">
-          <fox-page-section class="section-container">
+          <fox-section class="section-container">
             <template slot="header">
               <el-button
                 type="text"
@@ -64,12 +66,12 @@
                 v-model="entity.refundPolicy"
                 model-type="simple"></fox-editor>
             </el-form-item>
-          </fox-page-section>
+          </fox-section>
         </el-tab-pane>
         <el-tab-pane
           :label="$t('settings.legal.update.entity.shippingPolicy.label')"
           name="shippingPolicy">
-          <fox-page-section class="section-container">
+          <fox-section class="section-container">
             <template
               slot="header"
               v-if="false">
@@ -84,7 +86,7 @@
                 v-model="entity.shippingPolicy"
                 model-type="simple"></fox-editor>
             </el-form-item>
-          </fox-page-section>
+          </fox-section>
         </el-tab-pane>
       </el-tabs>
     </el-form>
@@ -96,7 +98,7 @@
       @confirmed="formValidation"
     >
     </fox-unsaved>
-  </fox-page-loading>
+  </div>
 </template>
 
 <script>

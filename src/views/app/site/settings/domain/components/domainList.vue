@@ -1,20 +1,20 @@
 <template>
   <div>
-    <fox-page-section
+    <fox-section
       :heading="heading"
       :content="subheading">
       <template
         slot="header"
         v-if="domainType === 0">
         <el-button
-          size="small"
-          round
+          size="mini"
+          type="text"
           @click="bindDomain"
         >
           {{ $t('settings.domain.add') }}
         </el-button>
       </template>
-    </fox-page-section>
+    </fox-section>
     <fox-paging-table
       :multiSelect="false"
       :columns="dataConfig.columns"

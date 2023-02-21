@@ -1,299 +1,310 @@
 <template>
-  <main>
-    <fox-page-header
-      :previous="true"
-    ></fox-page-header>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <fox-header-ops
+      :title="$t('enquiry.record.title')"
+      :description="$t('enquiry.recordDetails.title')"
+      divider
     >
-      <div class="enquiry-page">
-        <el-row :gutter="20">
-          <el-col :span="17">
-            <!--询盘详情-->
-            <fox-page-section class="enquiry-content">
-              <div class="enquiry-state">
-                <el-tag
-                  size="small"
-                  :type="
+    </fox-header-ops>
+    <div class="enquiry-page">
+      <el-row :gutter="20">
+        <el-col :span="17">
+          <!--询盘详情-->
+          <fox-section
+            :heading="$t('enquiry.form.section.source.content')"
+            class="enquiry-content"
+          >
+            <div class="enquiry-state">
+              <el-tag
+                size="small"
+                :type="
                       this.utility.getDicType(
                        this.$t('enquiry.record.recordState'),
                         enquiryDetail.state,
                         'type'
                       )
                     "
-                >{{
-                    this.utility.getDicType(
-                      this.$t('enquiry.record.recordState'),
-                      enquiryDetail.state
-                    )
-                 }}
-                </el-tag
-                >
-              </div>
-              <template
-                v-for="(item, index) in Object.entries(enquiryDetail.content)"
+              >{{
+                  this.utility.getDicType(
+                    this.$t('enquiry.record.recordState'),
+                    enquiryDetail.state
+                  )
+               }}
+              </el-tag
               >
-                <el-row
-                  :gutter="20"
-                  :key="index">
-                  <el-col :span="6">
-                    {{ item[0] }}
-                  </el-col>
-                  <el-col :span="18">
-                    <span v-if="item[0] !== 'Attachment'">{{ item[1] }} </span>
-                    <a
-                      class="text-primary"
-                      :href="item[1]"
-                      target="_blank"
-                      :download="`Attachment${enquiryDetail.id}`"
-                      v-else>下载附件</a>
-                  </el-col>
-                </el-row>
-              </template>
+            </div>
+            <template
+              v-for="(item, index) in Object.entries(enquiryDetail.content)"
+            >
               <el-row
                 :gutter="20"
-                v-if="enquiryDetail.hasAnnex"
-              >
+                :key="index">
                 <el-col :span="6">
-                  附件
+                  {{ item[0] }}
                 </el-col>
                 <el-col :span="18">
+                  <span v-if="item[0] !== 'Attachment'">{{ item[1] }} </span>
                   <a
-                    target="_blank"
                     class="text-primary"
-                    :href="enquiryDetail.annex"
-                  >下载附件</a>
+                    :href="item[1]"
+                    target="_blank"
+                    :download="`Attachment${enquiryDetail.id}`"
+                    v-else>下载附件</a>
                 </el-col>
               </el-row>
-            </fox-page-section>
+            </template>
+            <el-row
+              :gutter="20"
+              v-if="enquiryDetail.hasAnnex"
+            >
+              <el-col :span="6">
+                附件
+              </el-col>
+              <el-col :span="18">
+                <a
+                  target="_blank"
+                  class="text-primary"
+                  :href="enquiryDetail.annex"
+                >下载附件</a>
+              </el-col>
+            </el-row>
+          </fox-section>
 
-            <!--询盘来源-->
-            <fox-page-section
-              :heading="$t('enquiry.form.section.source.heading')"
-              class="enquiry-content"
-            >
-              <el-row :gutter="20">
-                <el-col :span="6">
-                  {{ $t('enquiry.form.section.source.refTitle') }}
-                </el-col>
-                <el-col :span="18">
-                  <a
-                    :href="enquiryDetail.refUrl"
-                    class="text-secondary"
-                    target="_blank">{{
-                      enquiryDetail.refTitle
-                                    }}</a>
-                </el-col>
-              </el-row>
-              <el-row :gutter="20">
-                <el-col :span="6">
-                  {{ $t('enquiry.form.section.source.refUrl') }}
-                </el-col>
-                <el-col :span="18">
-                  <a
-                    :href="enquiryDetail.refUrl"
-                    class="text-secondary"
-                    target="_blank">{{ enquiryDetail.refUrl }}</a>
-                </el-col>
-              </el-row>
-              <el-row
-                v-if="enquiryDetail.userAgent"
-                :gutter="20">
-                <el-col :span="6">
-                  {{ $t('enquiry.form.section.source.userAgent') }}
-                </el-col>
-                <el-col :span="18">
-                  {{ enquiryDetail.userAgent }}
-                </el-col>
-              </el-row>
-              <el-row :gutter="20">
-                <el-col :span="6">
-                  {{ $t('enquiry.recordDetails.userInfoLabel.code') }}
-                </el-col>
-                <el-col :span="18">
-                  {{ enquiryDetail.id }}
-                </el-col>
-              </el-row>
-              <el-row :gutter="20">
-                <el-col :span="6">
-                  {{ $t('enquiry.recordDetails.userInfoLabel.form') }}
-                </el-col>
-                <el-col :span="18">
-                  {{ enquiryDetail.formName }}
-                </el-col>
-              </el-row>
-              <el-row :gutter="20">
-                <el-col :span="6">
-                  {{ $t('enquiry.recordDetails.userInfoLabel.ip') }}
-                </el-col>
-                <el-col :span="18">
-                  <div>{{ enquiryDetail.formIp }}</div>
-                  <div v-if="enquiryDetail.country || enquiryDetail.province || enquiryDetail.city">
-                    ({{ enquiryDetail.country }}{{
-                      enquiryDetail.province
-                    }}{{ enquiryDetail.city }})
-                  </div>
-                </el-col>
-              </el-row>
-              <el-row :gutter="20">
-                <el-col :span="6">
-                  {{ $t('enquiry.recordDetails.userInfoLabel.time') }}
-                </el-col>
-                <el-col :span="18">
-                  {{ this.utility.dateFormat(new Date(enquiryDetail.createTime), 'yyyy-MM-dd hh:mm:ss') }}
-                </el-col>
-              </el-row>
-            </fox-page-section>
-            <!--跟踪记录-->
-            <fox-page-section
-              :heading="$t('enquiry.form.section.record.heading')"
-              class="enquiry-record">
-              <div>
-                <el-input
-                  type="textarea"
-                  :autosize="{ minRows: 3, maxRows: 5 }"
-                  maxlength="255"
-                  show-word-limit
-                  :placeholder="$t('base.placeholder.input')"
-                  v-model="enquiryStateModel.remark"
-                ></el-input>
-                <div class="text-right">
-                  <el-button
-                    class="mt-4"
-                    type="primary"
-                    @click="handleConfirm"
-                    :disabled="this.utility.isEmpty(enquiryStateModel.remark)"
-                  >{{ $t('base.operate.add') }}
-                  </el-button
-                  >
-                </div>
-              </div>
-              <!--状态处理-->
-              <div class="mt-6">
-                <el-timeline class="enquiry-record-timeline">
-                  <el-timeline-item
-                    v-for="timeline in enquiryRecordList"
-                    :key="timeline.id"
-                    :hide-timestamp="true"
-                    color="#3F9EFF"
-                    placement="top"
-                  >
-                    <div class="enquiry-record-timeline-item">
-                      <el-row
-                        type="flex"
-                        justify="space-between">
-                        <div class="label text-capitalize">{{ timeline.operator }} {{ timeline.clientName }}</div>
-                        <div class="timestamp">
-                          {{ utility.dateFormat(new Date(timeline.replyTime), 'yyyy-MM-dd hh:mm:ss') }}
-                        </div>
-                      </el-row>
-                      <div class="remark mt-2">
-                        {{ timeline.remark || "remark" }}
-                      </div>
-                      <el-divider></el-divider>
-                    </div>
-                  </el-timeline-item>
-                </el-timeline>
-              </div>
-            </fox-page-section>
-          </el-col>
-          <el-col :span="7">
-            <fox-page-section>
-              <div
-                class="user-info"
-                @click="clientPage">
-                <el-avatar
-                  style="background: #46a0fc"
-                  v-if="avatar">
-                  {{ avatar }}
-                </el-avatar>
-                <el-avatar
-                  icon="el-icon-user-solid"
-                  style="background: #46a0fc"
-                  v-else
-                ></el-avatar>
-                <h3 class="mt-3 text-primary">
-                  {{ enquiryDetail.client.firstName }}
-                  {{ enquiryDetail.client.lastName }}
-                </h3>
-                <p class="text-secondary">
-                  {{ enquiryDetail.client.email }}
-                </p>
-                <p class="text-secondary">
-                  {{ enquiryDetail.client.phone }}
-                </p>
-                <div class="mt-7">{{ $t('enquiry.recordDetails.userInfoLabel.userSubmit') }}</div>
-                <div class="count mt-3">{{ enquiryDetail.client.enquires }}</div>
-              </div>
-            </fox-page-section>
-            <fox-page-section
-              v-if="enquiryDetail.refImg"
-            >
-              <el-image
-                class="w-100 mb-5"
-                :src="enquiryDetail.refImg || imagePlaceholder"
-                fit="fill"
-              >
-                <div
-                  slot="error"
-                  class="image-slot image-slot-error"></div>
-              </el-image>
-              <el-button
-                class="w-100"
-                type="primary"
-                @click="dialogVisible = true"
-              >
-                {{ $t('enquiry.recordDetails.change') }}
-              </el-button>
-            </fox-page-section>
-            <el-button
-              class="w-100"
-              type="primary"
-              v-if="!enquiryDetail.refImg"
-              @click="dialogVisible = true"
-            >
-              {{ $t('enquiry.recordDetails.change') }}
-            </el-button>
-          </el-col>
-        </el-row>
-        <el-dialog
-          :title="$t('enquiry.recordDetails.change')"
-          :visible.sync="dialogVisible"
-          :close-on-click-modal="false"
-          width="550px">
-          <el-form
-            :model="enquiryStateModel"
-            ref="stateChangeForm"
-            label-position="top"
+          <!--询盘来源-->
+          <fox-section
+            :heading="$t('enquiry.form.section.source.heading')"
+            class="enquiry-content"
           >
-            <el-form-item :label="$t('enquiry.record.tableHeader.state')">
-              <el-select
-                v-model="enquiryStateModel.state"
-                :placeholder="$t('base.placeholder.select')"
-              >
-                <el-option
-                  v-for="{ label, value } in  $t('enquiry.record.recordState')"
-                  :key="value"
-                  :label="label"
-                  :value="value"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item :label="$t('enquiry.form.tableHeader.remark')">
+            <el-row :gutter="20">
+              <el-col :span="6">
+                {{ $t('enquiry.form.section.source.refTitle') }}
+              </el-col>
+              <el-col :span="18">
+                <a
+                  :href="enquiryDetail.refUrl"
+                  class="text-secondary"
+                  target="_blank">{{
+                    enquiryDetail.refTitle
+                                  }}</a>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="6">
+                {{ $t('enquiry.form.section.source.refUrl') }}
+              </el-col>
+              <el-col :span="18">
+                <a
+                  :href="enquiryDetail.refUrl"
+                  class="text-secondary"
+                  target="_blank">{{ enquiryDetail.refUrl }}</a>
+              </el-col>
+            </el-row>
+            <el-row
+              v-if="enquiryDetail.userAgent"
+              :gutter="20">
+              <el-col :span="6">
+                {{ $t('enquiry.form.section.source.userAgent') }}
+              </el-col>
+              <el-col :span="18">
+                {{ enquiryDetail.userAgent }}
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="6">
+                {{ $t('enquiry.recordDetails.userInfoLabel.code') }}
+              </el-col>
+              <el-col :span="18">
+                {{ enquiryDetail.id }}
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="6">
+                {{ $t('enquiry.recordDetails.userInfoLabel.form') }}
+              </el-col>
+              <el-col :span="18">
+                {{ enquiryDetail.formName }}
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="6">
+                {{ $t('enquiry.recordDetails.userInfoLabel.ip') }}
+              </el-col>
+              <el-col :span="18">
+                <div>{{ enquiryDetail.formIp }}</div>
+                <div v-if="enquiryDetail.country || enquiryDetail.province || enquiryDetail.city">
+                  ({{ enquiryDetail.country }}{{
+                    enquiryDetail.province
+                  }}{{ enquiryDetail.city }})
+                </div>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="6">
+                {{ $t('enquiry.recordDetails.userInfoLabel.time') }}
+              </el-col>
+              <el-col :span="18">
+                {{ this.utility.dateFormat(new Date(enquiryDetail.createTime), 'yyyy-MM-dd hh:mm:ss') }}
+              </el-col>
+            </el-row>
+          </fox-section>
+          <!--跟踪记录-->
+          <fox-section
+            :heading="$t('enquiry.form.section.record.heading')"
+            class="enquiry-record">
+            <div>
               <el-input
                 type="textarea"
                 :autosize="{ minRows: 3, maxRows: 5 }"
                 maxlength="255"
                 show-word-limit
                 :placeholder="$t('base.placeholder.input')"
-                v-model.trim="enquiryStateModel.remark"
+                v-model="enquiryStateModel.remark"
               ></el-input>
-            </el-form-item>
-          </el-form>
-          <span
-            slot="footer"
-            class="dialog-footer">
+              <div class="text-right">
+                <el-button
+                  class="mt-4"
+                  type="primary"
+                  @click="handleConfirm"
+                  :disabled="this.utility.isEmpty(enquiryStateModel.remark)"
+                >{{ $t('base.operate.add') }}
+                </el-button
+                >
+              </div>
+            </div>
+            <!--状态处理-->
+            <div class="mt-6">
+              <el-timeline class="enquiry-record-timeline">
+                <el-timeline-item
+                  v-for="timeline in enquiryRecordList"
+                  :key="timeline.id"
+                  :hide-timestamp="true"
+                  color="#3F9EFF"
+                  placement="top"
+                >
+                  <div class="enquiry-record-timeline-item">
+                    <el-row
+                      type="flex"
+                      justify="space-between">
+                      <div class="label text-capitalize">{{ timeline.operator }} {{ timeline.clientName }}</div>
+                      <div class="timestamp">
+                        {{ utility.dateFormat(new Date(timeline.replyTime), 'yyyy-MM-dd hh:mm:ss') }}
+                      </div>
+                    </el-row>
+                    <div class="remark mt-2">
+                      {{ timeline.remark || "remark" }}
+                    </div>
+                    <el-divider></el-divider>
+                  </div>
+                </el-timeline-item>
+              </el-timeline>
+            </div>
+          </fox-section>
+        </el-col>
+        <el-col :span="7">
+          <fox-section
+            :heading="$t('enquiry.form.section.source.user')"
+          >
+            <div
+              class="user-info"
+              @click="clientPage">
+              <el-avatar
+                style="background: #46a0fc"
+                v-if="avatar">
+                {{ avatar }}
+              </el-avatar>
+              <el-avatar
+                icon="el-icon-user-solid"
+                style="background: #46a0fc"
+                v-else
+              ></el-avatar>
+              <h3 class="mt-3 text-primary">
+                {{ enquiryDetail.client.firstName }}
+                {{ enquiryDetail.client.lastName }}
+              </h3>
+              <p class="text-secondary">
+                {{ enquiryDetail.client.email }}
+              </p>
+              <p class="text-secondary">
+                {{ enquiryDetail.client.phone }}
+              </p>
+              <div class="mt-7">{{ $t('enquiry.recordDetails.userInfoLabel.userSubmit') }}</div>
+              <div class="count mt-3">{{ enquiryDetail.client.enquires }}</div>
+            </div>
+          </fox-section>
+          <fox-section
+            v-if="enquiryDetail.refImg"
+          >
+            <el-image
+              class="w-100 mb-5"
+              :src="enquiryDetail.refImg || imagePlaceholder"
+              fit="fill"
+            >
+              <div
+                slot="error"
+                class="image-slot image-slot-error"></div>
+            </el-image>
+            <el-button
+              class="w-100"
+              type="primary"
+              @click="dialogVisible = true"
+            >
+              {{ $t('enquiry.recordDetails.change') }}
+            </el-button>
+          </fox-section>
+          <el-button
+            class="w-100"
+            type="primary"
+            v-if="!enquiryDetail.refImg"
+            @click="dialogVisible = true"
+          >
+            {{ $t('enquiry.recordDetails.change') }}
+          </el-button>
+        </el-col>
+      </el-row>
+      <el-dialog
+        :title="$t('enquiry.recordDetails.change')"
+        :visible.sync="dialogVisible"
+        :close-on-click-modal="false"
+        width="550px">
+        <el-form
+          :model="enquiryStateModel"
+          ref="stateChangeForm"
+          label-position="top"
+        >
+          <el-form-item>
+            <fox-select
+              v-model="enquiryStateModel.state"
+              :placeholder="$t('enquiry.record.tableHeader.state')"
+              :description="$t('base.placeholder.select')"
+            >
+              <el-option
+                v-for="{ label, value } in  $t('enquiry.record.recordState')"
+                :key="value"
+                :label="label"
+                :value="value"
+              ></el-option>
+            </fox-select>
+          </el-form-item>
+          <el-form-item>
+            <fox-input
+              shrink
+              type="textarea"
+              :autosize="{ minRows: 3, maxRows: 5 }"
+              maxlength="255"
+              show-word-limit
+              :placeholder="$t('enquiry.form.tableHeader.remark')"
+              :description="$t('base.placeholder.input')"
+              v-model.trim="enquiryStateModel.remark"
+            ></fox-input>
+          </el-form-item>
+        </el-form>
+        <span
+          slot="footer"
+          class="dialog-footer">
           <el-button @click="dialogVisible = false">{{ $t('base.operate.cancel') }}</el-button>
           <el-button
             type="primary"
@@ -302,10 +313,9 @@
           >{{ $t('base.operate.confirm') }}</el-button
           >
         </span>
-        </el-dialog>
-      </div>
-    </fox-page-loading>
-  </main>
+      </el-dialog>
+    </div>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -324,7 +334,8 @@ export default {
       enquiryDetail: {
         formIp: '',
         client: {},
-        content: {}
+        content: {},
+        refImg: ''
       },
       enquiryRecordList: [],
       imagePlaceholder: 'https://theme.fomillesite.com/img/placeholder.jpg'
@@ -539,7 +550,7 @@ export default {
     text-decoration: underline;
   }
 
-  .fox-page-section-title {
+  .fox-section-title {
     margin: 16px 0;
   }
 }

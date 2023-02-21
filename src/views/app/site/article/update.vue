@@ -1,248 +1,255 @@
 <template>
-  <main>
-    <fox-page-header
-      :actions="crumbAction"
-      @previous="previous"
-    ></fox-page-header>
-    <fox-page-loading
-      :fo-page-loading="pageLoading"
-      :page-is-valid="pageIsValid"
-      :percentage="90"
-    >
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top">
-        <el-row :gutter="20">
-          <el-col :span="18">
-            <fox-page-section>
-              <el-form-item
-                prop="title">
-                <fox-input
-                  show-word-limit
-                  shrink
-                  maxlength="200"
-                  class="small-append"
-                  v-model="entity.title"
-                  @blur="setCapitalize"
-                  :placeholder="$t('article.update.entity.title.label')"
-                  :description="$t('article.update.entity.title.placeholder')"
-                >
-                  <el-checkbox
-                    v-model="autoSyncH1Title"
-                    @change="setAutoSyncH1"
-                    slot="append"
-                    v-if="id">H1
-                  </el-checkbox>
-                </fox-input>
-              </el-form-item>
-              <el-form-item prop="subtitle">
-                <fox-input
-                  show-word-limit
-                  shrink
-                  type="textarea"
-                  v-model="entity.subtitle"
-                  maxlength="255"
-                  :autosize="{ minRows: 2, maxRows: 5}"
-                  :description="$t('article.update.entity.subtitle.tips')"
-                  :placeholder="$t('article.update.entity.subtitle.placeholder')"
-                ></fox-input>
-              </el-form-item>
-              <el-form-item prop="summary">
-                <fox-input
-                  show-word-limit
-                  shrink
-                  type="textarea"
-                  :description="$t('article.update.entity.summary.tips')"
-                  :placeholder="$t('article.update.entity.summary.placeholder')"
-                  v-model="entity.summary"
-                  maxlength="255"
-                  :autosize="{ minRows: 3, maxRows: 5}"
-                ></fox-input>
-              </el-form-item>
-            </fox-page-section>
-            <fox-page-section
-              :heading="$t('article.update.entity.coverImage.label')"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="80"
+  >
+    <fox-form
+      :model="entity"
+      :rules="formRules"
+      ref="update">
+      <el-row :gutter="20">
+        <el-col :span="18">
+          <fox-section
+            :heading="$t('goods.update.info')"
+          >
+            <el-button
+              slot="header"
+              size="mini"
+              @click="removeArticle"
+              icon="el-icon-delete"
+              type="text"
+              v-if="id"
             >
-              <template slot="header">
-                <el-button
-                  type="text"
-                  @click="resourceVisible = true"
-                  icon="el-icon-picture-outline-round">
-                  {{ $t('resourceSelector.lib') }}
-                </el-button>
-              </template>
-              <fox-image-upload
-                v-model="entity.imageList"
-                :file-limit="10"
-                :oss-bucket="resource.ossBucket"
-                :server-address="utility.uploadURL()"
-                :file-folder="siteId"
-              ></fox-image-upload>
-            </fox-page-section>
-            <fox-page-section>
-              <el-form-item
-                prop="description"
-                :label="$t('article.update.entity.description.label')">
-                <fox-editor
-                  v-model="entity.description"
-                  :file-folder="siteId"
-                  @upload="ossUpload"
-                  :server-address="utility.uploadURL()"
-                  :placeholder="$t('article.update.entity.description.placeholder')"
-                ></fox-editor>
-              </el-form-item>
-            </fox-page-section>
-            <!--扩展属性-->
-            <fox-page-section v-if="false">
-              <el-row>
-                <el-col :span="18">
-                  {{ $t("article.update.attribute.heading") }}
-                  <div class="el-form-item__tips mt-2">
-                    {{ $t("article.update.attribute.desc") }}
-                  </div>
-                </el-col>
-                <el-col
-                  :span="6"
-                  class="text-right">
-                  <el-button
-                    size="small"
-                    round
-                    @click="attributeTabsEdit('', 'add')"
-                    icon="el-icon-plus">
-                    {{ $t("base.addition.button") }}
-                  </el-button>
-                </el-col>
-              </el-row>
-              <el-tabs
-                v-model="attributeTabsValue"
-                type="card"
-                closable
-                v-if="entity.blockList.length > 0"
-                @edit="attributeTabsEdit">
-                <el-tab-pane
-                  :key="item.key"
-                  v-for="(item, index) in entity.blockList"
-                  :label="item.blockName"
-                  :name="item.id"
-                >
-                  <div class="attribute-tabs">
-                    <el-form-item
-                      :prop="`blockList.${index}.blockName`"
-                      :label="$t('article.update.attribute.title.label')"
-                      :rules="formRules.specValue"
-                    >
-                      <el-input
-                        size="small"
-                        :maxlength="30"
-                        show-word-limit
-                        placeholder=""
-                        v-model="item.blockName"
-                      ></el-input>
-                    </el-form-item>
-
-                    <el-form-item
-                      :label="$t('article.update.attribute.content.label')"
-                      :prop="`blockList.${index}.blockDescription`"
-                    >
-                      <fox-editor
-                        v-model="item.blockDescription"
-                        model-type="simple"
-                        :file-folder="siteId"
-                        :server-address="utility.uploadURL()"
-                        :placeholder="$t('article.update.entity.description.placeholder')"
-                      ></fox-editor>
-                    </el-form-item>
-                  </div>
-                </el-tab-pane>
-              </el-tabs>
-            </fox-page-section>
-            <search-engine-preview
-              :temp-title="entity.title"
-              :temp-desc="entity.description"
-              :maxlength="320"
-              catalog="item"
-              v-model="seoEntity"
-              @update="updateSEO"
-            >
-            </search-engine-preview>
-          </el-col>
-          <el-col :span="6">
-            <!--<fox-page-section>-->
-            <!--  <el-form-item :label="$t('article.update.entity.state.label')">-->
-            <!--    <el-switch-->
-            <!--      v-model="entity.state"-->
-            <!--      active-color="#13ce66"-->
-            <!--      :active-text="$t('article.update.entity.state.options.enable')"-->
-            <!--      :active-value="0"-->
-            <!--      inactive-color="#ff4949"-->
-            <!--      :inactive-text="$t('article.update.entity.state.options.disable')"-->
-            <!--      :inactive-value="1">-->
-            <!--    </el-switch>-->
-            <!--  </el-form-item>-->
-            <!--</fox-page-section>-->
-            <!--时间-->
-            <fox-page-section>
-              <el-form-item
-                prop="createTime">
-                <fox-date-picker
-                  shrink
-                  v-model="entity.createTime"
-                  type="datetime"
-                  class="w-100"
-                  value-format="timestamp"
-                  :placeholder="$t('article.update.entity.createTime.placeholder')"
-                >
-                </fox-date-picker>
-              </el-form-item>
-            </fox-page-section>
-            <!--集合-->
-            <collection-select
-              :inlay="true"
-              :info-type="resource.infoType.article"
-              v-model="entity.collectionList"
-            ></collection-select>
-            <!--标签-->
-            <tag-select
-              :inlay="true"
-              :info-type="resource.infoType.article"
-              v-model="entity.tagList"
-            >
-            </tag-select>
-            <!--附件-->
-            <fox-page-section v-if="false">
-              <fox-attachment-upload
-                v-model="entity.attachmentList"
-                :oss-bucket="resource.ossBucket"
-                :server-address="utility.uploadURL()"
-                :file-folder="siteId"
-                :down-pass="true"
-                :inactive-value="1"
-                :active-value="0"
-                :max-size="30"
-                :file-limit="30"
-                :size-limit="15"
-                form-prop-name="attachmentList."
+              {{ $t('base.delete.button') }}
+            </el-button>
+            <el-form-item
+              prop="title">
+              <fox-input
+                show-word-limit
+                shrink
+                maxlength="200"
+                class="small-append"
+                v-model="entity.title"
+                @blur="setCapitalize"
+                :placeholder="$t('article.update.entity.title.label')"
+                :description="$t('article.update.entity.title.placeholder')"
               >
-              </fox-attachment-upload>
-            </fox-page-section>
-          </el-col>
-        </el-row>
-      </el-form>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        :loading="loading"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-      <resource-selector
-        :visible.sync="resourceVisible"
-        @close="resourceSelector"
-        :info-type="1"></resource-selector>
-    </fox-page-loading>
-  </main>
+                <el-checkbox
+                  v-model="autoSyncH1Title"
+                  @change="setAutoSyncH1"
+                  slot="append"
+                  v-if="id">H1
+                </el-checkbox>
+              </fox-input>
+            </el-form-item>
+            <el-form-item prop="subtitle">
+              <fox-input
+                show-word-limit
+                shrink
+                type="textarea"
+                v-model="entity.subtitle"
+                maxlength="255"
+                :autosize="{ minRows: 2, maxRows: 5}"
+                :description="$t('article.update.entity.subtitle.tips')"
+                :placeholder="$t('article.update.entity.subtitle.placeholder')"
+              ></fox-input>
+            </el-form-item>
+            <el-form-item prop="summary">
+              <fox-input
+                show-word-limit
+                shrink
+                type="textarea"
+                :description="$t('article.update.entity.summary.tips')"
+                :placeholder="$t('article.update.entity.summary.placeholder')"
+                v-model="entity.summary"
+                maxlength="255"
+                :autosize="{ minRows: 3, maxRows: 5}"
+              ></fox-input>
+            </el-form-item>
+          </fox-section>
+          <fox-section
+            :heading="$t('article.update.entity.coverImage.label')"
+          >
+            <template slot="header">
+              <el-button
+                type="text"
+                size="mini"
+                @click="resourceVisible = true"
+                icon="el-icon-picture-outline-round">
+                {{ $t('resourceSelector.lib') }}
+              </el-button>
+            </template>
+            <fox-image-upload
+              v-model="entity.imageList"
+              :file-limit="10"
+              :oss-bucket="resource.ossBucket"
+              :server-address="utility.uploadURL()"
+              :file-folder="siteId"
+            ></fox-image-upload>
+          </fox-section>
+          <fox-section
+            :heading="$t('article.update.entity.description.label')"
+          >
+            <el-form-item prop="description">
+              <fox-editor
+                v-model="entity.description"
+                :file-folder="siteId"
+                @upload="ossUpload"
+                :server-address="utility.uploadURL()"
+                :placeholder="$t('article.update.entity.description.placeholder')"
+              ></fox-editor>
+            </el-form-item>
+          </fox-section>
+          <!--扩展属性-->
+          <fox-section v-if="false">
+            <el-row>
+              <el-col :span="18">
+                {{ $t("article.update.attribute.heading") }}
+                <div class="el-form-item__tips mt-2">
+                  {{ $t("article.update.attribute.desc") }}
+                </div>
+              </el-col>
+              <el-col
+                :span="6"
+                class="text-right">
+                <el-button
+                  size="small"
+                  round
+                  @click="attributeTabsEdit('', 'add')"
+                  icon="el-icon-plus">
+                  {{ $t("base.addition.button") }}
+                </el-button>
+              </el-col>
+            </el-row>
+            <el-tabs
+              v-model="attributeTabsValue"
+              type="card"
+              closable
+              v-if="entity.blockList.length > 0"
+              @edit="attributeTabsEdit">
+              <el-tab-pane
+                :key="item.key"
+                v-for="(item, index) in entity.blockList"
+                :label="item.blockName"
+                :name="item.id"
+              >
+                <div class="attribute-tabs">
+                  <el-form-item
+                    :prop="`blockList.${index}.blockName`"
+                    :label="$t('article.update.attribute.title.label')"
+                    :rules="formRules.specValue"
+                  >
+                    <el-input
+                      size="small"
+                      :maxlength="30"
+                      show-word-limit
+                      placeholder=""
+                      v-model="item.blockName"
+                    ></el-input>
+                  </el-form-item>
+
+                  <el-form-item
+                    :label="$t('article.update.attribute.content.label')"
+                    :prop="`blockList.${index}.blockDescription`"
+                  >
+                    <fox-editor
+                      v-model="item.blockDescription"
+                      model-type="simple"
+                      :file-folder="siteId"
+                      :server-address="utility.uploadURL()"
+                      :placeholder="$t('article.update.entity.description.placeholder')"
+                    ></fox-editor>
+                  </el-form-item>
+                </div>
+              </el-tab-pane>
+            </el-tabs>
+          </fox-section>
+          <search-engine-preview
+            :temp-title="entity.title"
+            :temp-desc="entity.description"
+            :maxlength="320"
+            catalog="item"
+            v-model="seoEntity"
+            @update="updateSEO"
+          >
+          </search-engine-preview>
+        </el-col>
+        <el-col :span="6">
+          <!--<fox-section>-->
+          <!--  <el-form-item :label="$t('article.update.entity.state.label')">-->
+          <!--    <el-switch-->
+          <!--      v-model="entity.state"-->
+          <!--      active-color="#13ce66"-->
+          <!--      :active-text="$t('article.update.entity.state.options.enable')"-->
+          <!--      :active-value="0"-->
+          <!--      inactive-color="#ff4949"-->
+          <!--      :inactive-text="$t('article.update.entity.state.options.disable')"-->
+          <!--      :inactive-value="1">-->
+          <!--    </el-switch>-->
+          <!--  </el-form-item>-->
+          <!--</fox-section>-->
+          <!--时间-->
+          <fox-section
+            :heading="$t('article.update.entity.createTime.placeholder')"
+          >
+            <el-form-item
+              prop="createTime">
+              <fox-date-picker
+                shrink
+                v-model="entity.createTime"
+                type="datetime"
+                class="w-100"
+                value-format="timestamp"
+                :placeholder="$t('article.update.entity.createTime.placeholder')"
+              >
+              </fox-date-picker>
+            </el-form-item>
+          </fox-section>
+          <!--集合-->
+          <collection-select
+            :inlay="true"
+            :info-type="resource.infoType.article"
+            v-model="entity.collectionList"
+          ></collection-select>
+          <!--标签-->
+          <tag-select
+            :info-type="resource.infoType.article"
+            v-model="entity.tagList"
+          >
+          </tag-select>
+          <!--附件-->
+          <fox-section v-if="false">
+            <fox-attachment-upload
+              v-model="entity.attachmentList"
+              :oss-bucket="resource.ossBucket"
+              :server-address="utility.uploadURL()"
+              :file-folder="siteId"
+              :down-pass="true"
+              :inactive-value="1"
+              :active-value="0"
+              :max-size="30"
+              :file-limit="30"
+              :size-limit="15"
+              form-prop-name="attachmentList."
+            >
+            </fox-attachment-upload>
+          </fox-section>
+        </el-col>
+      </el-row>
+    </fox-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+    <resource-selector
+      :visible.sync="resourceVisible"
+      @close="resourceSelector"
+      :info-type="1"></resource-selector>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -375,30 +382,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['globalRegionModel']),
-    /**
-     * 面包屑操作
-     */
-    crumbAction () {
-      return [
-        {
-          label: this.$t('base.delete.button'),
-          icon: 'el-icon-delete',
-          visible: this.id,
-          click: () => {
-            this.deleteArticle()
-          }
-        },
-        {
-          label: this.$t('base.operate.preview'),
-          icon: 'fo-eye-open',
-          visible: this.id,
-          click: () => {
-            this.articlePreview()
-          }
-        }
-      ]
-    }
+    ...mapState(['globalRegionModel'])
   },
   methods: {
     /**
@@ -452,14 +436,13 @@ export default {
      * 上一步
      */
     previous () {
-      this.$router.push(`/site/${this.siteId}/article`)
+      this.redirectURL(`/site/${this.siteId}/article`)
     },
     /**
      * 表单校验
      */
     formValidation () {
-      let formName = 'update'
-      this.$refs[formName].validate((valid) => {
+      this.formValidate('update', (valid) => {
         if (valid) {
           if (this.utility.isEmpty(this.entity.summary)) {
             this.entity.summary = this.utility.extractText(this.entity.description, 255)
@@ -567,7 +550,7 @@ export default {
           }
           this.resultMessage(result, (success) => {
             if (success) {
-              this.previous()
+              // this.previous()
             }
           })
         })
@@ -578,7 +561,7 @@ export default {
     /**
      * 删除
      */
-    deleteArticle () {
+    removeArticle () {
       this.$confirm(this.$t('base.delete.subheading').toString(), this.$t('base.delete.heading').toString(), {
         confirmButtonText: this.$t('base.operate.confirm'),
         cancelButtonText: this.$t('base.operate.cancel'),
@@ -670,5 +653,9 @@ export default {
 
 .el-tag {
   //overflow: hidden;
+}
+
+.el-date-editor--datetime {
+  width: 100% !important
 }
 </style>

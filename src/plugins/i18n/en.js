@@ -39,7 +39,7 @@ export default {
     change: 'Change',
     language: 'Language',
     save: 'Save',
-    oops: 'Oops',
+    oops: 'OOPS',
     orderBy: 'Order by',
     notData: 'No data',
     upload: 'Upload',
@@ -76,8 +76,9 @@ export default {
       size: 'Limit {size} M'
     },
     placeholder: {
+      label: 'Keyword',
       input: 'Content',
-      search: 'Keyword',
+      search: 'Please enter a keyword',
       select: 'Select',
       date: 'Time'
     },
@@ -98,11 +99,11 @@ export default {
     },
     delete: {
       button: 'Delete',
-      heading: 'Oops',
-      subheading: '您确认要删除当前记录吗？',
-      multiple: '确定要删除 {0} 项吗?',
-      success: '删除完成',
-      failed: '删除失败'
+      heading: 'OOPS',
+      subheading: 'Are you sure you want to delete the current record?？',
+      multiple: 'Are you sure you want to delete {0} items?',
+      success: 'Delete complete',
+      failed: 'Failed to delete'
     },
     select: {
       button: '查找',

@@ -1,9 +1,16 @@
 <template>
-  <main>
-    <fox-page-header
-      :previous="true"
-      :actions="id ? headerActions : []"
-    ></fox-page-header>
+  <el-drawer
+    :visible.sync="drawerVisible"
+    size="760px"
+    ref="taskDrawer"
+    :append-to-body="true"
+    :before-close="drawerClose"
+    class="fox-drawer">
+    <div
+      class="el-drawer-title"
+      slot="title">
+      {{ pageId ? $t('customizePage.update.updateTitle') : $t('customizePage.update.addTitle') }}
+    </div>
     <fox-page-loading
       :loading="pageLoading"
       :invalid="pageIsValid"
@@ -50,11 +57,14 @@
       <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
+        offset="100% + 760px"
+        class="border"
+        @cancel="previous"
         @confirmed="formValidation"
       >
       </fox-unsaved>
     </fox-page-loading>
-  </main>
+  </el-drawer>
 </template>
 
 <script>
@@ -72,6 +82,7 @@ export default {
   extends: extend,
   data () {
     return {
+      drawerVisible: false,
       headerActions: [
         {
           label: this.$t('base.operate.view'),
@@ -84,7 +95,6 @@ export default {
         },
         {
           label: this.$t('base.delete.button'),
-          // icon: 'icon iconfont fo-ico-shanchu',
           type: 'danger',
           visible: true,
           click: () => {
@@ -132,21 +142,58 @@ export default {
       handler () {
         this.unsaved = true
       }
+    },
+    visible (value) {
+      this.drawerVisible = value
+      this.seoEntity = {
+        description: '',
+        keywords: [],
+        title: '',
+        url: '',
+        heading: ''
+      }
+      if (value && this.pageId) {
+        this.getDetail()
+      } else {
+        this.resetForm('update')
+        this.clearValidate('update')
+      }
+    }
+  },
+  props: {
+    visible: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
+    },
+    pageId: {
+      type: String,
+      default: () => {
+        return ''
+      }
     }
   },
   created () {
-    if (this.id) {
-      this.getDetail()
-    } else {
-      this.pageValid()
-    }
+    this.pageValid()
   },
   methods: {
+    /**
+     * 关闭弹窗
+     * @param done
+     */
+    drawerClose (done) {
+      done()
+      this.$emit('update')
+      this.$emit('update:visible', false)
+      this.$refs.taskDrawer.close()
+    },
     /**
      * 上一步
      */
     previous () {
-      this.$router.push(`/site/${this.siteId}/pages`)
+      this.$emit('success')
+      this.$emit('update:visible', false)
     },
     formValidation () {
       let formName = 'update'
@@ -159,7 +206,7 @@ export default {
             this.entity.region = this.regionCode
           }
           this.loading = true
-          if (this.id) {
+          if (this.pageId) {
             this.updatePages()
           } else {
             this.addPages()
@@ -183,7 +230,7 @@ export default {
      */
     getDetail () {
       fetchGetPageDetail({
-        id: this.id
+        id: this.pageId
       })
         .then(result => {
           this.pageValid()
@@ -245,7 +292,7 @@ export default {
           }
           this.resultMessage(result, (success) => {
             if (success) {
-              // this.previous()
+              this.previous()
             }
           })
         })
@@ -265,7 +312,7 @@ export default {
         beforeClose: (action, instance, done) => {
           if (action === 'confirm') {
             fetchDeletePage({
-              ids: [this.id]
+              ids: [this.pageId]
             })
               .then(result => {
                 result.options = {

@@ -1,30 +1,15 @@
 <template>
-  <fox-page-section
-    :heading="inlay ? '' : heading"
+  <fox-section
+    :heading="heading"
   >
-    <div
-      class="fox-page-section-header negative"
-      v-if="inlay">
-      <div class="el-form-item__label">
-        {{ heading }}
-      </div>
-      <el-button
-        @click="manageCollection"
-        type="text">
-        {{ $t('article.update.collection.manage') }}
-      </el-button>
-    </div>
-    <template
+    <el-button
       slot="header"
-      v-else>
-      <el-button
-        @click="manageCollection"
-        type="text">
-        {{ $t('article.update.collection.manage') }}
-      </el-button>
-    </template>
+      size="mini"
+      @click="manageCollection"
+      type="text">
+      {{ $t('article.update.collection.manage') }}
+    </el-button>
     <el-select
-      shrink
       v-model="collectionList"
       multiple
       filterable
@@ -51,7 +36,7 @@
         {{ item.title }}
       </el-option>
     </el-select>
-  </fox-page-section>
+  </fox-section>
 </template>
 
 <script>

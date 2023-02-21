@@ -61,7 +61,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setAgentModel', 'setAgentId', 'setMySite', 'setAutoSyncH1']),
+    ...mapMutations(['setAgentModel', 'setAgentId', 'setMySite', 'setAutoSyncH1', 'setMerchantModel']),
     /**
      * 键盘事件
      * @param func 回调事件
@@ -91,7 +91,9 @@ export default {
      * @param formName
      */
     clearValidate (formName) {
-      if (this.$refs[formName]) {
+      if (this.$refs[formName] && this.$refs[formName].$children.length > 0) {
+        this.$refs[formName].$children[0].clearValidate()
+      } else if (this.$refs[formName]) {
         this.$refs[formName].clearValidate()
       }
     },
@@ -161,9 +163,7 @@ export default {
       let success = result.options.success
       // 表单清除验证状态
       if (result.options.action === this.actionType.update || result.options.action === this.actionType.addition) {
-        if (this.$refs[result.options.formName || 'update']) {
-          this.$refs[result.options.formName || 'update'].clearValidate()
-        }
+        this.clearValidate(result.options.formName || 'update')
       }
       if (result.success) {
         if (this.utility.isEmpty(success)) {
@@ -210,23 +210,21 @@ export default {
         func.call(this, result.success)
       }
       if (!this.utility.isEmpty(result.options.url)) {
-        this.$router.push({
-          path: result.options.url
-        }).then(() => {
-        })
+        this.redirectURL(result.options.url)
       }
     },
     /**
      * 退出
      */
     logout () {
-      window.localStorage.clear()
+      localStorage.clear()
       this.setMerchantModel({
         avatar: '',
         firstName: '',
         lastName: '',
         name: ''
       })
+      this.redirectURL('/passport')
     },
     /**
      * 获取代理商资料
@@ -263,6 +261,16 @@ export default {
           this.logout()
           func.call(this, [])
         })
+    },
+    /**
+     * 跳转
+     */
+    redirectURL (url) {
+      if (this.$route.path !== url) {
+        this.$router.push({
+          path: url
+        })
+      }
     }
   },
   created () {

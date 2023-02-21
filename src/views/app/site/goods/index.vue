@@ -1,76 +1,87 @@
 <template>
-  <main>
-    <fox-page-header :actions="crumbAction"></fox-page-header>
-      <fox-page-loading
-        :loading="pageLoading"
-        :invalid="pageIsValid"
-        :percentage="100"
-      >
-        <fox-paging-table
-          :columns="dataConfig.columns"
-          :actions="dataConfig.actions"
-          :dataset="pagingOptions.dataset"
-          :loading="false"
-          :multi-select="true"
-          :index-number="false"
-          :stripe="false"
-          :first-loading="pagingOptions.firstLoading"
-          :empty="dataConfig.empty"
-          :page-index.sync="pagingOptions.pageIndex"
-          :page-size.sync="pagingOptions.pageSize"
-          :record-count="pagingOptions.recordCount"
-          :rows-class-name="dataConfig.rowsClassName"
-          @paging="getData"
-        >
-          <template slot="header">
-            <el-row
-              class="dataset-search"
-              :gutter="20">
-              <el-col :span="14">
-                <el-input
-                  :placeholder="$t('base.placeholder.search')"
-                  v-model="searchConditions.keyword"
-                  clearable
-                  @change="searchConditionChange"
-                  @clear="clearSearchCondition"
-                  class="input-with-select">
-                  <el-select
-                    v-model="searchConditions.searchType"
-                    slot="prepend"
-                    :placeholder="$t('base.placeholder.search')"
-                  >
-                    <el-option
-                      :label="$t('goods.searchType.name')"
-                      :value="1"
-                    ></el-option>
-                    <el-option
-                      :label="$t('goods.searchType.collection')"
-                      :value="2"
-                    ></el-option>
-                    <el-option
-                      :label="$t('goods.searchType.tag')"
-                      :value="3"
-                    ></el-option>
-                  </el-select>
-                  <el-button
-                    slot="append"
-                    icon="el-icon-search"
-                    :loading="loading"
-                    @click="getData(false)"
-                  ></el-button>
-                </el-input>
-              </el-col>
-              <el-col
-                :span="10"
-                class="text-right">
-                <label>
-                  {{ $t("base.orderBy") }}
-                </label>
-                <el-select
-                  v-if="false"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="100"
+  >
+    <div class="neighbor fox-google-style percent-100" slot="header">
+      <div class="fox-page-content">
+        <el-row
+          class="dataset-search"
+          :gutter="20">
+          <el-col :span="8">
+            <el-input
+              :placeholder="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              size="small"
+              @change="searchConditionChange"
+              @clear="clearSearchCondition"
+              class="input-with-select">
+              <el-select
+                v-model="searchConditions.searchType"
+                slot="prepend"
+                :placeholder="$t('base.placeholder.search')"
+              >
+                <el-option
+                  :label="$t('goods.searchType.name')"
+                  :value="1"
+                ></el-option>
+                <el-option
+                  :label="$t('goods.searchType.collection')"
+                  :value="2"
+                ></el-option>
+                <el-option
+                  :label="$t('goods.searchType.tag')"
+                  :value="3"
+                ></el-option>
+              </el-select>
+              <el-button
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="getData(false)"
+              ></el-button>
+            </el-input>
+          </el-col>
+          <el-col
+            :span="16"
+            class="text-right">
+            <el-button
+              size="small"
+              icon="el-icon-refresh"
+              :loading="refresherLoading"
+              :title="$t('app.refresher.button')"
+              @click="sortRefresher(1)"
+            >
+            </el-button>
+            <el-button
+              size="small"
+              icon="el-icon-brush"
+              :loading="refresherLoading"
+              :title="$t('app.refresher.init')"
+              @click="sortRefresher(0)"
+            >
+            </el-button>
+            <el-button
+              size="small"
+              icon="el-icon-plus"
+              type="primary"
+              plain
+              class="ml-7"
+              :title="$t('goods.paging.add')"
+              @click="addGoods"
+            >
+            </el-button>
+            <div class="filter-params" v-if="false">
+              <div class="filter-params-element">
+                <fox-select
                   class="ml-2"
+                  shrink
                   v-model="searchConditions.orderBy"
-                  :placeholder="$t('base.placeholder.search')"
+                  :placeholder="$t('base.orderBy')"
+                  :description="$t('base.placeholder.search')"
                   @change="getData(false)"
                 >
                   <el-option
@@ -101,41 +112,49 @@
                     :label="$t('goods.orderBy.sortDesc')"
                     value="sortIndex-DESC"
                   ></el-option>
-                </el-select>
-                <el-button
-                  icon="el-icon-refresh"
-                  class="ml-2"
-                  :loading="refresherLoading"
-                  :title="$t('app.refresher.button')"
-                  @click="sortRefresher(1)"
-                >
-                </el-button>
-                <el-button
-                  icon="el-icon-brush"
-                  class="ml-2"
-                  :loading="refresherLoading"
-                  :title="$t('app.refresher.init')"
-                  @click="sortRefresher(0)"
-                >
-                </el-button>
-              </el-col>
-            </el-row>
-          </template>
-          </fox-paging-table>
-          <collection-multiple-selector
-            :info-type="resource.infoType.goods"
-            :articles="selectedItems"
-            :display="collectionVisible"
-            @close="updateCollection"
-          ></collection-multiple-selector>
-          <tags-multiple-selector
-            :tag-type="resource.infoType.goods"
-            :articles="selectedItems"
-            :display="tagsVisible"
-            @close="updateTag"
-          ></tags-multiple-selector>
-          </fox-page-loading>
-  </main>
+                </fox-select>
+              </div>
+              <div class="filter-params-element">
+
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+    </div>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="false"
+      :multi-select="true"
+      :index-number="false"
+      :stripe="true"
+      :card-style="true"
+      :border="false"
+      :first-loading="pagingOptions.firstLoading"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      size="small"
+      @paging="getData"
+    >
+    </fox-paging-table>
+    <collection-multiple-selector
+      :info-type="resource.infoType.goods"
+      :articles="selectedItems"
+      :display="collectionVisible"
+      @close="updateCollection"
+    ></collection-multiple-selector>
+    <tags-multiple-selector
+      :tag-type="resource.infoType.goods"
+      :articles="selectedItems"
+      :display="tagsVisible"
+      @close="updateTag"
+    ></tags-multiple-selector>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -160,22 +179,6 @@ export default {
     collectionMultipleSelector
   },
   computed: {
-    /**
-     * 面包屑操作
-     */
-    crumbAction () {
-      return [
-        {
-          label: this.$t('goods.paging.add'),
-          icon: 'el-icon-plus',
-          type: 'primary',
-          visible: true,
-          click: () => {
-            this.addGoods()
-          }
-        }
-      ]
-    },
     ...mapState(['siteModel']),
     /**
      * 面包屑下拉操作
@@ -261,7 +264,7 @@ export default {
             render: (row) => {
               return (
                 <p class="text-truncate">
-                  {row['hasAnnex'] === 0 ? <i class="el-icon-paperclip" /> : ''}
+                  {row['hasAnnex'] === 0 ? <i class="el-icon-paperclip"/> : ''}
                   {row['title']}
                 </p>
               )
@@ -270,6 +273,7 @@ export default {
           {
             prop: 'minPrice',
             width: 200,
+            align: 'center',
             label: this.$t('goods.paging.tableHeader.minPrice'),
             render: (row) => {
               return (

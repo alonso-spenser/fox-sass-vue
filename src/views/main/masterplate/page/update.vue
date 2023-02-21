@@ -25,7 +25,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section>
+        <fox-section>
           <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item
@@ -73,8 +73,8 @@
               </el-form-item>
             </el-col>
           </el-row>
-        </fox-page-section>
-        <fox-page-section>
+        </fox-section>
+        <fox-section>
           <el-row :gutter="20">
             <el-col :span="4">
               <el-form-item
@@ -155,7 +155,7 @@
               </el-form-item>
             </el-col>
           </el-row>
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

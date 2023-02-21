@@ -1,84 +1,48 @@
 <template>
-  <fox-page-section
-    :heading="dataset.length > 0 ? $t('specSelector.heading') : ''"
-    :content="dataset.length > 0 ? $t('specSelector.subheading') : ''"
+  <fox-section
+    :heading="$t('specSelector.heading')"
+    :description="$t('specSelector.subheading')"
   >
-    <template
-      slot="header"
-      v-if="dataset.length > 0">
-      <el-dropdown
-        @command="specCommand"
-        :hide-on-click="false"
+
+    <el-dropdown
+      @command="specCommand"
+      :hide-on-click="false"
+      slot="header">
+      <el-button
+        size="mini"
+        type="text"
       >
-        <el-button
-          size="small"
-          round>
-          {{ $t("specPresetSave.dropdown.label") }}
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="save">
-            {{ $t("specPresetSave.dropdown.save") }}
-          </el-dropdown-item>
-          <el-dropdown-item command="select">
-            {{ $t("specPresetSave.dropdown.select") }}
-          </el-dropdown-item>
-          <el-dropdown-item command="digit">
-            {{ $t("specPresetSave.dropdown.digit") }}
-          </el-dropdown-item>
-          <el-dropdown-item command="manage">
-            {{ $t("specPresetSave.dropdown.manage") }}
-          </el-dropdown-item>
-          <el-dropdown-item command="paste">
-            Paste
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </template>
-    <template v-if="dataset.length === 0">
-      <el-dropdown
-        class="float-right"
-        @command="specCommand"
-        :hide-on-click="false"
-      >
-        <el-button
-          size="small"
-          round>
-          {{ $t("specPresetSave.dropdown.label") }}
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="save">
-            {{ $t("specPresetSave.dropdown.save") }}
-          </el-dropdown-item>
-          <el-dropdown-item command="select">
-            {{ $t("specPresetSave.dropdown.select") }}
-          </el-dropdown-item>
-          <el-dropdown-item command="digit">
-            {{ $t("specPresetSave.dropdown.digit") }}
-          </el-dropdown-item>
-          <el-dropdown-item command="manage">
-            {{ $t("specPresetSave.dropdown.manage") }}
-          </el-dropdown-item>
-          <el-dropdown-item command="paste">
-            Paste
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      {{ $t("specSelector.heading") }}
-      <div class="el-form-item__tips mt-2">
-        {{ $t("specSelector.subheading") }}
-      </div>
-    </template>
+        {{ $t("specPresetSave.dropdown.label") }}
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item command="save">
+          {{ $t("specPresetSave.dropdown.save") }}
+        </el-dropdown-item>
+        <el-dropdown-item command="select">
+          {{ $t("specPresetSave.dropdown.select") }}
+        </el-dropdown-item>
+        <el-dropdown-item command="digit">
+          {{ $t("specPresetSave.dropdown.digit") }}
+        </el-dropdown-item>
+        <el-dropdown-item command="manage">
+          {{ $t("specPresetSave.dropdown.manage") }}
+        </el-dropdown-item>
+        <el-dropdown-item command="paste">
+          Paste
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
     <el-row v-if="true">
       <el-col :span="6">
         &nbsp;
       </el-col>
-      <el-col :span="12">
+      <el-col :span="11">
         &nbsp;
       </el-col>
       <el-col
         :span="4"
+        v-if="dataset.length > 0"
         class="text-center">
         搜索 & 表头 & 数字
       </el-col>
@@ -93,12 +57,15 @@
         :key="`spec-${index}`"
         :gutter="10"
       >
-        <el-col :span="o.leaf === 0 ? 6 : 20">
+        <el-col
+          class="text-key"
+          :span="o.leaf === 0 ? 6 : 21">
           <el-form-item
             :prop="`specList.${index}.key`"
             :rules="formRules.specKey"
           >
-            <el-input
+            <fox-input
+              shrink
               size="small"
               :maxlength="o.leaf === 0 ? 32 : 255"
               show-word-limit
@@ -107,23 +74,24 @@
                             ? $t('specSelector.entity.key.placeholder')
                             : $t('specSelector.entity.title.placeholder')"
               v-model="o.key"
-            ></el-input>
+            ></fox-input>
           </el-form-item>
         </el-col>
         <el-col
-          :span="12"
+          :span="11"
           v-if="o.leaf === 0">
           <el-form-item
             :prop="`specList.${index}.value`"
             :rules="formRules.specValue"
           >
-            <el-input
+            <fox-input
+              shrink
               size="small"
               :maxlength="255"
               show-word-limit
               :placeholder="$t('specSelector.entity.value.placeholder')"
               v-model="o.value"
-            ></el-input>
+            ></fox-input>
           </el-form-item>
         </el-col>
         <el-col
@@ -159,7 +127,7 @@
         </el-col>
         <el-col
           class="text-right"
-          :span="2"
+          :span="3"
           v-show="dataset.length > 1"
         >
           <el-button
@@ -282,7 +250,7 @@
         </el-button>
       </div>
     </el-dialog>
-  </fox-page-section>
+  </fox-section>
 </template>
 
 <script>
@@ -502,13 +470,19 @@ export default {
 <style lang="scss">
 .spec-list {
   .el-switch {
-    margin-top: 6px;
+    margin-top: 10px;
   }
-
-  margin-top: 8px;
 
   .el-form-item__error {
     display: none !important;
+  }
+
+  .el-form-item {
+    margin-bottom: 0;
+  }
+
+  .el-input-material.small {
+    padding: 0.25rem 0;
   }
 }
 </style>

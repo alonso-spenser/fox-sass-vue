@@ -1,64 +1,67 @@
 <template>
-  <main>
-    <fox-page-loading
-      :percentage="100"
-    >
-      <el-row class="data-center-tap section-neighbor">
-        <el-col :span="12">
-          <el-tabs v-model="searchConditions.activeName">
-            <el-tab-pane
-              v-for="(item,index) in $t('dashboard.analytics.tabPane')"
-              :key="index"
-              :label="item.label"
-              :name="item.name">
-            </el-tab-pane>
-          </el-tabs>
-        </el-col>
-        <el-col
-          :span="12"
-          class="text-right">
-          <el-button
-            type="text"
-            @click="redirectGA"
-            class="mr-3">
-            {{ $t('dashboard.ga.setting') }}
-          </el-button>
-          <el-date-picker
-            v-model="searchConditions.daterange"
-            type="daterange"
-            size="small"
-            :picker-options="pickerOptions"
-            range-separator="-"
-            value-format="timestamp"
-            :default-time="['00:00:00', '23:59:59']"
-            :start-placeholder="$t('base.placeholder.date')"
-            :end-placeholder="$t('base.placeholder.date')"
-          >
-          </el-date-picker>
-        </el-col>
-      </el-row>
-      <div class="disabled-container section-neighbor">
-        <!--询盘-->
-        <inquiry-temp
-          v-if="searchConditions.activeName==='inquiry'"
-          :daterange="searchConditions.daterange"
-          :website-id="searchConditions.websiteId">
-        </inquiry-temp>
-        <!--流量-->
-        <flow-temp
-          v-if="searchConditions.activeName==='flow'"
-          :daterange="searchConditions.daterange"
-          :website-id="searchConditions.websiteId">
-        </flow-temp>
-        <!--访问-->
-        <visit-temp
-          v-if="searchConditions.activeName==='visit'"
-          :daterange="searchConditions.daterange"
-          :website-id="searchConditions.websiteId">
-        </visit-temp>
-      </div>
-    </fox-page-loading>
-  </main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="100"
+  >
+    <el-row
+      class="data-center-tap"
+      slot="header">
+      <el-col :span="12">
+        <el-tabs v-model="searchConditions.activeName">
+          <el-tab-pane
+            v-for="(item,index) in $t('dashboard.analytics.tabPane')"
+            :key="index"
+            :label="item.label"
+            :name="item.name">
+          </el-tab-pane>
+        </el-tabs>
+      </el-col>
+      <el-col
+        :span="12"
+        class="text-right">
+        <el-button
+          type="text"
+          @click="redirectGA"
+          class="mr-3">
+          {{ $t('dashboard.ga.setting') }}
+        </el-button>
+        <el-date-picker
+          v-model="searchConditions.daterange"
+          type="daterange"
+          size="small"
+          :picker-options="pickerOptions"
+          range-separator="-"
+          value-format="timestamp"
+          :default-time="['00:00:00', '23:59:59']"
+          :start-placeholder="$t('base.placeholder.date')"
+          :end-placeholder="$t('base.placeholder.date')"
+        >
+        </el-date-picker>
+      </el-col>
+    </el-row>
+    <div class="disabled-container section-neighbor">
+      <!--询盘-->
+      <inquiry-temp
+        v-if="searchConditions.activeName==='inquiry'"
+        :daterange="searchConditions.daterange"
+        :website-id="searchConditions.websiteId">
+      </inquiry-temp>
+      <!--流量-->
+      <flow-temp
+        v-if="searchConditions.activeName==='flow'"
+        :daterange="searchConditions.daterange"
+        :website-id="searchConditions.websiteId">
+      </flow-temp>
+      <!--访问-->
+      <visit-temp
+        v-if="searchConditions.activeName==='visit'"
+        :daterange="searchConditions.daterange"
+        :website-id="searchConditions.websiteId">
+      </visit-temp>
+    </div>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -91,6 +94,7 @@ export default {
     ...mapState(['siteModel'])
   },
   created () {
+    this.pageLoading = false
     if (!this.searchConditions.activeName) {
       this.$set(this.searchConditions, 'activeName', 'inquiry')
     }
@@ -124,13 +128,11 @@ export default {
 
 <style lang="scss">
 .data-center-tap {
-  box-sizing: border-box;
-  z-index: 1;
-  border-bottom: solid 2px #E4E7ED;;
-  margin-bottom: 10px;
+  padding: 5px 16px 0 16px;
+  border-bottom: solid 1px #E4E7ED;;
 
   .el-tabs__header {
-    margin: 0 !important;
+    margin: 0;
 
     .el-tabs__nav-wrap::after {
       height: 0;

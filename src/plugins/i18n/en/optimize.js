@@ -78,7 +78,7 @@ export default {
     tips: 'SEO meta information',
     engine: 'Google search result preview',
     edit: 'Edit SEO information',
-    visible: '添加标题和说明，以了解此页面在搜索引擎列表中的显示方式',
+    visible: 'Add a title and description to understand how this page will appear in search engine listings',
     title: {
       goods: {
         label: '产品名称',

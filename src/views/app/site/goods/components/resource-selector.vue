@@ -75,7 +75,7 @@
         :span="4">
         <div
           @click="imageChecked($event, o)"
-          class="embed-responsive embed-responsive-cover resource-selector"
+          class="embed-responsive embed-responsive-1by1 embed-responsive-cover resource-selector"
         >
           <img
             class="embed-responsive-item"

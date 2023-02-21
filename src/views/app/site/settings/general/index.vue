@@ -1,9 +1,6 @@
 <template>
-  <fox-page-loading
-    :loading="pageLoading"
-    :invalid="pageIsValid"
-    :fullScreen="true"
-    :percentage="90"
+  <div
+    v-loading="pageLoading"
   >
     <el-form
       class="site-setting-page"
@@ -14,7 +11,7 @@
       label-position="top"
     >
       <!--网站信息-->
-      <fox-page-section
+      <fox-section
         :heading="$t('settings.basic.paging.title')"
         :content="$t('settings.basic.paging.desc')"
       >
@@ -239,9 +236,9 @@
             :description="$t('settings.basic.entity.address.placeholder')"
           ></fox-input>
         </el-form-item>
-      </fox-page-section>
+      </fox-section>
 
-      <fox-page-section
+      <fox-section
         :heading="$t('settings.basic.map.title')"
       >
         <el-form-item :label="$t('settings.basic.entity.coordinate.label')">
@@ -337,9 +334,9 @@
             @infohtmlset="getCoordinate"
           ></bm-local-search>
         </baidu-map>
-      </fox-page-section>
+      </fox-section>
 
-      <fox-page-section
+      <fox-section
         :heading="$t('settings.basic.langAndCurrency.heading')"
         :subheading="$t('settings.basic.langAndCurrency.subheading')"
       >
@@ -360,9 +357,9 @@
             </el-option>
           </el-select>
         </el-form-item>
-      </fox-page-section>
+      </fox-section>
 
-      <fox-page-section
+      <fox-section
         :heading="$t('settings.basic.timeAndUnit.heading')"
         :subheading="$t('settings.basic.timeAndUnit.subheading')"
       >
@@ -452,10 +449,10 @@
             </el-form-item>
           </el-col>
         </el-form-item>
-      </fox-page-section>
+      </fox-section>
 
       <!--网站状态-->
-      <fox-page-section :heading="$t('settings.basic.siteStatus.heading')">
+      <fox-section :heading="$t('settings.basic.siteStatus.heading')">
         <el-row>
           <el-col :span="18">
             <div
@@ -530,7 +527,7 @@
             </template>
           </el-col>
         </el-row>
-      </fox-page-section>
+      </fox-section>
     </el-form>
 
     <!--save-->
@@ -540,15 +537,14 @@
       :loading="loading"
     >
     </fox-unsaved>
-
-  </fox-page-loading>
+  </div>
 </template>
 
 <script>
 import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
 import { BmLocalSearch, BmView, BmMarker } from 'vue-baidu-map'
 import extend from '@/plugins/page/unsaved'
-import { fetchBaseLanguage, fetchBaseArea } from '@/plugins/api/core'
+import { fetchBaseArea } from '@/plugins/api/core'
 import { fetchSiteBasicDetail, fetchSaveSiteBasicDetail, fetchSiteEnable, fetchSiteDisable } from '@/plugins/api/settings'
 
 export default {

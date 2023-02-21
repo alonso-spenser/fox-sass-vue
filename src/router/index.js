@@ -205,7 +205,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             }
           ]
         }
@@ -228,7 +228,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('goods.paging.title'),
@@ -255,7 +255,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('goods.paging.title'),
@@ -282,7 +282,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('goods.paging.title'),
@@ -347,7 +347,7 @@ const routes = [
               crumbs: [
                 {
                   title: i18n.t('site.dashboard.title'),
-                  path: '/site/:siteId:/dashboard'
+                  path: '/dashboard'
                 }
               ]
             }
@@ -387,7 +387,7 @@ const routes = [
               crumbs: [
                 {
                   title: i18n.t('site.dashboard.title'),
-                  path: '/site/:siteId:/dashboard'
+                  path: '/dashboard'
                 },
                 {
                   title: i18n.t('settings.domain.title'),
@@ -405,12 +405,12 @@ const routes = [
               sidebar: true,
               header: true,
               requireAuth: true,
-              parent: '/site/:siteId:/dashboard',
+              parent: '/dashboard',
               title: i18n.t('settings.legal.paging.title'),
               crumbs: [
                 {
                   title: i18n.t('site.dashboard.title'),
-                  path: '/site/:siteId:/dashboard'
+                  path: '/dashboard'
                 }
               ]
             }
@@ -424,12 +424,12 @@ const routes = [
               sidebar: true,
               header: true,
               requireAuth: true,
-              parent: '/site/:siteId:/dashboard',
+              parent: '/dashboard',
               title: i18n.t('settings.tracking.paging.title'),
               crumbs: [
                 {
                   title: i18n.t('site.dashboard.title'),
-                  path: '/site/:siteId:/dashboard'
+                  path: '/dashboard'
                 }
               ]
             }
@@ -443,12 +443,12 @@ const routes = [
               sidebar: true,
               header: true,
               requireAuth: true,
-              parent: '/site/:siteId:/dashboard',
+              parent: '/dashboard',
               title: i18n.t('settings.route.paging.title'),
               crumbs: [
                 {
                   title: i18n.t('site.dashboard.title'),
-                  path: '/site/:siteId:/dashboard'
+                  path: '/dashboard'
                 }
               ]
             }
@@ -469,7 +469,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             }
           ]
         }
@@ -544,7 +544,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             }
           ]
         }
@@ -567,7 +567,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('article.paging.title'),
@@ -594,7 +594,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('article.paging.title'),
@@ -638,7 +638,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('article.paging.title'),
@@ -666,7 +666,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('article.paging.title'),
@@ -692,7 +692,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('article.paging.title'),
@@ -718,7 +718,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('article.paging.title'),
@@ -762,7 +762,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             }
           ]
         }
@@ -785,7 +785,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('site.resource.paging.title'),
@@ -812,7 +812,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('site.resource.paging.title'),
@@ -873,7 +873,7 @@ const routes = [
           title: i18n.t('enquiry.email.title'),
           parent: {
             title: i18n.t('enquiry.record.title'),
-            url: '/site/:siteId:/enquiry/form',
+            url: '/site/:siteId:/enquiry/email',
             previous: '/site/:siteId:/enquiry'
           }
         }
@@ -955,7 +955,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             }
           ]
         }
@@ -978,7 +978,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
+              path: '/dashboard'
             },
             {
               title: i18n.t('navigation.paging.title'),
@@ -1004,61 +1004,7 @@ const routes = [
           crumbs: [
             {
               title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
-            }
-          ]
-        }
-      },
-      {
-        path: 'pages/add',
-        name: 'site-page-add',
-        component: () => import('../views/app/site/pages/update'),
-        meta: {
-          requireAuth: true,
-          siteType: [3, 4],
-          title: i18n.t('customizePage.update.addTitle'),
-          header: true,
-          sidebar: true,
-          parent: {
-            title: i18n.t('customizePage.paging.title'),
-            url: '/site/:siteId:/pages',
-            previous: '/site/:siteId:/pages'
-          },
-          crumbs: [
-            {
-              title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
-            },
-            {
-              title: i18n.t('customizePage.paging.title'),
-              path: '/site/:siteId:/pages/'
-            }
-          ]
-        }
-      },
-      {
-        path: 'pages/:id',
-        name: 'site-page-update',
-        component: () => import('../views/app/site/pages/update'),
-        meta: {
-          requireAuth: true,
-          siteType: [3, 4],
-          title: i18n.t('customizePage.update.updateTitle'),
-          header: true,
-          sidebar: true,
-          parent: {
-            title: i18n.t('customizePage.paging.title'),
-            url: '/site/:siteId:/pages',
-            previous: '/site/:siteId:/pages'
-          },
-          crumbs: [
-            {
-              title: i18n.t('site.dashboard.title'),
-              path: '/site/:siteId:/dashboard'
-            },
-            {
-              title: i18n.t('customizePage.paging.title'),
-              path: '/site/:siteId:/pages/'
+              path: '/dashboard'
             }
           ]
         }

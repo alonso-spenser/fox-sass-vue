@@ -1,101 +1,100 @@
 <template>
-  <main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
     <fox-header-ops
       :title="$t('enquiry.email.title')"
       :description="$t('enquiry.email.description')"
     >
     </fox-header-ops>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="90"
+    <fox-section
+      :heading="$t('enquiry.email.title')"
     >
-      <fox-page-section>
-        <el-form
-          :model="entity"
-          :rules="formRules"
-          ref="update"
-          label-position="top"
+      <template
+        slot="header"
+        v-if="entity.data.length < 5">
+        <el-button
+          icon="el-icon-plus"
+          type="text"
+          size="mini"
+          @click="addItem()"
         >
-          <draggable
-            handle=".el-move"
-            :list="entity.data">
-            <el-row
-              v-for="(o, index) in entity.data"
-              :key="`spec-${index}`"
-              :class="index === 0 ? 'mt-2' : 'mt-5'"
-              :gutter="10"
-            >
-              <el-col :span="10">
-                <el-form-item
-                  :prop="`data.${index}.email`"
-                  :rules="formRules.email"
-                >
-                  <fox-input
-                    shrink
-                    :description="$t('enquiry.email.update.email.description')"
-                    :placeholder="$t('enquiry.email.update.email.placeholder')"
-                    v-model="o.email"
-                  ></fox-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="10">
-                <el-form-item
-                  :prop="`data.${index}.name`"
-                  :rules="formRules.userName"
-                >
-                  <fox-input
-                    shrink
-                    :maxlength="255"
-                    show-word-limit
-                    :placeholder="$t('enquiry.email.update.userName.placeholder')"
-                    v-model="o.name"
-                  ></fox-input>
-                </el-form-item>
-              </el-col>
-              <el-col
-                class="text-right"
-                :span="4"
-                v-show="entity.data.length > 1"
-              >
-                <el-button
-                  class="el-move"
-                  icon="el-icon-rank"
-                  circle
-                  size="small"
-                ></el-button>
-                <el-button
-                  class="no-border"
-                  icon="el-icon-delete"
-                  circle
-                  size="small"
-                  @click="removeItem(index)"
-                ></el-button>
-              </el-col>
-            </el-row>
-          </draggable>
-          <p
-            v-if="entity.data.length < 5"
-            class="mt-7 text-right"
-          >
-            <el-button
-              size="small"
-              @click="addItem()"
-            >
-              {{ $t("base.operate.add") }}
-            </el-button>
-          </p>
-        </el-form>
-      </fox-page-section>
-      <!--保存按钮-->
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        :loading="loading"
-        @confirmed="formValidation"
+          {{ $t("base.operate.add") }}
+        </el-button>
+      </template>
+      <fox-form
+        :model="entity"
+        :rules="formRules"
+        ref="update"
       >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+        <draggable
+          handle=".el-move"
+          :list="entity.data">
+          <el-row
+            v-for="(o, index) in entity.data"
+            :key="`spec-${index}`"
+            :gutter="10"
+          >
+            <el-col :span="10">
+              <el-form-item
+                :prop="`data.${index}.email`"
+                :rules="formRules.email"
+              >
+                <fox-input
+                  shrink
+                  :placeholder="$t('enquiry.email.update.email.label')"
+                  :description="$t('enquiry.email.update.email.description')"
+                  v-model="o.email"
+                ></fox-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="10">
+              <el-form-item
+                :prop="`data.${index}.name`"
+                :rules="formRules.userName"
+              >
+                <fox-input
+                  shrink
+                  :maxlength="255"
+                  show-word-limit
+                  :placeholder="$t('enquiry.email.update.userName.placeholder')"
+                  v-model="o.name"
+                ></fox-input>
+              </el-form-item>
+            </el-col>
+            <el-col
+              class="text-right"
+              :span="4"
+              v-show="entity.data.length > 1"
+            >
+              <el-button
+                class="el-move mt-3"
+                icon="el-icon-rank"
+                circle
+                size="small"
+              ></el-button>
+              <el-button
+                class="no-border"
+                icon="el-icon-delete"
+                circle
+                size="small"
+                @click="removeItem(index)"
+              ></el-button>
+            </el-col>
+          </el-row>
+        </draggable>
+      </fox-form>
+    </fox-section>
+    <!--保存按钮-->
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -171,7 +170,6 @@ export default {
     }
   },
   created () {
-    // this.pageValid()
     this.getData()
   },
   methods: {
@@ -179,8 +177,7 @@ export default {
      * 表单校验
      */
     formValidation () {
-      let formName = 'update'
-      this.$refs[formName].validate((valid) => {
+      this.formValidate('update', (valid) => {
         if (valid) {
           this.updateReceiver()
         } else {

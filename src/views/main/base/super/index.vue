@@ -14,7 +14,7 @@
         label-position="right"
         label-width="150px"
       >
-        <fox-page-section>
+        <fox-section>
           <el-form-item
             prop="logo"
             :label="$t('core.agent.entity.logo.label')">
@@ -107,7 +107,7 @@
               :placeholder="$t('core.agent.entity.address.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

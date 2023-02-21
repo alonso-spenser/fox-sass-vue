@@ -53,7 +53,7 @@
               <el-button @click="routeVisible = true">{{ $t('base.operate.paste') }}</el-button>
             </el-col>
           </el-row>
-          <fox-page-section
+          <fox-section
             class="mt-5"
             v-if="routeVisible">
             <el-alert
@@ -71,10 +71,10 @@
               @click="analyseRoute">
               {{ $t('base.operate.save') }}
             </el-button>
-            </fox-page-section>
+          </fox-section>
         </template>
-        </fox-paging-table>
-        </fox-page-loading>
+      </fox-paging-table>
+    </fox-page-loading>
   </main>
 </template>
 

@@ -325,7 +325,7 @@ export default {
     title: '网站管理',
     pass: {
       title: '下载密码',
-      setPass: '设置下载密码 >',
+      setPass: '下载密码',
       content: '"通用下载密码" 用于产品附件、文章附件等通用附件下载（有设置为需要密码时）',
       downPass: {
         label: '下载密码',

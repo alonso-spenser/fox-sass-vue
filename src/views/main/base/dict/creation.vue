@@ -6,7 +6,7 @@
       :fullScreen="true"
     >
       <fox-page-header></fox-page-header>
-      <fox-page-section>
+      <fox-section>
         <el-form
           :model="entity"
           :rules="formRules"
@@ -121,7 +121,7 @@
             </el-button>
           </p>
         </el-form>
-      </fox-page-section>
+      </fox-section>
       <!--保存按钮-->
       <fox-unsaved
         :unsaved.sync="unsaved"

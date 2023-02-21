@@ -1,8 +1,13 @@
 <template>
-  <main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="100"
+  >
     <fox-header-ops
       :title="$t('enquiry.record.title')"
-      :description="$t('enquiry.email.description')"
+      :description="$t('enquiry.record.description')"
       divider
     >
       <div class="header-ops-item">
@@ -17,168 +22,153 @@
         </el-button>
       </div>
     </fox-header-ops>
-    <!--    <fox-page-header></fox-page-header>-->
-    <!--    <div class="filter-params">-->
-    <!--      <div class="filter-params-element">-->
-    <!--        11-->
-    <!--      </div>-->
-    <!--      <div class="filter-params-element">-->
-    <!--        11-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="90"
+    <fox-paging-table
+      :multiSelect="false"
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      @paging="getData(false)"
     >
-      <fox-paging-table
-        :multiSelect="false"
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="tableOptions.loading"
-        :first-loading="pagingOptions.firstLoading"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :rows-class-name="dataConfig.rowsClassName"
-        @paging="getData(false)"
-      >
-        <template slot="header">
-          <!--搜索-->
-          <el-row
-            class="mb-5 dataset-search"
-            :gutter="20">
-            <el-col :span="16">
-              <el-row :gutter="20">
-                <el-col :span="16">
-                  <el-input
-                    :placeholder="$t('base.placeholder.search')"
-                    v-model="searchConditions.keyword"
-                    clearable
-                    @change="searchConditionChange"
-                    class="input-with-select"
+      <template slot="header">
+        <!--搜索-->
+        <el-row
+          class="mb-5 dataset-search"
+          :gutter="20">
+          <el-col :span="16">
+            <el-row :gutter="20">
+              <el-col :span="16">
+                <el-input
+                  :placeholder="$t('base.placeholder.search')"
+                  v-model="searchConditions.keyword"
+                  clearable
+                  @change="searchConditionChange"
+                  class="input-with-select"
+                >
+                  <el-select
+                    v-model="searchConditions.searchType"
+                    slot="prepend"
+                    :placeholder="$t('base.placeholder.select')"
                   >
-                    <el-select
-                      v-model="searchConditions.searchType"
-                      slot="prepend"
-                      :placeholder="$t('base.placeholder.select')"
-                    >
-                      <el-option
-                        v-for="{ label, value } in $t('enquiry.record.searchType')"
-                        :key="value"
-                        :label="label"
-                        :value="value"
-                      ></el-option>
-                    </el-select>
-                    <el-button
-                      slot="append"
-                      icon="el-icon-search"
-                      :loading="loading"
-                      @click="startSearch">
-                    </el-button>
-                  </el-input>
-                </el-col>
-              </el-row>
-            </el-col>
-            <el-col
-              :span="8"
-              class="text-right">
-              <label>
-                {{ $t("base.orderBy") }}
-              </label>
-              <el-select
-                class="ml-2"
-                v-model="searchConditions.orderBy"
-                :placeholder="$t('base.placeholder.select')"
-              >
-                <el-option
-                  v-for="{ label, value } in $t('enquiry.record.recordOrderBy')"
-                  :key="value"
-                  :label="label"
-                  :value="value"
-                ></el-option>
-              </el-select>
-            </el-col>
-          </el-row>
-          <!--check-->
-          <el-row
-            class="mb-5"
-            type="flex"
-            :gutter="20">
-            <el-col :span="2">
+                    <el-option
+                      v-for="{ label, value } in $t('enquiry.record.searchType')"
+                      :key="value"
+                      :label="label"
+                      :value="value"
+                    ></el-option>
+                  </el-select>
+                  <el-button
+                    slot="append"
+                    icon="el-icon-search"
+                    :loading="loading"
+                    @click="startSearch">
+                  </el-button>
+                </el-input>
+              </el-col>
+            </el-row>
+          </el-col>
+          <el-col
+            :span="8"
+            class="text-right">
+            <label>
+              {{ $t("base.orderBy") }}
+            </label>
+            <el-select
+              class="ml-2"
+              v-model="searchConditions.orderBy"
+              :placeholder="$t('base.placeholder.select')"
+            >
+              <el-option
+                v-for="{ label, value } in $t('enquiry.record.recordOrderBy')"
+                :key="value"
+                :label="label"
+                :value="value"
+              ></el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <!--check-->
+        <el-row
+          class="mb-5"
+          type="flex"
+          :gutter="20">
+          <el-col :span="2">
+            <el-checkbox
+              :indeterminate="searchConditions.isIndeterminate"
+              v-model="searchConditions.checkAllState"
+              @change="handleCheckAllChange"
+            >{{ $t('enquiry.all') }}
+            </el-checkbox
+            >
+          </el-col>
+          <el-col :span="22">
+            <el-checkbox-group
+              @change="handleCheckedCitiesChange"
+              v-model="searchConditions.states"
+            >
               <el-checkbox
-                :indeterminate="searchConditions.isIndeterminate"
-                v-model="searchConditions.checkAllState"
-                @change="handleCheckAllChange"
-              >{{ $t('enquiry.all') }}
+                v-for="{ label, value } in $t('enquiry.record.recordState')"
+                :key="value"
+                :label="value"
+              >{{ label }}
               </el-checkbox
               >
-            </el-col>
-            <el-col :span="22">
-              <el-checkbox-group
-                @change="handleCheckedCitiesChange"
-                v-model="searchConditions.states"
-              >
-                <el-checkbox
-                  v-for="{ label, value } in $t('enquiry.record.recordState')"
-                  :key="value"
-                  :label="value"
-                >{{ label }}
-                </el-checkbox
-                >
-              </el-checkbox-group>
-            </el-col>
-          </el-row>
-          <!--time and rest search condition-->
-          <el-row
-            :gutter="20"
-            class="mt-5 mb-5">
-            <el-col :span="8">
-              <el-date-picker
-                @change="getData(false)"
-                v-model="searchConditions.dateRange"
-                type="daterange"
-                range-separator="-"
-                value-format="timestamp"
-                :default-time="['00:00:00', '23:59:59']"
-                :start-placeholder="$t('base.startTime')"
-                :end-placeholder="$t('base.endTime')"
-              >
-              </el-date-picker>
-            </el-col>
+            </el-checkbox-group>
+          </el-col>
+        </el-row>
+        <!--time and rest search condition-->
+        <el-row
+          :gutter="20"
+          class="mt-5 mb-5">
+          <el-col :span="8">
+            <el-date-picker
+              @change="getData(false)"
+              v-model="searchConditions.dateRange"
+              type="daterange"
+              range-separator="-"
+              value-format="timestamp"
+              :default-time="['00:00:00', '23:59:59']"
+              :start-placeholder="$t('base.startTime')"
+              :end-placeholder="$t('base.endTime')"
+            >
+            </el-date-picker>
+          </el-col>
 
-            <!--设备-->
-            <el-col :span="4">
-              <el-select
-                v-model="searchConditions.device"
-                @change="getData(false)"
-                :placeholder="$t('base.placeholder.select')"
+          <!--设备-->
+          <el-col :span="4">
+            <el-select
+              v-model="searchConditions.device"
+              @change="getData(false)"
+              :placeholder="$t('base.placeholder.select')"
+            >
+              <el-option
+                v-for="{ label, value, icon } in $t('enquiry.deviceTypeList')"
+                :key="value"
+                :label="label"
+                :value="value"
               >
-                <el-option
-                  v-for="{ label, value, icon } in $t('enquiry.deviceTypeList')"
-                  :key="value"
-                  :label="label"
-                  :value="value"
-                >
-                  <div class="select-option">
-                    <i
-                      class="mr-1"
-                      :class="icon"
-                      v-if="icon"></i>
-                    <span>{{ label }}</span>
-                  </div>
-                </el-option>
-              </el-select>
-            </el-col>
-            <el-col :span="4">
-              <el-button @click="clearSearchCondition">{{ $t("enquiry.record.clearAllFilter") }}</el-button>
-            </el-col>
-          </el-row>
-        </template>
-      </fox-paging-table>
-    </fox-page-loading>
-  </main>
+                <div class="select-option">
+                  <i
+                    class="mr-1"
+                    :class="icon"
+                    v-if="icon"></i>
+                  <span>{{ label }}</span>
+                </div>
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="4">
+            <el-button @click="clearSearchCondition">{{ $t("enquiry.record.clearAllFilter") }}</el-button>
+          </el-col>
+        </el-row>
+      </template>
+    </fox-paging-table>
+  </fox-layout-main>
 </template>
 
 <script>

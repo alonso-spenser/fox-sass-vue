@@ -14,7 +14,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section>
+        <fox-section>
           <el-row
             :gutter="20"
             class="el-form-item">
@@ -129,7 +129,7 @@
               </el-form-item>
             </el-col>
           </el-row>
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

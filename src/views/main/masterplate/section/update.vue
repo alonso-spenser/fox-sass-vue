@@ -28,7 +28,7 @@
         label-position="top"
       >
 
-        <fox-page-section>
+        <fox-section>
           <el-row :gutter="20">
             <el-col :span="6">
               <el-form-item
@@ -231,8 +231,8 @@
               </el-form-item>
             </el-col>
           </el-row>
-        </fox-page-section>
-        <fox-page-section
+        </fox-section>
+        <fox-section
           heading="AMP"
           v-if="false">
           <el-form-item prop="ampCss">
@@ -255,8 +255,8 @@
               :placeholder="$t('theme.section.update.entity.ampTemplate.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
-        <fox-page-section heading="CSS">
+        </fox-section>
+        <fox-section heading="CSS">
           <el-form-item prop="baseCss">
             <label class="el-form-item__label">{{ $t('theme.section.update.entity.baseCss.label') }}</label>
             <el-button
@@ -286,8 +286,8 @@
               :placeholder="$t('theme.section.update.entity.variableCss.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
-        <fox-page-section heading="JAVASCRIPT">
+        </fox-section>
+        <fox-section heading="JAVASCRIPT">
           <el-form-item
             prop="scriptCode"
             :label="$t('theme.section.update.entity.scriptCode.label')">
@@ -298,8 +298,8 @@
               :placeholder="$t('theme.section.update.entity.scriptCode.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
-        <fox-page-section heading="TEMPLATE">
+        </fox-section>
+        <fox-section heading="TEMPLATE">
           <el-form-item
             prop="artTemplate"
             :label="$t('theme.section.update.entity.artTemplate.label')"
@@ -321,8 +321,8 @@
               :placeholder="$t('theme.section.update.entity.thymeleafTemplate.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
-        <fox-page-section heading="LANGUAGE">
+        </fox-section>
+        <fox-section heading="LANGUAGE">
           <el-form-item
             prop="language"
             :label="$t('theme.section.update.entity.language.label')">
@@ -333,8 +333,8 @@
               :placeholder="$t('theme.section.update.entity.language.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
-        <fox-page-section heading="INFO">
+        </fox-section>
+        <fox-section heading="INFO">
           <el-form-item
             prop="description"
             :label="$t('theme.section.update.entity.description.label')">
@@ -354,7 +354,7 @@
               :placeholder="$t('theme.section.update.entity.sectionIcon.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

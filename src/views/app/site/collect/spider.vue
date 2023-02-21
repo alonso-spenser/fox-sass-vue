@@ -60,7 +60,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section
+        <fox-section
           content="基础数据"
         >
           <el-form-item
@@ -118,13 +118,13 @@
             >
             </el-input>
           </el-form-item>
-        </fox-page-section>
+        </fox-section>
         <collection-select
           :inlay="true"
           :info-type.sync="infoType"
           v-model="entity.collectionList"
         ></collection-select>
-        <fox-page-section
+        <fox-section
           content="分页参数"
           v-if="entity.collectType === 0 || entity.collectType === 1">
           <el-row :gutter="20">
@@ -159,10 +159,10 @@
               </el-form-item>
             </el-col>
           </el-row>
-        </fox-page-section>
+        </fox-section>
         <el-row :gutter="20">
           <el-col :span="12">
-            <fox-page-section
+            <fox-section
               heading="列表参数"
               v-if="entity.collectType === 0 || entity.collectType === 1">
               <el-form-item
@@ -228,8 +228,8 @@
                   :placeholder="$t('collect.rule.update.entity.itemSummarySelector.placeholder')"
                 ></el-input>
               </el-form-item>
-            </fox-page-section>
-            <fox-page-section heading="通用参数">
+            </fox-section>
+            <fox-section heading="通用参数">
               <el-form-item
                 prop="itemSubtitleSelector"
                 :label="$t('collect.rule.update.entity.itemSubtitleSelector.label')">
@@ -247,8 +247,8 @@
                   :placeholder="$t('collect.rule.update.entity.brandSelector.placeholder')"
                 ></el-input>
               </el-form-item>
-            </fox-page-section>
-            <fox-page-section heading="时间">
+            </fox-section>
+            <fox-section heading="时间">
               <el-form-item
                 prop="timeSelector"
                 :label="$t('collect.rule.update.entity.timeSelector.label')">
@@ -275,8 +275,8 @@
                   :placeholder="$t('collect.rule.update.entity.timePattern.placeholder')"
                 ></el-input>
               </el-form-item>
-            </fox-page-section>
-            <fox-page-section heading="规格参数">
+            </fox-section>
+            <fox-section heading="规格参数">
               <el-form-item
                 prop="specSelectorGroup"
                 :label="$t('collect.rule.update.entity.specSelectorGroup.label')">
@@ -295,7 +295,7 @@
                 ></el-input>
               </el-form-item>
 
-              <fox-page-section content="属性值">
+              <fox-section content="属性值">
                 <el-form-item
                   prop="specSelector"
                   :label="$t('collect.rule.update.entity.specSelector.label')">
@@ -322,11 +322,11 @@
                     :placeholder="$t('collect.rule.update.entity.specValueSelector.placeholder')"
                   ></el-input>
                 </el-form-item>
-              </fox-page-section>
-            </fox-page-section>
+              </fox-section>
+            </fox-section>
           </el-col>
           <el-col :span="12">
-            <fox-page-section heading="详情页">
+            <fox-section heading="详情页">
               <el-form-item
                 prop="detailTitleSelector"
                 :label="$t('collect.rule.update.entity.detailTitleSelector.label')">
@@ -363,9 +363,9 @@
                 ></el-input>
               </el-form-item>
 
-            </fox-page-section>
+            </fox-section>
 
-            <fox-page-section heading="图片组">
+            <fox-section heading="图片组">
               <el-form-item
                 prop="imgListSelector"
                 :label="$t('collect.rule.update.entity.imgListSelector.label')">
@@ -383,8 +383,8 @@
                   :placeholder="$t('collect.rule.update.entity.imgListSrcSelector.placeholder')"
                 ></el-input>
               </el-form-item>
-            </fox-page-section>
-            <fox-page-section
+            </fox-section>
+            <fox-section
               heading="SKU"
               v-if="entity.collectType === 1 || entity.collectType === 3">
               <el-form-item
@@ -436,7 +436,7 @@
                   :placeholder="$t('collect.rule.update.entity.skuListValueSelector.placeholder')"
                 ></el-input>
               </el-form-item>
-            </fox-page-section>
+            </fox-section>
           </el-col>
         </el-row>
       </el-form>

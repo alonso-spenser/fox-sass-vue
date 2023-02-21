@@ -5,7 +5,7 @@
       :invalid="pageIsValid"
     >
       <fox-page-header></fox-page-header>
-      <fox-page-section>
+      <fox-section>
         <el-form
           :model="entity"
           :rules="formRules"
@@ -53,7 +53,7 @@
             </div>
           </draggable>
         </el-form>
-      </fox-page-section>
+      </fox-section>
       <fox-unsaved
         :unsaved.sync="unsaved"
         @confirmed="formValidation"

@@ -7,7 +7,7 @@
       <fox-page-header
         :previous="true"
       ></fox-page-header>
-      <fox-page-section>
+      <fox-section>
         <el-button @click="loadSchemeEditor('globalColorsSchema', 'globalColorsData')">
           {{ $t('theme.schema.globalColorsSchema') }}
         </el-button>
@@ -26,7 +26,7 @@
         <el-button @click="langData.visible = true">
           系统语言
         </el-button>
-      </fox-page-section>
+      </fox-section>
       <el-form
         :model="entity"
         :rules="formRules"
@@ -34,7 +34,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section>
+        <fox-section>
           <el-form-item
             prop="pageLayout"
             :label="$t('theme.schema.pageLayout.label')">
@@ -45,8 +45,8 @@
               :placeholder="$t('theme.schema.pageLayout.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
-        <fox-page-section>
+        </fox-section>
+        <fox-section>
           <el-form-item prop="globalCss">
             <label class="el-form-item__label">{{ $t('theme.schema.globalCss.label') }}</label>
             <el-button
@@ -61,7 +61,7 @@
               :placeholder="$t('theme.schema.globalCss.placeholder')"
             ></el-input>
           </el-form-item>
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

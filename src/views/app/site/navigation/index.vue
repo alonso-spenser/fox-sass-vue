@@ -1,26 +1,26 @@
 <template>
- <main>
-   <fox-page-header :actions="crumbAction"></fox-page-header>
-   <fox-page-loading
-     :loading="pageLoading"
-     :invalid="pageIsValid"
-     :percentage="100"
-   >
-     <fox-paging-table
-       :multiSelect="false"
-       :actions="dataConfig.actions"
-       :columns="dataConfig.columns"
-       :dataset="pagingOptions.dataset"
-       :loading="tableOptions.loading"
-       :first-loading="pagingOptions.firstLoading"
-       :page-index.sync="pagingOptions.pageIndex"
-       :page-size.sync="pagingOptions.pageSize"
-       :record-count="pagingOptions.recordCount"
-       :rows-class-name="dataConfig.rowsClassName"
-     >
-     </fox-paging-table>
-   </fox-page-loading>
- </main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <fox-page-header
+      :actions="crumbAction"
+      slot="header"></fox-page-header>
+    <fox-paging-table
+      :multiSelect="false"
+      :actions="dataConfig.actions"
+      :columns="dataConfig.columns"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+    >
+    </fox-paging-table>
+  </fox-layout-main>
 </template>
 
 <script>

@@ -377,6 +377,12 @@ export default {
       return this.expression.Mobile.test(account) || this.expression.Email.test(account)
     }
   },
+  subString (value, length) {
+    if (this.isEmpty(value) || value.length < length) {
+      return value || ''
+    }
+    return value.substring(0, length)
+  },
   /**
    * 文件类型
    */

@@ -23,7 +23,7 @@
         class="variant-page section-neighbor"
         :gutter="20">
         <el-col :span="6">
-          <!--          <fox-page-section class="mt-0">-->
+          <!--          <fox-section class="mt-0">-->
           <!--            <el-row type="flex" class="pointer" @click.native="redirectGoodsDetail">-->
           <!--              <el-avatar-->
           <!--                class="mr-4"-->
@@ -34,8 +34,8 @@
           <!--              ></el-avatar>-->
           <!--              {{ spuDetail.title }}-->
           <!--            </el-row>-->
-          <!--          </fox-page-section>-->
-          <fox-page-section>
+          <!--          </fox-section>-->
+          <fox-section>
             <div class="variant-list">
               <div
                 class="variant-item"
@@ -81,7 +81,7 @@
                 </div>
               </div>
             </div>
-          </fox-page-section>
+          </fox-section>
         </el-col>
         <el-col :span="18">
           <el-form
@@ -91,7 +91,7 @@
             label-position="top"
             size="small"
           >
-            <fox-page-section class="mt-0">
+            <fox-section class="mt-0">
               <el-row type="flex">
                 <div style="flex: auto">
                   <el-form-item
@@ -122,8 +122,8 @@
                   ></el-avatar>
                 </div>
               </el-row>
-            </fox-page-section>
-            <fox-page-section>
+            </fox-section>
+            <fox-section>
               <el-row :gutter="20">
                 <el-col :span="12">
                   <el-form-item
@@ -262,7 +262,7 @@
               <!--                v-model="entity.skuId"-->
               <!--              ></el-input>-->
               <!--            </el-form-item>-->
-            </fox-page-section>
+            </fox-section>
           </el-form>
         </el-col>
       </el-row>

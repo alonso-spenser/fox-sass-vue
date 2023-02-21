@@ -2,7 +2,7 @@
   <el-main
     style="width: 60%">
     <fox-page-header></fox-page-header>
-    <fox-page-section v-show="inputVisible">
+    <fox-section v-show="inputVisible">
       <el-form
         :model="entity"
         :rules="formRules"
@@ -29,8 +29,8 @@
           </el-button>
         </el-form-item>
       </el-form>
-    </fox-page-section>
-    <fox-page-section
+    </fox-section>
+    <fox-section
       v-show="verifyVisible"
       v-loading="verifyLoading">
       <h4>{{ $t("settings.domain.connect.domainName") }}</h4>
@@ -74,8 +74,8 @@
         >{{ $t("settings.domain.connect.verify") }}
         </el-button>
       </p>
-    </fox-page-section>
-    <fox-page-section
+    </fox-section>
+    <fox-section
       v-show="verifyFailed"
       v-loading="verifyLoading">
       <h4>{{ $t("settings.domain.connect.validate.failed.heading") }}</h4>
@@ -117,8 +117,8 @@
         >{{ $t("settings.domain.connect.verifyAgain") }}
         </el-button>
       </p>
-    </fox-page-section>
-    <fox-page-section v-show="verifySuccess">
+    </fox-section>
+    <fox-section v-show="verifySuccess">
       <h4>{{ $t("settings.domain.connect.validate.success.heading") }}</h4>
       <p>
         <label class="text-info">{{ $t("settings.domain.connect.validate.success.subheading") }}</label>
@@ -144,7 +144,7 @@
           @click="finishVerify">{{ $t("base.operate.complete") }}
         </el-button>
       </p>
-    </fox-page-section>
+    </fox-section>
   </el-main>
 </template>
 

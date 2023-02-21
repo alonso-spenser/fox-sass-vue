@@ -27,7 +27,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section>
+        <fox-section>
           <el-form-item
             prop="languageName"
             :label="$t('core.base.lang.update.entity.languageName.label')">
@@ -91,7 +91,7 @@
             </el-switch>
           </el-form-item>
 
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

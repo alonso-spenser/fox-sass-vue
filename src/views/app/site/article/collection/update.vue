@@ -1,8 +1,14 @@
 <template>
-  <main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
     <fox-page-header
       :actions="crumbAction"
       :previous="true"
+      v-if="false"
+      slot="header"
     >
       <el-breadcrumb
         class="breadcrumb-wrap"
@@ -26,402 +32,394 @@
         </el-breadcrumb-item>
       </el-breadcrumb>
     </fox-page-header>
-    <fox-page-loading
-      :fo-page-loading="pageLoading"
-      :page-is-valid="pageIsValid"
-      :percentage="90"
-    >
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top">
-        <fox-page-section>
-          <el-row
-            :gutter="20"
-            type="flex"
-            justify="space-between">
-            <el-col>
-              <el-row
-                class="mb-4"
-                :gutter="20">
-                <el-col :span="infoType === 3 ? 18 : 24">
-                  <el-form-item
-                    prop="title">
-                    <fox-input
-                      show-word-limit
-                      maxlength="100"
-                      shrink
-                      v-model="entity.title"
-                      @blur="setCapitalize"
-                      class="small-append"
-                      :placeholder="$t('article.collection.update.entity.title.placeholder')"
-                    >
-                      <div
-                        class="small-append-split"
-                        slot="append">
-                        <el-checkbox
-                          v-model="autoSyncH1Title"
-                          @change="setAutoSyncH1"
-                          v-if="id">H1
-                        </el-checkbox>
-                      </div>
-                    </fox-input>
-                  </el-form-item>
-                </el-col>
-                <el-col
-                  :span="6"
-                  v-if="infoType === 3">
-                  <el-form-item
-                    prop="accessPassword">
-                    <fox-input
-                      shrink
-                      show-word-limit
-                      maxlength="6"
-                      v-model="entity.accessPassword"
-                      :placeholder="$t('article.collection.update.entity.accessPassword.placeholder')"
-                    >
-                    </fox-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-form-item
-                prop="description">
-                <fox-input
-                  shrink
-                  v-model="entity.description"
-                  maxlength="3000"
-                  type="textarea"
-                  rows="4"
-                  :placeholder="$t('article.collection.update.entity.description.placeholder')"
-                ></fox-input>
-              </el-form-item>
-            </el-col>
-            <el-col style="width: 186px">
-              <div class="el-form-item">
-                <div class="d-flex justify-space-between align-items-center mb-10">
-                  <label class="el-form-item__label p-0">{{
-                      $t('article.collection.update.entity.coverImage.label')
-                                                         }}</label>
-                  <label
-                    class="text-primary cursor-pointer"
-                    @click="loadGallery('coverImage')"
-                    :title="$t('resourceSelector.lib')">
-                    <i class="el-icon-picture-outline-round"></i>
-                    <!--                    {{ $t('resourceSelector.lib') }}-->
-                  </label>
-                </div>
-                <div class="el-form-item__content">
-                  <fox-image-single
-                    v-model="entity.coverImage"
-                    :width="180"
-                    :alt="entity.coverAlt"
-                    :size-limit="10"
-                    :oss-bucket="resource.ossBucket"
-                    :server-address="utility.uploadURL()"
-                    :file-folder="siteId"
-                    @updateAlt="updateCoverAlt"
-                  ></fox-image-single>
-                </div>
+    <fox-form
+      :model="entity"
+      :rules="formRules"
+      ref="update">
+      <fox-section>
+        <el-row
+          :gutter="20"
+          type="flex"
+          justify="space-between">
+          <el-col>
+            <el-row
+              class="mb-4"
+              :gutter="20">
+              <el-col :span="infoType === 3 ? 18 : 24">
+                <el-form-item
+                  prop="title">
+                  <fox-input
+                    show-word-limit
+                    maxlength="100"
+                    shrink
+                    v-model="entity.title"
+                    @blur="setCapitalize"
+                    class="small-append"
+                    :placeholder="$t('article.collection.update.entity.title.placeholder')"
+                  >
+                    <div
+                      class="small-append-split"
+                      slot="append">
+                      <el-checkbox
+                        v-model="autoSyncH1Title"
+                        @change="setAutoSyncH1"
+                        v-if="id">H1
+                      </el-checkbox>
+                    </div>
+                  </fox-input>
+                </el-form-item>
+              </el-col>
+              <el-col
+                :span="6"
+                v-if="infoType === 3">
+                <el-form-item
+                  prop="accessPassword">
+                  <fox-input
+                    shrink
+                    show-word-limit
+                    maxlength="6"
+                    v-model="entity.accessPassword"
+                    :placeholder="$t('article.collection.update.entity.accessPassword.placeholder')"
+                  >
+                  </fox-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-form-item
+              prop="description">
+              <fox-input
+                shrink
+                v-model="entity.description"
+                maxlength="3000"
+                type="textarea"
+                rows="4"
+                :placeholder="$t('article.collection.update.entity.description.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </el-col>
+          <el-col style="width: 186px">
+            <div class="el-form-item">
+              <div class="d-flex justify-space-between align-items-center mb-10">
+                <label class="el-form-item__label p-0">{{
+                    $t('article.collection.update.entity.coverImage.label')
+                  }}</label>
+                <label
+                  class="text-primary cursor-pointer"
+                  @click="loadGallery('coverImage')"
+                  :title="$t('resourceSelector.lib')">
+                  <i class="el-icon-picture-outline-round"></i>
+                  <!--                    {{ $t('resourceSelector.lib') }}-->
+                </label>
               </div>
-            </el-col>
-            <el-col style="width: 186px;margin-left: 20px;margin-right: 20px">
-              <div class="el-form-item">
-                <div class="d-flex justify-space-between align-items-center mb-10">
-                  <label class="el-form-item__label p-0">{{
-                      $t('article.collection.update.entity.banner.label')
-                                                         }}</label>
-                  <label
-                    class="text-primary cursor-pointer"
-                    @click="loadGallery('banner')"
-                    :title="$t('resourceSelector.lib')">
-                    <i class="el-icon-picture-outline-round"></i>
-                    <!--                    {{ $t('resourceSelector.lib') }}-->
-                  </label>
-                </div>
-                <div class="el-form-item__content">
-                  <fox-image-single
-                    v-model="entity.banner"
-                    :width="180"
-                    :alt="entity.bannerAlt"
-                    :size-limit="10"
-                    :oss-bucket="resource.ossBucket"
-                    :server-address="utility.uploadURL()"
-                    :file-folder="siteId"
-                    :alt-visible="false"
-                    @updateAlt="updateBannerAlt"
-                  ></fox-image-single>
-                </div>
+              <div class="el-form-item__content">
+                <fox-image-single
+                  v-model="entity.coverImage"
+                  :width="180"
+                  :alt="entity.coverAlt"
+                  :size-limit="10"
+                  :oss-bucket="resource.ossBucket"
+                  :server-address="utility.uploadURL()"
+                  :file-folder="siteId"
+                  @updateAlt="updateCoverAlt"
+                ></fox-image-single>
               </div>
-            </el-col>
-          </el-row>
-        </fox-page-section>
-        <fox-page-section
-          :heading="$t('article.conditionFilter.collectionType.label')"
-          :content="$t('article.conditionFilter.collectionType.tips')"
-        >
-          <template v-if="!id">
-            <p class="mt-0">
-              {{ $t('article.conditionFilter.collectionType.label') }}
-              <label class="text-secondary ml-4">
-                {{ $t(`article.conditionFilter.collectionType.tips`) }}
-              </label>
-            </p>
-            <p class="mt-5">
-              <el-radio
-                v-model="entity.collectionType"
-                @change="initCache"
-                :label="1">
-                {{ $t('article.conditionFilter.collectionType.manual.label') }}
-              </el-radio>
+            </div>
+          </el-col>
+          <el-col style="width: 186px;margin-left: 20px;margin-right: 20px">
+            <div class="el-form-item">
+              <div class="d-flex justify-space-between align-items-center mb-10">
+                <label class="el-form-item__label p-0">{{
+                    $t('article.collection.update.entity.banner.label')
+                  }}</label>
+                <label
+                  class="text-primary cursor-pointer"
+                  @click="loadGallery('banner')"
+                  :title="$t('resourceSelector.lib')">
+                  <i class="el-icon-picture-outline-round"></i>
+                  <!--                    {{ $t('resourceSelector.lib') }}-->
+                </label>
+              </div>
+              <div class="el-form-item__content">
+                <fox-image-single
+                  v-model="entity.banner"
+                  :width="180"
+                  :alt="entity.bannerAlt"
+                  :size-limit="10"
+                  :oss-bucket="resource.ossBucket"
+                  :server-address="utility.uploadURL()"
+                  :file-folder="siteId"
+                  :alt-visible="false"
+                  @updateAlt="updateBannerAlt"
+                ></fox-image-single>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </fox-section>
+      <fox-section
+        :heading="$t('article.conditionFilter.collectionType.label')"
+        :content="$t('article.conditionFilter.collectionType.tips')"
+      >
+        <template v-if="!id">
+          <p class="mt-0">
+            {{ $t('article.conditionFilter.collectionType.label') }}
+            <label class="text-secondary ml-4">
+              {{ $t(`article.conditionFilter.collectionType.tips`) }}
+            </label>
+          </p>
+          <p class="mt-5">
+            <el-radio
+              v-model="entity.collectionType"
+              @change="initCache"
+              :label="1">
+              {{ $t('article.conditionFilter.collectionType.manual.label') }}
+            </el-radio>
+          </p>
+          <p class="text-indent text-secondary">
+            {{ $t(`article.conditionFilter.collectionType.manual.${collectionType}`) }}
+          </p>
+          <p>
+            <el-radio
+              @change="initCache"
+              v-model="entity.collectionType"
+              :label="2">
+              {{ $t('article.conditionFilter.collectionType.auto.label') }}
+            </el-radio>
+          </p>
+          <p class="text-indent text-secondary">
+            {{ $t(`article.conditionFilter.collectionType.auto.${collectionType}`) }}
+          </p>
+        </template>
+        <template v-else>
+          <p class="mt-0">
+            {{ $t('article.conditionFilter.collectionType.label') }}
+          </p>
+          <template v-if="entity.collectionType===1">
+            <p class="text-primary">
+              {{ $t('article.conditionFilter.collectionType.manual.label') }}
             </p>
             <p class="text-indent text-secondary">
               {{ $t(`article.conditionFilter.collectionType.manual.${collectionType}`) }}
             </p>
-            <p>
-              <el-radio
-                @change="initCache"
-                v-model="entity.collectionType"
-                :label="2">
-                {{ $t('article.conditionFilter.collectionType.auto.label') }}
-              </el-radio>
+          </template>
+          <template v-else>
+            <p class="text-primary">
+              {{ $t('article.conditionFilter.collectionType.auto.label') }}
             </p>
             <p class="text-indent text-secondary">
               {{ $t(`article.conditionFilter.collectionType.auto.${collectionType}`) }}
             </p>
           </template>
-          <template v-else>
-            <p class="mt-0">
-              {{ $t('article.conditionFilter.collectionType.label') }}
-            </p>
-            <template v-if="entity.collectionType===1">
-              <p class="text-primary">
-                {{ $t('article.conditionFilter.collectionType.manual.label') }}
-              </p>
-              <p class="text-indent text-secondary">
-                {{ $t(`article.conditionFilter.collectionType.manual.${collectionType}`) }}
-              </p>
-            </template>
-            <template v-else>
-              <p class="text-primary">
-                {{ $t('article.conditionFilter.collectionType.auto.label') }}
-              </p>
-              <p class="text-indent text-secondary">
-                {{ $t(`article.conditionFilter.collectionType.auto.${collectionType}`) }}
-              </p>
-            </template>
-          </template>
-          <div v-if="entity.collectionType===2">
-            <hr>
-            <p>
-              {{ $t('article.conditionFilter.rule.label') }}
-            </p>
-            <p class="mt-5">
-              <el-radio
-                v-model="entity.joinType"
-                :label="1">
-                {{ $t('article.conditionFilter.rule.one.label') }}
-              </el-radio>
-              <el-radio
-                v-model="entity.joinType"
-                :label="2">
-                {{ $t('article.conditionFilter.rule.all.label') }}
-              </el-radio>
-            </p>
-            <el-table
-              :show-header="false"
-              :data="entity.conditionData"
-              class="no-last-border"
-            >
-              <el-table-column>
-                <template slot-scope="scope">
-                  <el-select
-                    class="w-100"
-                    v-model="scope.row.field"
-                    @change="filedChange(scope.$index)"
-                    :ref="`filed${scope.$index}`"
-                    :placeholder="$t('base.placeholder.search')">
-                    <el-option
-                      v-for="item in conditions"
-                      :key="`field-${item.field}-${scope.$index}`"
-                      :label="item.fieldLabel"
-                      :value="item.field"
-                    >
-                    </el-option>
-                  </el-select>
-                </template>
-              </el-table-column>
-              <el-table-column>
-                <template slot-scope="scope">
-                  <el-select
-                    class="w-100"
-                    :ref="`rule${scope.$index}`"
-                    v-model="scope.row.operate"
-                    @change="ruleChange(scope.$index)"
-                    :placeholder="$t('base.placeholder.search')">
-                    <el-option
-                      v-for="item in conditionCache[scope.$index].conditions"
-                      :key="`operate-${item.operate}-${scope.$index}`"
-                      :label="item.operateLabel"
-                      :value="item.operate"
-                    >
-                    </el-option>
-                  </el-select>
-                </template>
-              </el-table-column>
-              <el-table-column>
-                <template slot-scope="scope">
-                  <el-form-item
-                    :key="`variant-${scope.$index}`"
-                    :prop="`conditionData.${scope.$index}.value`"
-                    :rules="formRules.ruleValue"
-                  >
-                    <el-input
-                      v-model="scope.row.value"
-                      :placeholder="$t('base.placeholder.input')"
-                    ></el-input>
-                  </el-form-item>
-                </template>
-              </el-table-column>
-              <el-table-column
-                align="right"
-                width="80"
-                v-if="entity.conditionData.length > 1"
-              >
-                <template slot-scope="scope">
-                  <el-button
-                    icon="el-icon-delete"
-                    circle
-                    @click.stop="removeRow(scope.$index)"
-                  ></el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-            <el-button
-              @click="addRow"
-              class="mt-3 ml-3"
-              icon="el-icon-plus"
-            >
-            </el-button>
-          </div>
-        </fox-page-section>
-        <fox-page-section
-          v-if="id"
-          :heading="$t(`article.collection.${collectionType}.label`)"
-        >
-          <p
-            v-if="entity.collectionType===1"
-            class="text-right">
-            <el-button
-              round
-              size="small"
-              :disabled="this.collectionData.length < 2"
-              @click="sortingVisible=true"
-            >
-              {{ $t('sorting.title') }}
-            </el-button>
-            <el-button
-              round
-              type="primary"
-              size="small"
-              @click="articleSearchDialogVisible=true"
-            >
-              {{ $t(`article.collection.${collectionType}.add`) }}
-            </el-button>
+        </template>
+        <div v-if="entity.collectionType===2">
+          <hr>
+          <p>
+            {{ $t('article.conditionFilter.rule.label') }}
+          </p>
+          <p class="mt-5">
+            <el-radio
+              v-model="entity.joinType"
+              :label="1">
+              {{ $t('article.conditionFilter.rule.one.label') }}
+            </el-radio>
+            <el-radio
+              v-model="entity.joinType"
+              :label="2">
+              {{ $t('article.conditionFilter.rule.all.label') }}
+            </el-radio>
           </p>
           <el-table
-            :data="collectionData"
             :show-header="false"
+            :data="entity.conditionData"
             class="no-last-border"
           >
-            <el-table-column
-              width="80">
+            <el-table-column>
               <template slot-scope="scope">
-                <img
-                  style="width: 50px;"
-                  :src="scope.row.coverImage || resource.image.placeholder">
+                <el-select
+                  class="w-100"
+                  v-model="scope.row.field"
+                  @change="filedChange(scope.$index)"
+                  :ref="`filed${scope.$index}`"
+                  :placeholder="$t('base.placeholder.search')">
+                  <el-option
+                    v-for="item in conditions"
+                    :key="`field-${item.field}-${scope.$index}`"
+                    :label="item.fieldLabel"
+                    :value="item.field"
+                  >
+                  </el-option>
+                </el-select>
+              </template>
+            </el-table-column>
+            <el-table-column>
+              <template slot-scope="scope">
+                <el-select
+                  class="w-100"
+                  :ref="`rule${scope.$index}`"
+                  v-model="scope.row.operate"
+                  @change="ruleChange(scope.$index)"
+                  :placeholder="$t('base.placeholder.search')">
+                  <el-option
+                    v-for="item in conditionCache[scope.$index].conditions"
+                    :key="`operate-${item.operate}-${scope.$index}`"
+                    :label="item.operateLabel"
+                    :value="item.operate"
+                  >
+                  </el-option>
+                </el-select>
+              </template>
+            </el-table-column>
+            <el-table-column>
+              <template slot-scope="scope">
+                <el-form-item
+                  :key="`variant-${scope.$index}`"
+                  :prop="`conditionData.${scope.$index}.value`"
+                  :rules="formRules.ruleValue"
+                >
+                  <el-input
+                    v-model="scope.row.value"
+                    :placeholder="$t('base.placeholder.input')"
+                  ></el-input>
+                </el-form-item>
               </template>
             </el-table-column>
             <el-table-column
-              prop="title"
-            >
-            </el-table-column>
-            <el-table-column
-              width="110"
-              v-if="entity.collectionType === 1">
-              <template slot-scope="scope">
-                <div>
-                  <el-button
-                    size="small"
-                    circle
-                    class="vertical-button"
-                    @click="articleResort(scope.row.id, -1)"
-                    v-if="scope.$index < collectionData.length - 1">
-                    <i class="el-icon-arrow-down"></i>
-                  </el-button>
-                  <el-button
-                    size="small"
-                    circle
-                    class="vertical-button"
-                    @click="articleResort(scope.row.id, 1)"
-                    v-if="scope.$index > 0">
-                    <i class="el-icon-arrow-up"></i>
-                  </el-button>
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column
-              width="60"
               align="right"
-              v-if="entity.collectionType === 1">
+              width="80"
+              v-if="entity.conditionData.length > 1"
+            >
               <template slot-scope="scope">
+                <el-button
+                  icon="el-icon-delete"
+                  circle
+                  @click.stop="removeRow(scope.$index)"
+                ></el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+          <el-button
+            @click="addRow"
+            class="mt-3 ml-3"
+            icon="el-icon-plus"
+          >
+          </el-button>
+        </div>
+      </fox-section>
+      <fox-section
+        v-if="id"
+        :heading="$t(`article.collection.${collectionType}.label`)"
+      >
+        <p
+          v-if="entity.collectionType===1"
+          class="text-right">
+          <el-button
+            round
+            size="small"
+            :disabled="this.collectionData.length < 2"
+            @click="sortingVisible=true"
+          >
+            {{ $t('sorting.title') }}
+          </el-button>
+          <el-button
+            round
+            type="primary"
+            size="small"
+            @click="articleSearchDialogVisible=true"
+          >
+            {{ $t(`article.collection.${collectionType}.add`) }}
+          </el-button>
+        </p>
+        <el-table
+          :data="collectionData"
+          :show-header="false"
+          class="no-last-border"
+        >
+          <el-table-column
+            width="80">
+            <template slot-scope="scope">
+              <img
+                style="width: 50px;"
+                :src="scope.row.coverImage || resource.image.placeholder">
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="title"
+          >
+          </el-table-column>
+          <el-table-column
+            width="110"
+            v-if="entity.collectionType === 1">
+            <template slot-scope="scope">
+              <div>
                 <el-button
                   size="small"
                   circle
                   class="vertical-button"
-                  @click="articleRemove(scope.row.id)"
-                >
-                  <i class="el-icon-delete"></i>
+                  @click="articleResort(scope.row.id, -1)"
+                  v-if="scope.$index < collectionData.length - 1">
+                  <i class="el-icon-arrow-down"></i>
                 </el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-        </fox-page-section>
-        <search-engine-preview
-          :temp-title="entity.title"
-          :temp-desc="entity.description"
-          :maxlength="320"
-          catalog="collection"
-          v-model="seoEntity"
-          @update="updateSEO"
-        >
-        </search-engine-preview>
-      </el-form>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        :loading="loading"
-        @confirmed="formValidation"
+                <el-button
+                  size="small"
+                  circle
+                  class="vertical-button"
+                  @click="articleResort(scope.row.id, 1)"
+                  v-if="scope.$index > 0">
+                  <i class="el-icon-arrow-up"></i>
+                </el-button>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column
+            width="60"
+            align="right"
+            v-if="entity.collectionType === 1">
+            <template slot-scope="scope">
+              <el-button
+                size="small"
+                circle
+                class="vertical-button"
+                @click="articleRemove(scope.row.id)"
+              >
+                <i class="el-icon-delete"></i>
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </fox-section>
+      <search-engine-preview
+        :temp-title="entity.title"
+        :temp-desc="entity.description"
+        :maxlength="320"
+        catalog="collection"
+        v-model="seoEntity"
+        @update="updateSEO"
       >
-      </fox-unsaved>
-      <add-to-collection
-        :collection-type="infoType"
-        :collection-id="id"
-        :display="articleSearchDialogVisible"
-        @close="addToCollectionClose"
-      >
-      </add-to-collection>
-      <sorting
-        @close="updateSort"
-        :info-type="infoType"
-        :visible="sortingVisible"
-      ></sorting>
-    </fox-page-loading>
+      </search-engine-preview>
+    </fox-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+    <add-to-collection
+      :collection-type="infoType"
+      :collection-id="id"
+      :display="articleSearchDialogVisible"
+      @close="addToCollectionClose"
+    >
+    </add-to-collection>
+    <sorting
+      @close="updateSort"
+      :info-type="infoType"
+      :visible="sortingVisible"
+    ></sorting>
     <resource-selector
       :visible.sync="gallery.visible"
       @close="resourceSelector"
       :info-type="0"></resource-selector>
-  </main>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -603,8 +601,7 @@ export default {
      * 表单校验
      */
     formValidation () {
-      let formName = 'update'
-      this.$refs[formName].validate((valid) => {
+      this.formValidate('update', (valid) => {
         if (valid) {
           this.entity.infoType = this.infoType
           if (this.utility.isEmpty(this.entity.region)) {
@@ -938,8 +935,6 @@ export default {
     },
     /**
      * 添加文章到集合
-     * @param ids
-     * @param func
      */
     addToCollectionClose () {
       this.articleSearchDialogVisible = false

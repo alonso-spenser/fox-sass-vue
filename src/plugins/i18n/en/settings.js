@@ -411,13 +411,13 @@ export default {
             label: '跟踪代码 <Head>',
             placeholder: '请输入或粘贴代码',
             required: '',
-            info: '此处可以放置 Google Analytics, Google Tag Manager, Facebook像素等三方代码。<p class="m-0">也可以放置如 Google 域名验证 &lt;meta name="google-site-verification" content="验证码"&gt; </p> <p class="m-0">不同的代码按回车键换行放置。此段代码将放置于网页 <b class="text-primary">Head</b> 中</p>'
+            info: '此处可以放置 Google Analytics, Google Tag Manager, Facebook像素等三方代码。<br>也可以放置如 Google 域名验证 &lt;meta name="google-site-verification" content="验证码"<br>不同的代码按回车键换行放置。此段代码将放置于网页 <b class="text-primary">Head</b> 中'
           },
           scriptBottom: {
             label: '跟踪代码 <Body>',
             placeholder: '请输入或粘贴代码',
             required: '',
-            info: '此处可放置客户自定义代码，Google Tag Manager 第二段代码，第三方客服代码等。<p class="m-0">此段代码将放置于网页 <b class="text-primary">Body</b> 结尾处</p>'
+            info: '此处可放置客户自定义代码，Google Tag Manager 第二段代码，第三方客服代码等。<br>此段代码将放置于网页 <b class="text-primary">Body</b> 结尾处'
           }
         }
       }

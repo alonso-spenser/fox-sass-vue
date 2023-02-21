@@ -1,6 +1,6 @@
 <template>
   <div v-if="model.id">
-    <fox-page-section
+    <fox-section
       v-if="model.seoTarget.hasService"
       :heading="(model.seoTarget.merchantName ?  model.seoTarget.merchantName :'公司')+': 合同目标'">
       <el-row class="data-list">
@@ -21,8 +21,8 @@
           <h3>{{ model.seoTarget['seoKeywords'] }} </h3>
         </el-col>
       </el-row>
-    </fox-page-section>
-    <fox-page-section
+    </fox-section>
+    <fox-section
       :heading="heading"
       v-if="model.seoTarget.hasService"
     >
@@ -64,7 +64,7 @@
           <h4>{{ model.surveyData.ipnum }} </h4>
         </el-col>
       </el-row>
-    </fox-page-section>
+    </fox-section>
     <el-row
       type="flex"
       justify="space-between"
@@ -78,7 +78,7 @@
         ></lineTemp>
       </el-col>
     </el-row>
-    <fox-page-section
+    <fox-section
       heading="您的用户身处何地"
       class="mt-5">
       <el-row>
@@ -130,8 +130,8 @@
           </div>
         </el-col>
       </el-row>
-    </fox-page-section>
-    <fox-page-section heading="您的用户经常访问哪些页面">
+    </fox-section>
+    <fox-section heading="您的用户经常访问哪些页面">
       <el-row
         :gutter="20"
         class="section-neighbor">
@@ -166,7 +166,7 @@
         <el-col :span="12">
         </el-col>
       </el-row>
-    </fox-page-section>
+    </fox-section>
     <el-row
       type="flex"
       justify="space-between"
@@ -183,7 +183,7 @@
         <!--              :radioGroup="trendConfig.radioGroup"-->
       </el-col>
       <el-col :span="12">
-        <fox-page-section>
+        <fox-section>
           <el-table
             :data="model.deviceData"
             style="width:100%;"
@@ -219,7 +219,7 @@
             <!--              label="询盘">-->
             <!--            </el-table-column>-->
           </el-table>
-        </fox-page-section>
+        </fox-section>
       </el-col>
     </el-row>
   </div>

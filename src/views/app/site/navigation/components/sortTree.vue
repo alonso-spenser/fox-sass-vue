@@ -1,5 +1,5 @@
 <template>
-  <fox-page-section
+  <fox-section
     :heading="heading"
     :content="subheading">
     <el-tree
@@ -137,7 +137,7 @@
       :visible.sync="gallery.visible"
       @close="resourceSelector"
       :info-type="0"></resource-selector>
-  </fox-page-section>
+  </fox-section>
 </template>
 
 <script>

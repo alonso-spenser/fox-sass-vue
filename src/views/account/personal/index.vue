@@ -14,7 +14,7 @@
       :invalid="pageIsValid"
     >
       <div class="global-editable-container">
-        <fox-page-section>
+        <fox-section>
           <el-form
             :model="entity"
             :rules="formRules"
@@ -99,7 +99,7 @@
               ></fox-input>
             </el-form-item>
           </el-form>
-        </fox-page-section>
+        </fox-section>
       </div>
     </fox-page-loading>
     <fox-unsaved

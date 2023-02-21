@@ -1,175 +1,164 @@
 <template>
-  <main>
-    <fox-header-ops
-      :title="$t('article.paging.title')"
-      :description="$t('article.paging.description')"
-      divider
-    >
-      <div class="header-ops-item">
-        <el-button
-          type="text"
-          icon="el-icon-download"
-          v-if="pagingOptions.recordCount > 0"
-          :loading="loading"
-          @click="exportData"
-        >
-          {{ $t("enquiry.export") }}
-        </el-button>
-      </div>
-    </fox-header-ops>
-    <!--    <fox-page-header-->
-    <!--      :actions="headerAction"-->
-    <!--      :drop-actions="dropAction"-->
-    <!--    >-->
-    <!--    </fox-page-header>-->
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="90"
-      :full-screen="true"
-    >
-      <el-tabs
-        v-model="tabPane"
-        class="setting-tabs"
-        :before-leave="beforeLeave">
-        <el-tab-pane
-          name="article"
-          :label="$t('article.paging.title')"></el-tab-pane>
-        <el-tab-pane
-          name="collection"
-          :label="$t('article.collection.article.title')"></el-tab-pane>
-      </el-tabs>
-      <fox-paging-table
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="false"
-        :multi-select="true"
-        :index-number="false"
-        :stripe="false"
-        :first-loading="pagingOptions.firstLoading"
-        :empty="dataConfig.empty"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :rows-class-name="dataConfig.rowsClassName"
-        @paging="getData"
-      >
-        <template slot="header">
-          <el-row
-            class="dataset-search"
-            :gutter="20">
-            <el-col :span="10">
-              <el-input
-                :placeholder="$t('base.placeholder.search')"
-                v-model="searchConditions.keyword"
-                clearable
-                @change="searchConditionChange"
-                @clear="clearSearchCondition"
-                class="input-with-select"
-              >
-                <el-select
-                  v-model="searchConditions.searchType"
-                  slot="prepend"
-                  :placeholder="$t('base.placeholder.search')"
-                >
-                  <el-option
-                    :label="$t('article.searchType.name')"
-                    :value="1"
-                  ></el-option>
-                  <el-option
-                    :label="$t('article.searchType.collection')"
-                    :value="2"
-                  ></el-option>
-                  <el-option
-                    :label="$t('article.searchType.tag')"
-                    :value="3"
-                  ></el-option>
-                </el-select>
-                <el-button
-                  slot="append"
-                  icon="el-icon-search"
-                  :loading="loading"
-                  @click="getData(false)"
-                ></el-button>
-              </el-input>
-            </el-col>
-            <el-col
-              :span="10"
-              :offset="4"
-              class="text-right">
-              <label>
-                {{ $t("base.orderBy") }}
-              </label>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="100"
+  >
+    <!--    <el-tabs-->
+    <!--      v-model="tabPane"-->
+    <!--      class="el-tabs-nav"-->
+    <!--      slot="header"-->
+    <!--      :before-leave="beforeLeave">-->
+    <!--      <el-tab-pane-->
+    <!--        name="article"-->
+    <!--        :label="$t('article.paging.title')"></el-tab-pane>-->
+    <!--      <el-tab-pane-->
+    <!--        name="collection"-->
+    <!--        :label="$t('article.collection.article.title')"></el-tab-pane>-->
+    <!--    </el-tabs>-->
+    <div class="neighbor fox-google-style percent-100" slot="header">
+      <div class="fox-page-content">
+        <div
+          class="filter-params">
+          <div class="filter-params-element">
+            <fox-input
+              shrink
+              :placeholder="$t('base.placeholder.label')"
+              :description="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              @change="searchConditionChange"
+              @clear="clearSearchCondition"
+              class="input-with-select"
+            >
               <el-select
-                class="ml-2"
-                v-model="searchConditions.orderBy"
+                v-model="searchConditions.searchType"
+                slot="prepend"
                 :placeholder="$t('base.placeholder.search')"
-                @change="getData(false)"
               >
                 <el-option
-                  :label="$t('article.orderBy.updateTimeASC')"
-                  value="updateTime-ASC"
+                  :label="$t('article.searchType.name')"
+                  :value="1"
                 ></el-option>
                 <el-option
-                  :label="$t('article.orderBy.updateTimeDESC')"
-                  value="updateTime-DESC"
+                  :label="$t('article.searchType.collection')"
+                  :value="2"
                 ></el-option>
                 <el-option
-                  :label="$t('article.orderBy.createTimeASC')"
-                  value="createTime-ASC"
-                ></el-option>
-                <el-option
-                  :label="$t('article.orderBy.createTimeDESC')"
-                  value="createTime-DESC"
-                ></el-option>
-                <el-option
-                  :label="$t('article.orderBy.initialASC')"
-                  value="initial-ASC"
-                ></el-option>
-                <el-option
-                  :label="$t('article.orderBy.initialDESC')"
-                  value="initial-DESC"
-                ></el-option>
-                <el-option
-                  :label="$t('article.orderBy.sortDesc')"
-                  value="sortIndex-DESC"
+                  :label="$t('article.searchType.tag')"
+                  :value="3"
                 ></el-option>
               </el-select>
               <el-button
-                icon="el-icon-refresh"
-                class="ml-2"
-                :loading="refresherLoading"
-                :title="$t('app.refresher.button')"
-                @click="sortRefresher(1)"
-              >
-              </el-button>
-              <el-button
-                icon="el-icon-brush"
-                class="ml-2"
-                :loading="refresherLoading"
-                :title="$t('app.refresher.init')"
-                @click="sortRefresher(0)"
-              >
-              </el-button>
-            </el-col>
-          </el-row>
-        </template>
-      </fox-paging-table>
-      <collection-multiple-selector
-        :info-type="resource.infoType.article"
-        :articles="selectedItems"
-        :display="collectionVisible"
-        @close="updateCollection"
-      ></collection-multiple-selector>
-      <tags-multiple-selector
-        :tag-type="resource.infoType.article"
-        :articles="selectedItems"
-        :display="tagsVisible"
-        @close="updateTag"
-      ></tags-multiple-selector>
-    </fox-page-loading>
-  </main>
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="getData(false)"
+              ></el-button>
+            </fox-input>
+          </div>
+          <div class="filter-params-element">
+            <fox-select
+              shrink
+              v-model="searchConditions.orderBy"
+              :placeholder="$t('base.orderBy')"
+              :description="$t('base.placeholder.search')"
+              @change="getData(false)"
+            >
+              <el-option
+                :label="$t('article.orderBy.updateTimeASC')"
+                value="updateTime-ASC"
+              ></el-option>
+              <el-option
+                :label="$t('article.orderBy.updateTimeDESC')"
+                value="updateTime-DESC"
+              ></el-option>
+              <el-option
+                :label="$t('article.orderBy.createTimeASC')"
+                value="createTime-ASC"
+              ></el-option>
+              <el-option
+                :label="$t('article.orderBy.createTimeDESC')"
+                value="createTime-DESC"
+              ></el-option>
+              <el-option
+                :label="$t('article.orderBy.initialASC')"
+                value="initial-ASC"
+              ></el-option>
+              <el-option
+                :label="$t('article.orderBy.initialDESC')"
+                value="initial-DESC"
+              ></el-option>
+              <el-option
+                :label="$t('article.orderBy.sortDesc')"
+                value="sortIndex-DESC"
+              ></el-option>
+            </fox-select>
+          </div>
+          <div class="filter-params-element">
+            <el-button
+              class="el-material-button"
+              icon="el-icon-refresh"
+              :loading="refresherLoading"
+              :title="$t('app.refresher.button')"
+              @click="sortRefresher(1)"
+            >
+            </el-button>
+            <el-button
+              class="el-material-button"
+              icon="el-icon-brush"
+              :loading="refresherLoading"
+              :title="$t('app.refresher.init')"
+              @click="sortRefresher(0)"
+            >
+            </el-button>
+            <el-button
+              icon="el-icon-plus"
+              type="primary"
+              plain
+              class="ml-7"
+              :title="$t('article.paging.add')"
+              @click="addArticle"
+            >
+            </el-button>
+          </div>
+          <div class="filter-params-element">
+          </div>
+        </div>
+      </div>
+    </div>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="false"
+      :multi-select="true"
+      :index-number="false"
+      :stripe="true"
+      size="small"
+      :first-loading="pagingOptions.firstLoading"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      @paging="getData"
+    >
+    </fox-paging-table>
+    <collection-multiple-selector
+      :info-type="resource.infoType.article"
+      :articles="selectedItems"
+      :display="collectionVisible"
+      @close="updateCollection"
+    ></collection-multiple-selector>
+    <tags-multiple-selector
+      :tag-type="resource.infoType.article"
+      :articles="selectedItems"
+      :display="tagsVisible"
+      @close="updateTag"
+    ></tags-multiple-selector>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -274,7 +263,7 @@ export default {
             render: (row) => {
               return (
                 <p class="text-truncate">
-                  {row.hasAnnex === 0 ? <i class="el-icon-paperclip" /> : ''}
+                  {row.hasAnnex === 0 ? <i class="el-icon-paperclip"/> : ''}
                   {row.title}
                 </p>
               )
@@ -547,13 +536,13 @@ export default {
      * 添加跳转
      */
     addArticle () {
-      this.$router.push(`/site/${this.siteId}/article/add`)
+      this.redirectURL(`/site/${this.siteId}/article/add`)
     },
     /**
      * 修改跳转
      */
     updateArticle (row) {
-      this.$router.push(`/site/${this.siteId}/article/update/${row.id}`)
+      this.redirectURL(`/site/${this.siteId}/article/update/${row.id}`)
     },
     /**
      * 刷新排序

@@ -7,7 +7,7 @@
       <fox-page-header
         :previous="true"
       ></fox-page-header>
-      <fox-page-section>
+      <fox-section>
         <el-form
           class="customer-form"
           :model="entity"
@@ -118,7 +118,7 @@
             </div>
           </el-row>
         </el-form>
-      </fox-page-section>
+      </fox-section>
       <fox-paging-table
         class="enquiry-table"
         :columns="dataConfig.columns"

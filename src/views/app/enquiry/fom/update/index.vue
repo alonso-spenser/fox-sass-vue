@@ -1,275 +1,292 @@
 <template>
-  <main>
-    <fox-page-loading
-      :page-loading="pageLoading"
-      :page-is-valid="pageIsValid"
-      :percentage="70"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <fox-header-ops
+      :title="$t('enquiry.form.title')"
+      :description="id ? $t('enquiry.form.updateForm.editForm') : $t('enquiry.form.updateForm.addForm')"
+      divider
     >
-      <fox-page-header
-        :previous="true"
-        :actions="deleteActions"
+      <div class="header-ops-item">
+        <el-button
+          type="text"
+          icon="el-icon-delete"
+          v-if="id"
+          :loading="loading"
+          @click="deleteForm"
+        >
+        </el-button>
+      </div>
+    </fox-header-ops>
+    <fox-form
+      :model="entity"
+      :rules="formRules"
+      ref="update">
+      <fox-section
+        :heading="$t('enquiry.form.updateForm.info')"
       >
-      </fox-page-header>
-      <div class="enquiry-form-update-container">
-        <el-form
-          :model="entity"
-          :rules="formRules"
-          ref="update"
-          label-width="100px"
-          label-position="top">
-          <fox-page-section>
-            <el-form-item
-              prop="title"
-              :label="$t('enquiry.form.updateForm.entity.title.label')">
-              <el-input
-                maxlength="100"
-                show-word-limit
-                v-model="entity.title"
-                :placeholder="$t('enquiry.form.updateForm.entity.title.placeholder')"
-              ></el-input>
-            </el-form-item>
-            <el-form-item
-              prop="buttonLabel"
-              :label="$t('enquiry.form.updateForm.entity.buttonLabel.label')">
-              <el-input
-                maxlength="50"
-                show-word-limit
-                v-model="entity.buttonLabel"
-                :placeholder="$t('enquiry.form.updateForm.entity.buttonLabel.placeholder')"
-              ></el-input>
-            </el-form-item>
-            <el-form-item
-              prop="remark"
-              :label="$t('enquiry.form.updateForm.entity.remark.label')">
-              <el-input
-                maxlength="255"
-                show-word-limit
-                v-model="entity.remark"
-                :placeholder="$t('enquiry.form.updateForm.entity.remark.placeholder')"
-              ></el-input>
-            </el-form-item>
-          </fox-page-section>
-          <fox-page-section
-            class="enquiry-form-content-wrapper"
-            :heading="$t('enquiry.form.updateForm.content')"
+        <el-form-item
+          prop="title">
+          <fox-input
+            shrink
+            maxlength="100"
+            show-word-limit
+            v-model="entity.title"
+            :placeholder="$t('enquiry.form.updateForm.entity.title.label')"
+            :description="$t('enquiry.form.updateForm.entity.title.placeholder')"
+          ></fox-input>
+        </el-form-item>
+        <el-form-item
+          prop="buttonLabel">
+          <fox-input
+            shrink
+            maxlength="50"
+            show-word-limit
+            v-model="entity.buttonLabel"
+            :placeholder="$t('enquiry.form.updateForm.entity.buttonLabel.label')"
+            :description="$t('enquiry.form.updateForm.entity.buttonLabel.placeholder')"
+          ></fox-input>
+        </el-form-item>
+        <el-form-item
+          prop="remark">
+          <fox-input
+            shrink
+            type="textarea"
+            maxlength="255"
+            show-word-limit
+            :rows="3"
+            v-model="entity.remark"
+            :placeholder="$t('enquiry.form.updateForm.entity.remark.label')"
+            :description="$t('enquiry.form.updateForm.entity.remark.placeholder')"
+          ></fox-input>
+        </el-form-item>
+      </fox-section>
+      <fox-section
+        :heading="$t('enquiry.form.updateForm.content')"
+        :description="$t('enquiry.form.updateForm.fieldList')"
+      >
+        <template slot="header">
+          <el-popover
+            placement="top-end"
+            width="600"
+            trigger="hover"
           >
-            <draggable
-              handle=".element-sort"
-              :list="entity.fieldList"
-            >
-              <div
-                class="field-list"
-                v-for="(o, index) in entity.fieldList"
-                :key="index">
+            <div class="el-popover__title">
+              {{ $t('enquiry.form.updateForm.add.normal') }}
+            </div>
+            <div class="preset-button">
+              <template
+                v-for="(o, key) in $t('enquiry.form.updateForm.fieldType')"
+              >
+                <el-button
+                  :key="key"
+                  v-if="o.preset"
+                  size="mini"
+                  @click="addElement(key, true)"
+                >
+                  {{ o.label }}
+                </el-button>
+              </template>
+            </div>
+            <div class="el-popover__title mt-5">
+              {{ $t('enquiry.form.updateForm.add.custom') }}
+            </div>
+            <div class="preset-button">
+              <template
+                v-for="(o, key) in $t('enquiry.form.updateForm.fieldType')"
+              >
+                <el-button
+                  :key="key"
+                  v-if="o.custom"
+                  size="small"
+                  @click="addElement(key, false)"
+                >
+                  {{ o.label }}
+                </el-button>
+              </template>
+            </div>
+            <el-button
+              type="text"
+              size="mini"
+              icon="el-icon-plus"
+              slot="reference">
+              {{ $t('enquiry.form.updateForm.add.button') }}
+            </el-button>
+          </el-popover>
+        </template>
+        <draggable
+          handle=".element-sort"
+          :list="entity.fieldList"
+        >
+          <div
+            class="field-list"
+            v-for="(o, index) in entity.fieldList"
+            :key="index">
+            <el-row
+              v-if="false"
+              :gutter="20">
+              <el-col :span="5">
+                {{ $t('enquiry.form.updateForm.field.title') }}
+              </el-col>
+              <el-col :span="14">
+                {{ $t('enquiry.form.updateForm.field.placeholder') }}
+              </el-col>
+              <el-col :span="3">
+                {{ $t('enquiry.form.updateForm.field.required') }}
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="isOption(o.fieldType) ? 20 : 5">
+                <el-form-item
+                  :prop="`fieldList.${index}.fieldLabel`"
+                  :rules="formRules.type">
+                  <fox-input
+                    shrink
+                    v-model="o.fieldLabel"
+                    maxlength="32"
+                    show-word-limit
+                    size="small"
+                    :placeholder="$t('enquiry.form.updateForm.field.title')"
+                  ></fox-input>
+                </el-form-item>
+              </el-col>
+              <el-col
+                v-if="!isOption(o.fieldType)"
+                :span="14">
+                <el-form-item
+                  :prop="`fieldList.${index}.placeholder`"
+                  :rules="formRules.type">
+                  <fox-input
+                    shrink
+                    show-word-limit
+                    :maxlength="o.fieldType === 'textarea' ? 200 : 50"
+                    rows="4"
+                    size="small"
+                    v-model="o.placeholder"
+                    :placeholder="$t('enquiry.form.updateForm.field.placeholder')"
+                  ></fox-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="2">
+                <el-switch v-model="o.required"></el-switch>
+              </el-col>
+              <el-col
+                :span="3"
+                class="text-right">
+                <el-button
+                  class="element-sort"
+                  style="margin-top: 5px"
+                  size="small"
+                  icon="el-icon-rank"
+                  circle></el-button>
+                <el-button
+                  style="margin-top: 5px"
+                  type="danger"
+                  size="small"
+                  icon="el-icon-delete"
+                  circle
+                  @click="removeElement(index, o)"></el-button>
+              </el-col>
+            </el-row>
+            <el-row
+              v-if="isOption(o.fieldType)"
+              class="field-list-option no-flex"
+              :gutter="20">
+              <el-col :span="5">
                 <el-row
                   :gutter="20"
-                  v-if="index === 0">
-                  <el-col :span="5">
-                    {{ $t('enquiry.form.updateForm.field.title') }}
-                  </el-col>
-                  <el-col :span="14">
-                    {{ $t('enquiry.form.updateForm.field.placeholder') }}
-                  </el-col>
-                  <el-col :span="3">
-                    {{ $t('enquiry.form.updateForm.field.required') }}
-                  </el-col>
-                </el-row>
-                <el-row :gutter="20">
-                  <el-col :span="isOption(o.fieldType) ? 20 : 5">
-                    <el-form-item
-                      :prop="`fieldList.${index}.fieldLabel`"
-                      :rules="formRules.type">
-                      <el-input
-                        v-model="o.fieldLabel"
-                        maxlength="32"
-                        show-word-limit
-                        size="small"
-                        :placeholder="$t('enquiry.form.updateForm.field.title')"
-                      ></el-input>
-                    </el-form-item>
-                  </el-col>
+                  v-for="(option, optionIndex) in o.options">
                   <el-col
-                    v-if="!isOption(o.fieldType)"
-                    :span="14">
-                    <el-form-item
-                      :prop="`fieldList.${index}.placeholder`"
-                      :rules="formRules.type">
-                      <el-input
-                        show-word-limit
-                        :maxlength="o.fieldType === 'textarea' ? 200 : 50"
-                        rows="4"
+                    :span="24"
+                    class="text-right field-option-label">
+                    <small>
+                      {{ $t('enquiry.form.updateForm.option.item') }} {{ optionIndex + 1 }}
+                    </small>
+                  </el-col>
+                </el-row>
+              </el-col>
+              <el-col :span="19">
+                <draggable
+                  handle=".option-sort"
+                  class="field-option-drag"
+                  :list="o.options"
+                >
+                  <el-row
+                    :gutter="20"
+                    v-for="(option, optionIndex) in o.options"
+                    :key="optionIndex">
+                    <el-col :span="18">
+                      <el-form-item
+                        :prop="`fieldList.${index}.options.${optionIndex}.value`"
+                        :rules="formRules.type">
+                        <fox-input
+                          shrink
+                          show-word-limit
+                          size="small"
+                          maxlength="100"
+                          v-model="option.value"
+                          :placeholder="$t('enquiry.form.updateForm.option.value')"
+                        ></fox-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col
+                      :span="1"
+                      v-if="o.options.length > 1">
+                      <label
+                        class="el-radio"
+                        :class="option.checked ? 'is-checked' : ''">
+                        <label
+                          class="el-radio__input"
+                          :class="option.checked ? 'is-checked' : ''">
+                          <label class="el-radio__inner"></label>
+                          <input
+                            type="checkbox"
+                            class="el-radio__original"
+                            :name="`option-${index}`"
+                            @click="setChecked(optionIndex, o)"
+                            v-model="option.checked">
+                        </label>
+                      </label>
+                    </el-col>
+                    <el-col
+                      :span="5"
+                      v-if="o.options.length > 1">
+                      <el-button
+                        class="option-sort"
                         size="small"
-                        v-model="o.placeholder"
-                        :placeholder="$t('enquiry.form.updateForm.field.placeholder')"
-                      ></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="2">
-                    <el-switch v-model="o.required"></el-switch>
-                  </el-col>
-                  <el-col
-                    :span="3"
-                    class="text-right">
-                    <el-button
-                      class="element-sort"
-                      style="margin-top: 5px"
-                      size="small"
-                      icon="el-icon-rank"
-                      circle></el-button>
-                    <el-button
-                      style="margin-top: 5px"
-                      type="danger"
-                      size="small"
-                      icon="el-icon-delete"
-                      circle
-                      @click="removeElement(index, o)"></el-button>
-                  </el-col>
-                </el-row>
-                <el-row
-                  v-if="isOption(o.fieldType)"
-                  class="field-list-option no-flex"
-                  :gutter="20">
-                  <el-col :span="5">
-                    <el-row
-                      :gutter="20"
-                      v-for="(option, optionIndex) in o.options">
-                      <el-col
-                        :span="24"
-                        class="text-right field-option-label">
-                        <small>
-                          {{ $t('enquiry.form.updateForm.option.item') }} {{ optionIndex + 1 }}
-                        </small>
-                      </el-col>
-                    </el-row>
-                  </el-col>
-                  <el-col :span="19">
-                    <draggable
-                      handle=".option-sort"
-                      class="field-option-drag"
-                      :list="o.options"
-                    >
-                      <el-row
-                        :gutter="20"
-                        v-for="(option, optionIndex) in o.options"
-                        :key="optionIndex">
-                        <el-col :span="18">
-                          <el-form-item
-                            :prop="`fieldList.${index}.options.${optionIndex}.value`"
-                            :rules="formRules.type">
-                            <el-input
-                              show-word-limit
-                              size="small"
-                              maxlength="100"
-                              v-model="option.value"
-                              :placeholder="$t('enquiry.form.updateForm.option.value')"
-                            ></el-input>
-                          </el-form-item>
-                        </el-col>
-                        <el-col
-                          :span="1"
-                          v-if="o.options.length > 1">
-                          <label
-                            class="el-radio"
-                            :class="option.checked ? 'is-checked' : ''">
-                            <span
-                              class="el-radio__input"
-                              :class="option.checked ? 'is-checked' : ''">
-                              <span class="el-radio__inner"></span>
-                                                          <input
-                                                            type="checkbox"
-                                                            class="el-radio__original"
-                                                            :name="`option-${index}`"
-                                                            @click="setChecked(optionIndex, o)"
-                                                            v-model="option.checked">
-                            </span>
-                          </label>
-                        </el-col>
-                        <el-col
-                          :span="5"
-                          v-if="o.options.length > 1">
-                          <el-button
-                            class="option-sort"
-                            size="small"
-                            icon="el-icon-rank"
-                            circle></el-button>
-                          <el-button
-                            type="danger"
-                            size="small"
-                            icon="el-icon-delete"
-                            circle
-                            @click="removeOption(optionIndex, o)"></el-button>
-                        </el-col>
-                      </el-row>
-                    </draggable>
-                    <el-button
-                      class="mt-3"
-                      size="small"
-                      icon="el-icon-plus"
-                      @click="addOption(index, o)">
-                      {{ $t('enquiry.form.updateForm.add.option') }}
-                    </el-button>
-                  </el-col>
-                </el-row>
-              </div>
-            </draggable>
-            <div class="field-list-preset">
-              <el-popover
-                placement="top-end"
-                width="600"
-                trigger="hover"
-              >
-                <div class="el-popover__title">
-                  {{ $t('enquiry.form.updateForm.add.normal') }}
-                </div>
-                <div class="preset-button">
-                  <template
-                    v-for="(o, key) in $t('enquiry.form.updateForm.fieldType')"
-                  >
-                    <el-button
-                      :key="key"
-                      v-if="o.preset"
-                      size="small"
-                      @click="addElement(key, true)"
-                    >
-                      {{ o.label }}
-                    </el-button>
-                  </template>
-                </div>
-                <div class="el-popover__title mt-5">
-                  {{ $t('enquiry.form.updateForm.add.custom') }}
-                </div>
-                <div class="preset-button">
-                  <template
-                    v-for="(o, key) in $t('enquiry.form.updateForm.fieldType')"
-                  >
-                    <el-button
-                      :key="key"
-                      v-if="o.custom"
-                      size="small"
-                      @click="addElement(key, false)"
-                    >
-                      {{ o.label }}
-                    </el-button>
-                  </template>
-                </div>
+                        icon="el-icon-rank"
+                        circle></el-button>
+                      <el-button
+                        type="danger"
+                        size="small"
+                        icon="el-icon-delete"
+                        circle
+                        @click="removeOption(optionIndex, o)"></el-button>
+                    </el-col>
+                  </el-row>
+                </draggable>
                 <el-button
-                  slot="reference"
-                  size="small">
-                  {{ $t('enquiry.form.updateForm.add.button') }}
+                  class="mt-3"
+                  size="small"
+                  icon="el-icon-plus"
+                  @click="addOption(index, o)">
+                  {{ $t('enquiry.form.updateForm.add.option') }}
                 </el-button>
-              </el-popover>
-            </div>
-          </fox-page-section>
-        </el-form>
-      </div>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        :loading="loading"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+              </el-col>
+            </el-row>
+          </div>
+        </draggable>
+      </fox-section>
+    </fox-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -285,7 +302,6 @@ export default {
   },
   data () {
     return {
-      deleteActions: [],
       entity: {
         remark: '',
         title: '',
@@ -327,19 +343,7 @@ export default {
     }
   },
   created () {
-    let that = this
     if (this.id) {
-      this.deleteActions = [
-        {
-          label: this.$t('base.delete.button'),
-          icon: 'el-icon-delete',
-          type: 'primary',
-          visible: true,
-          click: () => {
-            that.deleteForm()
-          }
-        }
-      ]
       this.getDetail()
     } else {
       this.pageValid()
@@ -353,14 +357,14 @@ export default {
      * 上一步
      */
     previous () {
-      this.$router.push(`/site/${this.siteId}/enquiry/form`)
+      this.redirectURL(`/site/${this.siteId}/enquiry/form`)
     },
     /**
      * 表单校验
      */
     formValidation () {
       let formName = 'update'
-      this.$refs[formName].validate((valid) => {
+      this.formValidate(formName, (valid) => {
         if (valid) {
           let isEmailOrPhone = false
           this.entity.fieldList.forEach((o) => {
@@ -430,7 +434,7 @@ export default {
             action: this.actionType.update
           }
           this.resultMessage(result, (success) => {
-            if (success && !this.id) {
+            if (success) {
               this.previous()
             }
           })
@@ -564,12 +568,11 @@ export default {
 }
 </script>
 <style lang="scss">
-.field-list-preset {
-  text-align: right;
-  margin-top: 10px;
-}
-
 .field-list {
+  .el-form-item {
+    margin-bottom: 0;
+  }
+
   .el-row {
     &:not(.no-flex) {
       display: flex;
@@ -584,6 +587,9 @@ export default {
   }
 
   .field-list-option {
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+
     .field-option-label {
       line-height: 40px
     }
@@ -596,21 +602,10 @@ export default {
 
 .preset-button {
   .el-button {
-    margin-bottom: 10px;
-  }
-}
-
-.enquiry-form-update-nav {
-  margin-bottom: 20px;
-
-  .el-icon-delete {
-    font-size: 18px;
-  }
-}
-
-.enquiry-form-content-wrapper {
-  .fox-page-section-title {
-    margin-bottom: 6px;
+    &:first-child,
+    & + .el-button {
+      margin: 0 6px 6px 0;
+    }
   }
 }
 </style>

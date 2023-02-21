@@ -1,58 +1,77 @@
 <template>
-  <main>
-    <fox-page-header :actions="crumbAction"></fox-page-header>
-      <fox-page-loading
-        :loading="pageLoading"
-        :invalid="pageIsValid"
-        :percentage="100"
-      >
-        <fox-paging-table
-          :columns="dataConfig.columns"
-          :actions="dataConfig.actions"
-          :dataset="pagingOptions.dataset"
-          :loading="tableOptions.loading"
-          :first-loading="pagingOptions.firstLoading"
-          :page-index.sync="pagingOptions.pageIndex"
-          :page-size.sync="pagingOptions.pageSize"
-          :record-count="pagingOptions.recordCount"
-          :rows-class-name="dataConfig.rowsClassName"
-          @paging="getData"
-        >
-          <template slot="header">
-            <el-row
-              :gutter="20"
-              class="dataset-search">
-              <el-col :span="12">
-                <el-input
-                  :placeholder="$t('base.placeholder.search')"
-                  v-model="searchConditions.keyword"
-                  clearable
-                  @change="searchConditionChange"
-                  @clear="clearSearchCondition"
-                  class="input-with-select"
-                >
-                  <el-button
-                    slot="append"
-                    icon="el-icon-search"
-                    :loading="loading"
-                    @click="getData(false)"
-                  ></el-button>
-                </el-input>
-              </el-col>
-            </el-row>
-          </template>
-          </fox-paging-table>
-          </fox-page-loading>
-  </main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <div class="neighbor fox-google-style percent-100" slot="header">
+      <div class="fox-page-content">
+        <div
+          class="filter-params">
+          <div class="filter-params-element">
+            <fox-input
+              shrink
+              :placeholder="$t('base.placeholder.label')"
+              :description="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              @change="searchConditionChange"
+              @clear="clearSearchCondition"
+              class="input-with-select"
+            >
+              <el-button
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="getData(false)"
+              ></el-button>
+            </fox-input>
+          </div>
+          <div class="filter-params-element ml-7">
+            <el-button
+              icon="el-icon-plus"
+              type="primary"
+              plain
+              class="el-material-button"
+              :title="$t('customizePage.paging.addButton')"
+              @click="addPages"
+            >
+            </el-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      @paging="getData"
+    >
+    </fox-paging-table>
+    <page-update
+      :visible.sync="updateVisible"
+      @success="getData"
+      :page-id="pageId"></page-update>
+  </fox-layout-main>
 </template>
 
 <script>
 import extend from '@/plugins/page/paging'
+import pageUpdate from './components/update'
 import { fetchPagesPaging, fetchChangePageState, fetchDeletePage } from '@/plugins/api/customizePage'
 
 export default {
   name: 'siteCustomizePage',
   extends: extend,
+  components: {
+    pageUpdate
+  },
   data () {
     return {
       dataConfig: {
@@ -116,7 +135,9 @@ export default {
         rowsClassName: (row) => {
           return row.state === 0 ? 'row-text-enable' : ''
         }
-      }
+      },
+      updateVisible: false,
+      pageId: ''
     }
   },
   created () {
@@ -133,24 +154,6 @@ export default {
     //   ro.push(v)
     // })
     // console.log(ro.join('\n'))
-  },
-  computed: {
-    /**
-     * 面包屑操作
-     */
-    crumbAction () {
-      return [
-        {
-          label: this.$t('customizePage.paging.addButton'),
-          icon: 'el-icon-plus',
-          type: 'primary',
-          visible: true,
-          click: () => {
-            this.addPages()
-          }
-        }
-      ]
-    }
   },
   methods: {
     /**
@@ -195,14 +198,18 @@ export default {
      * 添加页面
      */
     addPages () {
-      console.log('===>')
-      this.$router.push(`/site/${this.siteId}/pages/add`)
+      this.pageId = ''
+      this.updateVisible = true
+      // console.log('===>')
+      // this.$router.push(`/site/${this.siteId}/pages/add`)
     },
     /**
      * 修改页面
      */
     updatePages (row) {
-      this.$router.push(`/site/${this.siteId}/pages/${row.id}`)
+      this.pageId = row.id
+      this.updateVisible = true
+      // this.$router.push(`/site/${this.siteId}/pages/${row.id}`)
     },
     /**
      * 修改状态

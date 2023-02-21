@@ -21,6 +21,7 @@ import countdown from './components/countdown/index'
 import LinkPicker from './components/link-picker/index'
 import SearchEnginePreview from './components/search-engine-preview'
 import AddToCollection from './components/article/add-to-collection'
+import neighborAction from './components/neighbor-action'
 import Sorting from './components/article/sorting'
 
 import foxUI from 'fox-vue-ui'
@@ -30,6 +31,7 @@ Vue.use(foxUI)
 Vue.component('Countdown', countdown)
 Vue.component('SearchEnginePreview', SearchEnginePreview)
 Vue.component('AddToCollection', AddToCollection)
+Vue.component('neighborAction', neighborAction)
 Vue.component('Sorting', Sorting)
 Vue.component('LinkPicker', LinkPicker)
 let locale = util.getLanguage() === 'en' ? enLocale : cnLocale
@@ -71,15 +73,9 @@ Vue.filter('getUnit', (id) => {
   let res = i18n.t('service.serviceUnit')[id.toString()]
   return res || ''
 })
-/**
- * 获取数据状态
- */
-Vue.filter('getDataState', (value) => {
-  const res = resource.dataSate.find(i => i.value === value)
-  return res ? res.label : ''
-})
 Vue.prototype.axios = ajax
 Vue.prototype.utility = util
+Vue.prototype.$uti = util
 Vue.prototype.$passport = passport
 Vue.prototype.resource = resource
 Vue.prototype.$cookies = cookies

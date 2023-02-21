@@ -1,7 +1,7 @@
 <template>
   <div
     class="el-input-material"
-    :class="borderless ? 'borderless' : ''">
+    :class="`${borderless ? 'borderless ' : ''}${size || ''}`">
     <label
       v-if="!borderless"
       class="el-input-material-label"

@@ -1,55 +1,51 @@
 <template>
-  <fox-page-loading
-    :loading="pageLoading"
-    :invalid="pageIsValid">
-    <el-form
-      :model="entity"
-      :rules="formRules"
-      ref="update"
-      label-width="100px"
-      label-position="top">
-      <fox-page-section
-        :heading="$t('settings.tracking.update.entity.scriptHead.label')"
-      >
-        <el-form-item prop="scriptHead">
-          <el-input
-            type="textarea"
-            :rows="12"
-            v-model="entity.scriptHead"
-            :placeholder="$t('settings.tracking.update.entity.scriptHead.placeholder')"
-          ></el-input>
-          <p
-            class="text-secondary mt-2"
-            v-html="$t('settings.tracking.update.entity.scriptHead.info')">
-            {{ $t('settings.tracking.update.entity.scriptHead.info') }}
-          </p>
-        </el-form-item>
-      </fox-page-section>
-      <fox-page-section
-        :heading="$t('settings.tracking.update.entity.scriptBottom.label')"
-      >
-        <el-form-item prop="scriptBottom">
-          <el-input
-            type="textarea"
-            :rows="12"
-            v-model="entity.scriptBottom"
-            :placeholder="$t('settings.tracking.update.entity.scriptBottom.placeholder')"
-          ></el-input>
-          <p
-            class="text-secondary mt-2"
-            v-html="$t('settings.tracking.update.entity.scriptBottom.info')">
-            {{ $t('settings.tracking.update.entity.scriptBottom.info') }}
-          </p>
-        </el-form-item>
-      </fox-page-section>
-      <!--save-->
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-    </el-form>
-  </fox-page-loading>
+  <fox-form
+    :model="entity"
+    :rules="formRules"
+    v-loading="pageLoading"
+    borderless
+    ref="update">
+    <fox-section
+      :heading="$t('settings.tracking.update.entity.scriptHead.label')"
+    >
+      <el-form-item prop="scriptHead">
+        <el-input
+          type="textarea"
+          :rows="12"
+          v-model="entity.scriptHead"
+          :placeholder="$t('settings.tracking.update.entity.scriptHead.placeholder')"
+        ></el-input>
+        <div
+          class="text-secondary script-tips mt-2"
+          v-html="$t('settings.tracking.update.entity.scriptHead.info')">
+          {{ $t('settings.tracking.update.entity.scriptHead.info') }}
+        </div>
+      </el-form-item>
+    </fox-section>
+    <fox-section
+      :heading="$t('settings.tracking.update.entity.scriptBottom.label')"
+    >
+      <el-form-item prop="scriptBottom">
+        <el-input
+          type="textarea"
+          :rows="12"
+          v-model="entity.scriptBottom"
+          :placeholder="$t('settings.tracking.update.entity.scriptBottom.placeholder')"
+        ></el-input>
+        <div
+          class="text-secondary script-tips mt-2"
+          v-html="$t('settings.tracking.update.entity.scriptBottom.info')">
+          {{ $t('settings.tracking.update.entity.scriptBottom.info') }}
+        </div>
+      </el-form-item>
+    </fox-section>
+    <!--save-->
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-form>
 </template>
 
 <script>
@@ -86,7 +82,6 @@ export default {
     }
   },
   created () {
-    this.pageValid()
     this.getDetail()
   },
   methods: {
@@ -94,8 +89,7 @@ export default {
      * 验证
      */
     formValidation () {
-      let formName = 'update'
-      this.$refs[formName].validate((valid) => {
+      this.formValidate('update', (valid) => {
         if (valid) {
           this.updateSite()
         }
@@ -105,12 +99,12 @@ export default {
      * 获取详情
      */
     getDetail () {
+      this.pageLoading = true
       fetchSiteTracking({
         siteId: this.siteId,
         region: this.regionCode
       })
         .then(result => {
-          this.pageValid()
           this.resultMessage(result, (success) => {
             if (success) {
               this.entity = result.data

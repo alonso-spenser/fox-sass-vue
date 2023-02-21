@@ -73,6 +73,7 @@ export default {
       size: '文件不可以超过{size}M'
     },
     placeholder: {
+      label: '关键词',
       input: '请输入内容',
       search: '请输入关键词',
       select: '请选择',

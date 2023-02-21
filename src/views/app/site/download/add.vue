@@ -14,7 +14,7 @@
         label-width="100px"
         label-position="top"
       >
-        <fox-page-section>
+        <fox-section>
           <el-row :gutter="20">
             <el-col :span="18">
               <div class="files-upload">
@@ -51,7 +51,7 @@
               ></collection-select>
             </el-col>
           </el-row>
-        </fox-page-section>
+        </fox-section>
       </el-form>
       <fox-unsaved
         :unsaved.sync="unsaved"

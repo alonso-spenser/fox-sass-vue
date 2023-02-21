@@ -1,78 +1,72 @@
 <template>
-  <main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
     <fox-page-header
       :drop-actions="dropAction"
       :actions="crumbAction"
+      slot="header"
+      v-if="false"
     >
     </fox-page-header>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
+    <div class="neighbor fox-google-style percent-100" slot="header">
+      <div class="fox-page-content text-right">
+        <neighbor-action
+          :drop-actions="dropAction"
+          :actions="crumbAction"
+        ></neighbor-action>
+      </div>
+    </div>
+    <fox-section
+      v-if="false"
+      :content="$t('site.theme.current.subheading')"
     >
-      <fox-page-section
-        v-if="false"
-        :content="$t('site.theme.current.subheading')"
-      >
-      </fox-page-section>
-      <div class="site-theme">
-        <div class="site-theme-web">
-          <div class="screenShot-container scaled">
-            <div class="screenShot-content">
-              <div class="screenShot-wrapper">
-                <iframe
-                  class="screenShot-iframe"
-                  :src="`${siteProtocol}${siteModel.mainDomain}`"></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="site-theme-app">
-          <div class="screenShot-container scaled">
-            <div class="screenShot-content">
-              <div class="screenShot-wrapper screenShot-wrapper-mobile">
-                <iframe
-                  class="screenShot-iframe"
-                  :src="`${siteProtocol}${siteModel.mainDomain}`"></iframe>
-              </div>
+    </fox-section>
+    <div class="site-theme">
+      <div class="site-theme-web">
+        <div class="screenShot-container scaled">
+          <div class="screenShot-content">
+            <div class="screenShot-wrapper">
+              <iframe
+                class="screenShot-iframe"
+                :src="`${siteProtocol}${siteModel.mainDomain}`"></iframe>
             </div>
           </div>
         </div>
       </div>
+      <div class="site-theme-app">
+        <div class="screenShot-container scaled">
+          <div class="screenShot-content">
+            <div class="screenShot-wrapper screenShot-wrapper-mobile">
+              <iframe
+                class="screenShot-iframe"
+                :src="`${siteProtocol}${siteModel.mainDomain}`"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <fox-page-section
-        :heading="$t('site.theme.owned.heading')"
-        :content="$t('site.theme.owned.subheading')"
-      >
-        <template
-          slot="header"
-          v-if="false">
-          <el-button
-            @click="exploreVisible = true"
-            size="small"
-            class="float-right mt-2">
-            {{ $t("site.theme.get") }}
-          </el-button>
-        </template>
-      </fox-page-section>
-
-      <fox-paging-table
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="tableOptions.loading"
-        :first-loading="false"
-        :empty="dataConfig.empty"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :multi-select="false"
-        :rows-class-name="dataConfig.rowsClassName"
-        @paging="getData"
-      >
-      </fox-paging-table>
-
-    </fox-page-loading>
-  </main>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="false"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :multi-select="false"
+      :rows-class-name="dataConfig.rowsClassName"
+      size="small"
+      :card-style="false"
+      @paging="getData"
+    >
+    </fox-paging-table>
+  </fox-layout-main>
 </template>
 <script>
 import extend from '@/plugins/page/paging'
@@ -168,13 +162,13 @@ export default {
           },
           {
             prop: 'version',
-            width: 100,
+            width: 120,
             label: this.$t('site.theme.paging.tableHeader.version')
           },
           {
             button: true,
             label: '',
-            width: 150,
+            width: 200,
             align: 'right',
             group: [
               {

@@ -31,7 +31,8 @@ export default {
      * 我的询盘记录
      */
     record: {
-      title: 'My inquiry',
+      title: 'Inquiry',
+      description: 'Inquiry record',
       export: 'Export',
       clearAllFilter: 'Clean up',
       tableHeader: {
@@ -123,7 +124,7 @@ export default {
      *  询盘详情
      */
     recordDetails: {
-      title: 'Detail',
+      title: 'Inquiry detail',
       change: 'Change state',
       userInfoLabel: {
         code: 'ID.',
@@ -163,9 +164,9 @@ export default {
       },
       update: {
         email: {
-          label: 'Mailbox',
+          label: 'Email',
           description: 'E-mail address',
-          placeholder: 'Mailbox',
+          placeholder: 'Email',
           formatError: 'E-mail format error',
           required: 'Please input a email address'
         },
@@ -181,13 +182,16 @@ export default {
      * 询盘表单
      */
     form: {
-      title: 'Inquiry form',
+      title: 'Form',
+      description: 'Inquiry form',
       section: {
         source: {
+          content: 'Content',
           heading: 'Source',
           refTitle: 'Title',
           refUrl: 'URL',
-          userAgent: 'Browser'
+          userAgent: 'Browser',
+          user: 'Client info'
         },
         record: {
           heading: 'Records'
@@ -202,8 +206,9 @@ export default {
       // 更新表单 && 添加表单
       updateForm: {
         content: 'Form content',
-        addForm: 'Add',
-        editForm: 'Edit',
+        addForm: 'Add Form',
+        editForm: 'Edit Form',
+        info: 'Form information',
         fieldList: 'The form must contain: mail or phone or phone (including country/area code), and it is "required"',
         add: {
           button: 'Add Field',
@@ -212,25 +217,25 @@ export default {
           option: 'Add option'
         },
         entity: {
+          title: {
+            label: 'Name',
+            tips: '',
+            placeholder: 'Form name',
+            required: 'Please enter a form name',
+            custom: ''
+          },
           buttonLabel: {
-            label: 'Button label',
+            label: 'Button',
             tips: '',
             placeholder: 'Button label',
             required: 'Please enter button label',
             custom: ''
           },
           remark: {
-            label: 'Remark',
+            label: 'Description',
             tips: '',
-            placeholder: 'Remark',
-            required: 'Please enter remark',
-            custom: ''
-          },
-          title: {
-            label: 'Form name',
-            tips: '',
-            placeholder: 'Form name',
-            required: 'Please enter a form name',
+            placeholder: 'Form description',
+            required: 'Please enter description',
             custom: ''
           }
         },
@@ -354,15 +359,6 @@ export default {
             preset: true,
             custom: true
           },
-          // number: {
-          //   label: '数字',
-          //   fieldLabel: 'Number',
-          //   placeholder: '',
-          //   required: false,
-          //   filedType: 'number',
-          //   quantity: 0,
-          //   custom: true
-          // },
           select: {
             label: 'Select',
             fieldLabel: '',
@@ -430,7 +426,6 @@ export default {
           buttonLabel: '添加表单'
         }
       }
-
     }
   }
 }

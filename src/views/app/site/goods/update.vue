@@ -1,31 +1,46 @@
 <template>
-  <main>
-    <fox-page-header :actions="crumbAction"></fox-page-header>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="100"
+  >
     <fox-page-loading
       :fo-page-loading="pageLoading"
       :page-is-valid="pageIsValid"
       :percentage="100"
     >
-      <el-form
+      <fox-form
         :model="entity"
         :rules="formRules"
         :disabled="goodsLimited"
-        ref="update"
-        label-width="100px"
-        label-position="top">
+        ref="update">
         <el-row :gutter="20">
           <el-col :span="18">
-            <fox-page-section>
+            <fox-section
+              :heading="$t('goods.update.info')"
+            >
+              <el-button
+                slot="header"
+                size="mini"
+                @click="removeGoods"
+                icon="el-icon-delete"
+                type="text"
+                v-if="id"
+              >
+                {{ $t('base.delete.button') }}
+              </el-button>
               <el-form-item
-                prop="title"
-                :label="`${$t('goods.update.entity.title.label')}`">
-                <el-input
+                prop="title">
+                <fox-input
+                  shrink
                   show-word-limit
                   maxlength="200"
                   v-model="entity.title"
                   @blur="setCapitalize"
                   class="small-append"
-                  :placeholder="$t('goods.update.entity.title.placeholder')"
+                  :placeholder="`${$t('goods.update.entity.title.label')}`"
+                  :description="$t('goods.update.entity.title.placeholder')"
                 >
                   <el-checkbox
                     v-model="autoSyncH1Title"
@@ -33,47 +48,40 @@
                     slot="append"
                     v-if="id">H1
                   </el-checkbox>
-                </el-input>
+                </fox-input>
               </el-form-item>
               <el-form-item prop="subtitle">
-                <label class="el-form-item__label">
-                  {{ $t('goods.update.entity.subtitle.label') }}
-                  <small class="text-warning">
-                    {{ $t('goods.update.entity.subtitle.tips') }}
-                  </small>
-                </label>
-                <el-input
+                <fox-input
+                  shrink
                   show-word-limit
                   type="textarea"
                   v-model="entity.subtitle"
                   maxlength="255"
                   :autosize="{ minRows: 3, maxRows: 5}"
-                  :placeholder="$t('goods.update.entity.subtitle.placeholder')"
-                ></el-input>
+                  :placeholder="$t('goods.update.entity.subtitle.label')"
+                  :description="$t('goods.update.entity.subtitle.tips')"
+                ></fox-input>
               </el-form-item>
               <el-form-item prop="summary">
-                <label class="el-form-item__label">
-                  {{ $t('goods.update.entity.summary.label') }}
-                  <small class="text-warning">
-                    {{ $t('goods.update.entity.summary.tips') }}
-                  </small>
-                </label>
-                <el-input
+                <fox-input
+                  shrink
                   show-word-limit
                   type="textarea"
                   v-model="entity.summary"
                   maxlength="3000"
                   :autosize="{ minRows: 3, maxRows: 5}"
-                  :placeholder="$t('goods.update.entity.summary.placeholder')"
-                ></el-input>
+                  :placeholder="$t('goods.update.entity.summary.label')"
+                  :description="$t('goods.update.entity.summary.tips')"
+                ></fox-input>
               </el-form-item>
-            </fox-page-section>
-            <fox-page-section
+            </fox-section>
+            <fox-section
               :heading="$t('goods.update.entity.coverImage.label')"
             >
               <template slot="header">
                 <el-button
                   type="text"
+                  size="mini"
                   @click="loadGallery('list')"
                   icon="el-icon-picture-outline-round">
                   {{ $t('resourceSelector.lib') }}
@@ -86,14 +94,11 @@
                 :server-address="utility.uploadURL()"
                 :file-folder="siteId"
               ></fox-image-upload>
-            </fox-page-section>
-            <fox-page-section>
+            </fox-section>
+            <fox-section
+              :heading="$t('goods.update.pricePlan')"
+            >
               <el-row :gutter="20">
-                <el-col :span="4">
-                  <label class="el-form-item__label">
-                    {{ $t("goods.update.pricePlan") }}
-                  </label>
-                </el-col>
                 <el-col :span="4">
                   <el-select
                     class="w-100"
@@ -159,8 +164,8 @@
                   </el-table>
                 </el-col>
               </el-row>
-            </fox-page-section>
-            <fox-page-section
+            </fox-section>
+            <fox-section
               :heading="$t('variant.heading')"
               :content="$t('variant.subheading')"
               v-if="entity.priceType > 0">
@@ -401,8 +406,8 @@
                   </div>
                 </div>
               </template>
-            </fox-page-section>
-            <fox-page-section
+            </fox-section>
+            <fox-section
               :heading="$t('goods.update.entity.description.label')"
             >
               <el-form-item prop="description">
@@ -415,8 +420,8 @@
                   :placeholder="$t('goods.update.entity.description.placeholder')"
                 ></fox-editor>
               </el-form-item>
-            </fox-page-section>
-            <fox-page-section
+            </fox-section>
+            <fox-section
               v-if="siteModel.designArticle === 0"
               :heading="designMap.dataset.imageList.data.length > 0 ? $t('goods.update.design.title') : ''"
               :content="designMap.dataset.imageList.data.length > 0 ? $t('goods.update.design.content') : ''"
@@ -466,44 +471,23 @@
                   </el-col>
                 </el-row>
               </div>
-            </fox-page-section>
+            </fox-section>
             <spec-selector v-model="entity.specList"></spec-selector>
             <!--扩展属性-->
-            <fox-page-section
-              :heading="entity.blockList.length > 0 ? $t('goods.update.attribute.heading') : ''"
-              :content="entity.blockList.length > 0 ? $t('goods.update.attribute.desc') : ''"
+            <fox-section
+              :heading="$t('goods.update.attribute.heading')"
+              :description="$t('goods.update.attribute.desc')"
             >
-              <template
+              <el-button
+                size="mini"
                 slot="header"
-                v-if="entity.blockList.length > 0">
-                <el-button
-                  size="small"
-                  round
-                  @click="attributeTabsEdit('', 'add')"
-                >
-                  <i class="el-icon-plus"></i>
-                  {{ $t("base.addition.button") }}
-                </el-button>
-              </template>
-              <el-row v-if="entity.blockList.length === 0">
-                <el-col :span="18">
-                  {{ $t('goods.update.attribute.heading') }}
-                  <div class="el-form-item__tips mt-2">
-                    {{ $t('goods.update.attribute.desc') }}
-                  </div>
-                </el-col>
-                <el-col
-                  :span="6"
-                  class="text-right">
-                  <el-button
-                    size="small"
-                    round
-                    @click="attributeTabsEdit('', 'add')"
-                    icon="el-icon-plus">
-                    {{ $t("base.addition.button") }}
-                  </el-button>
-                </el-col>
-              </el-row>
+                icon="el-icon-plus"
+                type="text"
+                v-if="entity.blockList.length < 6"
+                @click="attributeTabsEdit('', 'add')"
+              >
+                {{ $t("base.addition.button") }}
+              </el-button>
               <el-tabs
                 v-model="attributeTabsValue"
                 type="card"
@@ -546,7 +530,7 @@
                   </div>
                 </el-tab-pane>
               </el-tabs>
-            </fox-page-section>
+            </fox-section>
             <search-engine-preview
               :temp-title="entity.title"
               :temp-desc="entity.description"
@@ -558,33 +542,28 @@
             </search-engine-preview>
           </el-col>
           <el-col :span="6">
-            <fox-page-section>
-              <div class="el-form-item">
-                <div class="d-flex justify-space-between align-items-center mb-10">
-                  <label class="el-form-item__label p-0">{{
-                      $t('article.collection.update.entity.banner.label')
-                                                         }}</label>
-                  <label
-                    class="text-primary cursor-pointer"
-                    @click="loadGallery('qrcode')"
-                    :title="$t('resourceSelector.lib')">
-                    <i class="el-icon-picture-outline-round"></i>
-                    <!--                    {{ $t('resourceSelector.lib') }}-->
-                  </label>
-                </div>
-                <div class="el-form-item__content">
-                  <fox-image-single
-                    v-model="entity.qrcode"
-                    :size-limit="10"
-                    :oss-bucket="resource.ossBucket"
-                    :server-address="utility.uploadURL()"
-                    :file-folder="siteId"
-                    :alt-visible="false"
-                  ></fox-image-single>
-                </div>
-              </div>
-            </fox-page-section>
-            <!--<fox-page-section>-->
+            <fox-section
+              :heading="$t('article.collection.update.entity.banner.label')"
+            >
+              <el-button
+                slot="header"
+                size="mini"
+                @click="loadGallery('qrcode')"
+                icon="el-icon-picture-outline-round"
+                type="text"
+              >
+                {{ $t('resourceSelector.lib') }}
+              </el-button>
+              <fox-image-single
+                v-model="entity.qrcode"
+                :size-limit="10"
+                :oss-bucket="resource.ossBucket"
+                :server-address="utility.uploadURL()"
+                :file-folder="siteId"
+                :alt-visible="false"
+              ></fox-image-single>
+            </fox-section>
+            <!--<fox-section>-->
             <!--  <el-form-item :label="$t('article.update.entity.state.label')">-->
             <!--    <el-switch-->
             <!--      v-model="entity.state"-->
@@ -596,7 +575,7 @@
             <!--      :inactive-value="1">-->
             <!--    </el-switch>-->
             <!--  </el-form-item>-->
-            <!--</fox-page-section>-->
+            <!--</fox-section>-->
             <!--集合-->
             <collection-select
               :inlay="true"
@@ -611,18 +590,15 @@
             >
             </tag-select>
             <!--附件-->
-            <fox-page-section>
-              <div class="goods-sub-action">
-                <el-button
-                  class="float-right"
-                  size="small"
-                  type="text"
-                  @click="downloadPassVisible = true">{{ $t('site.pass.setPass') }}
-                </el-button>
-                <label class="el-form-item__label">
-                  {{ $t('goods.update.attachment') }}
-                </label>
-              </div>
+            <fox-section
+              :heading="$t('goods.update.attachment') "
+            >
+              <el-button
+                size="mini"
+                type="text"
+                slot="header"
+                @click="downloadPassVisible = true">{{ $t('site.pass.setPass') }}
+              </el-button>
               <fox-attachment-upload
                 v-model="entity.attachmentList"
                 :oss-bucket="resource.ossBucket"
@@ -637,27 +613,26 @@
                 form-prop-name="attachmentList."
               >
               </fox-attachment-upload>
-            </fox-page-section>
-            <fox-page-section>
-              <div class="goods-sub-action">
-                <label class="el-form-item__label">
-                  {{ $t('buyButton.title') }}
-                </label>
-              </div>
+            </fox-section>
+            <fox-section
+              :heading="$t('buyButton.title') "
+            >
               <buy-button v-model="entity.linkList"></buy-button>
-            </fox-page-section>
-            <fox-page-section>
-              <el-form-item :label="$t('goods.update.entity.coverVideo.label')">
-                <video-picker
-                  v-model="entity.coverVideo">
-                </video-picker>
-              </el-form-item>
-            </fox-page-section>
+            </fox-section>
+            <fox-section
+              :heading="$t('goods.update.entity.coverVideo.label')"
+            >
+              <video-picker
+                v-model="entity.coverVideo">
+              </video-picker>
+            </fox-section>
             <!--时间-->
-            <fox-page-section>
+            <fox-section
+              :heading="$t('goods.update.entity.createTime.label')"
+            >
               <el-form-item
                 prop="createTime"
-                :label="$t('goods.update.entity.createTime.label')">
+              >
                 <el-date-picker
                   v-model="entity.createTime"
                   type="datetime"
@@ -667,10 +642,10 @@
                 >
                 </el-date-picker>
               </el-form-item>
-            </fox-page-section>
+            </fox-section>
           </el-col>
         </el-row>
-      </el-form>
+      </fox-form>
       <fox-unsaved
         :unsaved.sync="unsaved"
         :loading="loading"
@@ -719,7 +694,7 @@
         :info-type="2"></resource-selector>
       <download-pass :visible.sync="downloadPassVisible"></download-pass>
     </fox-page-loading>
-  </main>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -1136,29 +1111,6 @@ export default {
     }
   },
   computed: {
-    /**
-     * 面包屑操作
-     */
-    crumbAction () {
-      return [
-        {
-          label: this.$t('base.delete.button'),
-          icon: 'el-icon-delete',
-          visible: this.id,
-          click: () => {
-            this.deleteArticle()
-          }
-        },
-        {
-          label: this.$t('base.operate.preview'),
-          icon: 'fo-eye-open',
-          visible: this.id,
-          click: () => {
-            this.articlePreview()
-          }
-        }
-      ]
-    },
     ...mapState(['siteModel', 'globalRegionModel'])
   },
   created () {
@@ -1386,8 +1338,7 @@ export default {
      * 表单校验
      */
     formValidation () {
-      let formName = 'update'
-      this.$refs[formName].validate((valid) => {
+      this.formValidate('update', (valid) => {
         if (valid) {
           if (this.utility.isEmpty(this.entity.summary)) {
             this.entity.summary = this.utility.extractText(this.entity.description, 255)
@@ -1534,7 +1485,7 @@ export default {
     /**
      * 删除
      */
-    deleteArticle () {
+    removeGoods () {
       this.$confirm(this.$t('base.delete.subheading').toString(), this.$t('base.delete.heading').toString(), {
         confirmButtonText: this.$t('base.operate.confirm'),
         cancelButtonText: this.$t('base.operate.cancel'),

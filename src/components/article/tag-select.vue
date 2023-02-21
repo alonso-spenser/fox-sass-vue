@@ -1,28 +1,14 @@
 <template>
-  <fox-page-section
-    :heading="inlay ? '' : heading"
+  <fox-section
+    :heading="heading"
   >
-    <div
-      class="fox-page-section-header negative"
-      v-if="inlay">
-      <div class="el-form-item__label">
-        {{ heading }}
-      </div>
-      <el-button
-        @click="tagsManagerVisible=true"
-        type="text">
-        {{ $t('tagSelect.manage') }}
-      </el-button>
-    </div>
-    <template
+    <el-button
       slot="header"
-      v-else>
-      <el-button
-        @click="tagsManagerVisible=true"
-        type="text">
-        {{ $t('tagSelect.manage') }}
-      </el-button>
-    </template>
+      size="mini"
+      @click="tagsManagerVisible=true"
+      type="text">
+      {{ $t('tagSelect.manage') }}
+    </el-button>
     <el-select
       v-model="tagList"
       multiple
@@ -57,7 +43,7 @@
       @close="tagsRemove"
     >
     </tags-manager>
-  </fox-page-section>
+  </fox-section>
 </template>
 
 <script>

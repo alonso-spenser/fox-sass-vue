@@ -295,7 +295,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setMerchantModel', 'setSiteModel']),
+    ...mapMutations(['setMerchantModel', 'setMySite', 'setSiteModel', 'setGlobalRegionModel']),
     /**
      * 获取缓存
      */
@@ -325,12 +325,25 @@ export default {
     },
     /**
      * 首页
+     * @param id 网站ID
+     * @param langCode 语言
      */
-    redirectDashboard () {
-      if (this.$route.query.redirect) {
-        location.href = this.$route.query.redirect
-      } else {
-        this.$router.push('/dashboard')
+    redirectDashboard (id, langCode) {
+      let rows = this.siteList.filter((o) => {
+        return o.id === id
+      })
+      if (rows.length > 0) {
+        this.setSiteModel(rows[0])
+        let lang = rows[0].langList.filter((o) => {
+          return langCode === o.code
+        })
+        if (lang.length > 0) {
+          this.setGlobalRegionModel({
+            ...lang[0],
+            siteId: rows[0].id
+          })
+        }
+        this.redirectURL('/dashboard')
       }
     },
     /**
@@ -386,19 +399,19 @@ export default {
      * 创建新网站
      */
     redirectCreate () {
-      this.$router.push('/startup/create-site')
+      this.redirectURL('/startup/create-site')
     },
     /**
      * 注册
      */
     redirectRegister () {
-      this.$router.push('/passport/register')
+      this.redirectURL('/passport/register')
     },
     /**
      * 忘记密码
      */
     redirectForget () {
-      this.$router.push('/passport/forget')
+      this.redirectURL('/passport/forget')
     },
     /**
      * 下拉事件

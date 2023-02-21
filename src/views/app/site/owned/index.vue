@@ -1,215 +1,214 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="90"
-    >
-      <div class="sites-items section-neighbor">
-        <el-row :gutter="20">
-          <el-col
-            :span="6"
-            v-for="o in siteList"
-            :key="o.id">
-            <el-card
-              shadow="hover"
-              :class="o.id === siteModel.id ? 'active' : ''">
-              <div class="sites-items-cover">
-                <img :src="o.thumbnail || '/css/img/web.webp'" />
-                <div class="sites-items-cover-mask">
-                  <p class="text-center">
-                    <label>
-                      {{ o.currencyName }}
-                    </label>
-                    {{ o.langName }}
-                    <label>
-                      {{ siteType[o.siteType] }}
-                    </label>
-                  </p>
-                  <p class="text-center">
-                    <el-button
-                      type="primary"
-                      round
-                      @click="manageSite(o)">
-                      {{ $t("site.dashboard.editButton") }}
-                    </el-button>
-                  </p>
-                </div>
-              </div>
-              <dl v-if="$checkPermission(['startup-clone-site'])">
-                <dt>
-                  <el-dropdown
-                    class="float-right"
-                    @command="dropEvent">
-                    <label class="el-dropdown-link">
-                      <i class="el-icon-more"></i>
-                    </label>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item
-                        v-if="false"
-                        :command="{action: 'server', data: o}">变更服务器
-                      </el-dropdown-item>
-                      <el-dropdown-item :command="{action: 'clone', data: o}">
-                        {{ $t('site.dashboard.clone') }}
-                      </el-dropdown-item>
-                      <el-dropdown-item
-                        :command="{action: 'remove', data: o}"
-                        divided
-                        v-if="o.isExpired || o.payMonth === 0"
-                      >
-                        {{ $t('site.dashboard.remove.label') }}
-                      </el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                  {{ o.siteName }}
-                </dt>
-                <dd>
-                  <a
-                    class="text-primary"
-                    :href="`https://${o.systemDomain}`"
-                    target="_blank">
-                    {{ o.systemDomain }}
-                  </a>
-                </dd>
-                <dd>
-                  <div class="float-right">
-                    <time class="mr-2 text-gray">
-                      {{ utility.timestampToDate(o.expiryTime) }}
-                    </time>
-                    <el-button
-                      v-if="o.payMonth === 0 && o.isExpired && o.freeRenewal < 5"
-                      class="site-action el-button--warning"
-                      @click="trialSite(o)"
-                    >
-                      {{ $t('site.dashboard.trial.label') }}
-                    </el-button>
-                    <el-button
-                      v-if="(o.payMonth > 0 && o.isExpired) || (o.payMonth === 0 && o.isExpired && o.freeRenewal >= 5)"
-                      class="site-action el-button--danger"
-                      @click="renewSite(o)"
-                    >
-                      {{ $t('site.dashboard.subscription') }}
-                    </el-button>
-                  </div>
-                  <label class="sites-items-status">
-                    <template v-if="o.isExpired">
-                      <i class="el-button--info"></i>
-                      <label class="text-info">
-                        {{ $t("site.dashboard.expired") }}
-                      </label>
-                    </template>
-                    <template v-else>
-                      <i :class="o.state === 2 ? 'el-button--warning' : o.state === 0 ? 'el-button--success' : 'el-button--info'"></i>
-                      <label :class="o.state === 2 ? 'text-warning' : o.state === 0? 'text-success' : 'text-info'">
-                        {{ $t("siteStatus")[o.state.toString()] }}
-                      </label>
-                    </template>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="100"
+  >
+    <div class="sites-items section-neighbor">
+      <el-row :gutter="20">
+        <el-col
+          :span="6"
+          v-for="o in siteList"
+          :key="o.id">
+          <el-card
+            shadow="hover"
+            :class="o.id === siteModel.id ? 'active' : ''">
+            <div class="sites-items-cover">
+              <img :src="o.thumbnail || '/css/img/web.webp'" />
+              <div class="sites-items-cover-mask">
+                <p class="text-center">
+                  <label>
+                    {{ o.currencyName }}
                   </label>
-                </dd>
-              </dl>
-            </el-card>
-          </el-col>
-          <el-col
-            :span="6"
-            v-if="$checkPermission(['startup-create-site'])">
-            <el-card
-              shadow="hover"
-              class="creation"
-              @click.native="createSite">
-              <i class="el-icon-plus"></i>
-              <p>
-                {{ $t("site.dashboard.createNew") }}
-              </p>
-            </el-card>
-          </el-col>
-        </el-row>
-      </div>
-      <!--统计-->
-      <el-row
-        :gutter="20"
-        class="section-neighbor">
-        <el-col :span="6">
-          <el-card
-            class="text-center trans-lang"
-            shadow="hover">
-            <div class="trans-label">
-              <h3 class="mb-3">{{ $t('site.dashboard.statistics.languageType') }}</h3>
-              {{ $t('site.dashboard.statistics.online') }}
-              <label class="mr-3">
-                <b class="text-success">{{ siteInfo.keepLang }}</b>
-              </label>
-
-              <label
-                class="text-info"
-                v-if="siteInfo.surplusLang > 0">
-                {{ $t('site.dashboard.statistics.usable') }}
-              </label>
-              <label
-                v-if="siteInfo.surplusLang > 0"
-                class="text-info">
-                <b class="text-warning">{{ siteInfo.surplusLang }}</b>
-              </label>
+                  {{ o.langName }}
+                  <label>
+                    {{ siteType[o.siteType] }}
+                  </label>
+                </p>
+                <p class="text-center">
+                  <el-button
+                    type="primary"
+                    round
+                    @click="manageSite(o)">
+                    {{ $t("site.dashboard.editButton") }}
+                  </el-button>
+                </p>
+              </div>
             </div>
-            <div
-              class="trans-lang-action el-icon-arrow-right"
-              v-if="siteInfo.surplusLang > 0"
-              @click="addLanguage"></div>
+            <dl v-if="$checkPermission(['startup-clone-site'])">
+              <dt>
+                <el-dropdown
+                  class="float-right"
+                  @command="dropEvent">
+                  <label class="el-dropdown-link">
+                    <i class="el-icon-more"></i>
+                  </label>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item
+                      v-if="false"
+                      :command="{action: 'server', data: o}">变更服务器
+                    </el-dropdown-item>
+                    <el-dropdown-item :command="{action: 'clone', data: o}">
+                      {{ $t('site.dashboard.clone') }}
+                    </el-dropdown-item>
+                    <el-dropdown-item
+                      :command="{action: 'remove', data: o}"
+                      divided
+                      v-if="o.isExpired || o.payMonth === 0"
+                    >
+                      {{ $t('site.dashboard.remove.label') }}
+                    </el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+                {{ o.siteName }}
+              </dt>
+              <dd>
+                <a
+                  class="text-primary"
+                  :href="`https://${o.systemDomain}`"
+                  target="_blank">
+                  {{ o.systemDomain }}
+                </a>
+              </dd>
+              <dd>
+                <div class="float-right">
+                  <time class="mr-2 text-gray">
+                    {{ utility.timestampToDate(o.expiryTime) }}
+                  </time>
+                  <el-button
+                    v-if="o.payMonth === 0 && o.isExpired && o.freeRenewal < 5"
+                    class="site-action el-button--warning"
+                    @click="trialSite(o)"
+                  >
+                    {{ $t('site.dashboard.trial.label') }}
+                  </el-button>
+                  <el-button
+                    v-if="(o.payMonth > 0 && o.isExpired) || (o.payMonth === 0 && o.isExpired && o.freeRenewal >= 5)"
+                    class="site-action el-button--danger"
+                    @click="renewSite(o)"
+                  >
+                    {{ $t('site.dashboard.subscription') }}
+                  </el-button>
+                </div>
+                <label class="sites-items-status">
+                  <template v-if="o.isExpired">
+                    <i class="el-button--info"></i>
+                    <label class="text-info">
+                      {{ $t("site.dashboard.expired") }}
+                    </label>
+                  </template>
+                  <template v-else>
+                    <i :class="o.state === 2 ? 'el-button--warning' : o.state === 0 ? 'el-button--success' : 'el-button--info'"></i>
+                    <label :class="o.state === 2 ? 'text-warning' : o.state === 0? 'text-success' : 'text-info'">
+                      {{ $t("siteStatus")[o.state.toString()] }}
+                    </label>
+                  </template>
+                </label>
+              </dd>
+            </dl>
           </el-card>
         </el-col>
-        <el-col :span="6">
+        <el-col
+          :span="6"
+          v-if="$checkPermission(['startup-create-site'])">
           <el-card
-            class="text-center"
-            shadow="hover">
-            <h3 class="mb-3">{{ $t('site.dashboard.statistics.inquiry') }}</h3>
-            <span>
-              {{ siteInfo.formQuantity }}
-            </span>
-          </el-card>
-        </el-col>
-        <el-col :span="6">
-          <el-card
-            class="text-center"
-            shadow="hover">
-            <h3 class="mb-3">{{ $t('site.dashboard.statistics.products') }}</h3>
-            <span>
-              {{ siteInfo.goodsQuantity }}
-            </span>
-          </el-card>
-        </el-col>
-        <el-col :span="6">
-          <el-card
-            class="text-center"
-            shadow="hover">
-            <h3 class="mb-3">{{ $t('site.dashboard.statistics.articles') }}</h3>
-            <span>
-              {{ siteInfo.articleQuantity }}
-            </span>
+            shadow="hover"
+            class="creation"
+            @click.native="createSite">
+            <i class="el-icon-plus"></i>
+            <p>
+              {{ $t("site.dashboard.createNew") }}
+            </p>
           </el-card>
         </el-col>
       </el-row>
-      <fox-paging-table
-        class="section-neighbor"
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="false"
-        :multi-select="false"
-        :index-number="false"
-        :stripe="false"
-        :first-loading="pagingOptions.firstLoading"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :rows-class-name="dataConfig.rowsClassName"
-        @paging="getData"
-      >
-      </fox-paging-table>
-      <language-dialog
-        @translate="asyncTranslate"
-        :dialog-visible.sync="dialogVisible"
-        :site-info="siteInfo"></language-dialog>
-    </fox-page-loading>
-  </main>
+    </div>
+    <!--统计-->
+    <el-row
+      :gutter="20"
+      class="section-neighbor">
+      <el-col :span="6">
+        <el-card
+          class="text-center trans-lang"
+          shadow="hover">
+          <div class="trans-label">
+            <h3 class="mb-3">{{ $t('site.dashboard.statistics.languageType') }}</h3>
+            {{ $t('site.dashboard.statistics.online') }}
+            <label class="mr-3">
+              <b class="text-success">{{ siteInfo.keepLang }}</b>
+            </label>
+
+            <label
+              class="text-info"
+              v-if="siteInfo.surplusLang > 0">
+              {{ $t('site.dashboard.statistics.usable') }}
+            </label>
+            <label
+              v-if="siteInfo.surplusLang > 0"
+              class="text-info">
+              <b class="text-warning">{{ siteInfo.surplusLang }}</b>
+            </label>
+          </div>
+          <div
+            class="trans-lang-action el-icon-arrow-right"
+            v-if="siteInfo.surplusLang > 0"
+            @click="addLanguage"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card
+          class="text-center"
+          shadow="hover">
+          <h3 class="mb-3">{{ $t('site.dashboard.statistics.inquiry') }}</h3>
+          <span>
+              {{ siteInfo.formQuantity }}
+            </span>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card
+          class="text-center"
+          shadow="hover">
+          <h3 class="mb-3">{{ $t('site.dashboard.statistics.products') }}</h3>
+          <span>
+              {{ siteInfo.goodsQuantity }}
+            </span>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card
+          class="text-center"
+          shadow="hover">
+          <h3 class="mb-3">{{ $t('site.dashboard.statistics.articles') }}</h3>
+          <span>
+              {{ siteInfo.articleQuantity }}
+            </span>
+        </el-card>
+      </el-col>
+    </el-row>
+    <fox-paging-table
+      class="section-neighbor"
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="false"
+      :multi-select="false"
+      :index-number="false"
+      :stripe="false"
+      :first-loading="pagingOptions.firstLoading"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      @paging="getData"
+    >
+    </fox-paging-table>
+    <language-dialog
+      @translate="asyncTranslate"
+      :dialog-visible.sync="dialogVisible"
+      :site-info="siteInfo"></language-dialog>
+  </fox-layout-main>
 </template>
 
 <script>

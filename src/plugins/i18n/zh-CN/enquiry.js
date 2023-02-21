@@ -14,7 +14,7 @@ export default {
       //   name: 'enquiry-dashboard'
       // },
       {
-        label: '询盘邮箱',
+        label: '询盘邮件',
         name: 'enquiry-email',
         service: true
       }, {
@@ -35,14 +35,15 @@ export default {
      * 我的询盘记录
      */
     record: {
-      title: '我的询盘',
+      title: '询盘',
+      description: '询盘记录',
       export: '导出',
       clearAllFilter: '清空全部条件',
       tableHeader: {
         createTime: '时间',
         country: '国家',
         Name: '姓名',
-        email: '邮箱',
+        email: '邮件',
         phone: '电话',
         content: '询盘内容',
         sendUrl: '发送地址',
@@ -157,20 +158,22 @@ export default {
       value: 2
     }],
     /**
-     * 询盘邮箱
+     * 询盘邮件
      */
     email: {
-      title: '询盘邮箱',
+      title: '收件人',
+      description: '询盘收件人',
       entity: {
-        exists: '邮箱已存在'
+        exists: '邮件已存在'
       },
       update: {
         email: {
-          label: '收件邮箱',
+          label: '邮件',
+          description: '邮件地址',
           tips: '',
-          placeholder: '邮箱地址',
-          formatError: '邮箱格式错误',
-          required: '请输入邮箱地址'
+          placeholder: '邮件地址',
+          formatError: '邮件格式错误',
+          required: '请输入邮件地址'
         },
         userName: {
           label: '收件人',
@@ -185,13 +188,16 @@ export default {
      * 询盘表单
      */
     form: {
-      title: '询盘表单',
+      title: '询盘',
+      description: '询盘表单',
       section: {
         source: {
+          content: '询盘内容',
           heading: '询盘来源',
           refTitle: '页面标题',
           refUrl: '页面地址',
-          userAgent: '浏览器信息'
+          userAgent: '浏览器信息',
+          user: '客户信息'
         },
         record: {
           heading: '处理记录'
@@ -208,6 +214,7 @@ export default {
         content: '表单内容',
         addForm: '添加表单',
         editForm: '编辑表单',
+        info: '表单信息',
         fieldList: '表单中表必包含：邮件 或 电话 或 电话(含国家/区域代码)，且为"必填"',
         add: {
           button: '添加字段',
@@ -216,31 +223,31 @@ export default {
           option: '添加选项'
         },
         entity: {
+          title: {
+            label: '名称',
+            tips: '',
+            placeholder: '表单名称',
+            required: '请输入表单名称',
+            custom: ''
+          },
           buttonLabel: {
-            label: '提交按钮文本',
+            label: '按钮',
             tips: '',
             placeholder: '提交按钮文本',
             required: '请输入提交按钮文本',
             custom: ''
           },
           remark: {
-            label: '表单备注',
+            label: '备注',
             tips: '',
             placeholder: '表单备注',
             required: '请输入表单备注',
-            custom: ''
-          },
-          title: {
-            label: '表单名称',
-            tips: '',
-            placeholder: '表单名称',
-            required: '请输入表单名称',
             custom: ''
           }
         },
         fieldType: {
           email: {
-            label: '邮箱',
+            label: '邮件',
             fieldLabel: 'Email',
             placeholder: 'Please enter email',
             required: true,

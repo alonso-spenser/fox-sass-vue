@@ -1,198 +1,197 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="100"
-    >
-      <!--顶部数据-->
-      <el-row
-        :gutter="20"
-        type="flex"
-        class="section-neighbor">
-        <el-col :span="8">
-          <fox-page-section
-            class="dashboard-section cursor-pointer"
-            v-on:click="jumpToEnquiry">
-            <div v-on:click="jumpToEnquiry">
-              <label class="text-secondary">{{ $t('dashboard.aggregate.inquiry.label') }}</label>
-              <h3>{{ statistics.enquiryTotalNum }}</h3>
-              <p>{{ $t('dashboard.aggregate.inquiry.currentMonth') }}{{ statistics.enquiryNum }}</p>
-            </div>
-            </fox-page-section>
-        </el-col>
-        <el-col
-          :span="8"
-          v-if="viewId">
-          <fox-page-section class="dashboard-section">
-            <label class="text-secondary">{{ $t('dashboard.aggregate.visit.label') }}</label>
-            <h3>{{ statistics.totalPv }}</h3>
-            <p>{{ $t('dashboard.aggregate.visit.currentMonth') }}{{ statistics.monthPv }}</p>
-            </fox-page-section>
-        </el-col>
-        <el-col
-          :span="8"
-          v-if="viewId">
-          <fox-page-section class="dashboard-section">
-            <label class="text-secondary">{{ $t('dashboard.aggregate.visitor.label') }}</label>
-            <h3>{{ statistics.totalIp }}</h3>
-            <p>{{ $t('dashboard.aggregate.visitor.currentMonth') }}{{ statistics.monthIp }}</p>
-            </fox-page-section>
-        </el-col>
-        <el-col
-          :span="8"
-          v-if="!viewId">
-          <fox-page-section class="dashboard-section bound">
-            <el-button
-              type="primary"
-              @click="jumpToGA">
-              {{ $t('dashboard.ga.title') }}
-            </el-button>
-            <p class="text-secondary">
-              {{ $t('dashboard.ga.tips') }}
-            </p>
-            </fox-page-section>
-        </el-col>
-      </el-row>
-      <el-card
-        shadow="hover"
-        class="word-map section-neighbor"
-        v-loading="dataMap.loading">
-        <template slot="header">
-          <!--顶部tab-->
-          <el-row
-            type="flex"
-            align="center"
-            class="tab-nav">
-            <el-col>
-              <el-tabs
-                v-model="activeName"
-                :before-leave="beforeLeave">
-                <template v-for="(item,index) in $t('dashboard.tabPane')">
-                  <el-tab-pane
-                    :key="index"
-                    v-if="(hasViewId && index === 0) || index > 0"
-                    :label="item.label"
-                    :name="item.name">
-                  </el-tab-pane>
-                </template>
-              </el-tabs>
-            </el-col>
-            <el-col class="selected-time">
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+    :percentage="100"
+  >
+    <!--顶部数据-->
+    <el-row
+      :gutter="20"
+      type="flex"
+      class="section-neighbor">
+      <el-col :span="8">
+        <fox-section
+          class="dashboard-section cursor-pointer"
+          v-on:click="jumpToEnquiry">
+          <div v-on:click="jumpToEnquiry">
+            <label class="text-secondary">{{ $t('dashboard.aggregate.inquiry.label') }}</label>
+            <h3>{{ statistics.enquiryTotalNum }}</h3>
+            <p>{{ $t('dashboard.aggregate.inquiry.currentMonth') }}{{ statistics.enquiryNum }}</p>
+          </div>
+        </fox-section>
+      </el-col>
+      <el-col
+        :span="8"
+        v-if="viewId">
+        <fox-section class="dashboard-section">
+          <label class="text-secondary">{{ $t('dashboard.aggregate.visit.label') }}</label>
+          <h3>{{ statistics.totalPv }}</h3>
+          <p>{{ $t('dashboard.aggregate.visit.currentMonth') }}{{ statistics.monthPv }}</p>
+        </fox-section>
+      </el-col>
+      <el-col
+        :span="8"
+        v-if="viewId">
+        <fox-section class="dashboard-section">
+          <label class="text-secondary">{{ $t('dashboard.aggregate.visitor.label') }}</label>
+          <h3>{{ statistics.totalIp }}</h3>
+          <p>{{ $t('dashboard.aggregate.visitor.currentMonth') }}{{ statistics.monthIp }}</p>
+        </fox-section>
+      </el-col>
+      <el-col
+        :span="8"
+        v-if="!viewId">
+        <fox-section class="dashboard-section bound">
+          <el-button
+            type="primary"
+            @click="jumpToGA">
+            {{ $t('dashboard.ga.title') }}
+          </el-button>
+          <p class="text-secondary">
+            {{ $t('dashboard.ga.tips') }}
+          </p>
+        </fox-section>
+      </el-col>
+    </el-row>
+    <el-card
+      shadow="hover"
+      class="word-map section-neighbor"
+      v-loading="dataMap.loading">
+      <template slot="header">
+        <!--顶部tab-->
+        <el-row
+          type="flex"
+          align="center"
+          class="tab-nav">
+          <el-col>
+            <el-tabs
+              v-model="activeName"
+              :before-leave="beforeLeave">
+              <template v-for="(item,index) in $t('dashboard.tabPane')">
+                <el-tab-pane
+                  :key="index"
+                  v-if="(hasViewId && index === 0) || index > 0"
+                  :label="item.label"
+                  :name="item.name">
+                </el-tab-pane>
+              </template>
+            </el-tabs>
+          </el-col>
+          <el-col class="selected-time">
               <span
                 v-for="(item,index) in dataMap.selectDay"
                 :class="{'text-primary':item.active}"
                 :key="index"
                 @click="item.onClick">{{ item.name }}</span>
-            </el-col>
-          </el-row>
-        </template>
-        <!--询盘 && 流量-->
-        <el-row>
-          <el-col :span="19">
-            <!-- 世界地图-->
-            <div
-              style="height: 620px;width: 100%"
-              v-loading="dataMap.wordMap.loading">
-              <word-echarts
-                v-if="!dataMap.wordMap.loading"
-                :radio-select="radioSelect"
-                :setChina="setChina"
-                :data-map="dataMap.wordMap.options"
-                :radio-group="dataMap.wordMap.radioGroup">
-              </word-echarts>
-            </div>
-
-          </el-col>
-          <el-col
-            :span="5"
-            v-loading="dataMap.ranking.loading">
-            <!--右侧排名-->
-            <table-ranking
-              :title="dataMap.ranking.title"
-              :contentList="dataMap.ranking.listData"
-              :rankingHeader="dataMap.ranking.header"></table-ranking>
           </el-col>
         </el-row>
-      </el-card>
-      <el-row
-        :gutter="20"
-        class="section-neighbor">
-        <el-col :span="12">
-          <!--流量趋势-->
-          <line-echarts
-            v-if="activeName==='flow' && hasViewId"
-            :title="$t('dashboard.flow.trend')"
-            :radio="trendConfig.radioLabel"
-            :option="trendConfig.option"
-            :loading="trendConfig.loading"
-            :radio-group="trendConfig.radioGroup">
-            <template v-slot:topRight>
-              <div class="select-day-container">
-                <span
-                  v-for="(item,index) in trendConfig.selectDay"
-                  @click="item.onClick"
-                  :key="index"
-                  :class="{'text-primary':item.active}">{{ item.name }}</span>
-              </div>
-            </template>
-          </line-echarts>
-          <!--询盘趋势-->
-          <line-echarts
-            :loading="enquiryTrend.loading"
-            :option="enquiryTrend.option"
-            :title="$t('dashboard.analytics.inquiry.trend.title')"
-            v-if="activeName==='inquiry' || !hasViewId">
-            <template v-slot:topRight>
-              <div class="select-day-container">
-                <span
-                  v-for="(item,index) in trendConfig.selectDay"
-                  @click="item.onClick"
-                  :key="index"
-                  :class="{'text-primary':item.active}">{{ item.name }}</span>
-              </div>
-            </template>
-          </line-echarts>
+      </template>
+      <!--询盘 && 流量-->
+      <el-row>
+        <el-col :span="19">
+          <!-- 世界地图-->
+          <div
+            style="height: 620px;width: 100%"
+            v-loading="dataMap.wordMap.loading">
+            <word-echarts
+              v-if="!dataMap.wordMap.loading"
+              :radio-select="radioSelect"
+              :setChina="setChina"
+              :data-map="dataMap.wordMap.options"
+              :radio-group="dataMap.wordMap.radioGroup">
+            </word-echarts>
+          </div>
+
         </el-col>
-        <el-col :span="12">
-          <!--流量来源-->
-          <pie-echarts
-            v-if="activeName==='flow' && hasViewId"
-            :title="$t('dashboard.flow.source')"
-            :option="sourceConfig.option"
-            :loading="sourceConfig.loading"
-          >
-            <template v-slot:topRight>
-              <div class="select-day-container">
-                <span
-                  v-for="(item,index) in sourceConfig.selectDay"
-                  @click="item.onClick"
-                  :key="index"
-                  :class="{'text-primary':item.active}">{{ item.name }}</span>
-              </div>
-            </template>
-          </pie-echarts>
-          <!--询盘来源-->
-          <pie-echarts
-            v-if="activeName==='inquiry' || !hasViewId"
-            :title="$t('dashboard.analytics.inquiry.source.title')"
-            :option="enquirySource.option"
-            :loading="enquirySource.loading"
-          >
-            <template v-slot:topRight>
-              <div class="select-day-container">
-                <span
-                  v-for="(item,index) in sourceConfig.selectDay"
-                  @click="item.onClick"
-                  :key="index"
-                  :class="{'text-primary':item.active}">{{ item.name }}</span>
-              </div>
-            </template>
-          </pie-echarts>
+        <el-col
+          :span="5"
+          v-loading="dataMap.ranking.loading">
+          <!--右侧排名-->
+          <table-ranking
+            :title="dataMap.ranking.title"
+            :contentList="dataMap.ranking.listData"
+            :rankingHeader="dataMap.ranking.header"></table-ranking>
         </el-col>
       </el-row>
-      </fox-page-loading>
-  </main>
+    </el-card>
+    <el-row
+      :gutter="20"
+      class="section-neighbor">
+      <el-col :span="12">
+        <!--流量趋势-->
+        <line-echarts
+          v-if="activeName==='flow' && hasViewId"
+          :title="$t('dashboard.flow.trend')"
+          :radio="trendConfig.radioLabel"
+          :option="trendConfig.option"
+          :loading="trendConfig.loading"
+          :radio-group="trendConfig.radioGroup">
+          <template v-slot:topRight>
+            <div class="select-day-container">
+                <span
+                  v-for="(item,index) in trendConfig.selectDay"
+                  @click="item.onClick"
+                  :key="index"
+                  :class="{'text-primary':item.active}">{{ item.name }}</span>
+            </div>
+          </template>
+        </line-echarts>
+        <!--询盘趋势-->
+        <line-echarts
+          :loading="enquiryTrend.loading"
+          :option="enquiryTrend.option"
+          :title="$t('dashboard.analytics.inquiry.trend.title')"
+          v-if="activeName==='inquiry' || !hasViewId">
+          <template v-slot:topRight>
+            <div class="select-day-container">
+                <span
+                  v-for="(item,index) in trendConfig.selectDay"
+                  @click="item.onClick"
+                  :key="index"
+                  :class="{'text-primary':item.active}">{{ item.name }}</span>
+            </div>
+          </template>
+        </line-echarts>
+      </el-col>
+      <el-col :span="12">
+        <!--流量来源-->
+        <pie-echarts
+          v-if="activeName==='flow' && hasViewId"
+          :title="$t('dashboard.flow.source')"
+          :option="sourceConfig.option"
+          :loading="sourceConfig.loading"
+        >
+          <template v-slot:topRight>
+            <div class="select-day-container">
+                <span
+                  v-for="(item,index) in sourceConfig.selectDay"
+                  @click="item.onClick"
+                  :key="index"
+                  :class="{'text-primary':item.active}">{{ item.name }}</span>
+            </div>
+          </template>
+        </pie-echarts>
+        <!--询盘来源-->
+        <pie-echarts
+          v-if="activeName==='inquiry' || !hasViewId"
+          :title="$t('dashboard.analytics.inquiry.source.title')"
+          :option="enquirySource.option"
+          :loading="enquirySource.loading"
+        >
+          <template v-slot:topRight>
+            <div class="select-day-container">
+                <span
+                  v-for="(item,index) in sourceConfig.selectDay"
+                  @click="item.onClick"
+                  :key="index"
+                  :class="{'text-primary':item.active}">{{ item.name }}</span>
+            </div>
+          </template>
+        </pie-echarts>
+      </el-col>
+    </el-row>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -881,12 +880,12 @@ export default {
     margin-top: 5px;
     position: relative;
 
-    &:before,
     &:after {
       content: '';
       position: absolute;
       width: 100%;
       bottom: 0;
+      left: 0;
       border-bottom: 1px solid #EBEEF5;
     }
 

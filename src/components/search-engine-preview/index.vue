@@ -1,5 +1,5 @@
 <template>
-  <fox-page-section
+  <fox-section
     :heading="$t('searchEngine.heading')"
     :content="$t('searchEngine.tips')"
     class="search-engine-section"
@@ -157,7 +157,7 @@
         </div>
       </div>
     </div>
-  </fox-page-section>
+  </fox-section>
 </template>
 
 <script>

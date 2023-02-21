@@ -264,6 +264,7 @@ export default {
     update: {
       addTitle: '添加产品',
       updateTitle: '编辑产品',
+      info: 'Information',
       attribute: {
         heading: '扩展属性',
         desc: '为商品添加更多的属性介绍，如：详细规格参数、应用场景、物流等',

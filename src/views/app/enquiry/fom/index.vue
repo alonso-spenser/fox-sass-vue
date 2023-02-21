@@ -1,84 +1,94 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :fullScreen="true"
-      :percentage="100"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <fox-header-ops
+      :title="$t('enquiry.form.title')"
+      :description="$t('enquiry.form.description')"
+      divider
     >
-      <fox-page-header
-        :left="140"
-        :actions="[
-        {
-          label: $t('base.operate.add'),
-          icon: 'el-icon-plus',
-          type: 'primary',
-          visible: true,
-          click: () => {
-            this.addForm()
-          }
-        }
-      ]"
-      ></fox-page-header>
-      <fox-paging-table
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="tableOptions.loading"
-        :first-loading="pagingOptions.firstLoading"
-        :empty="dataConfig.empty"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :rows-class-name="dataConfig.rowsClassName"
-        @paging="getData"
-      >
-        <template slot="header">
-          <!--          <el-row class="enquiry-form-header-label">-->
-          <!--            <el-col :span="12"></el-col>-->
-          <!--            <el-col :span="12">-->
-          <!--              <el-button type="primary" @click="addForm">{{$t('base.operate.add')}}</el-button>-->
-          <!--            </el-col>-->
-          <!--          </el-row>-->
+      <div class="header-ops-item">
+        <el-button
+          type="text"
+          icon="el-icon-plus"
+          @click="addForm"
+        >
+          {{ $t("enquiry.form.updateForm.addForm") }}
+        </el-button>
+      </div>
+    </fox-header-ops>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      @paging="getData"
+    >
+      <template slot="header">
+        <!--          <el-row class="enquiry-form-header-label">-->
+        <!--            <el-col :span="12"></el-col>-->
+        <!--            <el-col :span="12">-->
+        <!--              <el-button type="primary" @click="addForm">{{$t('base.operate.add')}}</el-button>-->
+        <!--            </el-col>-->
+        <!--          </el-row>-->
 
-          <el-row class="mb-4 dataset-search" :gutter="20">
-            <el-col :span="14">
-              <el-input
-                :placeholder="$t('base.placeholder.search')"
-                v-model="searchConditions.keyword"
-                clearable
-                @change="searchConditionChange"
-                @clear="clearSearchCondition"
-                class="input-with-select">
-                <el-button
-                  slot="append"
-                  icon="el-icon-search"
-                  :loading="loading"
-                  @click="searchData(false)"
-                ></el-button>
-              </el-input>
-            </el-col>
-            <el-col :span="10" class="text-right">
-              <label>
-                {{ $t('base.orderBy') }}
-              </label>
-              <el-select
-                class="ml-2"
-                v-model="searchConditions.orderBy"
-                :placeholder="$t('base.placeholder.select')"
-                @change="searchData(false)"
-              >
-                <el-option :label="$t('orderBy.updateTimeASC')" value="updateTime-ASC"></el-option>
-                <el-option :label="$t('orderBy.updateTimeDESC')" value="updateTime-DESC"></el-option>
-                <el-option :label="$t('orderBy.createTimeASC')" value="createTime-ASC"></el-option>
-                <el-option :label="$t('orderBy.createTimeDESC')" value="createTime-DESC"></el-option>
-              </el-select>
-            </el-col>
-          </el-row>
-        </template>
-      </fox-paging-table>
-    </fox-page-loading>
-  </main>
+        <el-row
+          class="mb-4 dataset-search"
+          :gutter="20">
+          <el-col :span="14">
+            <el-input
+              :placeholder="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              @change="searchConditionChange"
+              @clear="clearSearchCondition"
+              class="input-with-select">
+              <el-button
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="searchData(false)"
+              ></el-button>
+            </el-input>
+          </el-col>
+          <el-col
+            :span="10"
+            class="text-right">
+            <label>
+              {{ $t('base.orderBy') }}
+            </label>
+            <el-select
+              class="ml-2"
+              v-model="searchConditions.orderBy"
+              :placeholder="$t('base.placeholder.select')"
+              @change="searchData(false)"
+            >
+              <el-option
+                :label="$t('orderBy.updateTimeASC')"
+                value="updateTime-ASC"></el-option>
+              <el-option
+                :label="$t('orderBy.updateTimeDESC')"
+                value="updateTime-DESC"></el-option>
+              <el-option
+                :label="$t('orderBy.createTimeASC')"
+                value="createTime-ASC"></el-option>
+              <el-option
+                :label="$t('orderBy.createTimeDESC')"
+                value="createTime-DESC"></el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+      </template>
+    </fox-paging-table>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -208,13 +218,13 @@ export default {
      * 添加跳转
      */
     addForm () {
-      this.$router.push(`/site/${this.siteId}/enquiry/form/add`)
+      this.redirectURL(`/site/${this.siteId}/enquiry/form/add`)
     },
     /**
      * 修改跳转
      */
     updateForm (row) {
-      this.$router.push(`/site/${this.siteId}/enquiry/form/${row.id}`)
+      this.redirectURL(`/site/${this.siteId}/enquiry/form/${row.id}`)
     },
     /**
      * 删除
@@ -262,14 +272,17 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.enquiry-form-header-label{
+<style
+  lang="scss"
+  scoped>
+.enquiry-form-header-label {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  >div{
-    &:last-child{
+
+  > div {
+    &:last-child {
       text-align: right;
     }
   }
