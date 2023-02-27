@@ -1,7 +1,5 @@
 <template>
-  <fox-section
-    :heading="heading"
-    :content="subheading">
+  <div class="fox-drawer-content">
     <el-tree
       :data="dataset"
       :props="defaultProps"
@@ -50,6 +48,7 @@
       :title="$t('navigation.update.dialog.heading')"
       :visible.sync="isDialogShow"
       :show-close="true"
+      append-to-body
       :close-on-click-modal="false"
       width="600px">
       <el-form
@@ -137,7 +136,7 @@
       :visible.sync="gallery.visible"
       @close="resourceSelector"
       :info-type="0"></resource-selector>
-  </fox-section>
+  </div>
 </template>
 
 <script>
@@ -151,7 +150,7 @@ import {
 } from '@/plugins/api/navigation'
 
 export default {
-  name: 'sort-tree',
+  name: 'navigationSortTree',
   extends: extend,
   components: {
     ResourceSelector
@@ -223,7 +222,6 @@ export default {
       if (!val) {
         this.$refs.linkPicker.clearSearchKey()
       } else {
-        // 新建一级菜单
         if (!this.entity.parentId) {
           this.restEntity()
         }

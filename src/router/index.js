@@ -961,33 +961,6 @@ const routes = [
         }
       },
       {
-        path: 'navigation/:menuType/update',
-        name: 'site-navigation-update',
-        component: () => import('../views/app/site/navigation/update'),
-        meta: {
-          requireAuth: true,
-          siteType: [1, 2, 3, 4],
-          title: i18n.t('navigation.navigationUpdate.paging.title'),
-          header: true,
-          sidebar: true,
-          parent: {
-            title: i18n.t('navigation.paging.title'),
-            url: '/site/:siteId:/navigation',
-            previous: '/site/:siteId:/navigation'
-          },
-          crumbs: [
-            {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
-            {
-              title: i18n.t('navigation.paging.title'),
-              path: '/site/:siteId:/navigation/'
-            }
-          ]
-        }
-      },
-      {
         path: 'pages',
         name: 'site-page',
         component: () => import('../views/app/site/pages'),

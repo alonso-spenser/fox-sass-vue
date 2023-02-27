@@ -1710,3 +1710,9 @@ hr {
   line-height: 20px;
 }
 
+.fox-drawer {
+  &-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

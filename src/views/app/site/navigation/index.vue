@@ -4,9 +4,13 @@
     :offset="200"
     google-style
   >
-    <fox-page-header
-      :actions="crumbAction"
-      slot="header"></fox-page-header>
+    <div class="neighbor fox-google-style percent-100" slot="header">
+      <div class="fox-page-content text-right">
+        <neighbor-action
+          :actions="crumbAction"
+        ></neighbor-action>
+      </div>
+    </div>
     <fox-paging-table
       :multiSelect="false"
       :actions="dataConfig.actions"
@@ -20,16 +24,24 @@
       :rows-class-name="dataConfig.rowsClassName"
     >
     </fox-paging-table>
+    <navigation-update
+      :visible.sync="updateVisible"
+      v-model="updateModel"
+    ></navigation-update>
   </fox-layout-main>
 </template>
 
 <script>
 import extend from '@/plugins/page/paging'
 import { fetchAsyncNavigation } from '@/plugins/api/assembler'
+import navigationUpdate from './components/update'
 
 export default {
   name: 'siteNavigation',
   extends: extend,
+  components: {
+    navigationUpdate
+  },
   data () {
     return {
       dataConfig: {
@@ -38,7 +50,7 @@ export default {
             icon: 'el-icon-edit',
             label: this.$t('base.update.button'),
             onClick: (row) => {
-              this.updateCertificate(row)
+              this.updateNavigation(row)
             }
           }
         },
@@ -50,18 +62,20 @@ export default {
           {
             prop: 'describe',
             label: this.$t('navigation.paging.tableHeader.describe')
-          },
-          {
-            prop: 'title',
-            width: 100,
-            align: 'right',
-            render: (row, index) => {
-              return (<label>{this.$t('base.update.button')}</label>)
-            }
           }
+          // {
+          //   prop: 'title',
+          //   width: 100,
+          //   align: 'right',
+          //   label: '',
+          //   render: (row, index) => {
+          //     return (<label>{this.$t('base.update.button')}</label>)
+          //   }
+          // }
         ]
-
-      }
+      },
+      updateVisible: false,
+      updateModel: {}
     }
   },
   computed: {
@@ -91,8 +105,9 @@ export default {
     /**
      * 修改跳转
      */
-    updateCertificate (row) {
-      this.$router.push(`/site/${this.siteId}/navigation/${row.value}/update`)
+    updateNavigation (row) {
+      this.updateModel = row
+      this.updateVisible = true
     },
     /**
      * 同步菜单
@@ -101,8 +116,8 @@ export default {
       fetchAsyncNavigation({
         siteId: this.siteId
       })
-        .then(result => {
-          this.resultMessage(result, success => {
+        .then((result) => {
+          this.resultMessage(result, (success) => {
             if (success) {
               this.$message({
                 type: 'success',
