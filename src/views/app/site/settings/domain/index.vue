@@ -1,8 +1,7 @@
 <template>
-  <fox-page-loading
-    :loading="pageLoading"
-    :fullScreen="true"
-    :invalid="pageIsValid">
+  <div
+    v-loading="pageLoading"
+  >
     <!--      <h3 class="page-title">-->
     <!--        <el-button-->
     <!--          @click="payJudgment"-->
@@ -44,7 +43,7 @@
       :payment="true"
     >
     </unpaid>
-  </fox-page-loading>
+  </div>
 </template>
 
 <script>

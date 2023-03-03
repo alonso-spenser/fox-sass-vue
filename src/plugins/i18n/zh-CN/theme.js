@@ -371,6 +371,7 @@ export default {
     sectionTag: {
       title: '组件标签',
       tips: '为功能组件（SECTION）归类',
+      siteType: '网站类型',
       entity: {
         tagName: {
           label: '标签名称',

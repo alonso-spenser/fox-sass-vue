@@ -1,89 +1,82 @@
 <template>
-  <main>
-    <fox-page-header
-      :actions="[
-        {
-          label: $t('base.addition.button'),
-          icon: 'el-icon-plus',
-          type: 'primary',
-          visible: true,
-          click: () => {
-            this.addPage()
-          }
-        }
-      ]"
-    >
-    </fox-page-header>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="100"
-    >
-      <fox-paging-table
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="tableOptions.loading"
-        :first-loading="pagingOptions.firstLoading"
-        :empty="dataConfig.empty"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :rows-class-name="dataConfig.rowsClassName"
-        :multi-select="false"
-        @paging="getData"
-      >
-        <template slot="header">
-          <el-row
-            class="dataset-search"
-            :gutter="20">
-            <el-col :span="14">
-              <el-input
-                :placeholder="$t('base.placeholder.search')"
-                v-model="searchConditions.keyword"
-                clearable
-                @change="searchConditionChange"
-                @clear="clearSearchCondition"
-                class="input-with-select">
-                <el-button
-                  slot="append"
-                  icon="el-icon-search"
-                  :loading="loading"
-                  @click="getData(false)"
-                ></el-button>
-              </el-input>
-            </el-col>
-            <el-col
-              :span="10"
-              class="text-right">
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    :percentage="100"
+    google-style
+  >
+    <div class="neighbor fox-google-style percent-100" slot="header">
+      <div class="fox-page-content">
+        <div
+          class="filter-params">
+          <div class="filter-params-element">
+            <fox-input
+              shrink
+              :placeholder="$t('base.placeholder.label')"
+              :description="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              @change="searchConditionChange"
+              @clear="clearSearchCondition">
               <el-button
-                v-if="pagingOptions.dataset.length === 0"
-                icon="el-icon-plus"
-                class="ml-2"
-                size="small"
-                :loading="initLoading"
-                :title="$t('app.refresher.button')"
-                @click="initPage()"
-              >
-              </el-button>
-              <el-button
-                class="ml-2"
-                size="small"
-                :loading="initLoading"
-                @click="initSection()"
-              >
-                初始SECTION挂载
-              </el-button>
-            </el-col>
-          </el-row>
-        </template>
-      </fox-paging-table>
-      <page-bind-section
-        :visible.sync="bindVisible"
-        v-model="bindModel"
-      ></page-bind-section>
-    </fox-page-loading>
-  </main>
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="getData(false)"
+              ></el-button>
+            </fox-input>
+          </div>
+          <div class="filter-params-element">
+            <el-button
+              icon="el-icon-plus"
+              type="primary"
+              plain
+              class="el-material-button"
+              @click="addPage"
+            >
+            </el-button>
+          </div>
+          <div class="filter-params-element">
+            <el-button
+              v-if="pagingOptions.dataset.length === 0 && false"
+              class="el-material-button"
+              icon="el-icon-plus"
+              :loading="initLoading"
+              :title="$t('app.refresher.button')"
+              @click="initPage()"
+            >
+            </el-button>
+            <el-button
+              class="el-material-button"
+              :loading="initLoading"
+              @click="initSection()"
+            >
+              初始SECTION挂载
+            </el-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      :multi-select="false"
+      @paging="getData"
+    >
+    </fox-paging-table>
+    <page-bind-section
+      :visible.sync="bindVisible"
+      v-model="bindModel"
+    ></page-bind-section>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -354,7 +347,9 @@ export default {
       http.themePagePaging({
         current: this.pagingOptions.pageIndex,
         size: this.pagingOptions.pageSize,
-        params: {}
+        params: {
+          title: this.searchConditions.keyword
+        }
       })
         .then(result => {
           this.pageValid()

@@ -2,7 +2,6 @@
   <div
     v-loading="pageLoading"
   >
-    <!--      <fox-page-header></fox-page-header>-->
     <el-form
       :model="entity"
       :rules="formRules"
@@ -11,7 +10,6 @@
       <el-tabs
         v-model="activeName"
         type="card">
-        11
         <el-tab-pane
           :label="$t('settings.legal.update.entity.privacyPolicy.label')"
           name="privacyPolicy">
@@ -35,11 +33,13 @@
         <el-tab-pane
           :label="$t('settings.legal.update.entity.termsOfService.label')"
           name="termsOfService">
-          <fox-section class="section-container">
+          <fox-section
+            :heading="$t('settings.legal.update.entity.termsOfService.label')"
+            class="section-container">
             <template slot="header">
               <el-button
                 type="text"
-                size="small"
+                size="mini"
                 @click="replaceTemplate('termsOfService')">{{ $t('settings.legal.update.template') }}
               </el-button>
             </template>
@@ -53,11 +53,13 @@
         <el-tab-pane
           :label="$t('settings.legal.update.entity.refundPolicy.label')"
           name="refundPolicy">
-          <fox-section class="section-container">
+          <fox-section
+            :heading="$t('settings.legal.update.entity.refundPolicy.label')"
+            class="section-container">
             <template slot="header">
               <el-button
                 type="text"
-                size="small"
+                size="mini"
                 @click="replaceTemplate('refundPolicy')">{{ $t('settings.legal.update.template') }}
               </el-button>
             </template>
@@ -71,13 +73,15 @@
         <el-tab-pane
           :label="$t('settings.legal.update.entity.shippingPolicy.label')"
           name="shippingPolicy">
-          <fox-section class="section-container">
+          <fox-section
+            :heading="$t('settings.legal.update.entity.shippingPolicy.label')"
+            class="section-container">
             <template
               slot="header"
               v-if="false">
               <el-button
                 type="text"
-                size="small"
+                size="mini"
                 @click="replaceTemplate('shippingPolicy')">{{ $t('settings.legal.update.template') }}
               </el-button>
             </template>

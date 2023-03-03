@@ -1,65 +1,62 @@
 <template>
-  <main>
-    <fox-page-header
-      :previous="true"
-    ></fox-page-header>
-    <fox-page-loading
-      :page-loading="pageLoading"
-      :page-is-valid="pageIsValid"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
+      label-width="100px"
+      label-position="top"
     >
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top"
-      >
-        <fox-section>
-          <el-row :gutter="20">
-            <el-col :span="18">
-              <div class="files-upload">
-                <div class="el-form-item__label">
-                  {{ $t("site.down.fileUpload.label") }}
-                  <small
-                    class="text-primary"
-                    v-if="limit > 1">
-                    {{ entity.fileList.length }} / {{ limit }}
-                  </small>
-                </div>
-                <fox-attachment-upload
-                  v-model="entity.fileList"
-                  :oss-bucket="resource.ossBucket"
-                  :server-address="utility.uploadURL()"
-                  :file-folder="siteId"
-                  :down-pass="true"
-                  :inactive-value="1"
-                  :active-value="0"
-                  :max-size="30"
-                  :full-mode="true"
-                  :file-limit="limit"
-                  :resource-type="resource.resourceType.download"
-                  :size-limit="60"
-                  class="files"
-                >
-                </fox-attachment-upload>
+      <fox-section>
+        <el-row :gutter="20">
+          <el-col :span="18">
+            <div class="files-upload">
+              <div class="el-form-item__label">
+                {{ $t("site.down.fileUpload.label") }}
+                <small
+                  class="text-primary"
+                  v-if="limit > 1">
+                  {{ entity.fileList.length }} / {{ limit }}
+                </small>
               </div>
-            </el-col>
-            <el-col :span="6">
-              <collection-select
-                :info-type="resource.infoType.download"
-                v-model="entity.collectionList"
-              ></collection-select>
-            </el-col>
-          </el-row>
-        </fox-section>
-      </el-form>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+              <fox-attachment-upload
+                v-model="entity.fileList"
+                :oss-bucket="resource.ossBucket"
+                :server-address="utility.uploadURL()"
+                :file-folder="siteId"
+                :down-pass="true"
+                :inactive-value="1"
+                :active-value="0"
+                :max-size="30"
+                :full-mode="true"
+                :file-limit="limit"
+                :resource-type="resource.resourceType.download"
+                :size-limit="60"
+                class="files"
+              >
+              </fox-attachment-upload>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <collection-select
+              :info-type="resource.infoType.download"
+              v-model="entity.collectionList"
+            ></collection-select>
+          </el-col>
+        </el-row>
+      </fox-section>
+    </el-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -109,7 +106,7 @@ export default {
      * 上一步
      */
     previous () {
-      this.$router.push(`/site/${this.siteId}/download`)
+      this.redirectURL(`/site/${this.siteId}/download`)
     },
     /**
      * 表单校验

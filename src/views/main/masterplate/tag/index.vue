@@ -1,66 +1,64 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
+      label-position="top"
     >
-      <fox-page-header></fox-page-header>
-      <fox-section>
-        <el-form
-          :model="entity"
-          :rules="formRules"
-          ref="update"
-          label-position="top"
+      <draggable
+        class="tag-list"
+        handle=".el-move"
+        :list="entity.tagList">
+        <div
+          v-for="(o, index) in entity.tagList"
+          :key="`tagList-${index}`"
+          class="tag-list-item"
         >
-          <draggable
-            class="tag-list"
-            handle=".el-move"
-            :list="entity.tagList">
-            <div
-              v-for="(o, index) in entity.tagList"
-              :key="`tagList-${index}`"
-              class="tag-list-item"
+          <el-form-item
+            :prop="`tagList.${index}.tagName`"
+            :rules="formRules.tagName">
+            <fox-input
+              shrink
+              :placeholder="$t('theme.tag.entity.tagName.placeholder')"
+              v-model="o.tagName"
             >
-              <el-form-item
-                :prop="`tagList.${index}.tagName`"
-                :rules="formRules.tagName">
-                <el-input
-                  :placeholder="$t('theme.tag.entity.tagName.placeholder')"
-                  v-model="o.tagName"
-                >
-                  <template slot="append">
-                    <el-button
-                      icon="el-icon-rank"
-                      size="small"
-                      class="el-move el-action"
-                    ></el-button>
-                    <el-button
-                      class="el-action"
-                      icon="el-icon-delete"
-                      size="small"
-                      @click="removeItem(index)"
-                    ></el-button>
-                  </template>
-                </el-input>
-              </el-form-item>
-            </div>
-            <div class="tag-list-item tag-list-add">
-              <el-button
-                @click="addItem()"
-                icon="el-icon-plus"
-              >
-              </el-button>
-            </div>
-          </draggable>
-        </el-form>
-      </fox-section>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+              <template slot="append">
+                <el-button
+                  icon="el-icon-rank"
+                  size="small"
+                  class="el-move el-action"
+                ></el-button>
+                <el-button
+                  class="el-action"
+                  icon="el-icon-delete"
+                  size="small"
+                  @click="removeItem(index)"
+                ></el-button>
+              </template>
+            </fox-input>
+          </el-form-item>
+        </div>
+        <div class="tag-list-item tag-list-add">
+          <el-button
+            @click="addItem()"
+            icon="el-icon-plus"
+          >
+          </el-button>
+        </div>
+      </draggable>
+    </el-form>
+    <fox-unsaved
+      :loading="loading"
+      :unsaved.sync="unsaved"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -179,17 +177,18 @@ export default {
     removeItem (index) {
       let id = this.entity.tagList[index].id
       if (id) {
-        this.deleteTag([id])
+        this.deleteTag([id], () => {
+          this.entity.tagList.splice(index, 1)
+          this.$nextTick(() => {
+            this.unsaved = false
+          })
+        })
       }
-      this.entity.tagList.splice(index, 1)
-      this.$nextTick(() => {
-        this.unsaved = false
-      })
     },
     /**
      * 删除
      */
-    deleteTag (ids) {
+    deleteTag (ids, func) {
       this.$confirm(this.$t('base.delete.multiple').toString().replace('{0}', ids.length.toString()),
         this.$t('base.delete.heading').toString(), {
           confirmButtonText: this.$t('base.operate.confirm'),
@@ -209,7 +208,9 @@ export default {
                     done()
                     instance.confirmButtonLoading = false
                     if (success) {
-                      this.getData(true)
+                      if (func && typeof (func) === 'function') {
+                        func.call(this)
+                      }
                     }
                   })
                 })
@@ -235,7 +236,7 @@ export default {
   }
 
   .tag-list-add {
-    margin-top: 11px;
+    margin-top: 16px;
   }
 
   display: flex;

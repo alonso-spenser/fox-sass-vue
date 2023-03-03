@@ -10,7 +10,7 @@ export default {
   tokenName: 'merchantModel',
   ...mapMutations(['setMerchantModel']),
   getUser (admin) {
-    let data = localStorage.getItem(admin ? 'agentModel' : this.tokenName)
+    let data = localStorage.getItem(admin ? 'masterModel' : this.tokenName)
     if (!lib.isEmpty(data)) {
       return JSON.parse(data)
     }
@@ -51,7 +51,6 @@ export default {
   },
   logout () {
     localStorage.removeItem(this.tokenName)
-    // this.setMerchantModel({})
     store.commit('setMerchantModel', {})
   },
   status () {

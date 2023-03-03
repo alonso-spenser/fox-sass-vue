@@ -271,6 +271,11 @@ export default {
           path: url
         })
       }
+    },
+    setDefaultRegion () {
+      let region = 'zh-CN'
+      localStorage.setItem('foUILanguage', region)
+      this.$i18n.locale = region
     }
   },
   created () {

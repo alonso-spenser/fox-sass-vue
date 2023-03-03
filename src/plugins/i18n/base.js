@@ -27,6 +27,7 @@ import enCollect from './en/collect'
 import enPlug from './en/plug'
 import enDownload from './en/download'
 import enGa from './en/ga'
+import enMainSite from './en/main/site'
 
 import cnLang from './zh-CN'
 import cnErrorCode from './zh-CN/errorCode'
@@ -84,7 +85,10 @@ const i18n = new VueI18n({
       ...cnCollect,
       ...cnPlug,
       ...cnDownload,
-      ...cnGa
+      ...cnGa,
+      main: {
+        ...enMainSite
+      }
     },
     en: {
       ...enLang,
@@ -111,7 +115,10 @@ const i18n = new VueI18n({
       ...enCollect,
       ...enPlug,
       ...enDownload,
-      ...enGa
+      ...enGa,
+      main: {
+        ...enMainSite
+      }
     }
   }
 })

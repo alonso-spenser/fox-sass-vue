@@ -58,27 +58,27 @@ export const fetchAdminRoleUpdate = (params = {}) => http.post('/api/ops/role/up
 /**
  * 文章树数据
  */
-export const fetchSupportTree = params => http.post('/site/admin/doc/tree', params)
+export const fetchSupportTree = params => http.post('/api/ops/base/support/tree', params)
 
 /**
  * 修改文章
  */
-export const fetchSupportUpdate = params => http.post('/site/admin/doc/update', params)
+export const fetchSupportUpdate = params => http.post('/api/ops/base/support/update', params)
 
 /**
  * 文章详情
  */
-export const fetchSupportDetail = params => http.post('/site/admin/doc/detail', params)
+export const fetchSupportDetail = params => http.post('/api/ops/base/support/detail', params)
 
 /**
  * 删除文章
  */
-export const fetchSupportDelete = params => http.post('/site/admin/doc/delete', params)
+export const fetchSupportDelete = params => http.post('/api/ops/base/support/delete', params)
 
 /**
  * 文章拖动排序
  */
-export const fetchSupportReSort = params => http.post('/site/admin/doc/resort', params)
+export const fetchSupportReSort = params => http.post('/api/ops/base/support/resort', params)
 
 /**
  * 获取区域数据字典
@@ -129,3 +129,8 @@ export const fetchAgentDetail = (params = {}) => http.post('/api/base/super', pa
  * 添加 & 修改代理商
  */
 export const fetchBaseAgentUpdate = (params = {}) => http.post('/api/ops/base/support/super', params)
+
+/**
+ * 附件资源批量保存
+ */
+export const fetchResource = (params = {}) => http.post('/api/site/resource/save', params)

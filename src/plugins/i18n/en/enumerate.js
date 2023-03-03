@@ -5,6 +5,20 @@ export default {
       1: 'Medium quality',
       2: 'Low quality'
     },
+    siteState: [
+      {
+        value: 0,
+        label: '正常'
+      },
+      {
+        value: 1,
+        label: '禁用'
+      },
+      {
+        value: 2,
+        label: '冻结'
+      }
+    ],
     /**
      * 审核状态
      */

@@ -24,6 +24,7 @@
       :subheading="entity.subheading"
       :heading="entity.title"
       :nav-type="entity.value"
+      :tree-visible="visible"
       :limit="entity.limit">
     </sort-tree>
   </el-drawer>

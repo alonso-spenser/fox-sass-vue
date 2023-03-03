@@ -1,19 +1,24 @@
 <template>
-  <main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    :percentage="100"
+    google-style
+  >
     <el-row
       :gutter="20"
-      class="article-page">
+      class="support-page">
       <el-col :span="5">
-        <div class="article-tree">
+        <div class="support-tree">
           <el-tree
-            :data="articleTreeData"
+            :data="supportTreeData"
             :props="defaultProps"
             node-key="id"
             default-expand-all
             draggable
             v-loading="treeLoading"
-            :allow-drop="allowDrop"
-            @node-drop="handleDropArticle"
+            :allow-drop="nodeAllowDrop"
+            @node-drop="dropSupport"
           >
               <span
                 class="custom-tree-node"
@@ -22,13 +27,13 @@
               >
                 <span
                   class="custom-tree-label ellipsis"
-                  @click.stop.prevent="handleNodeClick(data)"
+                  @click.stop.prevent="nodeClick(data)"
                 >{{ node.label }}</span
                 >
                 <span class="custom-tree-action">
                   <i
                     class="el-icon-delete"
-                    @click.stop.prevent="deleteArticle(data.id)"
+                    @click.stop.prevent="deleteSupport(data.id)"
                   ></i>
                 </span>
               </span>
@@ -38,64 +43,66 @@
       <el-col :span="19">
         <div
           v-loading="detailLoading"
-          v-if="articleTreeData.length"
-          class="article-content"
+          v-if="supportTreeData.length"
+          class="support-content"
         >
-          <el-form
+          <fox-form
             :model="entity"
             :rules="formRules"
-            label-position="top"
-            ref="articleForm"
+            :borderless="false"
+            ref="supportForm"
           >
             <el-row :gutter="20">
               <el-col :span="20">
-                <el-form-item
-                  label="文章名称"
+                <fox-form-item
+                  :show-message="false"
                   prop="title">
-                  <el-input
+                  <fox-input
+                    shrink
                     :maxlength="64"
                     show-word-limit
                     v-model="entity.title"
-                    placeholder="文章名称"
-                  ></el-input>
-                </el-form-item>
-                <el-form-item
-                  label="摘要"
+                    placeholder="标题"
+                    description="文章名称"
+                  ></fox-input>
+                </fox-form-item>
+                <fox-form-item
+                  :show-message="false"
                   prop="summary">
-                  <el-input
+                  <fox-input
+                    shrink
                     type="textarea"
                     :autosize="{ minRows: 2, maxRows: 4}"
                     :maxlength="255"
                     show-word-limit
                     v-model="entity.summary"
-                    placeholder="摘要内容"
-                  ></el-input>
-                </el-form-item>
+                    placeholder="摘要"
+                    description="摘要内容"
+                  ></fox-input>
+                </fox-form-item>
               </el-col>
               <el-col :span="4">
-                <el-form-item
-                  label="封面图"
-                  prop="coverImage">
-                  <fox-image-single
-                    :alt-visible="false"
-                    v-model="entity.coverImage"
-                    :limit="1024"
-                    file-folder="support"
-                    :server-address="utility.uploadURL()"
-                    :width="125">
-                  </fox-image-single>
-                </el-form-item>
+                <fox-image-single
+                  class="mt-2"
+                  :alt-visible="false"
+                  v-model="entity.coverImage"
+                  :limit="1024"
+                  file-folder="support"
+                  :server-address="utility.uploadURL()"
+                  :width="110">
+                </fox-image-single>
               </el-col>
             </el-row>
-            <el-form-item
-              label="内容"
-              prop="content">
-              <fox-editor
-                model-type="full"
-                v-model="entity.content"
-              ></fox-editor>
-            </el-form-item>
-          </el-form>
+            <fox-section heading="内容" class="mt-2">
+              <el-form-item
+                prop="content">
+                <fox-editor
+                  model-type="full"
+                  v-model="entity.content"
+                ></fox-editor>
+              </el-form-item>
+            </fox-section>
+          </fox-form>
         </div>
       </el-col>
     </el-row>
@@ -111,9 +118,9 @@
         type="primary"
         icon="el-icon-plus"
         round
-        @click="addArticle"></el-button>
+        @click="addSupport"></el-button>
     </div>
-  </main>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -137,7 +144,7 @@ export default {
       updateLoading: false,
       currentNodeKey: null,
       entity: {},
-      articleTreeData: [],
+      supportTreeData: [],
       defaultProps: {
         children: 'subList',
         label: 'title'
@@ -161,20 +168,23 @@ export default {
       }
     },
     currentNodeKey (val) {
-      val && this.getArticleDetail()
+      val && this.getSupportDetail()
     }
   },
   created () {
-    this.getArticleTree()
+    this.getData()
   },
   methods: {
-    handleNodeClick (data) {
+    /**
+     * 节点点击
+     */
+    nodeClick (data) {
       this.currentNodeKey = data.id
     },
     /**
      * 节点是否可放置
      */
-    allowDrop (draggingNode, dropNode, type) {
+    nodeAllowDrop (draggingNode, dropNode, type) {
       let deep = 1;
       (function getDeep (data, level) {
         if (level !== deep) {
@@ -195,53 +205,56 @@ export default {
      * 表单校验
      */
     formValidation () {
-      this.$refs['articleForm'].validate(valid => {
+      this.formValidate('supportForm', (valid) => {
         if (valid) {
-          this.updateArticle()
+          this.updateSupport()
         }
       })
     },
     /**
      *  文章详情
      */
-    getArticleDetail () {
+    getSupportDetail () {
       this.detailLoading = true
       this.entity = {}
       fetchSupportDetail({
         id: this.currentNodeKey
       })
-        .then(res => {
-          if (res.success) {
-            this.entity = res.data
-            this.$nextTick(() => {
-              this.unsaved = false
-            })
-          }
+        .then(result => {
+          this.resultMessage(result, (success) => {
+            if (success) {
+              this.entity = result.data
+              this.$nextTick(() => {
+                this.unsaved = false
+              })
+            }
+          })
         })
-        .catch(error => console.log(error))
         .finally(() => (this.detailLoading = false))
     },
     /**
      * 获取文章树结构
      */
-    getArticleTree () {
+    getData () {
       this.treeLoading = true
       fetchSupportTree({})
-        .then(res => {
-          if (res.success) {
-            this.articleTreeData = res.data
-            if (res.data.length && !this.currentNodeKey) {
-              this.currentNodeKey = res.data[0].id
+        .then((result) => {
+          this.pageValid()
+          this.resultMessage(result, (success) => {
+            if (success) {
+              this.supportTreeData = result.data
+              if (result.data.length && !this.currentNodeKey) {
+                this.currentNodeKey = result.data[0].id
+              }
             }
-          }
+          })
         })
-        .catch(error => console.log(error))
         .finally(() => (this.treeLoading = false))
     },
     /***
      * 添加文章
      */
-    addArticle () {
+    addSupport () {
       this.addLoading = true
       const currentDate = this.$moment().format('x')
       fetchSupportUpdate({
@@ -259,41 +272,42 @@ export default {
         .then(result => {
           result.options = {
             action: this.actionType.addition,
-            formName: 'articleForm'
+            formName: 'supportForm'
           }
           this.resultMessage(result, (success) => {
             if (success) {
-              this.getArticleTree()
+              this.getData()
             }
           })
         })
-        .catch(error => console.log(error))
         .finally(() => (this.addLoading = false))
     },
     /**
      * 更新文章
      */
-    updateArticle () {
+    updateSupport () {
       this.updateLoading = true
       fetchSupportUpdate(this.entity)
         .then(result => {
           result.options = {
             action: this.actionType.update,
-            formName: 'articleForm'
+            formName: 'supportForm'
           }
           this.resultMessage(result, (success) => {
             if (success) {
-              this.getArticleTree()
+              this.supportTreeData.forEach((o, index) => {
+                if (o.id === this.entity.id) {
+                  this.supportTreeData[index].title = this.entity.title
+                }
+              })
             }
           })
-        })
-        .catch(error => console.log(error))
-        .finally(() => (this.updateLoading = false))
+        }).finally(() => (this.updateLoading = false))
     },
     /**
      * 删除文章
      */
-    deleteArticle (id) {
+    deleteSupport (id) {
       this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
         confirmButtonText: '删除',
         cancelButtonText: '取消',
@@ -307,11 +321,11 @@ export default {
               .then(result => {
                 result.options = {
                   action: this.actionType.delete,
-                  formName: 'articleForm'
+                  formName: 'supportForm'
                 }
                 this.resultMessage(result, (success) => {
                   if (success) {
-                    this.getArticleTree()
+                    this.getData()
                     if (this.currentNodeKey === id) {
                       this.currentNodeKey = null
                     }
@@ -334,7 +348,7 @@ export default {
      * @param dropType
      * @param ev
      */
-    handleDropArticle (draggingNode, dropNode, dropType, ev) {
+    dropSupport (draggingNode, dropNode, dropType, ev) {
       let params = {}
       if (dropType === 'inner') {
         params = {
@@ -350,23 +364,23 @@ export default {
         }
       }
       fetchSupportReSort(params)
-        .then(res => {
-          if (res.success) {
-            this.getArticleTree()
-          }
+        .then(result => {
+          this.resultMessage(result, (success) => {
+            if (success) {
+              this.getData()
+            }
+          })
         })
-        .catch(error => console.log(error))
     }
   }
 }
 </script>
 
 <style lang="scss">
-.article-page {
-  margin-top: 15px;
+.support-page {
   position: relative;
 
-  .article-tree {
+  .support-tree {
     border-radius: 7px;
     border: 1px solid #EBEEF5;
     height: calc(100vh - 98px);
@@ -374,7 +388,7 @@ export default {
     overflow-y: auto;
   }
 
-  .article-content {
+  .support-content {
     border-radius: 7px;
     border: 1px solid #EBEEF5;
     height: calc(100vh - 98px);
@@ -426,7 +440,7 @@ export default {
 
 .fixed-action {
   position: fixed;
-  right: 16px;
+  right: 10px;
   bottom: 10px;
 
   .el-button {

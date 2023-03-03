@@ -1,62 +1,62 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="100"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <div class="neighbor fox-google-style percent-100"
+         slot="header">
+      <div class="fox-page-content">
+        <div
+          class="filter-params">
+          <div class="filter-params-element">
+            <fox-input
+              shrink
+              :placeholder="$t('base.placeholder.label')"
+              :description="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              @change="searchConditionChange"
+              @clear="clearSearchCondition"
+            >
+              <el-button
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="getData(false)"
+              ></el-button>
+            </fox-input>
+          </div>
+          <div class="filter-params-element">
+            <el-button
+              icon="el-icon-plus"
+              type="primary"
+              plain
+              class="el-material-button"
+              @click="addLang"
+            >
+            </el-button>
+          </div>
+          <div class="filter-params-element">
+          </div>
+        </div>
+      </div>
+    </div>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      @paging="getData"
     >
-      <fox-page-header
-        :actions="[
-        {
-          label: $t('base.addition.button'),
-          icon: 'el-icon-plus',
-          type: 'primary',
-          visible: true,
-          click: () => {
-            this.addLang()
-          }
-        }
-      ]"
-      >
-        </fox-page-header>
-        <fox-paging-table
-          :columns="dataConfig.columns"
-          :actions="dataConfig.actions"
-          :dataset="pagingOptions.dataset"
-          :loading="tableOptions.loading"
-          :first-loading="pagingOptions.firstLoading"
-          :empty="dataConfig.empty"
-          :page-index.sync="pagingOptions.pageIndex"
-          :page-size.sync="pagingOptions.pageSize"
-          :record-count="pagingOptions.recordCount"
-          :rows-class-name="dataConfig.rowsClassName"
-          @paging="getData"
-        >
-          <template slot="header">
-            <el-row
-              class="dataset-search"
-              :gutter="20">
-              <el-col :span="14">
-                <el-input
-                  :placeholder="$t('base.placeholder.search')"
-                  v-model="searchConditions.keyword"
-                  clearable
-                  @change="searchConditionChange"
-                  @clear="clearSearchCondition"
-                  class="input-with-select">
-                  <el-button
-                    slot="append"
-                    icon="el-icon-search"
-                    :loading="loading"
-                    @click="getData(false)"
-                  ></el-button>
-                </el-input>
-              </el-col>
-            </el-row>
-          </template>
-          </fox-paging-table>
-          </fox-page-loading>
-  </main>
+    </fox-paging-table>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -64,7 +64,7 @@ import extend from '@/plugins/page/paging'
 import { fetchLangPaging, fetchLangDelete, fetchLangUpdate } from '@/plugins/api/main/core'
 
 export default {
-  name: 'baseLang',
+  name: 'mainBaseLang',
   extends: extend,
   data () {
     return {

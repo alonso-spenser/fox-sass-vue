@@ -227,10 +227,6 @@ const routes = [
           },
           crumbs: [
             {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
-            {
               title: i18n.t('goods.paging.title'),
               path: '/site/:siteId:/goods'
             }
@@ -253,10 +249,6 @@ const routes = [
             previous: '/site/:siteId:/goods'
           },
           crumbs: [
-            {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
             {
               title: i18n.t('goods.paging.title'),
               path: '/site/:siteId:/goods'
@@ -637,10 +629,6 @@ const routes = [
           },
           crumbs: [
             {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
-            {
               title: i18n.t('article.paging.title'),
               path: '/site/:siteId:/article'
             }
@@ -784,10 +772,6 @@ const routes = [
           },
           crumbs: [
             {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
-            {
               title: i18n.t('site.resource.paging.title'),
               path: '/site/:siteId:/download'
             }
@@ -810,10 +794,6 @@ const routes = [
             previous: '/site/:siteId:/download'
           },
           crumbs: [
-            {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
             {
               title: i18n.t('site.resource.paging.title'),
               path: '/site/:siteId:/download'
@@ -1232,8 +1212,17 @@ const routes = [
         }
       },
       {
+        path: 'site',
+        name: 'main-site',
+        component: () => import('../views/main/site/index'),
+        meta: {
+          title: i18n.t('main.site.paging.title'),
+          requireAuth: true
+        }
+      },
+      {
         path: 'base/google-api',
-        name: 'main-site-google-api',
+        name: 'main-google-api',
         component: () => import('../views/main/base/google-api/index.vue'),
         meta: {
           title: i18n.t('googleApi.paging.title'),

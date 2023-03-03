@@ -1,105 +1,94 @@
 <template>
-  <main>
-    <fox-page-loading
-      :full-screen="true"
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :half="true"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    :percentage="30"
+    google-style
+  >
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
     >
-      <fox-page-header
-        :actions="[
-        {
-          label: $t('base.delete.button'),
-          icon: 'el-icon-delete',
-          type: 'text',
-          visible: id,
-          click: () => {
-            this.deleteLang()
-          }
-        }
-    ]"
-      >
-      </fox-page-header>
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top"
-      >
-        <fox-section>
-          <el-form-item
-            prop="languageName"
-            :label="$t('core.base.lang.update.entity.languageName.label')">
-            <el-input
-              v-model="entity.languageName"
-              :placeholder="$t('core.base.lang.update.entity.languageName.placeholder')"
-            ></el-input>
-          </el-form-item>
+      <fox-section>
+        <el-form-item
+          prop="languageName">
+          <fox-input
+            shrink
+            v-model="entity.languageName"
+            :placeholder="$t('core.base.lang.update.entity.languageName.label')"
+            :description="$t('core.base.lang.update.entity.languageName.placeholder')"
+          ></fox-input>
+        </el-form-item>
 
-          <el-form-item
-            prop="nativeName"
-            :label="$t('core.base.lang.update.entity.nativeName.label')">
-            <el-input
-              v-model="entity.nativeName"
-              :placeholder="$t('core.base.lang.update.entity.nativeName.placeholder')"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            prop="code"
-            :label="$t('core.base.lang.update.entity.code.label')">
-            <el-input
-              v-model="entity.code"
-              :placeholder="$t('core.base.lang.update.entity.code.placeholder')"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            prop="aliCode"
-            :label="$t('core.base.lang.update.entity.aliCode.label')">
-            <el-input
-              v-model="entity.aliCode"
-              :placeholder="$t('core.base.lang.update.entity.aliCode.placeholder')"
-            ></el-input>
-          </el-form-item>
+        <el-form-item
+          prop="nativeName">
+          <fox-input
+            shrink
+            v-model="entity.nativeName"
+            :placeholder="$t('core.base.lang.update.entity.nativeName.label')"
+            :description="$t('core.base.lang.update.entity.nativeName.placeholder')"
+          ></fox-input>
+        </el-form-item>
+        <el-form-item
+          prop="code">
+          <fox-input
+            shrink
+            v-model="entity.code"
+            :placeholder="$t('core.base.lang.update.entity.code.label')"
+            :description="$t('core.base.lang.update.entity.code.placeholder')"
+          ></fox-input>
+        </el-form-item>
+        <el-form-item
+          prop="aliCode">
+          <fox-input
+            shrink
+            v-model="entity.aliCode"
+            :placeholder="$t('core.base.lang.update.entity.aliCode.label')"
+            :description="$t('core.base.lang.update.entity.aliCode.placeholder')"
+          ></fox-input>
+        </el-form-item>
 
-          <el-form-item
-            prop="aliNo"
-            :label="$t('core.base.lang.update.entity.aliNo.label')">
-            <el-input
-              v-model="entity.aliNo"
-              :placeholder="$t('core.base.lang.update.entity.aliNo.placeholder')"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            prop="icon"
-            v-if="false"
-            :label="$t('core.base.lang.update.entity.icon.label')">
-            <el-input
-              v-model="entity.icon"
-              :placeholder="$t('core.base.lang.update.entity.icon.placeholder')"
-            ></el-input>
-          </el-form-item>
+        <el-form-item
+          prop="aliNo">
+          <fox-input
+            shrink
+            v-model="entity.aliNo"
+            :placeholder="$t('core.base.lang.update.entity.aliNo.label')"
+            :description="$t('core.base.lang.update.entity.aliNo.placeholder')"
+          ></fox-input>
+        </el-form-item>
+        <el-form-item
+          prop="icon"
+          v-if="false">
+          <fox-input
+            v-model="entity.icon"
+            shrink
+            :placeholder="$t('core.base.lang.update.entity.icon.label')"
+            :description="$t('core.base.lang.update.entity.icon.placeholder')"
+          ></fox-input>
+        </el-form-item>
 
-          <el-form-item
-            prop="state"
-            :label="$t('core.base.lang.update.entity.state.label')">
-            <el-switch
-              v-model="entity.state"
-              :active-value="0"
-              inactive-color="#ff4949"
-              :inactive-value="1">
-            </el-switch>
-          </el-form-item>
+        <el-form-item
+          prop="state">
+          <el-switch
+            v-model="entity.state"
+            :active-value="0"
+            :active-text="$t('core.base.lang.update.entity.state.label')"
+            inactive-color="#ff4949"
+            :inactive-value="1">
+          </el-switch>
+        </el-form-item>
 
-        </fox-section>
-      </el-form>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+      </fox-section>
+    </el-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -107,7 +96,7 @@ import extend from '@/plugins/page/unsaved'
 import { fetchLangUpdate, fetchLangDelete, fetchLangDetail } from '@/plugins/api/main/core'
 
 export default {
-  name: 'baseLangUpdate',
+  name: 'mainBaseLangUpdate',
   extends: extend,
   data () {
     return {

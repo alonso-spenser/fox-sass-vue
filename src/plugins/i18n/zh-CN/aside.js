@@ -74,14 +74,8 @@ export default {
     {
       title: '首页',
       code: ['dashboard'],
-      submenu: [
-        {
-          code: ['dashboard-startup'],
-          title: '整体趋势',
-          url: '/main/dashboard',
-          submenu: []
-        }
-      ]
+      url: '/main/dashboard',
+      submenu: []
     },
     {
       title: '客户管理',
@@ -102,45 +96,6 @@ export default {
           title: '网站迁移',
           url: '/main/tool/transfer',
           code: ['tool-transfer'],
-          submenu: []
-        }
-      ]
-    },
-    {
-      title: '订单管理',
-      submenu: [
-        {
-          title: '采购订单',
-          url: '/main/financial/purchase',
-          // code: ['finance-purchase'],
-          submenu: []
-        },
-        {
-          title: '订单退回审核',
-          code: ['order-audit'],
-          url: '/main/order/audit',
-          submenu: []
-        }
-      ]
-    },
-    {
-      title: '财务管理',
-      code: ['finance'],
-      submenu: [
-        {
-          code: ['agent-bank'],
-          title: '收款帐户',
-          url: '/main/financial/bank'
-        },
-        {
-          title: '账单列表',
-          code: ['finance-bill'],
-          url: '/main/financial/bill'
-        },
-        {
-          title: '收入统计',
-          code: ['finance-statistics'],
-          url: '/main/financial/statistics',
           submenu: []
         }
       ]

@@ -4,72 +4,17 @@
     :offset="200"
     google-style
   >
-    <fox-header-ops
-      :title="$t('enquiry.form.title')"
-      :description="$t('enquiry.form.description')"
-      divider
-    >
-      <div class="header-ops-item">
-        <el-button
-          type="text"
-          icon="el-icon-plus"
-          @click="addForm"
-        >
-          {{ $t("enquiry.form.updateForm.addForm") }}
-        </el-button>
-      </div>
-    </fox-header-ops>
-    <fox-paging-table
-      :columns="dataConfig.columns"
-      :actions="dataConfig.actions"
-      :dataset="pagingOptions.dataset"
-      :loading="tableOptions.loading"
-      :first-loading="pagingOptions.firstLoading"
-      :empty="dataConfig.empty"
-      :page-index.sync="pagingOptions.pageIndex"
-      :page-size.sync="pagingOptions.pageSize"
-      :record-count="pagingOptions.recordCount"
-      :rows-class-name="dataConfig.rowsClassName"
-      @paging="getData"
-    >
-      <template slot="header">
-        <!--          <el-row class="enquiry-form-header-label">-->
-        <!--            <el-col :span="12"></el-col>-->
-        <!--            <el-col :span="12">-->
-        <!--              <el-button type="primary" @click="addForm">{{$t('base.operate.add')}}</el-button>-->
-        <!--            </el-col>-->
-        <!--          </el-row>-->
-
-        <el-row
-          class="mb-4 dataset-search"
-          :gutter="20">
-          <el-col :span="14">
-            <el-input
-              :placeholder="$t('base.placeholder.search')"
-              v-model="searchConditions.keyword"
-              clearable
-              @change="searchConditionChange"
-              @clear="clearSearchCondition"
-              class="input-with-select">
-              <el-button
-                slot="append"
-                icon="el-icon-search"
-                :loading="loading"
-                @click="searchData(false)"
-              ></el-button>
-            </el-input>
-          </el-col>
-          <el-col
-            :span="10"
-            class="text-right">
-            <label>
-              {{ $t('base.orderBy') }}
-            </label>
-            <el-select
-              class="ml-2"
+    <div class="neighbor fox-google-style percent-100" slot="header">
+      <div class="fox-page-content">
+        <div
+          class="filter-params">
+          <div class="filter-params-element">
+            <fox-select
+              shrink
               v-model="searchConditions.orderBy"
-              :placeholder="$t('base.placeholder.select')"
-              @change="searchData(false)"
+              :placeholder="$t('base.orderBy')"
+              :description="$t('base.placeholder.search')"
+              @change="getData(false)"
             >
               <el-option
                 :label="$t('orderBy.updateTimeASC')"
@@ -83,10 +28,64 @@
               <el-option
                 :label="$t('orderBy.createTimeDESC')"
                 value="createTime-DESC"></el-option>
-            </el-select>
-          </el-col>
-        </el-row>
-      </template>
+            </fox-select>
+          </div>
+          <div class="filter-params-element">
+            <fox-input
+              shrink
+              :placeholder="$t('base.placeholder.label')"
+              :description="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              @change="searchConditionChange"
+              @clear="clearSearchCondition"
+              class="input-with-select"
+            >
+              <el-button
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="getData(false)"
+              ></el-button>
+            </fox-input>
+          </div>
+          <div class="filter-params-element">
+            <el-button
+              class="el-material-button"
+              icon="el-icon-refresh"
+              :title="$t('app.refresher.button')"
+              @click="clearSearchCondition"
+            >
+            </el-button>
+            <el-button
+              icon="el-icon-plus"
+              type="primary"
+              plain
+              class="ml-7"
+              :title="$t('article.paging.add')"
+              @click="addForm"
+            >
+            </el-button>
+          </div>
+          <div class="filter-params-element">
+          </div>
+        </div>
+      </div>
+    </div>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      :multi-select="false"
+      @paging="getData"
+    >
     </fox-paging-table>
   </fox-layout-main>
 </template>

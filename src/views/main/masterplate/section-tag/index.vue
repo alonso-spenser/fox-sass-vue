@@ -1,80 +1,78 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="70"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
+      label-position="top"
     >
-      <fox-page-header></fox-page-header>
-      <fox-section>
-        <el-form
-          :model="entity"
-          :rules="formRules"
-          ref="update"
-          label-position="top"
+      <draggable
+        class="tag-list"
+        handle=".el-move"
+        :list="entity.tagList">
+        <div
+          v-for="(o, index) in entity.tagList"
+          :key="`tagList-${index}`"
+          class="tag-list-item"
         >
-          <draggable
-            class="tag-list"
-            handle=".el-move"
-            :list="entity.tagList">
-            <div
-              v-for="(o, index) in entity.tagList"
-              :key="`tagList-${index}`"
-              class="tag-list-item"
+          <fox-select
+            shrink
+            multiple
+            class="w-100"
+            v-model="o.siteTypeList"
+            :placeholder="$t('theme.sectionTag.siteType')"
+          >
+            <el-option
+              v-for="item in siteType"
+              :key="item.pageType"
+              :label="item.label"
+              :value="item.id.toString()"
+            ></el-option>
+          </fox-select>
+          <el-form-item
+            :prop="`tagList.${index}.tagName`"
+            :rules="formRules.tagName">
+            <fox-input
+              shrink
+              :placeholder="$t('theme.sectionTag.entity.tagName.placeholder')"
+              v-model="o.tagName"
             >
-              <el-select
-                multiple
-                class="w-100"
-                v-model="o.siteTypeList"
-                :placeholder="$t('theme.page.update.entity.pageType.placeholder')"
-              >
-                <el-option
-                  v-for="item in siteType"
-                  :key="item.pageType"
-                  :label="item.label"
-                  :value="item.id.toString()"
-                ></el-option>
-              </el-select>
-              <el-form-item
-                :prop="`tagList.${index}.tagName`"
-                :rules="formRules.tagName">
-                <el-input
-                  :placeholder="$t('theme.sectionTag.entity.tagName.placeholder')"
-                  v-model="o.tagName"
-                >
-                  <template slot="append">
-                    <el-button
-                      icon="el-icon-rank"
-                      size="small"
-                      class="el-move el-action"
-                    ></el-button>
-                    <el-button
-                      class="el-action"
-                      icon="el-icon-delete"
-                      size="small"
-                      @click="removeItem(index)"
-                    ></el-button>
-                  </template>
-                </el-input>
-              </el-form-item>
-            </div>
-            <div class="tag-list-item tag-list-add">
-              <el-button
-                @click="addItem()"
-                icon="el-icon-plus"
-              >
-              </el-button>
-            </div>
-          </draggable>
-        </el-form>
-      </fox-section>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+              <template slot="append">
+                <el-button
+                  icon="el-icon-rank"
+                  size="small"
+                  class="el-move el-action"
+                ></el-button>
+                <el-button
+                  class="el-action"
+                  icon="el-icon-delete"
+                  size="small"
+                  @click="removeItem(index)"
+                ></el-button>
+              </template>
+            </fox-input>
+          </el-form-item>
+        </div>
+        <div class="tag-list-item tag-list-add">
+          <el-button
+            @click="addItem()"
+            icon="el-icon-plus"
+          >
+          </el-button>
+        </div>
+      </draggable>
+    </el-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>

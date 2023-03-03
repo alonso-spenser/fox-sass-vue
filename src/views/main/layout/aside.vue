@@ -1,8 +1,15 @@
 <template>
-  <section class="global-aside">
+  <div class="custom-aside">
+    <div class="logo-wrap">
+      <img
+        @click="goHome"
+        class="logo"
+        :src="agentModel.logo || resource.logoSVG"
+        :alt="agentModel.shortForm">
+    </div>
     <el-menu
       :default-active="activeMenu"
-      class="global-aside-menu"
+      class="main-aside"
       text-color="#666"
       @select="openMenu"
       :router="false"
@@ -55,8 +62,7 @@
         </el-submenu>
       </template>
     </el-menu>
-    <slot></slot>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -66,7 +72,7 @@ import {
 import extend from '@/plugins/page/base'
 
 export default {
-  name: 'global-aside',
+  name: 'mainAside',
   extends: extend,
   data () {
     return {
@@ -86,6 +92,12 @@ export default {
     }
   },
   methods: {
+    /**
+     * 首页
+     */
+    goHome () {
+      this.redirectURL('/main')
+    },
     /**
      * 打开菜单
      */
@@ -143,91 +155,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '@/assets/var';
-
-.global-aside {
-  position: fixed;
-  z-index: 2;
-  height: calc(100% - 64px);
-  overflow-y: auto;
-  top: 64px;
-  left: 0;
-  background-color: #fff;
-  width: 0;
-  transition: all 0.3s;
-
-  @media (min-width: 1024px) {
-    width: 220px;
-  }
-}
-
-.global-aside-menu {
-  background: none;
-  border: 0 !important;
-
-  .iconfont {
-    font-size: 26px;
-  }
-
-  .el-submenu {
-    .el-submenu__title {
-      position: relative;
-
-      .el-submenu__icon-arrow {
-        display: none
-      }
-
-      &:before {
-        position: absolute;
-        left: 5px;
-        top: calc(50% - 3px);
-        display: inline-block;
-        width: 0;
-        height: 0;
-        content: "";
-        border-top: 6px solid;
-        border-right: 6px solid transparent;
-        border-bottom: 0;
-        border-left: 6px solid transparent;
-        transform: rotateZ(-90deg);
-        transition: all 0.3s;
-      }
-    }
-
-    .el-menu-item {
-      height: 44px;
-      line-height: 44px;
-    }
-
-    &.is-opened {
-      .el-submenu__title {
-        &:before {
-          transform: rotateZ(0);
-        }
-      }
-    }
-  }
-
-  .el-submenu__title,
-  .el-menu-item {
-    border-radius: 0 50px 50px 0;
-
-    &:hover {
-      background-color: #f5f5f5;
-    }
-
-    &.is-active {
-      color: #46a0fc;
-      background-color: #e9f0fd;
-    }
-  }
-
-  .el-submenu__title,
-  .el-menu-item {
-    height: 44px;
-    line-height: 44px;
-  }
-}
-</style>

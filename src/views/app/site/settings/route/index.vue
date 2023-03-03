@@ -1,81 +1,76 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
+  <div v-loading="pageLoading">
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      @paging="getData"
     >
-      <fox-paging-table
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="tableOptions.loading"
-        :first-loading="pagingOptions.firstLoading"
-        :empty="dataConfig.empty"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :rows-class-name="dataConfig.rowsClassName"
-        @paging="getData"
-      >
-        <template slot="header">
-          <el-row
-            class="dataset-search"
-            :gutter="20">
-            <el-col :span="14">
-              <el-input
-                :placeholder="$t('base.placeholder.search')"
-                v-model="searchConditions.keyword"
-                clearable
-                @change="searchConditionChange"
-                @clear="clearSearchCondition"
-                class="input-with-select">
-                <el-select
-                  v-model="refType"
-                  slot="prepend"
-                  @change="getData"
-                >
-                  <el-option
-                    :value="9"
-                    :label="$t('settings.route.refType')['9']"></el-option>
-                  <el-option
-                    :value="0"
-                    :label="$t('settings.route.refType')['0']"></el-option>
-                </el-select>
-                <el-button
-                  slot="append"
-                  icon="el-icon-search"
-                  :loading="loading"
-                  @click="getData(false)"
-                ></el-button>
-              </el-input>
-            </el-col>
-            <el-col :span="10">
-              <el-button @click="routeVisible = true">{{ $t('base.operate.paste') }}</el-button>
-            </el-col>
-          </el-row>
-          <fox-section
-            class="mt-5"
-            v-if="routeVisible">
-            <el-alert
-              type="warning">
-              {{ $t('settings.route.tips') }}
-            </el-alert>
+      <template slot="header">
+        <el-row
+          class="dataset-search"
+          :gutter="20">
+          <el-col :span="14">
             <el-input
-              v-model="routeValue"
-              type="textarea"
-              :rows="6"
-              class="mt-3"
-              :placeholder="placeholder"></el-input>
-            <el-button
-              class="mt-5"
-              @click="analyseRoute">
-              {{ $t('base.operate.save') }}
-            </el-button>
-          </fox-section>
-        </template>
-      </fox-paging-table>
-    </fox-page-loading>
-  </main>
+              :placeholder="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              @change="searchConditionChange"
+              @clear="clearSearchCondition"
+              class="input-with-select">
+              <el-select
+                v-model="refType"
+                slot="prepend"
+                @change="getData"
+              >
+                <el-option
+                  :value="9"
+                  :label="$t('settings.route.refType')['9']"></el-option>
+                <el-option
+                  :value="0"
+                  :label="$t('settings.route.refType')['0']"></el-option>
+              </el-select>
+              <el-button
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="getData(false)"
+              ></el-button>
+            </el-input>
+          </el-col>
+          <el-col :span="10">
+            <el-button @click="routeVisible = true">{{ $t('base.operate.paste') }}</el-button>
+          </el-col>
+        </el-row>
+        <fox-section
+          class="mt-5"
+          v-if="routeVisible">
+          <el-alert
+            type="warning">
+            {{ $t('settings.route.tips') }}
+          </el-alert>
+          <el-input
+            v-model="routeValue"
+            type="textarea"
+            :rows="6"
+            class="mt-3"
+            :placeholder="placeholder"></el-input>
+          <el-button
+            class="mt-5"
+            @click="analyseRoute">
+            {{ $t('base.operate.save') }}
+          </el-button>
+        </fox-section>
+      </template>
+    </fox-paging-table>
+  </div>
 </template>
 
 <script>

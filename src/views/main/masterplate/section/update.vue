@@ -1,374 +1,359 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    :percentage="80"
+    google-style
+  >
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
     >
-      <fox-page-header
-        :drop-actions="[
-      ]"
-        :actions="[
-        {
-          label: $t('base.delete.button'),
-          icon: 'el-icon-delete',
-          type: 'text',
-          visible: id,
-          click: () => {
-            this.deleteSection()
-          }
-        }
-    ]"
-      >
-      </fox-page-header>
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top"
-      >
 
-        <fox-section>
-          <el-row :gutter="20">
-            <el-col :span="6">
-              <el-form-item
-                prop="sectionImage"
-                :label="$t('theme.section.update.entity.sectionImage.label')">
-                <fox-image-single
-                  v-model="entity.sectionImage"
-                  :alt-visible="false"
-                  :size-limit="10"
-                  :oss-bucket="resource.themeBucket"
-                  :server-address="utility.uploadURL()"
-                  file-folder="section"
-                ></fox-image-single>
-              </el-form-item>
-            </el-col>
-            <el-col :span="18">
-              <el-row :gutter="20">
-                <el-col :span="10">
-                  <el-form-item
-                    prop="sectionName"
-                    :label="$t('theme.section.update.entity.sectionName.label')">
-                    <el-input
-                      v-model="entity.sectionName"
-                      :placeholder="$t('theme.section.update.entity.sectionName.placeholder')"
-                    ></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="10">
-                  <el-form-item
-                    prop="sectionType"
-                    :label="$t('theme.section.update.entity.sectionType.label')">
-                    <el-input
-                      v-model="entity.sectionType"
-                      @blur="sectionTypeBlur"
-                      :placeholder="$t('theme.section.update.entity.sectionType.placeholder')"
-                    >
-                      <template slot="append">
-                        <el-select
-                          style="width: 108px"
-                          v-model="pageSectionType"
-                          size="small"
-                          v-if="entity.sectionGroup === 1000"
-                          @change="sectionTypeChange"
-                          :placeholder="$t('theme.page.update.entity.pageType.placeholder')"
-                        >
-                          <el-option
-                            v-for="item in pageSection"
-                            :key="item.pageType"
-                            :label="item.title"
-                            :value="item.pageType"
-                          ></el-option>
-                        </el-select>
-                        <el-select
-                          style="width: 108px"
-                          v-model="globalSectionType"
-                          size="small"
-                          v-if="entity.sectionGroup === 2000"
-                          @change="globalSectionTypeChange"
-                          :placeholder="$t('theme.section.update.entity.sectionType.placeholder')"
-                        >
-                          <el-option
-                            v-for="item in globalSection"
-                            :key="item.sectionType"
-                            :label="item.title"
-                            :value="item.sectionType"
-                          ></el-option>
-                        </el-select>
-                      </template>
-                    </el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col
-                  :span="4"
-                  class="mt-2">
-                  <el-form-item
-                    prop="state"
-                    :label="$t('theme.section.update.entity.state.label')">
-                    <el-switch
-                      v-model="entity.state"
-                      :inactive-value="1"
-                      :active-value="0"
-                      active-color="#13ce66"
-                      inactive-color="#ff4949">
-                    </el-switch>
-                  </el-form-item>
-                </el-col>
-                <el-col
-                  :span="10"
-                  class="mt-2">
-                  <el-form-item
-                    prop="sectionGroup"
-                    :label="$t('theme.section.update.entity.sectionGroup.label')">
-                    <el-select
-                      class="w-100"
-                      v-model="entity.sectionGroup"
-                      :placeholder="$t('theme.page.update.entity.pageType.placeholder')"
-                    >
-                      <el-option
-                        v-for="item in sectionGroup"
-                        :key="item.id"
-                        :label="item.label"
-                        :value="item.id"
-                      ></el-option>
-                    </el-select>
-                  </el-form-item>
-                </el-col>
-                <el-col
-                  :span="10"
-                  v-if="id"
-                  class="mt-2">
-                  <el-form-item
-                    prop="salt"
-                    :label="$t('theme.section.update.entity.salt.label')">
-                    <el-input
-                      v-model="entity.salt"
-                      disabled
-                      :placeholder="$t('theme.section.update.entity.salt.placeholder')"
-                    >
-                      <template slot="append">
-                        <el-button
-                          icon="el-icon-view"
-                          size="small"
-                          @click="designSection"></el-button>
-                      </template>
-                    </el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col
-                  :span="4"
-                  class="mt-2">
-                  <el-form-item
-                    prop="dynamic"
-                    :label="$t('theme.section.update.entity.dynamic.label')">
-                    <el-switch
-                      v-model="entity.dynamic"
-                      :inactive-value="1"
-                      :active-value="0"
-                      active-color="#13ce66"
-                      inactive-color="#ff4949">
-                    </el-switch>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row
-                :gutter="20"
-                class="mt-2">
-                <el-col :span="20">
-                  <el-form-item
-                    prop="tagList"
-                    :label="$t('theme.section.update.entity.tag.label')">
-                    <el-select
-                      class="w-100"
-                      v-model="entity.tagList"
-                      multiple
-                      filterable
-                      :placeholder="$t('theme.section.update.entity.tag.placeholder')"
-                    >
-                      <el-option
-                        v-for="item in tagList"
-                        :key="item.id"
-                        :label="item.tagName"
-                        :value="item.id"
-                      ></el-option>
-                    </el-select>
-                  </el-form-item>
-                </el-col>
-
-                <el-col :span="4">
-                  <el-form-item
-                    prop="once"
-                    label="仅添加一次">
-                    <el-switch
-                      v-model="entity.once"
-                      :inactive-value="1"
-                      :active-value="0"
-                      active-color="#13ce66"
-                      inactive-color="#ff4949">
-                    </el-switch>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-
-              <el-form-item
-                class="mt-2"
-                prop="tagList"
-                label="适合网站类型">
-                <el-select
-                  class="w-100"
-                  multiple
-                  v-model="entity.siteTypeList"
-                  placeholder="请选择"
-                >
-                  <el-option
-                    v-for="item in siteTypeList"
-                    :key="item.pageType"
-                    :label="item.label"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </fox-section>
-        <fox-section
-          heading="AMP"
+      <fox-section>
+        <el-row :gutter="20">
+          <el-col :span="4">
+            <fox-section
+              :heading="$t('theme.section.update.entity.sectionImage.label')">
+              <fox-image-single
+                v-model="entity.sectionImage"
+                :alt-visible="false"
+                :size-limit="10"
+                :oss-bucket="resource.themeBucket"
+                :server-address="utility.uploadURL()"
+                file-folder="section"
+              ></fox-image-single>
+            </fox-section>
+          </el-col>
+          <el-col :span="18">
+            <el-row :gutter="20">
+              <el-col :span="9">
+                <fox-form-item
+                  :show-message="false"
+                  prop="sectionName">
+                  <fox-input
+                    v-model="entity.sectionName"
+                    shrink
+                    :placeholder="$t('theme.section.update.entity.sectionName.label')"
+                    :description="$t('theme.section.update.entity.sectionName.placeholder')"
+                  ></fox-input>
+                </fox-form-item>
+              </el-col>
+              <el-col :span="9">
+                <fox-form-item :show-message="false"
+                  prop="sectionType">
+                  <fox-input
+                    v-model="entity.sectionType"
+                    shrink
+                    @blur="sectionTypeBlur"
+                    :placeholder="$t('theme.section.update.entity.sectionType.label')"
+                    :description="$t('theme.section.update.entity.sectionType.placeholder')"
+                  >
+                    <template slot="append">
+                      <el-select
+                        style="width: 108px"
+                        v-model="pageSectionType"
+                        size="small"
+                        v-if="entity.sectionGroup === 1000"
+                        @change="sectionTypeChange"
+                        :placeholder="$t('theme.page.update.entity.pageType.placeholder')"
+                      >
+                        <el-option
+                          v-for="item in pageSection"
+                          :key="item.pageType"
+                          :label="item.title"
+                          :value="item.pageType"
+                        ></el-option>
+                      </el-select>
+                      <el-select
+                        style="width: 108px"
+                        v-model="globalSectionType"
+                        size="small"
+                        v-if="entity.sectionGroup === 2000"
+                        @change="globalSectionTypeChange"
+                        :placeholder="$t('theme.section.update.entity.sectionType.placeholder')"
+                      >
+                        <el-option
+                          v-for="item in globalSection"
+                          :key="item.sectionType"
+                          :label="item.title"
+                          :value="item.sectionType"
+                        ></el-option>
+                      </el-select>
+                    </template>
+                  </fox-input>
+                </fox-form-item>
+              </el-col>
+              <el-col
+                :span="6">
+                <fox-form-item :show-message="false"
+                  prop="state">
+                  <el-switch
+                    v-model="entity.state"
+                    :inactive-value="1"
+                    :active-value="0"
+                    :active-text="$t('theme.section.update.entity.state.label')"
+                    active-color="#13ce66"
+                    inactive-color="#ff4949">
+                  </el-switch>
+                </fox-form-item>
+              </el-col>
+              <el-col
+                :span="9">
+                <fox-form-item :show-message="false"
+                  prop="sectionGroup">
+                  <fox-select
+                    shrink
+                    v-model="entity.sectionGroup"
+                    :placeholder="$t('theme.section.update.entity.sectionGroup.label')"
+                    :description="$t('theme.section.update.entity.sectionGroup.placeholder')"
+                  >
+                    <el-option
+                      v-for="item in sectionGroup"
+                      :key="item.id"
+                      :label="item.label"
+                      :value="item.id"
+                    ></el-option>
+                  </fox-select>
+                </fox-form-item>
+              </el-col>
+              <el-col
+                :span="9"
+                v-if="id">
+                <fox-form-item :show-message="false"
+                  prop="salt">
+                  <fox-input
+                    v-model="entity.salt"
+                    shrink
+                    disabled
+                    :placeholder="$t('theme.section.update.entity.salt.label')"
+                    :description="$t('theme.section.update.entity.salt.placeholder')"
+                  >
+                    <template slot="append">
+                      <el-button
+                        icon="el-icon-view"
+                        size="small"
+                        @click="designSection"></el-button>
+                    </template>
+                  </fox-input>
+                </fox-form-item>
+              </el-col>
+              <el-col
+                :span="6">
+                <fox-form-item :show-message="false"
+                  prop="dynamic">
+                  <el-switch
+                    v-model="entity.dynamic"
+                    :inactive-value="1"
+                    :active-value="0"
+                    :active-text="$t('theme.section.update.entity.dynamic.label')"
+                    active-color="#13ce66"
+                    inactive-color="#ff4949">
+                  </el-switch>
+                </fox-form-item>
+              </el-col>
+            </el-row>
+            <el-row
+              :gutter="20">
+              <el-col :span="18">
+                <fox-form-item :show-message="false"
+                  prop="tagList">
+                  <fox-select
+                    shrink
+                    v-model="entity.tagList"
+                    multiple
+                    filterable
+                    :placeholder="$t('theme.section.update.entity.tag.label')"
+                    :description="$t('theme.section.update.entity.tag.placeholder')"
+                  >
+                    <el-option
+                      v-for="item in tagList"
+                      :key="item.id"
+                      :label="item.tagName"
+                      :value="item.id"
+                    ></el-option>
+                  </fox-select>
+                </fox-form-item>
+              </el-col>
+              <el-col :span="6">
+                <fox-form-item :show-message="false"
+                  prop="once">
+                  <el-switch
+                    v-model="entity.once"
+                    :inactive-value="1"
+                    :active-value="0"
+                    active-text="仅添加一次"
+                    active-color="#13ce66"
+                    inactive-color="#ff4949">
+                  </el-switch>
+                </fox-form-item>
+              </el-col>
+              <el-col :span="18">
+                <fox-form-item :show-message="false"
+                  prop="tagList">
+                  <fox-select
+                    shrink
+                    multiple
+                    v-model="entity.siteTypeList"
+                    placeholder="适合网站类型"
+                    description="请选择"
+                  >
+                    <el-option
+                      v-for="item in siteTypeList"
+                      :key="item.pageType"
+                      :label="item.label"
+                      :value="item.id"
+                    ></el-option>
+                  </fox-select>
+                </fox-form-item>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+      </fox-section>
+      <fox-section
+        heading="AMP"
+        v-if="false">
+        <fox-form-item :show-message="false" prop="ampCss">
+          <label class="fox-form-item :show-message="false"__label">{{ $t('theme.section.update.entity.ampCss.label') }}</label>
+          <el-button
+            type="text"
+            class="fox-form-item :show-message="false"__label ml-4"
+            @click="loadCSSVariable('ampCss')">PASTE
+          </el-button>
+          <el-input
+            v-model="entity.ampCss"
+            :placeholder="$t('theme.section.update.entity.ampCss.placeholder')"
+          ></el-input>
+        </fox-form-item>
+        <fox-form-item :show-message="false"
+          prop="ampTemplate"
+          :label="$t('theme.section.update.entity.ampTemplate.label')">
+          <el-input
+            v-model="entity.ampTemplate"
+            :placeholder="$t('theme.section.update.entity.ampTemplate.placeholder')"
+          ></el-input>
+        </fox-form-item>
+      </fox-section>
+      <fox-section :heading="$t('theme.section.update.entity.baseCss.label')">
+        <el-button
+          type="text"
+          size="mini"
+          slot="header"
+          @click="loadCSSVariable('baseCss')">PASTE
+        </el-button>
+        <fox-form-item :show-message="false" prop="baseCss">
+          <el-input
+            v-model="entity.baseCss"
+            type="textarea"
+            :rows="6"
+            :placeholder="$t('theme.section.update.entity.baseCss.placeholder')"
+          ></el-input>
+        </fox-form-item>
+      </fox-section>
+      <fox-section :heading="$t('theme.section.update.entity.variableCss.label')">
+        <el-button
+          type="text"
+          size="mini"
+          slot="header"
+          @click="loadCSSVariable('variableCss')">PASTE
+        </el-button>
+        <fox-form-item :show-message="false" prop="variableCss">
+          <el-input
+            v-model="entity.variableCss"
+            type="textarea"
+            :rows="6"
+            :placeholder="$t('theme.section.update.entity.variableCss.placeholder')"
+          ></el-input>
+        </fox-form-item>
+      </fox-section>
+      <fox-section heading="JAVASCRIPT">
+        <fox-form-item :show-message="false"
+          prop="scriptCode">
+          <fox-input
+            v-model="entity.scriptCode"
+            shrink
+            type="textarea"
+            :rows="6"
+            :placeholder="$t('theme.section.update.entity.scriptCode.label')"
+            :description="$t('theme.section.update.entity.scriptCode.placeholder')"
+          ></fox-input>
+        </fox-form-item>
+      </fox-section>
+      <fox-section heading="TEMPLATE">
+        <fox-form-item :show-message="false"
+          prop="artTemplate"
           v-if="false">
-          <el-form-item prop="ampCss">
-            <label class="el-form-item__label">{{ $t('theme.section.update.entity.ampCss.label') }}</label>
-            <el-button
-              type="text"
-              class="el-form-item__label ml-4"
-              @click="loadCSSVariable('ampCss')">PASTE
-            </el-button>
-            <el-input
-              v-model="entity.ampCss"
-              :placeholder="$t('theme.section.update.entity.ampCss.placeholder')"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            prop="ampTemplate"
-            :label="$t('theme.section.update.entity.ampTemplate.label')">
-            <el-input
-              v-model="entity.ampTemplate"
-              :placeholder="$t('theme.section.update.entity.ampTemplate.placeholder')"
-            ></el-input>
-          </el-form-item>
-        </fox-section>
-        <fox-section heading="CSS">
-          <el-form-item prop="baseCss">
-            <label class="el-form-item__label">{{ $t('theme.section.update.entity.baseCss.label') }}</label>
-            <el-button
-              type="text"
-              class="el-form-item__label ml-4"
-              @click="loadCSSVariable('baseCss')">PASTE
-            </el-button>
-            <el-input
-              v-model="entity.baseCss"
-              type="textarea"
-              :rows="6"
-              :placeholder="$t('theme.section.update.entity.baseCss.placeholder')"
-            ></el-input>
-          </el-form-item>
-
-          <el-form-item prop="variableCss">
-            <label class="el-form-item__label">{{ $t('theme.section.update.entity.variableCss.label') }}</label>
-            <el-button
-              type="text"
-              class="el-form-item__label ml-4"
-              @click="loadCSSVariable('variableCss')">PASTE
-            </el-button>
-            <el-input
-              v-model="entity.variableCss"
-              type="textarea"
-              :rows="6"
-              :placeholder="$t('theme.section.update.entity.variableCss.placeholder')"
-            ></el-input>
-          </el-form-item>
-        </fox-section>
-        <fox-section heading="JAVASCRIPT">
-          <el-form-item
-            prop="scriptCode"
-            :label="$t('theme.section.update.entity.scriptCode.label')">
-            <el-input
-              v-model="entity.scriptCode"
-              type="textarea"
-              :rows="6"
-              :placeholder="$t('theme.section.update.entity.scriptCode.placeholder')"
-            ></el-input>
-          </el-form-item>
-        </fox-section>
-        <fox-section heading="TEMPLATE">
-          <el-form-item
-            prop="artTemplate"
-            :label="$t('theme.section.update.entity.artTemplate.label')"
-            v-if="false">
-            <el-input
-              v-model="entity.artTemplate"
-              type="textarea"
-              :rows="6"
-              :placeholder="$t('theme.section.update.entity.artTemplate.placeholder')"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            prop="thymeleafTemplate"
-            :label="$t('theme.section.update.entity.thymeleafTemplate.label')">
-            <el-input
-              v-model="entity.thymeleafTemplate"
-              type="textarea"
-              :rows="20"
-              :placeholder="$t('theme.section.update.entity.thymeleafTemplate.placeholder')"
-            ></el-input>
-          </el-form-item>
-        </fox-section>
-        <fox-section heading="LANGUAGE">
-          <el-form-item
-            prop="language"
-            :label="$t('theme.section.update.entity.language.label')">
-            <el-input
-              v-model="entity.language"
-              type="textarea"
-              :rows="6"
-              :placeholder="$t('theme.section.update.entity.language.placeholder')"
-            ></el-input>
-          </el-form-item>
-        </fox-section>
-        <fox-section heading="INFO">
-          <el-form-item
-            prop="description"
-            :label="$t('theme.section.update.entity.description.label')">
-            <el-input
-              v-model="entity.description"
-              type="textarea"
-              :placeholder="$t('theme.section.update.entity.description.placeholder')"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            prop="sectionIcon"
-            :label="$t('theme.section.update.entity.sectionIcon.label')">
-            <el-input
-              v-model="entity.sectionIcon"
-              type="textarea"
-              :rows="6"
-              :placeholder="$t('theme.section.update.entity.sectionIcon.placeholder')"
-            ></el-input>
-          </el-form-item>
-        </fox-section>
-      </el-form>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        :loading="loading"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-      <css-variable
-        v-model="cssData.value"
-        :visible.sync="cssData.visible"
-        @change="callCSSVariable"
-      ></css-variable>
-    </fox-page-loading>
-  </main>
+          <fox-input
+            v-model="entity.artTemplate"
+            shrink
+            type="textarea"
+            :rows="6"
+            :placeholder="$t('theme.section.update.entity.artTemplate.label')"
+            :description="$t('theme.section.update.entity.artTemplate.placeholder')"
+          ></fox-input>
+        </fox-form-item>
+        <fox-form-item :show-message="false"
+          prop="thymeleafTemplate">
+          <fox-input
+            shrink
+            v-model="entity.thymeleafTemplate"
+            type="textarea"
+            :rows="20"
+            :placeholder="$t('theme.section.update.entity.thymeleafTemplate.label')"
+            :description="$t('theme.section.update.entity.thymeleafTemplate.placeholder')"
+          ></fox-input>
+        </fox-form-item>
+      </fox-section>
+      <fox-section heading="LANGUAGE">
+        <fox-form-item :show-message="false"
+          prop="language">
+          <fox-input
+            shrink
+            v-model="entity.language"
+            type="textarea"
+            :rows="6"
+            :placeholder="$t('theme.section.update.entity.language.label')"
+            :description="$t('theme.section.update.entity.language.placeholder')"
+          ></fox-input>
+        </fox-form-item>
+      </fox-section>
+      <fox-section heading="INFO">
+        <fox-form-item :show-message="false"
+          prop="description">
+          <fox-input
+            shrink
+            v-model="entity.description"
+            type="textarea"
+            :placeholder="$t('theme.section.update.entity.description.label')"
+            :description="$t('theme.section.update.entity.description.placeholder')"
+          ></fox-input>
+        </fox-form-item>
+        <fox-form-item :show-message="false"
+          prop="sectionIcon">
+          <fox-input
+            v-model="entity.sectionIcon"
+            type="textarea"
+            :rows="6"
+            :placeholder="$t('theme.section.update.entity.sectionIcon.label')"
+            :description="$t('theme.section.update.entity.sectionIcon.placeholder')"
+          ></fox-input>
+        </fox-form-item>
+      </fox-section>
+    </el-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+    <css-variable
+      v-model="cssData.value"
+      :visible.sync="cssData.visible"
+      @change="callCSSVariable"
+    ></css-variable>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -444,7 +429,7 @@ export default {
     }
   },
   created () {
-    this.siteType = this.$t('enumerate.siteType')
+    this.siteTypeList = this.$t('enumerate.siteType')
     this.sectionGroup = this.$t('enumerate.sectionGroup')
     this.pageSection = this.$t('pageType')
     this.globalSection = this.$t('globalSection')

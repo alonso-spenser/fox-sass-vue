@@ -72,75 +72,24 @@ export default {
   ],
   mainMenuList: [
     {
-      title: 'dashboard',
+      title: 'Dashboard',
       code: ['dashboard'],
-      submenu: [
-        {
-          code: ['dashboard-startup'],
-          title: '整体趋势',
-          url: '/main/dashboard',
-          submenu: []
-        }
-      ]
+      url: '/main',
+      submenu: []
     },
     {
-      title: '客户管理',
+      title: 'Client',
       code: ['agent', 'site'],
       submenu: [
         {
-          title: '客户列表',
+          title: 'Client',
           code: ['client-list'],
           url: '/main/client'
         },
         {
-          title: '网站列表',
+          title: 'Site',
           url: '/main/site',
           code: ['site-all'],
-          submenu: []
-        },
-        {
-          title: '网站迁移',
-          url: '/main/tool/transfer',
-          code: ['tool-transfer'],
-          submenu: []
-        }
-      ]
-    },
-    {
-      title: '订单管理',
-      submenu: [
-        {
-          title: '采购订单',
-          url: '/main/financial/purchase',
-          // code: ['finance-purchase'],
-          submenu: []
-        },
-        {
-          title: '订单退回审核',
-          code: ['order-audit'],
-          url: '/main/order/audit',
-          submenu: []
-        }
-      ]
-    },
-    {
-      title: '财务管理',
-      code: ['finance'],
-      submenu: [
-        {
-          code: ['agent-bank'],
-          title: '收款帐户',
-          url: '/main/financial/bank'
-        },
-        {
-          title: '账单列表',
-          code: ['finance-bill'],
-          url: '/main/financial/bill'
-        },
-        {
-          title: '收入统计',
-          code: ['finance-statistics'],
-          url: '/main/financial/statistics',
           submenu: []
         }
       ]
@@ -189,41 +138,41 @@ export default {
       ]
     },
     {
-      title: '主题',
+      title: 'Theme development',
       code: ['theme'],
       submenu: [
         {
-          title: '模版标签',
+          title: 'Theme Tag',
           code: ['theme-tag'],
           url: '/main/masterplate/tag',
           submenu: []
         },
         {
-          title: '组件标签',
+          title: 'Section Tag',
           code: ['theme-element-tag'],
           url: '/main/masterplate/element-tag',
           submenu: []
         },
         {
-          title: '全局参数',
+          title: 'Global Parameters',
           code: ['theme-element-schema'],
           url: '/main/masterplate/schema',
           submenu: []
         },
         {
-          title: '主题风格',
+          title: 'Theme',
           url: '/main/masterplate',
           code: ['theme-masterplate'],
           submenu: []
         },
         {
-          title: '页面',
+          title: 'Page',
           code: ['theme-page'],
           url: '/main/masterplate/page',
           submenu: []
         },
         {
-          title: '组件',
+          title: 'Section',
           code: ['theme-element'],
           url: '/main/masterplate/element',
           submenu: []

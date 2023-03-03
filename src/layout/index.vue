@@ -2,7 +2,9 @@
   <div
     :class="`passport`"
     v-if="isPassport">
-    <div class="region-change">
+    <div class="region-change"
+         v-if="false"
+    >
       <img
         @click="changeRegion"
         src="~@/assets/svg/region.svg"
@@ -22,7 +24,7 @@
     <div
       slot="header"
       class="fox-header">
-      <div class="fox-header- breadcrumb">
+      <div class="fox-header-breadcrumb">
         <el-breadcrumb
           class="breadcrumb-wrap"
           separator="/">
@@ -70,6 +72,7 @@
           </el-dropdown-menu>
         </el-dropdown>
         <el-dropdown
+          v-if="false"
           @command="dropCommand"
           class="mr-3">
           <div
@@ -273,27 +276,38 @@ export default {
      * 获取面包屑
      */
     getBreadcrumb () {
-      const { matched } = this.$route
-      const breadcrumbList = []
+      const { matched, name, params: { collectionType } } = this.$route
       const params = this.$route.params
-      matched.map(({ path, meta }, index) => {
-        if (meta['crumbs']) {
-          meta['crumbs'].forEach((o) => {
-            if (o.path && o.title) {
-              breadcrumbList.push({
-                path: this.replaceParams(params, o.path),
-                title: o.title
-              })
-            }
-          })
-        }
-        if (meta['title'] && path && index > 0) {
-          breadcrumbList.push({
-            path,
-            title: meta['title']
-          })
-        }
-      })
+      const breadcrumbList = []
+      if (['site-article-collection-update', 'site-article-collection-add', 'site-article-collection'].indexOf(name) > -1) {
+        breadcrumbList.push({
+          path: `/site/${params.siteId}/${collectionType}`,
+          title: this.$t(`${collectionType}.paging.title`)
+        })
+        breadcrumbList.push({
+          path: `/site/${params.siteId}/${collectionType}/collection`,
+          title: this.$t(`article.collection.${collectionType}.title`)
+        })
+      } else {
+        matched.map(({ path, meta }, index) => {
+          if (meta['crumbs']) {
+            meta['crumbs'].forEach((o) => {
+              if (o.path && o.title) {
+                breadcrumbList.push({
+                  path: this.replaceParams(params, o.path),
+                  title: o.title
+                })
+              }
+            })
+          }
+          if (meta['title'] && path && index > 0) {
+            breadcrumbList.push({
+              path,
+              title: meta['title']
+            })
+          }
+        })
+      }
       this.breadcrumbList = breadcrumbList
     }
   }
@@ -301,11 +315,6 @@ export default {
 </script>
 <style lang="scss">
 @import "../assets/var";
-
-.custom-aside {
-  border-right: 1px dotted #DEE1E5;
-  background-color: #FAFAFA;
-}
 
 .fox-header {
   height: 60px;

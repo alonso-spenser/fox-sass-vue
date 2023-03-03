@@ -4,22 +4,6 @@
     :offset="200"
     google-style
   >
-    <fox-header-ops
-      :title="$t('enquiry.form.title')"
-      :description="id ? $t('enquiry.form.updateForm.editForm') : $t('enquiry.form.updateForm.addForm')"
-      divider
-    >
-      <div class="header-ops-item">
-        <el-button
-          type="text"
-          icon="el-icon-delete"
-          v-if="id"
-          :loading="loading"
-          @click="deleteForm"
-        >
-        </el-button>
-      </div>
-    </fox-header-ops>
     <fox-form
       :model="entity"
       :rules="formRules"
@@ -434,7 +418,7 @@ export default {
             action: this.actionType.update
           }
           this.resultMessage(result, (success) => {
-            if (success) {
+            if (success && this.utility.isEmpty(this.id)) {
               this.previous()
             }
           })

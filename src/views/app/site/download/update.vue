@@ -1,79 +1,75 @@
 <template>
-  <main>
-    <fox-page-loading
-      :page-loading="pageLoading"
-      :page-is-valid="pageIsValid"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <fox-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
     >
-      <fox-page-header
-        :previous="true"
-      ></fox-page-header>
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top"
-      >
-        <fox-section>
-          <el-row :gutter="20">
-            <el-col :span="18">
-              <el-form-item
-                prop="title"
-                :label="$t('site.resource.update.entity.title.label')">
-                <el-input
-                  type="textarea"
-                  autosize
-                  show-word-limit
-                  maxlength="200"
-                  v-model="entity.title"
-                  :placeholder="$t('site.resource.update.entity.title.placeholder')"
-                ></el-input>
+      <fox-section>
+        <el-row :gutter="20">
+          <el-col :span="18">
+            <el-form-item
+              prop="title">
+              <fox-input
+                shrink
+                type="textarea"
+                autosize
+                show-word-limit
+                maxlength="200"
+                v-model="entity.title"
+                :placeholder="$t('site.resource.update.entity.title.label')"
+                :description="$t('site.resource.update.entity.title.placeholder')"
+              ></fox-input>
+            </el-form-item>
+            <el-form-item
+              prop="description">
+              <fox-input
+                shrink
+                show-word-limit
+                type="textarea"
+                v-model="entity.description"
+                maxlength="500"
+                :rows="6"
+                :placeholder="$t('site.resource.update.entity.description.label')"
+                :description="$t('site.resource.update.entity.description.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <fox-section
+              :heading="$t('site.resource.update.entity.coverImage.label')"
+            >
+              <el-form-item>
+                <fox-image-single
+                  v-model="entity.coverImage"
+                  :alt-visible="false"
+                  :alt="entity.coverAlt"
+                  :size-limit="10"
+                  :oss-bucket="resource.ossBucket"
+                  :server-address="utility.uploadURL()"
+                  :file-folder="siteId"
+                ></fox-image-single>
               </el-form-item>
-              <el-form-item
-                prop="description"
-                :label="$t('site.resource.update.entity.description.label')">
-                <el-input
-                  show-word-limit
-                  type="textarea"
-                  v-model="entity.description"
-                  maxlength="500"
-                  :rows="6"
-                  :placeholder="$t('site.resource.update.entity.description.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6">
-              <fox-section
-                :heading="$t('site.resource.update.entity.coverImage.label')"
-              >
-                <el-form-item>
-                  <fox-image-single
-                    v-model="entity.coverImage"
-                    :alt-visible="false"
-                    :alt="entity.coverAlt"
-                    :size-limit="10"
-                    :oss-bucket="resource.ossBucket"
-                    :server-address="utility.uploadURL()"
-                    :file-folder="siteId"
-                  ></fox-image-single>
-                </el-form-item>
-              </fox-section>
-              <collection-select
-                :info-type="resource.infoType.download"
-                v-model="entity.collectionList"
-              ></collection-select>
-            </el-col>
-          </el-row>
-        </fox-section>
-      </el-form>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        :loading="loading"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+            </fox-section>
+            <collection-select
+              :info-type="resource.infoType.download"
+              v-model="entity.collectionList"
+            ></collection-select>
+          </el-col>
+        </el-row>
+      </fox-section>
+    </fox-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -131,14 +127,14 @@ export default {
      * 上一步
      */
     previous () {
-      this.$router.push(`/site/${this.siteId}/down`)
+      this.redirectURL(`/site/${this.siteId}/down`)
     },
     /**
      * 表单校验
      */
     formValidation () {
       let formName = 'update'
-      this.$refs[formName].validate((valid) => {
+      this.formValidate(formName, (valid) => {
         if (valid) {
           this.loading = true
           this.addResource()

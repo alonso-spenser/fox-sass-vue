@@ -1,90 +1,91 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <fox-section>
+      <el-button @click="loadSchemeEditor('globalColorsSchema', 'globalColorsData')">
+        {{ $t('theme.schema.globalColorsSchema') }}
+      </el-button>
+      <el-button @click="loadSchemeEditor('globalTypographySchema', 'globalTypographyData')">
+        {{ $t('theme.schema.globalTypographySchema') }}
+      </el-button>
+      <el-button @click="loadSchemeEditor('globalSocialSchema', 'globalSocialData')">
+        {{ $t('theme.schema.globalSocialSchema') }}
+      </el-button>
+      <el-button @click="loadSchemeEditor('globalGeneralSchema', 'globalGeneralData')">
+        {{ $t('theme.schema.globalGeneralSchema') }}
+      </el-button>
+      <el-button @click="loadSchemeEditor('globalFaviconSchema', 'globalFaviconData')">
+        {{ $t('theme.schema.globalFaviconSchema') }}
+      </el-button>
+      <el-button @click="langData.visible = true">
+        系统语言
+      </el-button>
+    </fox-section>
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
+      label-width="100px"
+      label-position="top"
     >
-      <fox-page-header
-        :previous="true"
-      ></fox-page-header>
-      <fox-section>
-        <el-button @click="loadSchemeEditor('globalColorsSchema', 'globalColorsData')">
-          {{ $t('theme.schema.globalColorsSchema') }}
-        </el-button>
-        <el-button @click="loadSchemeEditor('globalTypographySchema', 'globalTypographyData')">
-          {{ $t('theme.schema.globalTypographySchema') }}
-        </el-button>
-        <el-button @click="loadSchemeEditor('globalSocialSchema', 'globalSocialData')">
-          {{ $t('theme.schema.globalSocialSchema') }}
-        </el-button>
-        <el-button @click="loadSchemeEditor('globalGeneralSchema', 'globalGeneralData')">
-          {{ $t('theme.schema.globalGeneralSchema') }}
-        </el-button>
-        <el-button @click="loadSchemeEditor('globalFaviconSchema', 'globalFaviconData')">
-          {{ $t('theme.schema.globalFaviconSchema') }}
-        </el-button>
-        <el-button @click="langData.visible = true">
-          系统语言
-        </el-button>
+      <fox-section
+        :heading="$t('theme.schema.pageLayout.label')"
+      >
+        <el-form-item
+          prop="pageLayout">
+          <fox-input
+            type="textarea"
+            :rows="30"
+            v-model="entity.pageLayout"
+            :placeholder="$t('theme.schema.pageLayout.label')"
+            :description="$t('theme.schema.pageLayout.placeholder')"
+          ></fox-input>
+        </el-form-item>
       </fox-section>
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top"
+      <fox-section
+        :heading="$t('theme.schema.globalCss.label')"
       >
-        <fox-section>
-          <el-form-item
-            prop="pageLayout"
-            :label="$t('theme.schema.pageLayout.label')">
-            <el-input
-              type="textarea"
-              :rows="30"
-              v-model="entity.pageLayout"
-              :placeholder="$t('theme.schema.pageLayout.placeholder')"
-            ></el-input>
-          </el-form-item>
-        </fox-section>
-        <fox-section>
-          <el-form-item prop="globalCss">
-            <label class="el-form-item__label">{{ $t('theme.schema.globalCss.label') }}</label>
-            <el-button
-              type="text"
-              class="el-form-item__label ml-4"
-              @click="loadCSSVariable('globalCss')">PASTE
-            </el-button>
-            <el-input
-              type="textarea"
-              :rows="20"
-              v-model="entity.globalCss"
-              :placeholder="$t('theme.schema.globalCss.placeholder')"
-            ></el-input>
-          </el-form-item>
-        </fox-section>
-      </el-form>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-      <schema-editor
-        :visible.sync="schemaData.visible"
-        :dataset="schemaData.entity"
-        @close="schemaUpdate"
-      ></schema-editor>
-      <css-variable
-        v-model="cssData.value"
-        :visible.sync="cssData.visible"
-        @change="callCSSVariable"
-      ></css-variable>
-      <global-language
-        :visible.sync="langData.visible"
-        @translate="getDetail"
-        :schema-id="entity.id"
-        v-model="langData.data"></global-language>
-    </fox-page-loading>
-  </main>
+        <el-button
+          type="text"
+          slot="header"
+          size="mini"
+          @click="loadCSSVariable('globalCss')">PASTE
+        </el-button>
+        <el-form-item prop="globalCss">
+          <el-input
+            type="textarea"
+            :rows="20"
+            v-model="entity.globalCss"
+            :placeholder="$t('theme.schema.globalCss.placeholder')"
+          ></el-input>
+        </el-form-item>
+      </fox-section>
+    </el-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+    <schema-editor
+      :visible.sync="schemaData.visible"
+      :dataset="schemaData.entity"
+      @close="schemaUpdate"
+    ></schema-editor>
+    <css-variable
+      v-model="cssData.value"
+      :visible.sync="cssData.visible"
+      @change="callCSSVariable"
+    ></css-variable>
+    <global-language
+      :visible.sync="langData.visible"
+      @translate="getDetail"
+      :schema-id="entity.id"
+      v-model="langData.data"></global-language>
+  </fox-layout-main>
 </template>
 
 <script>

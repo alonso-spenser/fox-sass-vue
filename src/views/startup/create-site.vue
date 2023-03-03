@@ -435,9 +435,7 @@ export default {
                 type: 'error',
                 message: this.$t('site.dashboard.trial.keep').toString()
               })
-              this.$router.push({
-                path: '/dashboard'
-              })
+              this.redirectURL('/dashboard')
             } else {
               this.canCreate = true
               this.getLanguage()
@@ -598,7 +596,7 @@ export default {
           }
           fetchCreate(this.entity)
             .then(result => {
-              this.resultMessage(result, (success) => {
+              this.resultMessage((result), (success) => {
                 if (success) {
                   this.$message({
                     type: 'success',
@@ -627,9 +625,7 @@ export default {
       if (data.length > 0) {
         this.setMySite(data)
         this.setSiteModel(data[0])
-        this.$router.push({
-          path: `/site/${data[0].id}/dashboard`
-        })
+        this.redirectURL('/dashboard')
       }
     },
     logout () {
@@ -660,7 +656,7 @@ export default {
         bindDomain: false
       })
       this.setMySite([])
-      this.$router.push('/passport')
+      this.redirectURL('/passport')
     }
   }
 }

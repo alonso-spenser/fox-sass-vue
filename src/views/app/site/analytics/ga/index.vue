@@ -1,56 +1,53 @@
 <template>
-  <main>
-    <fox-page-header></fox-page-header>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="100"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <el-descriptions
+      class="no-gutter"
+      :column="1"
+      :label-style="{width: '150px'}"
+      border
     >
-      <el-descriptions
-        class="no-gutter"
-        :column="1"
-        :label-style="{width: '150px'}"
-        border
-      >
-        <small
-          class="text-secondary"
-          slot="title">
-          {{ $t('ga.tips') }}
-        </small>
-        <el-descriptions-item :label="$t('ga.step1.title')">
-          <span class="text-secondary mr-5">{{ $t('ga.step1.content') }}</span>
-          <el-link
-            href="https://admin.fomille.com/support/page-1163371572317757442.html"
-            type="primary"
-            target="_blank">{{ $t('ga.step1.how') }}
-          </el-link>
-        </el-descriptions-item>
-        <el-descriptions-item :label="$t('ga.step2.title')">
-          <span class="text-secondary mr-5">{{ $t('ga.step2.content') }}</span>
-          <el-link
-            href="https://admin.fomille.com/support/page-1199891480274219010.html"
-            type="primary"
-            target="_blank">{{ $t('ga.step2.how') }}
-          </el-link>
-        </el-descriptions-item>
-        <el-descriptions-item :label="$t('ga.step3.title')">
-          <b>{{ !entity.viewId && gaAccount.id ? gaAccount.gmail : entity.gmail }}</b>
-          <label
-            class="ml-3 text-secondary"
-            v-if="!entity.viewId && gaAccount.id">{{ $t('ga.step3.content') }}</label>
-        </el-descriptions-item>
-        <el-descriptions-item :label="$t('ga.step4.title')">
-          <span class="text-secondary">{{ entity.viewId || $t('ga.step3.not') }}</span>
-          <el-button
-            class="ml-4"
-            type="text"
-            @click="() => entity.viewId ? unBindGA() : setViewId()"
-          >{{ entity.viewId ? $t('ga.step4.unbind') : $t('ga.step4.bind') }}
-          </el-button>
-        </el-descriptions-item>
-      </el-descriptions>
-    </fox-page-loading>
-  </main>
+      <small
+        class="text-secondary"
+        slot="title">
+        {{ $t('ga.tips') }}
+      </small>
+      <el-descriptions-item :label="$t('ga.step1.title')">
+        <span class="text-secondary mr-5">{{ $t('ga.step1.content') }}</span>
+        <el-link
+          href="https://admin.fomille.com/support/page-1163371572317757442.html"
+          type="primary"
+          target="_blank">{{ $t('ga.step1.how') }}
+        </el-link>
+      </el-descriptions-item>
+      <el-descriptions-item :label="$t('ga.step2.title')">
+        <span class="text-secondary mr-5">{{ $t('ga.step2.content') }}</span>
+        <el-link
+          href="https://admin.fomille.com/support/page-1199891480274219010.html"
+          type="primary"
+          target="_blank">{{ $t('ga.step2.how') }}
+        </el-link>
+      </el-descriptions-item>
+      <el-descriptions-item :label="$t('ga.step3.title')">
+        <b>{{ !entity.viewId && gaAccount.id ? gaAccount.gmail : entity.gmail }}</b>
+        <label
+          class="ml-3 text-secondary"
+          v-if="!entity.viewId && gaAccount.id">{{ $t('ga.step3.content') }}</label>
+      </el-descriptions-item>
+      <el-descriptions-item :label="$t('ga.step4.title')">
+        <span class="text-secondary">{{ entity.viewId || $t('ga.step3.not') }}</span>
+        <el-button
+          class="ml-4"
+          type="text"
+          @click="() => entity.viewId ? unBindGA() : setViewId()"
+        >{{ entity.viewId ? $t('ga.step4.unbind') : $t('ga.step4.bind') }}
+        </el-button>
+      </el-descriptions-item>
+    </el-descriptions>
+  </fox-layout-main>
 </template>
 
 <script>

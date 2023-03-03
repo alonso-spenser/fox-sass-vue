@@ -1,169 +1,160 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
+      label-width="100px"
+      label-position="top"
     >
-      <fox-page-header
-        :actions="[
-        {
-          label: $t('base.delete.button'),
-          icon: 'el-icon-delete',
-          type: 'text',
-          visible: id,
-          click: () => {
-            this.deletePage()
-          }
-        }
-    ]"
-      >
-      </fox-page-header>
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top"
-      >
-        <fox-section>
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <el-form-item
-                prop="title"
-                :label="$t('theme.page.update.entity.title.label')">
-                <el-input
-                  v-model="entity.title"
-                  :placeholder="$t('theme.page.update.entity.title.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item :label="$t('theme.page.update.entity.pageType.label')">
-                <el-select
-                  class="w-100"
-                  v-model="entity.pageType"
-                  @change="pageTypeChange"
-                  :placeholder="$t('theme.page.update.entity.pageType.placeholder')"
-                >
-                  <el-option
-                    v-for="item in pageType"
-                    :key="item.pageType"
-                    :label="item.title"
-                    :value="item.pageType"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item :label="$t('theme.page.update.entity.siteType.label')">
-                <el-select
-                  class="w-100"
-                  v-model="currentSiteType"
-                  multiple
-                  @change="siteTypeChange"
-                  :placeholder="$t('theme.page.update.entity.siteType.placeholder')"
-                >
-                  <el-option
-                    v-for="item in siteType"
-                    :key="item.id"
-                    :label="item.label"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </fox-section>
-        <fox-section>
-          <el-row :gutter="20">
-            <el-col :span="4">
-              <el-form-item
-                prop="bindSection"
-                :label="$t('theme.page.update.entity.bindSection.label')">
-                <el-switch
-                  v-model="entity.bindSection"
-                  :inactive-value="1"
-                  :active-value="0"
-                  active-color="#13ce66"
-                  inactive-color="#ff4949">
-                </el-switch>
-              </el-form-item>
-            </el-col>
-            <el-col :span="4">
-              <el-form-item
-                prop="hasFloatMenu"
-                :label="$t('theme.page.update.entity.hasFloatMenu.label')">
-                <el-switch
-                  v-model="entity.hasFloatMenu"
-                  :inactive-value="1"
-                  :active-value="0"
-                  active-color="#13ce66"
-                  inactive-color="#ff4949">
-                </el-switch>
-              </el-form-item>
-            </el-col>
-            <el-col :span="4">
-              <el-form-item
-                prop="hasFooter"
-                :label="$t('theme.page.update.entity.hasFooter.label')">
-                <el-switch
-                  v-model="entity.hasFooter"
-                  :inactive-value="1"
-                  :active-value="0"
-                  active-color="#13ce66"
-                  inactive-color="#ff4949">
-                </el-switch>
-              </el-form-item>
-            </el-col>
-            <el-col :span="4">
-              <el-form-item
-                prop="hasHeader"
-                :label="$t('theme.page.update.entity.hasHeader.label')">
-                <el-switch
-                  v-model="entity.hasHeader"
-                  :inactive-value="1"
-                  :active-value="0"
-                  active-color="#13ce66"
-                  inactive-color="#ff4949">
-                </el-switch>
-              </el-form-item>
-            </el-col>
-            <el-col :span="4">
-              <el-form-item
-                prop="menuVisible"
-                :label="$t('theme.page.update.entity.menuVisible.label')">
-                <el-switch
-                  v-model="entity.menuVisible"
-                  :inactive-value="1"
-                  :active-value="0"
-                  active-color="#13ce66"
-                  inactive-color="#ff4949">
-                </el-switch>
-              </el-form-item>
-            </el-col>
-            <el-col :span="4">
-              <el-form-item
-                prop="addSection"
-                :label="$t('theme.page.update.entity.addSection.label')">
-                <el-switch
-                  v-model="entity.addSection"
-                  :inactive-value="1"
-                  :active-value="0"
-                  active-color="#13ce66"
-                  inactive-color="#ff4949">
-                </el-switch>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </fox-section>
-      </el-form>
-      <fox-unsaved
-        :unsaved.sync="unsaved"
-        @confirmed="formValidation"
-      >
-      </fox-unsaved>
-    </fox-page-loading>
-  </main>
+      <fox-section>
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <el-form-item
+              prop="title">
+              <fox-input
+                shrink
+                v-model="entity.title"
+                :placeholder="$t('theme.page.update.entity.title.label')"
+                :description="$t('theme.page.update.entity.title.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item>
+              <fox-select
+                class="w-100"
+                shrink
+                v-model="entity.pageType"
+                @change="pageTypeChange"
+                :placeholder="$t('theme.page.update.entity.pageType.label')"
+                :description="$t('theme.page.update.entity.pageType.placeholder')"
+              >
+                <el-option
+                  v-for="item in pageType"
+                  :key="item.pageType"
+                  :label="item.title"
+                  :value="item.pageType"
+                ></el-option>
+              </fox-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item>
+              <fox-select
+                class="w-100"
+                shrink
+                v-model="currentSiteType"
+                multiple
+                @change="siteTypeChange"
+                :placeholder="$t('theme.page.update.entity.siteType.label')"
+                :description="$t('theme.page.update.entity.siteType.placeholder')"
+              >
+                <el-option
+                  v-for="item in siteType"
+                  :key="item.id"
+                  :label="item.label"
+                  :value="item.id"
+                ></el-option>
+              </fox-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </fox-section>
+      <fox-section>
+        <el-row :gutter="20">
+          <el-col :span="4">
+            <el-form-item
+              prop="bindSection"
+              :label="$t('theme.page.update.entity.bindSection.label')">
+              <el-switch
+                v-model="entity.bindSection"
+                :inactive-value="1"
+                :active-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+              </el-switch>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
+            <el-form-item
+              prop="hasFloatMenu"
+              :label="$t('theme.page.update.entity.hasFloatMenu.label')">
+              <el-switch
+                v-model="entity.hasFloatMenu"
+                :inactive-value="1"
+                :active-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+              </el-switch>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
+            <el-form-item
+              prop="hasFooter"
+              :label="$t('theme.page.update.entity.hasFooter.label')">
+              <el-switch
+                v-model="entity.hasFooter"
+                :inactive-value="1"
+                :active-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+              </el-switch>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
+            <el-form-item
+              prop="hasHeader"
+              :label="$t('theme.page.update.entity.hasHeader.label')">
+              <el-switch
+                v-model="entity.hasHeader"
+                :inactive-value="1"
+                :active-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+              </el-switch>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
+            <el-form-item
+              prop="menuVisible"
+              :label="$t('theme.page.update.entity.menuVisible.label')">
+              <el-switch
+                v-model="entity.menuVisible"
+                :inactive-value="1"
+                :active-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+              </el-switch>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
+            <el-form-item
+              prop="addSection"
+              :label="$t('theme.page.update.entity.addSection.label')">
+              <el-switch
+                v-model="entity.addSection"
+                :inactive-value="1"
+                :active-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+              </el-switch>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </fox-section>
+    </el-form>
+    <fox-unsaved
+      :unsaved.sync="unsaved"
+      :loading="loading"
+      @confirmed="formValidation"
+    >
+    </fox-unsaved>
+  </fox-layout-main>
 </template>
 
 <script>

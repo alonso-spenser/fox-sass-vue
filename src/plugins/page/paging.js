@@ -2,6 +2,7 @@
  * 未保存页面
  */
 import extend from './base'
+
 export default {
   extends: extend,
   data () {
@@ -97,7 +98,7 @@ export default {
      * 清空搜索条件
      */
     clearCondition (func) {
-      this.loading = true
+      this.loading = false
       this.searchConditions.keyword = ''
       this.pagingOptions.pageIndex = 1
       this.searchConditions.clearVisible = false

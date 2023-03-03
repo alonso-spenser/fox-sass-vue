@@ -5,9 +5,38 @@ Vue.use(Vuex)
 
 const state = {
   merchantModel: {
+    token: '',
+    avatar: '',
+    firstName: '',
+    lastName: '',
+    owner: 0,
     merchant: {
+      cityName: '',
+      contact: '',
+      countryName: '',
+      mobileArea: '',
+      name: '',
+      provinceName: '',
       shortForm: ''
-    }
+    },
+    functionList: []
+  },
+  masterModel: {
+    token: '',
+    avatar: '',
+    firstName: '',
+    lastName: '',
+    owner: 0,
+    merchant: {
+      cityName: '',
+      contact: '',
+      countryName: '',
+      mobileArea: '',
+      name: '',
+      provinceName: '',
+      shortForm: ''
+    },
+    functionList: []
   },
   siteModel: {
     id: '',
@@ -59,17 +88,20 @@ const state = {
 const mutations = {
   /**
    * 商户信息
-   * @param state
-   * @param data
    */
   setMerchantModel: (state, data) => {
     state.merchantModel = data
     localStorage.setItem('merchantModel', JSON.stringify(data))
   },
   /**
+   * 管理员
+   */
+  setMasterModel: (state, data) => {
+    state.masterModel = data
+    localStorage.setItem('masterModel', JSON.stringify(data))
+  },
+  /**
    * 后台信息
-   * @param state
-   * @param data
    */
   setAgentModel: (state, data) => {
     state.agentModel = data

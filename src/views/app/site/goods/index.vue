@@ -7,18 +7,19 @@
   >
     <div class="neighbor fox-google-style percent-100" slot="header">
       <div class="fox-page-content">
-        <el-row
-          class="dataset-search"
-          :gutter="20">
-          <el-col :span="8">
-            <el-input
-              :placeholder="$t('base.placeholder.search')"
+        <div
+          class="filter-params">
+          <div class="filter-params-element">
+            <fox-input
+              shrink
+              :placeholder="$t('base.placeholder.label')"
+              :description="$t('base.placeholder.search')"
               v-model="searchConditions.keyword"
               clearable
-              size="small"
               @change="searchConditionChange"
               @clear="clearSearchCondition"
-              class="input-with-select">
+              class="input-with-select"
+            >
               <el-select
                 v-model="searchConditions.searchType"
                 slot="prepend"
@@ -43,13 +44,49 @@
                 :loading="loading"
                 @click="getData(false)"
               ></el-button>
-            </el-input>
-          </el-col>
-          <el-col
-            :span="16"
-            class="text-right">
+            </fox-input>
+          </div>
+          <div class="filter-params-element">
+            <fox-select
+              shrink
+              v-model="searchConditions.orderBy"
+              :placeholder="$t('base.orderBy')"
+              :description="$t('base.placeholder.search')"
+              @change="getData(false)"
+            >
+              <el-option
+                :label="$t('goods.orderBy.updateTimeASC')"
+                value="updateTime-ASC"
+              ></el-option>
+              <el-option
+                :label="$t('goods.orderBy.updateTimeDESC')"
+                value="updateTime-DESC"
+              ></el-option>
+              <el-option
+                :label="$t('goods.orderBy.createTimeASC')"
+                value="createTime-ASC"
+              ></el-option>
+              <el-option
+                :label="$t('goods.orderBy.createTimeDESC')"
+                value="createTime-DESC"
+              ></el-option>
+              <el-option
+                :label="$t('goods.orderBy.initialASC')"
+                value="initial-ASC"
+              ></el-option>
+              <el-option
+                :label="$t('goods.orderBy.initialDESC')"
+                value="initial-DESC"
+              ></el-option>
+              <el-option
+                :label="$t('goods.orderBy.sortDesc')"
+                value="sortIndex-DESC"
+              ></el-option>
+            </fox-select>
+          </div>
+          <div class="filter-params-element">
             <el-button
-              size="small"
+              class="el-material-button"
               icon="el-icon-refresh"
               :loading="refresherLoading"
               :title="$t('app.refresher.button')"
@@ -57,7 +94,7 @@
             >
             </el-button>
             <el-button
-              size="small"
+              class="el-material-button"
               icon="el-icon-brush"
               :loading="refresherLoading"
               :title="$t('app.refresher.init')"
@@ -65,7 +102,6 @@
             >
             </el-button>
             <el-button
-              size="small"
               icon="el-icon-plus"
               type="primary"
               plain
@@ -74,52 +110,10 @@
               @click="addGoods"
             >
             </el-button>
-            <div class="filter-params" v-if="false">
-              <div class="filter-params-element">
-                <fox-select
-                  class="ml-2"
-                  shrink
-                  v-model="searchConditions.orderBy"
-                  :placeholder="$t('base.orderBy')"
-                  :description="$t('base.placeholder.search')"
-                  @change="getData(false)"
-                >
-                  <el-option
-                    :label="$t('goods.orderBy.updateTimeASC')"
-                    value="updateTime-ASC"
-                  ></el-option>
-                  <el-option
-                    :label="$t('goods.orderBy.updateTimeDESC')"
-                    value="updateTime-DESC"
-                  ></el-option>
-                  <el-option
-                    :label="$t('goods.orderBy.createTimeASC')"
-                    value="createTime-ASC"
-                  ></el-option>
-                  <el-option
-                    :label="$t('goods.orderBy.createTimeDESC')"
-                    value="createTime-DESC"
-                  ></el-option>
-                  <el-option
-                    :label="$t('goods.orderBy.initialASC')"
-                    value="initial-ASC"
-                  ></el-option>
-                  <el-option
-                    :label="$t('goods.orderBy.initialDESC')"
-                    value="initial-DESC"
-                  ></el-option>
-                  <el-option
-                    :label="$t('goods.orderBy.sortDesc')"
-                    value="sortIndex-DESC"
-                  ></el-option>
-                </fox-select>
-              </div>
-              <div class="filter-params-element">
-
-              </div>
-            </div>
-          </el-col>
-        </el-row>
+          </div>
+          <div class="filter-params-element">
+          </div>
+        </div>
       </div>
     </div>
     <fox-paging-table
@@ -189,39 +183,39 @@ export default {
           update: {
             label: this.$t('base.update.button'),
             invisible: true,
-            onClick: row => {
+            onClick: (row) => {
               this.updateGoods(row)
             }
           },
           disable: {
             label: this.$t('article.paging.actions.disable'),
-            onClick: rows => {
+            onClick: (rows) => {
               this.goodsDisable(rows)
             }
           },
           enable: {
             label: this.$t('article.paging.actions.enable'),
-            onClick: rows => {
+            onClick: (rows) => {
               this.goodsEnable(rows)
             }
           },
           sticky: {
             divided: true,
             label: this.$t('article.paging.actions.sticky'),
-            onClick: rows => {
+            onClick: (rows) => {
               this.batchSticky(rows, 0)
             }
           },
           cancelSticky: {
             label: this.$t('article.paging.actions.cancelSticky'),
-            onClick: rows => {
+            onClick: (rows) => {
               this.batchSticky(rows, 1)
             }
           },
           addCollection: {
             divided: true,
             label: this.$t('article.paging.actions.addCollection'),
-            onClick: rows => {
+            onClick: (rows) => {
               if (rows.length > 0) {
                 this.selectedItems = rows
                 this.collectionVisible = true
@@ -230,7 +224,7 @@ export default {
           },
           addTag: {
             label: this.$t('article.paging.actions.addTag'),
-            onClick: rows => {
+            onClick: (rows) => {
               if (rows.length > 0) {
                 this.selectedItems = rows
                 this.tagsVisible = true
@@ -240,13 +234,13 @@ export default {
           clone: {
             divided: true,
             label: this.$t('goods.paging.actions.clone.button'),
-            onClick: rows => {
+            onClick: (rows) => {
               this.goodsClone(rows)
             }
           },
           delete: {
             label: this.$t('base.delete.button'),
-            onClick: rows => {
+            onClick: (rows) => {
               this.deleteGoods(rows)
             }
           }

@@ -1,53 +1,63 @@
 <template>
-  <main>
-    <fox-page-header
-      :actions="crumbAction"
-      :drop-actions="crumbDropAction"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    :percentage="90"
+    google-style
+  >
+    <div class="neighbor fox-google-style percent-100"
+         slot="header">
+      <div class="fox-page-content">
+        <div
+          class="filter-params">
+          <div class="filter-params-element">
+            <fox-input
+              shrink
+              :placeholder="$t('base.placeholder.label')"
+              :description="$t('base.placeholder.search')"
+              v-model="searchConditions.keyword"
+              clearable
+              @change="searchConditionChange"
+              @clear="clearSearchCondition"
+            >
+              <el-button
+                slot="append"
+                icon="el-icon-search"
+                :loading="loading"
+                @click="getData(false)"
+              ></el-button>
+            </fox-input>
+          </div>
+          <div class="filter-params-element">
+            <el-button
+              icon="el-icon-plus"
+              type="primary"
+              plain
+              class="el-material-button"
+              @click="addRepository"
+            >
+            </el-button>
+          </div>
+          <div class="filter-params-element">
+          </div>
+        </div>
+      </div>
+    </div>
+    <fox-paging-table
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+      :loading="tableOptions.loading"
+      :first-loading="pagingOptions.firstLoading"
+      :empty="dataConfig.empty"
+      :page-index.sync="pagingOptions.pageIndex"
+      :page-size.sync="pagingOptions.pageSize"
+      :record-count="pagingOptions.recordCount"
+      :rows-class-name="dataConfig.rowsClassName"
+      @paging="getData"
     >
-    </fox-page-header>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
-      :percentage="100"
-    >
-      <fox-paging-table
-        :columns="dataConfig.columns"
-        :actions="dataConfig.actions"
-        :dataset="pagingOptions.dataset"
-        :loading="tableOptions.loading"
-        :first-loading="pagingOptions.firstLoading"
-        :empty="dataConfig.empty"
-        :page-index.sync="pagingOptions.pageIndex"
-        :page-size.sync="pagingOptions.pageSize"
-        :record-count="pagingOptions.recordCount"
-        :rows-class-name="dataConfig.rowsClassName"
-        @paging="getData"
-      >
-        <template slot="header">
-          <el-row
-            class="dataset-search"
-            :gutter="20">
-            <el-col :span="14">
-              <el-input
-                :placeholder="$t('base.placeholder.search')"
-                v-model="searchConditions.keyword"
-                clearable
-                @change="searchConditionChange"
-                @clear="clearSearchCondition"
-                class="input-with-select">
-                <el-button
-                  slot="append"
-                  icon="el-icon-search"
-                  :loading="loading"
-                  @click="getData(false)"
-                ></el-button>
-              </el-input>
-            </el-col>
-          </el-row>
-        </template>
-      </fox-paging-table>
-    </fox-page-loading>
-  </main>
+    </fox-paging-table>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -99,14 +109,6 @@ export default {
           {
             prop: 'ipLocation',
             label: this.$t('backstage.ip.paging.tableHeader.ipLocation')
-          },
-          {
-            prop: 'merchantName',
-            label: this.$t('backstage.ip.paging.tableHeader.merchantName')
-          },
-          {
-            prop: 'ossCatalog',
-            label: this.$t('backstage.ip.paging.tableHeader.ossCatalog')
           },
           {
             prop: 'quantity',
@@ -205,7 +207,9 @@ export default {
       fetchIpPaging({
         current: this.pagingOptions.pageIndex,
         size: this.pagingOptions.pageSize,
-        params: {}
+        params: {
+          q: this.searchConditions.keyword
+        }
       })
         .then(result => {
           this.pageValid()

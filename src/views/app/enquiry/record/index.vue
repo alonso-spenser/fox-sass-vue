@@ -5,23 +5,6 @@
     google-style
     :percentage="100"
   >
-    <fox-header-ops
-      :title="$t('enquiry.record.title')"
-      :description="$t('enquiry.record.description')"
-      divider
-    >
-      <div class="header-ops-item">
-        <el-button
-          type="text"
-          icon="el-icon-download"
-          v-if="pagingOptions.recordCount > 0"
-          :loading="loading"
-          @click="exportData"
-        >
-          {{ $t("enquiry.export") }}
-        </el-button>
-      </div>
-    </fox-header-ops>
     <fox-paging-table
       :multiSelect="false"
       :columns="dataConfig.columns"

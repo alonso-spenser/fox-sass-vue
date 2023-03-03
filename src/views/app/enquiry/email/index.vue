@@ -4,17 +4,12 @@
     :offset="200"
     google-style
   >
-    <fox-header-ops
-      :title="$t('enquiry.email.title')"
-      :description="$t('enquiry.email.description')"
-    >
-    </fox-header-ops>
     <fox-section
       :heading="$t('enquiry.email.title')"
     >
       <template
         slot="header"
-        v-if="entity.data.length < 5">
+        v-if="entity.data.length < 10">
         <el-button
           icon="el-icon-plus"
           type="text"
@@ -38,7 +33,8 @@
             :gutter="10"
           >
             <el-col :span="10">
-              <el-form-item
+              <fox-form-item
+                :show-message="false"
                 :prop="`data.${index}.email`"
                 :rules="formRules.email"
               >
@@ -48,10 +44,11 @@
                   :description="$t('enquiry.email.update.email.description')"
                   v-model="o.email"
                 ></fox-input>
-              </el-form-item>
+              </fox-form-item>
             </el-col>
             <el-col :span="10">
-              <el-form-item
+              <fox-form-item
+                :show-message="false"
                 :prop="`data.${index}.name`"
                 :rules="formRules.userName"
               >
@@ -59,10 +56,11 @@
                   shrink
                   :maxlength="255"
                   show-word-limit
-                  :placeholder="$t('enquiry.email.update.userName.placeholder')"
+                  :placeholder="$t('enquiry.email.update.userName.label')"
+                  :description="$t('enquiry.email.update.userName.placeholder')"
                   v-model="o.name"
                 ></fox-input>
-              </el-form-item>
+              </fox-form-item>
             </el-col>
             <el-col
               class="text-right"

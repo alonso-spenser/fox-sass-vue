@@ -215,6 +215,12 @@ export default {
     subheading: {
       type: String,
       default: ''
+    },
+    treeVisible: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
     }
   },
   watch: {
@@ -225,6 +231,11 @@ export default {
         if (!this.entity.parentId) {
           this.restEntity()
         }
+      }
+    },
+    treeVisible (val) {
+      if (val) {
+        this.getData()
       }
     }
   },
