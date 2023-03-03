@@ -21,7 +21,7 @@ http.interceptors.request.use(
     config.headers['OS'] = 0
     config.headers['App'] = admin ? 3000 : 1000
     config.headers['Platform'] = '1400692472106991622'
-    config.headers['Agent'] = '1400691824514842630'
+    config.headers['Agent'] = process.env.VUE_APP_DESIGN_AGENT
     config.headers['Authorization'] = passport.token(admin)
     config.headers['Region'] = ''
     return config
