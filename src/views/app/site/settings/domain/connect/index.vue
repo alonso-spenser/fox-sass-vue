@@ -185,7 +185,7 @@ export default {
       verifyFailed: false,
       verifyLoading: false,
       currentIP: '127.0.0.1',
-      cname: 'dns.11af.com',
+      cname: `dns.${process.env.VUE_APP_DESIGN_DOMAIN}`,
       entity: {
         domain: ''
       },

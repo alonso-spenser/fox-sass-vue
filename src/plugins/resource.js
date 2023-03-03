@@ -5,7 +5,7 @@ export default {
   image: {
     avatar: '/css/img/avator.png'
   },
-  domain: '.11af.com',
+  domain: `.${process.env.VUE_APP_DESIGN_DOMAIN}`,
   keepDomain: 'theme|verification|www|design|fomille|fomile|file|devin|jason|admin|console|agent|sass|shop|shopify|nginx|phone|jenkins|site|zabbix|nacos|code|test',
   /**
    * 信息类型
