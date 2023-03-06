@@ -185,12 +185,7 @@ export default {
       },
       formRules: {
         account: [
-          { required: true, message: this.$t('passport.login.entity.account.required'), trigger: 'blur' },
-          {
-            pattern: this.utility.expression.Email,
-            message: this.$t('passport.login.entity.account.custom'),
-            trigger: 'blur'
-          }
+          { required: true, message: this.$t('passport.login.entity.account.required'), trigger: 'blur' }
         ],
         password: [
           { required: true, message: this.$t('passport.login.entity.password.required'), trigger: 'blur' }

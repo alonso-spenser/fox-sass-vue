@@ -23,9 +23,9 @@ export default {
         },
         account: {
           label: '帐号',
-          placeholder: '邮件地址',
+          placeholder: '手机号码 / 邮件地址',
           required: '请输入帐号',
-          custom: '邮件格式错误'
+          custom: ''
         }
       }
     },

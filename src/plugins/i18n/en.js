@@ -135,69 +135,6 @@ export default {
       unit: [8.64E+7, 3.6E+6, 6E+4, 1E+3]
     }
   },
-  startup: {
-    pageTitle: '创建站点',
-    returnHome: '返回首页',
-    mySites: '我的网站',
-    nextStep: '下一步',
-    prevStep: '上一步',
-    create: '创建站点',
-    chooseTemplate: '选择模板',
-    siteTheme: '网站模版',
-    all: '全部',
-    preview: '预览',
-    original: '设置初始地址',
-    empty: '请选择一个模版',
-    selected: '选择',
-    skip: '跳过',
-    siteType: {
-      heading: '请选择网站类型',
-      cod: {
-        heading: '商品单页',
-        subheading: '适用于<b>类似COD商品单页</b>投放的业务类型',
-        tips: '站点会根据您添加的商品自动生成单页，您可以对这些商品单页进行编辑修改，您的访客可以通过该单页直接下单'
-      },
-      lp: {
-        heading: 'B2B企业单页',
-        subheading: '适用于<b>单页展示 ( 着陆页 ) 以及询盘 </b>的业务类型',
-        tips: '您可以在站点中创建多个独立的单页并进行编辑修改，您的访客可以通过该单页直接进行报名、询盘等表单提交操作'
-      },
-      b2b: {
-        heading: 'B2B企业网站',
-        subheading: '适用于<b>官网以及询盘</b>的业务类型',
-        tips: '您可以创建企业的官网，并对整个网站进行编辑修改，您的访客可以浏览企业介绍、商品、新闻等内容以及进行询盘操作'
-      },
-      b2c: {
-        heading: 'B2C在线商城',
-        subheading: '适用于<b>在线销售</b>的业务类型',
-        tips: '无论您的产品是面向哪种消费者、销往世界的哪一个角落，从“店”商、 在线交易、社交媒体，到点对点个人营销，我们都可以帮您一一实现。'
-      }
-    },
-    tips: [
-      '创建网站后，原始地址<label class="text-primary">不可修改</label>，请谨慎设置',
-      '您的客户可以通过浏览器访问该地址来查看您的网站和页面',
-      '您可以在之后添加绑定自己的域名并将其设置为网站的主域名'
-    ],
-    entity: {
-      domain: {
-        label: '网址',
-        placeholder: '请输入网址',
-        custom: '网址不能为空',
-        required: '网址为4~32位，数字、英文或中划线组成',
-        async: '网址已存在，请更换'
-      }
-    },
-    duplicate: {
-      pageTitle: '复制站点',
-      source: '来源网站',
-      tips: '复制以上网站的全部设置，以创建一个新的站点',
-      siteName: '网站名称',
-      siteDomain: '网站域名',
-      siteType: '网站类型',
-      submit: '复制站点',
-      error: '原网站信息不存在'
-    }
-  },
   /**
    * 站点类型
    */

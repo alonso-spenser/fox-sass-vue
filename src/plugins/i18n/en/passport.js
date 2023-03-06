@@ -23,7 +23,7 @@ export default {
         },
         account: {
           label: 'Account',
-          placeholder: 'Email address',
+          placeholder: 'Email / Mobile',
           required: 'Please enter your account',
           custom: 'Email format error'
         }

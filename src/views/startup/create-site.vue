@@ -216,25 +216,29 @@
               <el-row :gutter="20">
                 <el-col :span="8">
                   <el-form-item
-                    prop="siteName"
-                    :label="$t('startup.entity.siteName.label')">
-                    <el-input
+                    :show-message="false"
+                    prop="siteName">
+                    <fox-input
+                      shrink
                       v-model="entity.siteName"
-                      :placeholder="$t('startup.entity.siteName.placeholder')"
+                      :placeholder="$t('startup.entity.siteName.label')"
+                      :description="$t('startup.entity.siteName.placeholder')"
                       show-word-limit
                       maxlength="50"
-                    ></el-input>
+                    ></fox-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="8">
-                  <el-form-item
-                    prop="langCode"
-                    :label="$t('startup.entity.langCode.label')">
-                    <el-select
+                  <fox-form-item
+                    :show-message="false"
+                    prop="langCode">
+                    <fox-select
+                      shrink
+                      :placeholder="$t('startup.entity.langCode.label')"
+                      :description="$t('startup.entity.langCode.placeholder')"
                       v-model="entity.langCode"
                       filterable
                       @change="langChange"
-                      style="width: 256px"
                     >
                       <el-option
                         v-for="item in area.language"
@@ -244,8 +248,8 @@
                       >
                         {{ item.languageName }} - {{ item.nativeName }}
                       </el-option>
-                    </el-select>
-                  </el-form-item>
+                    </fox-select>
+                  </fox-form-item>
                 </el-col>
               </el-row>
               <div class="create-site-info">
@@ -342,7 +346,6 @@ export default {
      * @param callback
      */
     let validateDomain = (rule, value, callback) => {
-      console.log()
       if (this.resource.keepDomain.indexOf(this.entity.domain) !== -1) {
         callback(new Error(this.$t('startup.entity.domain.async').toString()))
       } else {
@@ -350,7 +353,7 @@ export default {
           domain: this.entity.domain
         })
           .then(result => {
-            if (result.success) {
+            if (result['success']) {
               callback()
             } else {
               callback(new Error(this.$t('startup.entity.domain.async').toString()))

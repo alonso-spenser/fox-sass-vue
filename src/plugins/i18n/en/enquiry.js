@@ -10,7 +10,7 @@ export default {
         service: false
       },
       {
-        label: 'Mailbox',
+        label: 'Recipients',
         name: 'enquiry-email',
         service: true
       }, {
@@ -94,7 +94,7 @@ export default {
        */
       recordState: [
         {
-          label: 'Waiting',
+          label: 'Pending',
           value: 1,
           type: 'success'
         },
@@ -114,7 +114,7 @@ export default {
           type: 'danger'
         },
         {
-          label: 'Pending',
+          label: 'Hang up',
           value: 5,
           type: 'hold'
         }
@@ -157,10 +157,10 @@ export default {
      * 询盘邮箱
      */
     email: {
-      title: 'Mailbox',
+      title: 'Recipients',
       description: 'Enquiry recipient',
       entity: {
-        exists: 'Mailbox already exists'
+        exists: 'Recipients already exists'
       },
       update: {
         email: {

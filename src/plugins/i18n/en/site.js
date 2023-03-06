@@ -1,71 +1,71 @@
 export default {
   startup: {
-    title: '开始',
-    pageTitle: '创建站点',
-    returnHome: '返回首页',
-    mySites: '我的网站',
-    nextStep: '下一步',
-    prevStep: '上一步',
-    create: '创建站点',
-    chooseTemplate: '选择模板',
-    siteTheme: '网站模版',
-    all: '全部',
-    preview: '预览',
-    original: '设置初始地址',
-    empty: '请选择一个模版',
-    selected: '选择',
-    skip: '跳过',
+    title: 'Startup',
+    pageTitle: 'Create a site',
+    returnHome: 'Return to Home',
+    mySites: 'My Sites',
+    nextStep: 'Next',
+    prevStep: 'Prev',
+    create: 'Submit',
+    chooseTemplate: 'Select Template',
+    siteTheme: 'Website template',
+    all: 'All',
+    preview: 'Preview',
+    original: 'Set default URL',
+    empty: 'Please select a template',
+    selected: 'Select',
+    skip: 'Skip',
     siteType: {
-      heading: '请选择网站类型',
+      heading: 'Please select a site type',
       cod: {
-        heading: '商品单页',
-        subheading: '适用于<b>类似COD商品单页</b>投放的业务类型',
-        tips: '站点会根据您添加的商品自动生成单页，您可以对这些商品单页进行编辑修改，您的访客可以通过该单页直接下单'
+        heading: 'B2C Single page',
+        subheading: 'Applicable to <b>Similar COD product single page</b> business type',
+        tips: 'The site will automatically generate a page based on the items you add. You can edit and modify these page, and your visitors can place orders directly through this page'
       },
       lp: {
-        heading: 'B2B企业单页',
-        subheading: '适用于<b>单页展示 ( 着陆页 ) 以及询盘 </b>的业务类型',
-        tips: '您可以在站点中创建多个独立的单页并进行编辑修改，您的访客可以通过该单页直接进行报名、询盘等表单提交操作'
+        heading: 'B2B Single page',
+        subheading: 'Suitable for <b>Single Page Impressions (Landing Pages) and Inquiry </b> business types',
+        tips: 'You can create and edit multiple independent single pages on the site, and your visitors can directly submit forms such as registration and inquiry through this single page'
       },
       b2b: {
-        heading: 'B2B企业网站',
-        subheading: '适用于<b>官网以及询盘</b>的业务类型',
-        tips: '您可以创建企业的官网，并对整个网站进行编辑修改，您的访客可以浏览企业介绍、商品、新闻等内容以及进行询盘操作'
+        heading: 'B2B Official website',
+        subheading: 'Suitable for <b>Official website and Inquiry </b> business types',
+        tips: 'You can create the official website of the enterprise and edit the entire website. Your visitors can browse the enterprise introduction, products, news and other content and make inquiries'
       },
       b2c: {
-        heading: 'B2C在线商城',
-        subheading: '适用于<b>在线销售</b>的业务类型',
-        tips: '无论您的产品是面向哪种消费者、销往世界的哪一个角落，从“店”商、 在线交易、社交媒体，到点对点个人营销，我们都可以帮您一一实现。'
+        heading: 'B2C Shop',
+        subheading: 'Suitable Business Types for Selling Online',
+        tips: 'No matter what kind of consumers your products are aimed at and which corner of the world they are sold to, we can help you realize them one by one, from "store", online transactions, social media, to point-to-point personal marketing。'
       }
     },
-    initial: '空白主题',
+    initial: 'Default',
     tips: [
-      '创建网站后，原始地址<label class="text-primary">不可修改</label>，请谨慎设置',
-      '您的客户可以通过浏览器访问该地址来查看您的网站和页面',
-      '您可以在之后添加绑定自己的域名并将其设置为网站的主域名'
+      'After a website is created, the original address <label class="text-primary"> cannot be modified </label>. Exercise caution when setting this parameter\n',
+      'Your customers can view your website and pages by visiting this address in their browser\n',
+      'You can then add your own domain name and set it as the site\'s main domain name\n'
     ],
     entity: {
       domain: {
-        label: '网址',
-        placeholder: '请输入网址',
-        custom: '网址不能为空',
-        required: '网址为4~32位，数字、英文或中划线组成',
-        async: '网址已存在，请更换'
+        label: 'URL',
+        placeholder: 'Please enter a URL',
+        custom: 'URL cannot be empty',
+        required: 'The URL is a string of 4 ~ 32 characters, including digits and hyphens (-)',
+        async: 'URL already exists'
       },
       siteName: {
-        label: '网站名称',
-        placeholder: '请输入网站名称',
-        required: '网站名称不能为空',
+        label: 'Site name',
+        placeholder: 'Please enter a site name',
+        required: '',
         custom: ''
       },
       langCode: {
-        label: '默认语言',
-        placeholder: '请选择默认语言',
-        required: '默认语不能为空',
+        label: 'Default language',
+        placeholder: 'Please select the default language',
+        required: '',
         custom: ''
       }
     },
-    success: '程序处理中，预计5分内钟内处理完成，请稍后查看',
+    success: 'The program is being processed. It is expected to be completed within 5 minutes. Please check later',
     clone: {
       pageTitle: '复制站点',
       source: '来源网站',
@@ -148,7 +148,7 @@ export default {
             siteType: [2, 3, 4]
           },
           {
-            title: 'Mailbox',
+            title: 'Recipients',
             icon: 'fo-ico-email',
             code: ['site-enquiry-email'],
             url: '/site/:siteId:/enquiry/email',

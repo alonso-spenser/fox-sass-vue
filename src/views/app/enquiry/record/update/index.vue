@@ -4,12 +4,6 @@
     :offset="200"
     google-style
   >
-    <fox-header-ops
-      :title="$t('enquiry.record.title')"
-      :description="$t('enquiry.recordDetails.title')"
-      divider
-    >
-    </fox-header-ops>
     <div class="enquiry-page">
       <el-row :gutter="20">
         <el-col :span="17">
@@ -33,7 +27,7 @@
                     this.$t('enquiry.record.recordState'),
                     enquiryDetail.state
                   )
-               }}
+                }}
               </el-tag
               >
             </div>
@@ -89,7 +83,7 @@
                   class="text-secondary"
                   target="_blank">{{
                     enquiryDetail.refTitle
-                                  }}</a>
+                  }}</a>
               </el-col>
             </el-row>
             <el-row :gutter="20">
@@ -232,7 +226,7 @@
                 {{ enquiryDetail.client.phone }}
               </p>
               <div class="mt-7">{{ $t('enquiry.recordDetails.userInfoLabel.userSubmit') }}</div>
-              <div class="count mt-3">{{ enquiryDetail.client.enquires }}</div>
+              <div class="count mt-3">{{ enquiryDetail.client['inquiryQuantity'] }}</div>
             </div>
           </fox-section>
           <fox-section

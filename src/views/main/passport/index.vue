@@ -89,7 +89,7 @@ export default {
     ...mapState(['masterModel', 'agentModel'])
   },
   created () {
-    this.setDefaultRegion()
+    // this.setDefaultRegion()
   },
   methods: {
     ...mapMutations(['setMasterModel']),

@@ -3,7 +3,6 @@
     :loading="pageLoading"
     :offset="200"
     google-style
-    :percentage="100"
   >
     <fox-paging-table
       :columns="dataConfig.columns"
@@ -157,7 +156,7 @@ export default {
             label: this.$t('client.tableHeader.remark')
           },
           {
-            prop: 'number',
+            prop: 'inquiryQuantity',
             width: 100,
             align: 'center',
             label: this.$t('client.tableHeader.enquires')
@@ -186,7 +185,7 @@ export default {
     getData (first = false) {
       const { searchConditions, siteId, tableOptions, pagingOptions } = this
       tableOptions.loading = true
-      pagingOptions.firstLoading = first
+      pagingOptions.firstLoading = false
       fetchCustomerList({
         orderBy: searchConditions.orderBy, // 排序
         current: pagingOptions.pageIndex,
@@ -206,7 +205,6 @@ export default {
             if (result.data.records.length > 0) {
               pagingOptions.firstLoading = !first
             }
-            this.batchActions = !(this.pagingOptions.dataset.length === 0 && this.pagingOptions.firstLoading)
           }
         })
       })
