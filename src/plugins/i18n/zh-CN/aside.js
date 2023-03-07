@@ -1,74 +1,194 @@
 export default {
   menuList: [
     {
-      title: 'Job offers',
-      code: ['offer'],
+      title: '首页',
+      abbr: '首页',
       submenu: [],
-      icon: 'el-icon-menu',
-      url: '/offer'
+      icon: 'fo-ico-home',
+      code: ['dashboard-startup'],
+      url: '/dashboard',
+      siteType: [2, 3, 4]
     },
     {
-      title: 'Task',
-      code: ['task-index'],
+      title: '询盘管理',
+      abbr: '询盘',
+      icon: '',
+      url: '/site/:siteId:/enquiry',
+      code: ['site-enquiry-record'],
+      siteType: [2, 3, 4],
       submenu: [
         {
-          title: 'My jobs',
-          code: ['task-index'],
-          url: '/task'
+          title: '我的询盘',
+          icon: 'fo-ico-message',
+          code: ['site-enquiry-record'],
+          url: '/site/:siteId:/enquiry',
+          siteType: [2, 3, 4]
         },
         {
-          title: 'Income',
-          code: ['task-play'],
-          url: '/task/play'
+          title: '询盘表单',
+          icon: 'fo-ico-info',
+          code: ['site-enquiry-form'],
+          url: '/site/:siteId:/enquiry/form',
+          siteType: [2, 3, 4]
+        },
+        {
+          title: '收件邮箱',
+          icon: 'fo-ico-email',
+          code: ['site-enquiry-email'],
+          url: '/site/:siteId:/enquiry/email',
+          siteType: [2, 3, 4]
         }
       ]
     },
     {
-      title: 'Workbench',
-      code: ['workspace'],
-      icon: '',
-      submenu: [
-        {
-          title: 'Worksheet',
-          code: ['worksheet-dashboard'],
-          url: '/worksheet'
-        },
-        {
-          title: 'Keywords ranking',
-          code: ['worksheet-keywords-ranking'],
-          url: '/worksheet/ranking'
-        }
-      ]
+      title: '数据看板',
+      abbr: '数据',
+      submenu: [],
+      icon: 'fo-ico-pie',
+      code: ['site-analytics'],
+      url: '/site/:siteId:/analytics',
+      siteType: [2, 3, 4]
     },
     {
-      title: 'Settings',
-      code: ['settings'],
-      icon: '',
+      title: '排名管理',
+      abbr: '排名',
+      submenu: [],
+      code: ['site-ranking'],
+      icon: 'fo-ico-line-chart',
+      url: '/site/:siteId:/ranking',
+      siteType: [2, 3, 4]
+    },
+    {
+      title: 'SEO设置',
+      abbr: 'SEO',
+      submenu: [],
+      icon: 'fo-ico-sorting',
+      code: ['site-optimize'],
+      url: '/site/:siteId:/optimize',
+      siteType: [2, 3, 4]
+    },
+    {
+      title: '客户管理',
+      abbr: '客户',
+      submenu: [],
+      icon: 'fo-ico-smile',
+      code: ['site-client'],
+      url: '/site/:siteId:/client',
+      siteType: [2, 3, 4]
+    },
+    {
+      title: '数据报表',
+      abbr: '报表',
+      submenu: [],
+      code: ['site-statement'],
+      icon: 'fo-ico-article',
+      url: '/site/:siteId:/report',
+      siteType: [2, 3, 4]
+    },
+    {
+      title: '网站管理',
+      abbr: '网站',
+      icon: 'fo-ico-wangzhanshezhi',
+      url: '/site/:siteId:/dashboard',
+      siteType: [2, 3, 4],
+      code: ['site'],
       submenu: [
         {
-          title: 'Task type',
-          code: ['settings-task-type'],
-          url: '/settings/task-type'
+          title: '我的网站',
+          icon: 'fo-ico-english',
+          code: ['dashboard-site'],
+          url: '/owned',
+          siteType: [2, 3, 4]
         },
         {
-          title: 'Pricing scheme',
-          code: ['settings-cost'],
-          url: '/settings/cost'
+          title: '产品集合',
+          abbr: '产品',
+          submenu: [],
+          icon: 'fo-ico-package',
+          code: ['site-article-collection'],
+          url: '/site/:siteId:/goods/collection',
+          siteType: [3, 4]
         },
         {
-          title: 'Audit project',
-          code: ['audit-project'],
-          url: '/settings/audit/project',
-          submenu: []
+          title: '所有产品',
+          icon: 'fo-ico-app',
+          code: ['site-goods'],
+          url: '/site/:siteId:/goods',
+          siteType: [3, 4]
         },
         {
-          title: 'Audit config',
-          code: ['audit-config'],
-          url: '/settings/audit/config',
-          submenu: []
+          title: '文章集合',
+          abbr: '文章',
+          submenu: [],
+          code: ['site-article-collection'],
+          icon: 'fo-ico-package',
+          url: '/site/:siteId:/article/collection',
+          siteType: [3, 4]
+        },
+        {
+          title: '所有文章',
+          abbr: '文章',
+          submenu: [],
+          code: ['site-article'],
+          icon: 'fo-ico-article',
+          url: '/site/:siteId:/article',
+          siteType: [3, 4]
+        },
+        {
+          title: '页面管理',
+          abbr: '页面',
+          submenu: [],
+          code: ['site-page'],
+          icon: 'fo-ico-frame',
+          url: '/site/:siteId:/pages',
+          siteType: [3, 4]
+        },
+        {
+          title: '导航菜单',
+          abbr: '菜单',
+          submenu: [],
+          icon: 'fo-ico-menu',
+          code: ['site-navigation'],
+          url: '/site/:siteId:/navigation',
+          siteType: [3, 4]
+        },
+        {
+          title: '下载中心',
+          abbr: '下载',
+          submenu: [],
+          icon: 'fo-ico-download',
+          code: ['site-download'],
+          url: '/site/:siteId:/download',
+          siteType: [3, 4]
+        },
+        {
+          title: '主题风格 ',
+          abbr: '主题',
+          submenu: [],
+          code: ['site-masterplate'],
+          icon: 'fo-ico-palette',
+          url: '/site/:siteId:/masterplate',
+          siteType: [2, 3, 4]
+        },
+        {
+          title: '网站设置',
+          abbr: '设置',
+          submenu: [],
+          code: ['site-settings'],
+          icon: 'fo-ico-setting',
+          url: '/site/:siteId:/settings',
+          siteType: [2, 3, 4]
         }
       ]
     }
+    // {
+    //   title: '海关数据',
+    //   abbr: '海关',
+    //   submenu: [],
+    //   icon: 'icon-haiguan_o',
+    //   url: '/site/:siteId:/customs',
+    //   siteType: [2, 3, 4]
+    // }
   ],
   mainMenuList: [
     {

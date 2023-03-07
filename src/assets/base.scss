@@ -1649,8 +1649,8 @@ hr {
     justify-items: center;
 
     img {
-      height: 30px;
-      max-width: 100px;
+      max-height: 30px;
+      max-width: 120px;
       margin-left: 20px;
 
       @media (max-width: 768px) {
@@ -1667,6 +1667,10 @@ hr {
 
   .iconfont {
     font-size: 26px;
+  }
+
+  .el-menu {
+    background: none;
   }
 
   .el-submenu {

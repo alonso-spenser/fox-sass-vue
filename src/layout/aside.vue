@@ -106,7 +106,7 @@ export default {
     },
     getMenuList () {
       this.siteId = this.$route.params.siteId || this.siteModel.id
-      let list = JSON.parse(JSON.stringify(this.$t('siteAside.menuList')))
+      let list = JSON.parse(JSON.stringify(this.$t('menuList')))
       let { params } = this.$route
       params = {
         ...params,
@@ -141,7 +141,8 @@ export default {
      * 不同网站类型，对应不同菜单项
      */
     validSiteType (role = []) {
-      return role.indexOf(this.siteModel.siteType) > -1
+      return true
+      // return role.indexOf(this.siteModel.siteType) > -1
     },
     /**
      * 打开菜单

@@ -1,0 +1,147 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2729351 */
+  src: url('iconfont.woff2?t=1632883978837') format('woff2'),
+       url('iconfont.woff?t=1632883978837') format('woff'),
+       url('iconfont.ttf?t=1632883978837') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fo-ico-english:before {
+  content: "\eb6c";
+}
+
+.fo-ico-palette:before {
+  content: "\eb6e";
+}
+
+.fo-ico-theme:before {
+  content: "\eb6f";
+}
+
+.fo-ico-menu:before {
+  content: "\eb71";
+}
+
+.fo-ico-support:before {
+  content: "\eb72";
+}
+
+.fo-ico-info:before {
+  content: "\eb7a";
+}
+
+.fo-ico-loading:before {
+  content: "\eb7b";
+}
+
+.fo-ico-setting:before {
+  content: "\eb80";
+}
+
+.fo-ico-code:before {
+  content: "\eb81";
+}
+
+.fo-ico-home:before {
+  content: "\eb82";
+}
+
+.fo-ico-refresh:before {
+  content: "\eb84";
+}
+
+.fo-ico-tips:before {
+  content: "\eb85";
+}
+
+.fo-ico-article:before {
+  content: "\eb86";
+}
+
+.fo-ico-menu-add:before {
+  content: "\eb87";
+}
+
+.fo-ico-frame:before {
+  content: "\eb88";
+}
+
+.fo-ico-app:before {
+  content: "\eb89";
+}
+
+.fo-ico-msg:before {
+  content: "\ebaa";
+}
+
+.fo-ico-share:before {
+  content: "\ebab";
+}
+
+.fo-ico-smile:before {
+  content: "\ebac";
+}
+
+.fo-ico-love:before {
+  content: "\ebaf";
+}
+
+.fo-ico-diagram:before {
+  content: "\ebb3";
+}
+
+.fo-ico-line-chart:before {
+  content: "\ebb4";
+}
+
+.fo-ico-download:before {
+  content: "\ebb5";
+}
+
+.fo-ico-pie:before {
+  content: "\ebb6";
+}
+
+.fo-ico-histogram:before {
+  content: "\ebb7";
+}
+
+.fo-ico-package:before {
+  content: "\ebb9";
+}
+
+.fo-ico-earth:before {
+  content: "\ebbb";
+}
+
+.fo-ico-sorting:before {
+  content: "\ebbd";
+}
+
+.fo-ico-service:before {
+  content: "\ebbe";
+}
+
+.fo-ico-customs:before {
+  content: "\ebbf";
+}
+
+.fo-ico-news:before {
+  content: "\ebca";
+}
+
+.fo-ico-message:before {
+  content: "\ebc9";
+}
+
+.fo-ico-email:before {
+  content: "\ebcb";
+}
+
