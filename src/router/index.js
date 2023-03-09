@@ -378,10 +378,6 @@ const routes = [
               },
               crumbs: [
                 {
-                  title: i18n.t('site.dashboard.title'),
-                  path: '/dashboard'
-                },
-                {
                   title: i18n.t('settings.domain.title'),
                   path: '/site/:siteId:/settings/domain'
                 }
@@ -558,10 +554,6 @@ const routes = [
           },
           crumbs: [
             {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
-            {
               title: i18n.t('article.paging.title'),
               path: '/site/:siteId:/article'
             }
@@ -584,10 +576,6 @@ const routes = [
             previous: '/site/:siteId:/article'
           },
           crumbs: [
-            {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
             {
               title: i18n.t('article.paging.title'),
               path: '/site/:siteId:/article'
@@ -653,10 +641,6 @@ const routes = [
           },
           crumbs: [
             {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
-            {
               title: i18n.t('article.paging.title'),
               path: '/site/:siteId:/article'
             }
@@ -679,10 +663,6 @@ const routes = [
           },
           crumbs: [
             {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
-            {
               title: i18n.t('article.paging.title'),
               path: '/site/:siteId:/article'
             }
@@ -704,10 +684,6 @@ const routes = [
             url: '/site/:siteId:/:tagType:'
           },
           crumbs: [
-            {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            },
             {
               title: i18n.t('article.paging.title'),
               path: '/site/:siteId:/article'

@@ -1,6 +1,5 @@
 <template>
-  <el-main
-    style="width: 60%">
+  <div style="width:60%">
     <fox-page-header></fox-page-header>
     <fox-section v-show="inputVisible">
       <el-form
@@ -145,7 +144,7 @@
         </el-button>
       </p>
     </fox-section>
-  </el-main>
+  </div>
 </template>
 
 <script>
@@ -286,9 +285,7 @@ export default {
      * 完成验证并跳转到列表
      */
     finishVerify () {
-      this.$router.push({
-        path: `/site/${this.siteId}/settings/domain`
-      })
+      this.redirectURL(`/site/${this.siteId}/settings/domain`)
     },
     /**
      * 关闭付费弹窗
@@ -297,7 +294,7 @@ export default {
     unpaidClose (pay) {
       this.unpaidVisible = false
       if (pay) {
-        this.$router.push(`/site/${this.siteModel.id}/${this.siteModel.siteType + 1000}/renew`)
+        this.redirectURL(`/site/${this.siteModel.id}/${this.siteModel.siteType + 1000}/renew`)
       }
     }
   }

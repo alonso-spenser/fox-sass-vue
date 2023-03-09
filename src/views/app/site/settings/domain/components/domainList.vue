@@ -14,21 +14,24 @@
           {{ $t('settings.domain.add') }}
         </el-button>
       </template>
+      <fox-paging-table
+        :heading="heading"
+        :multiSelect="false"
+        :columns="dataConfig.columns"
+        :actions="dataConfig.actions"
+        :dataset="dataset"
+        :loading="tableOptions.loading"
+        :first-loading="pagingOptions.firstLoading"
+        :empty="dataConfig.empty"
+        :page-index.sync="pagingOptions.pageIndex"
+        :page-size.sync="pagingOptions.pageSize"
+        :record-count="pagingOptions.recordCount"
+        :rows-class-name="dataConfig.rowsClassName"
+        :border="false"
+        :card-style="false"
+      >
+      </fox-paging-table>
     </fox-section>
-    <fox-paging-table
-      :multiSelect="false"
-      :columns="dataConfig.columns"
-      :actions="dataConfig.actions"
-      :dataset="dataset"
-      :loading="tableOptions.loading"
-      :first-loading="pagingOptions.firstLoading"
-      :empty="dataConfig.empty"
-      :page-index.sync="pagingOptions.pageIndex"
-      :page-size.sync="pagingOptions.pageSize"
-      :record-count="pagingOptions.recordCount"
-      :rows-class-name="dataConfig.rowsClassName"
-    >
-    </fox-paging-table>
     <!--弹窗-->
     <el-dialog
       :title="$t('settings.domain.change.heading')"
@@ -37,17 +40,19 @@
       @close="dialogClose"
       width="40%">
       {{ $t('settings.domain.change.content') }}
-      <el-radio-group
-        v-loading="domainLoading"
-        @change="changeDomain"
-        class="el-radio-block mt-5"
-        v-model="domainId">
-        <el-radio
-          :label="item.id"
-          v-for="(item, index) in domains"
-          :key="index">{{ item.domain }}
-        </el-radio>
-      </el-radio-group>
+      <div>
+        <el-radio-group
+          v-loading="domainLoading"
+          @change="changeDomain"
+          class="el-radio-block mt-5"
+          v-model="domainId">
+          <el-radio
+            :label="item.id"
+            v-for="(item, index) in domains"
+            :key="index">{{ item.domain }}
+          </el-radio>
+        </el-radio-group>
+      </div>
       <div
         slot="footer"
         class="dialog-footer">
