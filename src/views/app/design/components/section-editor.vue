@@ -11,7 +11,7 @@
     <div
       class="editor-section-content"
       v-loading="schemaLoading"
-      element-loading-background="#535366"
+      element-loading-background="#424242"
     >
       <div
         class="editor-section-item"
@@ -87,7 +87,8 @@
               </template>
             </template>
             <template v-else>
-              <template v-if="o.multiple === 2 && o.elements.length === 1 && (o.elements[0].type === 'productCollectionPicker' || o.elements[0].type === 'articleCollectionPicker')">
+              <template
+                v-if="o.multiple === 2 && o.elements.length === 1 && (o.elements[0].type === 'productCollectionPicker' || o.elements[0].type === 'articleCollectionPicker')">
                 <div
                   class="editor-section-item"
                   :key="`multiple-collection-${index}`"

@@ -11,7 +11,7 @@
       class="editor-section-tag"
       v-if="sectionGroup === 3000">
       <div
-        :class="`fo-tag ${ item.id === tagId ? 'active' : ''}`"
+        :class="`fox-tag ${ item.id === tagId ? 'active' : ''}`"
         v-for="item in tagList"
         :key="item.id"
         @click="tagChange(item.id)">
@@ -40,7 +40,7 @@
             <div :class="`section-item-mask ${sectionId ? 'el-icon-refresh' : 'el-icon-plus'}`">
               <small>{{
                   sectionId ? $t('design.sectionSelector.action.change') : $t('design.sectionSelector.action.add')
-                     }}</small>
+                }}</small>
             </div>
           </div>
           <template slot>

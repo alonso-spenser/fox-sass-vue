@@ -23,7 +23,7 @@
         v-show="displaySection"
         v-loading="pageLoading"
         class="fox-section-panel"
-        element-loading-background="#535366"
+        element-loading-background="#424242"
       >
         <!-- header -->
         <template

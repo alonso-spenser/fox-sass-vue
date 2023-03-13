@@ -5,7 +5,7 @@
     </h3>
     <div
       class="editor-section-content"
-      element-loading-background="#535366"
+      element-loading-background="#424242"
     >
       <el-collapse
         v-model="activeName"
@@ -64,7 +64,8 @@
               </template>
             </template>
             <template v-else>
-              <template v-if="o.multiple === 2 && o.elements.length === 1 && (o.elements[0].type === 'productCollectionPicker' || o.elements[0].type === 'articleCollectionPicker')">
+              <template
+                v-if="o.multiple === 2 && o.elements.length === 1 && (o.elements[0].type === 'productCollectionPicker' || o.elements[0].type === 'articleCollectionPicker')">
                 <div
                   class="editor-section-item"
                   :key="`multiple-collection-${index}`"

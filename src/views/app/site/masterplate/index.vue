@@ -11,7 +11,7 @@
       v-if="false"
     >
     </fox-page-header>
-    <div class="neighbor fox-google-style percent-100" slot="header">
+    <div class="neighbor fox-google-style" slot="header">
       <div class="fox-page-content text-right">
         <neighbor-action
           :drop-actions="dropAction"

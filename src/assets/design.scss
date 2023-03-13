@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 $hover-color: rgba(255, 255, 255, .8);
-$color-gray: #ababb4;
+$color-gray: #ababab;
 $color-info: rgba(255, 255, 255, .3);
 @import "var";
 
@@ -37,7 +37,7 @@ builder容器
     height: 100vh;
     max-height: 100%;
     width: 250px;
-    background-color: #424257;
+    background-color: #424242;
     transition: all 0.3s;
   }
 
@@ -130,8 +130,8 @@ builder容器
   // 上
   .editor-preview-navigation {
     height: 56px;
-    background-color: #424257;
-    border-bottom: 1px solid #38384e;
+    background-color: #424242;
+    border-bottom: 1px solid #383838;
     width: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -169,7 +169,7 @@ builder容器
           padding: 10px 6px;
           height: 56px;
           cursor: pointer;
-          border-bottom: 6px solid #424257;
+          border-bottom: 6px solid #424242;
 
           svg {
             width: 26px;
@@ -248,7 +248,7 @@ builder容器
  * editor page settings layout (left panel)
  */
 .editor-settings {
-  border-right: 1px solid #38384e;
+  border-right: 1px solid #383838;
   position: absolute;
   top: 0;
   left: 0;
@@ -262,8 +262,8 @@ builder容器
 
   .editor-settings-heading {
     height: 55px;
-    background-color: #424257;
-    border-bottom: 1px solid #38384e;
+    background-color: #424242;
+    border-bottom: 1px solid #383838;
     color: $hover-color;
     line-height: 54px;
     font-weight: bold;
@@ -284,7 +284,7 @@ builder容器
     a {
       display: inline-block;
       padding: 0 20px;
-      color: #ababb4;
+      color: #ababab;
       font-weight: normal;
       transition: all 0.5s;
       background-color: rgba(0, 0, 0, .15);
@@ -304,7 +304,7 @@ builder容器
   .editor-settings-type {
     padding: 0;
     margin: 0;
-    background-color: #424257;
+    background-color: #424242;
 
     li {
       height: 50px;
@@ -312,16 +312,16 @@ builder容器
       display: inline-block;
       width: 50%;
       text-align: center;
-      border-bottom: 2px solid #424257;
+      border-bottom: 2px solid #424242;
       cursor: pointer;
       line-height: 50px;
       font-size: 14px;
       font-weight: normal;
-      color: #ababb4;
+      color: #ababab;
 
       &.active {
         border-color: rgba(255, 255, 255, .2);
-        //background-color: #535366;
+        //background-color: #535353;
         color: $hover-color;
       }
     }
@@ -345,7 +345,7 @@ section 列表容器
   overflow-x: hidden;
   overflow-y: auto;
   position: absolute;
-  background-color: #424257;
+  background-color: #424242;
 
   .toolbar-change {
     position: absolute;
@@ -376,8 +376,8 @@ section 列表容器
 */
 .fox-section {
   position: relative;
-  border-bottom: 1px solid #424257;
-  background-color: #535366;
+  border-bottom: 1px solid #424242;
+  background-color: #535353;
   cursor: pointer;
   overflow: hidden;
   height: 50px;
@@ -388,7 +388,7 @@ section 列表容器
     height: 16px;
     object-fit: contain;
     object-position: center;
-    fill: #ababb4;
+    fill: #ababab;
     vertical-align: middle;
     display: inline-block;
     padding: 0;
@@ -417,7 +417,7 @@ section 列表容器
     line-height: 50px;
     font-weight: normal;
     cursor: pointer;
-    color: #ababb4;
+    color: #ababab;
     position: relative;
     z-index: 15;
   }
@@ -458,7 +458,7 @@ section 列表容器
     a {
       line-height: 50px;
       display: block;
-      color: #ababb4;
+      color: #ababab;
     }
   }
 
@@ -511,9 +511,9 @@ section 列表容器
 
     .addition-paste {
       border-radius: 5px;
-      color: #ababb4;
+      color: #ababab;
       transition: $transition;
-      border: 1px solid #ababb4;
+      border: 1px solid #ababab;
       display: inline-block;
 
       &:hover {
@@ -548,7 +548,7 @@ section 列表容器
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #424257;
+  background-color: #424242;
   z-index: 199;
   width: 250px;
 
@@ -565,8 +565,8 @@ section 列表容器
 
   &-title {
     height: 55px;
-    background-color: #424257;
-    border-bottom: 1px solid #38384e;
+    background-color: #424242;
+    border-bottom: 1px solid #383838;
     margin: 0;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
     line-height: 54px;
@@ -604,7 +604,7 @@ section 列表容器
   }
 
   &-setting {
-    background-color: #424257;
+    background-color: #424242;
     height: 50px;
     text-indent: 20px;
     font-size: 14px;
@@ -619,8 +619,8 @@ section 列表容器
     cursor: pointer;
 
     &:not(:first-child) {
-      border-top: 1px solid #38384e;
-      //border-bottom: 1px solid #38384e;
+      border-top: 1px solid #383838;
+      //border-bottom: 1px solid #383838;
     }
 
     &:before {
@@ -663,16 +663,16 @@ section 列表容器
     width: 120px;
     overflow-x: hidden;
     overflow-y: auto;
-    border-left: 1px solid #38384e;
-    border-right: 1px solid #38384e;
+    border-left: 1px solid #383838;
+    border-right: 1px solid #383838;
     z-index: 100;
-    background-color: #535366;
+    background-color: #535353;
 
 
     .fox-tag {
       position: relative;
-      border-bottom: 1px solid #424257;
-      background-color: #535366;
+      border-bottom: 1px solid #424242;
+      background-color: #535353;
       color: #a9a9a9;
       cursor: pointer;
       overflow: hidden;
@@ -712,7 +712,7 @@ section 列表容器
     width: 250px;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #535366;
+    background-color: #535353;
 
     &.active {
       bottom: 51px;
@@ -722,8 +722,8 @@ section 列表容器
 
   &-bottom {
     padding: 15px;
-    //border-top: 1px solid #38384e;
-    //border-bottom: 1px solid #38384e;
+    //border-top: 1px solid #383838;
+    //border-bottom: 1px solid #383838;
 
     .el-button {
       border: 0;
@@ -739,7 +739,7 @@ section 列表容器
 
 .sub-item {
   padding: 5px 15px;
-  border-bottom: 1px solid #424257;
+  border-bottom: 1px solid #424242;
 }
 
 .editor-section-item {
@@ -843,16 +843,16 @@ section 列表容器
 
   .fox-section-item {
     .el-collapse-item__header {
-      background: #424257;
-      color: #ababb4;
+      background: #424242;
+      color: #ababab;
       padding-left: 15px;
       padding-right: 15px;
-      border-bottom-color: #38384e;
+      border-bottom-color: #383838;
     }
 
     .el-collapse-item__wrap {
-      background: #535366;
-      border-bottom-color: #535366;
+      background: #535353;
+      border-bottom-color: #535353;
     }
   }
 }
@@ -870,12 +870,12 @@ section 列表容器
     }
 
     .el-collapse-item__header {
-      background: #535366;
-      color: #ababb4;
+      background: #535353;
+      color: #ababab;
       padding-left: 15px;
       padding-right: 15px;
       justify-content: space-between;
-      border-bottom-color: #424257;
+      border-bottom-color: #424242;
 
       &.is-active {
         .fox-section-sub-title {
@@ -927,13 +927,13 @@ section 列表容器
         padding-left: 8px;
         padding-right: 8px;
         font-size: 16px;
-        color: #ababb4;
+        color: #ababab;
       }
     }
 
     .el-collapse-item__wrap {
-      background: #535366;
-      border-bottom-color: #535366;
+      background: #535353;
+      border-bottom-color: #535353;
     }
   }
 }
@@ -946,7 +946,7 @@ section 列表容器
   color: rgba(255, 255, 255, .5);
   text-indent: 25px;
   line-height: 50px;
-  border-top: 1px solid #38384e;
+  border-top: 1px solid #383838;
   height: 50px;
   overflow: hidden;
 
@@ -966,14 +966,14 @@ section 列表容器
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #424257;
+  background-color: #424242;
   z-index: 1199;
   width: 250px;
 
   .editor-explore-title {
     height: 56px;
-    background-color: #424257;
-    border-bottom: 1px solid #38384e;
+    background-color: #424242;
+    border-bottom: 1px solid #383838;
     margin: 0;
     line-height: 56px;
     font-size: 16px;
@@ -1245,7 +1245,7 @@ section 列表容器
 .center-link {
   position: relative;
   margin: 0;
-  border-bottom: 1px solid #38384e;
+  border-bottom: 1px solid #383838;
 
   a {
     color: $themeColor;
@@ -1285,12 +1285,12 @@ section 列表容器
 */
 .editor-section-picker {
   position: relative;
-  border-bottom: 1px solid #424257;
-  background-color: #535366;
+  border-bottom: 1px solid #424242;
+  background-color: #535353;
   cursor: pointer;
   font-size: 14px;
   font-weight: normal;
-  color: #ababb4;
+  color: #ababab;
   line-height: 40px;
   z-index: 3;
   padding: 0 35px 0 10px;
@@ -1365,8 +1365,8 @@ section 列表容器
   display: flex;
   z-index: 150;
   align-items: center;
-  background-color: #424257;
-  border-top: 1px solid #38384e;
+  background-color: #424242;
+  border-top: 1px solid #383838;
 }
 
 
@@ -1403,7 +1403,7 @@ section 列表容器
   &-footer {
     background-color: #409EFF;
     width: 250px;
-    color: #ababb4;
+    color: #ababab;
     position: fixed;
     right: 0;
     bottom: 0;
