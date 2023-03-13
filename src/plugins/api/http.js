@@ -18,12 +18,12 @@ http.interceptors.request.use(
     let admin = router.currentRoute.fullPath.indexOf('/main') === 0
     config.headers.version = '0.0.1'
     config.headers.timestamp = new Date().getTime()
-    config.headers['OS'] = 0
-    config.headers['App'] = admin ? 3000 : 1000
-    config.headers['Platform'] = '1400692472106991622'
-    config.headers['Agent'] = process.env.VUE_APP_DESIGN_AGENT
-    config.headers['Authorization'] = passport.token(admin)
-    config.headers['Region'] = ''
+    config.headers['os'] = 0
+    config.headers['app'] = admin ? 3000 : 1000
+    config.headers['platform'] = '1400692472106991622'
+    config.headers['agent'] = process.env.VUE_APP_DESIGN_AGENT
+    config.headers['authorization'] = passport.token(admin)
+    config.headers['region'] = ''
     return config
   },
   (error) => {
