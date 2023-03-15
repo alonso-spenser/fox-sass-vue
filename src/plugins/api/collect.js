@@ -23,7 +23,7 @@ export const fetchCollectRuleDelete = (params = {}) => http.post('/api/collect/r
 /**
  * 数据采集
  */
-export const fetchCollect = (params = {}) => http.post('/api/article/collect', params)
+export const fetchCollect = (params = {}) => http.post('/api/collect/execute', params)
 
 /**
  * 万邦数据采集

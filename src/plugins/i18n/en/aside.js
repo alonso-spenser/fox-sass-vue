@@ -49,15 +49,15 @@ export default {
       url: '/site/:siteId:/analytics',
       siteType: [2, 3, 4]
     },
-    {
-      title: 'Ranking',
-      abbr: '排名',
-      submenu: [],
-      code: ['site-ranking'],
-      icon: 'fo-ico-line-chart',
-      url: '/site/:siteId:/ranking',
-      siteType: []
-    },
+    // {
+    //   title: 'Ranking',
+    //   abbr: '排名',
+    //   submenu: [],
+    //   code: ['site-ranking'],
+    //   icon: 'fo-ico-line-chart',
+    //   url: '/site/:siteId:/ranking',
+    //   siteType: []
+    // },
     {
       title: 'SEO',
       abbr: 'SEO',

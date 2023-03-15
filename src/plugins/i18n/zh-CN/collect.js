@@ -54,28 +54,28 @@ export default {
         updateTitle: '编辑采集规则',
         entity: {
           itemSubtitleSelector: {
-            label: '副标题CSS选择器',
+            label: '副标题',
             tips: '',
             placeholder: '副标题CSS选择器',
             required: '请输入副标题CSS选择器',
             custom: ''
           },
           timeFormat: {
-            label: '时间格式化',
+            label: '格式化',
             tips: '',
             placeholder: '时间格式化',
             required: '请输入时间格式化',
             custom: ''
           },
           timePattern: {
-            label: '时间提取正则',
+            label: '提取正则',
             tips: '',
             placeholder: '时间提取正则',
             required: '请输入时间提取正则',
             custom: ''
           },
           timeSelector: {
-            label: '时间选择器',
+            label: '选择器',
             tips: '',
             placeholder: '时间选择器',
             required: '请输入时间选择器',
@@ -89,42 +89,42 @@ export default {
             custom: ''
           },
           itemLink: {
-            label: '详情链接 CSS选择器',
+            label: '详情链接',
             tips: '',
             placeholder: '详情链接 CSS选择器',
             required: '请输入详情链接 CSS选择器',
             custom: ''
           },
           brandSelector: {
-            label: '品牌 CSS选择器',
+            label: '品牌',
             tips: '',
             placeholder: '品牌 CSS选择器',
             required: '请输入品牌 CSS选择器',
             custom: ''
           },
           detailDescriptionSelector: {
-            label: '详情页 内容CSS选择器',
+            label: '内容',
             tips: '',
             placeholder: '详情页 内容CSS选择器',
             required: '请输入详情页 内容CSS选择器',
             custom: ''
           },
           detailImgSrcSelector: {
-            label: '详情页 图片地址 CSS选择器',
+            label: '图片地址',
             tips: '',
             placeholder: '详情页 图片地址 CSS选择器',
             required: '请输入详情页 图片地址 CSS选择器',
             custom: ''
           },
           detailSummarySelector: {
-            label: '详情页 摘要CSS选择器',
+            label: '摘要',
             tips: '',
             placeholder: '详情页 摘要CSS选择器',
             required: '请输入详情页 摘要CSS选择器',
             custom: ''
           },
           detailTitleSelector: {
-            label: '详情页 标题CSS选择器',
+            label: '标题',
             tips: '',
             placeholder: '详情页 标题CSS选择器',
             required: '请输入详情页 标题CSS选择器',
@@ -145,21 +145,21 @@ export default {
             custom: ''
           },
           imgListSelector: {
-            label: '多图 CSS选择器',
+            label: '多图',
             tips: '',
             placeholder: '多图 CSS选择器',
             required: '请输入多图 CSS选择器',
             custom: ''
           },
           imgListSrcSelector: {
-            label: '图片地址 CSS选择器',
+            label: '图片地址',
             tips: '',
             placeholder: '图片地址 CSS选择器',
             required: '请输入图片地址 CSS选择器',
             custom: ''
           },
           itemImgSelector: {
-            label: '图片CSS选择器',
+            label: '图片',
             tips: '',
             placeholder: '图片CSS选择器',
             required: '请输入图片CSS选择器',
@@ -173,28 +173,28 @@ export default {
             custom: ''
           },
           itemImgSrcSelector: {
-            label: '图片地址 CSS选择器',
+            label: '图片地址',
             tips: '',
             placeholder: '图片地址 CSS选择器',
             required: '请输入图片地址 CSS选择器',
             custom: ''
           },
           itemSelector: {
-            label: '项目CSS选择器',
+            label: '项目',
             tips: '',
             placeholder: '项目CSS选择器',
             required: '请输入项目CSS选择器',
             custom: ''
           },
           itemSummarySelector: {
-            label: '摘要 CSS选择器',
+            label: '摘要',
             tips: '',
             placeholder: '摘要 CSS选择器',
             required: '请输入摘要 CSS选择器',
             custom: ''
           },
           itemTitleSelector: {
-            label: '标题CSS选择器',
+            label: '标题',
             tips: '',
             placeholder: '标题CSS选择器',
             required: '请输入标题CSS选择器',
@@ -229,70 +229,70 @@ export default {
             custom: ''
           },
           skuListImgSelector: {
-            label: 'SKU 图片 CSS选择器',
+            label: '图片',
             tips: '',
             placeholder: 'SKU 图片 CSS选择器',
             required: '请输入SKU 图片 CSS选择器',
             custom: ''
           },
           skuListSelector: {
-            label: 'SKU CSS选择器',
+            label: 'SKU',
             tips: '',
             placeholder: 'SKU CSS选择器',
             required: '请输入SKU CSS选择器',
             custom: ''
           },
           skuListSrcSelector: {
-            label: '图片地址 CSS选择器',
+            label: '图片地址',
             tips: '',
             placeholder: '图片地址 CSS选择器',
             required: '请输入图片地址 CSS选择器',
             custom: ''
           },
           skuListValueSelector: {
-            label: 'SKU 属性值 CSS选择器',
+            label: 'SKU 属性值',
             tips: '',
             placeholder: 'SKU 属性值 CSS选择器',
             required: '请输入SKU 属性值 CSS选择器',
             custom: ''
           },
           skuListKeySelector: {
-            label: 'SKU 属性名 CSS选择器',
+            label: 'SKU 属性名',
             tips: '',
             placeholder: 'SKU 属性名 CSS选择器',
             required: '请输入SKU 属性名 CSS选择器',
             custom: ''
           },
           specKeySelector: {
-            label: '规格参数 KEY CSS选择器',
+            label: '规格参数 KEY',
             tips: '',
             placeholder: '规格参数 KEY CSS选择器',
             required: '请输入规格参数 KEY CSS选择器',
             custom: ''
           },
           specSelector: {
-            label: '规格参数 CSS选择器',
+            label: '规格参数',
             tips: '',
             placeholder: '规格参数 CSS选择器',
             required: '请输入规格参数 CSS选择器',
             custom: ''
           },
           specSelectorGroup: {
-            label: '规格参数分组 CSS选择器',
+            label: '规格参数分组',
             tips: '',
             placeholder: '规格参数分组 CSS选择器',
             required: '请输入规格参数分组 CSS选择器',
             custom: ''
           },
           specTitleSelector: {
-            label: '规格参数分组标题 KEY CSS选择器',
+            label: '规格参数分组标题 KEY',
             tips: '',
             placeholder: '规格参数分组标题 KEY CSS选择器',
             required: '请输入规格参数分组标题 KEY CSS选择器',
             custom: ''
           },
           specValueSelector: {
-            label: '规格参数 VALUE CSS选择器',
+            label: '规格参数 VALUE',
             tips: '',
             placeholder: '规格参数 VALUE CSS选择器',
             required: '请输入规格参数 VALUE CSS选择器',

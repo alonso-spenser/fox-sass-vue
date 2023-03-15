@@ -49,15 +49,15 @@ export default {
       url: '/site/:siteId:/analytics',
       siteType: [2, 3, 4]
     },
-    {
-      title: '排名管理',
-      abbr: '排名',
-      submenu: [],
-      code: ['site-ranking'],
-      icon: 'fo-ico-line-chart',
-      url: '/site/:siteId:/ranking',
-      siteType: [2, 3, 4]
-    },
+    // {
+    //   title: '排名管理',
+    //   abbr: '排名',
+    //   submenu: [],
+    //   code: ['site-ranking'],
+    //   icon: 'fo-ico-line-chart',
+    //   url: '/site/:siteId:/ranking',
+    //   siteType: []
+    // },
     {
       title: 'SEO设置',
       abbr: 'SEO',
@@ -76,15 +76,15 @@ export default {
       url: '/site/:siteId:/client',
       siteType: [2, 3, 4]
     },
-    {
-      title: '数据报表',
-      abbr: '报表',
-      submenu: [],
-      code: ['site-statement'],
-      icon: 'fo-ico-article',
-      url: '/site/:siteId:/report',
-      siteType: [2, 3, 4]
-    },
+    // {
+    //   title: '数据报表',
+    //   abbr: '报表',
+    //   submenu: [],
+    //   code: ['site-statement'],
+    //   icon: 'fo-ico-article',
+    //   url: '/site/:siteId:/report',
+    //   siteType: []
+    // },
     {
       title: '网站管理',
       abbr: '网站',

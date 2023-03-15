@@ -27,7 +27,8 @@ export default {
     Required: /[\S]/,
     Email: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
     Int: /(-)?(\d+)$/,
-    IntPositive: /^[0-9]*[1-9][0-9]$/,
+    IntPositive: /^\+?[0-9]\d*$/,
+    /// ^[0-9]*[1-9][0-9]$/,
     IntZeroPositive: /^\+?[1-9]\d*$/,
     Float: /(-)?(\d+)(((\.)(\d)+))?/,
     FloatPositive: /^([0-9]\d*(.\d+)*|0\.(?=\d*[1-9]\d*)\d+)$/,
@@ -43,7 +44,18 @@ export default {
     PostalCode: /\d{6}/,
     Account: /^[A-Za-z0-9@\.]{4,19}$/,
     URL: /^[0-9a-zA-Z_]{1,}$/,
-    Domain: /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/
+    Domain: /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/,
+    checkLength: (rule, value, callback) => {
+      if (value) {
+        if (value.length <= rule.length && value.length >= 0) {
+          callback()
+        } else {
+          callback(new Error(i18n.t('validatorRole.checkLength') + rule.length))
+        }
+      } else {
+        callback()
+      }
+    }
   },
   dateFormat (dt, format) {
     let o = {

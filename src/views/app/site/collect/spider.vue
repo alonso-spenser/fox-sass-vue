@@ -1,446 +1,472 @@
 <template>
-  <main>
-    <fox-page-loading
-      :loading="pageLoading"
-      :invalid="pageIsValid"
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <div class="fox-fixed-action" v-if="unsaved">
+      <div class="fox-fixed-action-label">
+        采集使用异步方式执行，不会直接返回结果。在采集前请测试采集规则是否正确。
+      </div>
+      <div class="fox-fixed-action-button">
+        <el-button
+          plain
+          size="small"
+          @click="copyRule()"
+          v-show="unsaved">复制规则
+        </el-button>
+        <el-button
+          type="primary"
+          size="small"
+          @click="formValidation(true)"
+          v-show="unsaved"
+          :loading="loading">测试
+        </el-button>
+        <el-button
+          type="danger"
+          size="small"
+          @click="formValidation(false)"
+          v-show="tested"
+          :disabled="loading">提交采集任务
+        </el-button>
+      </div>
+    </div>
+    <div
+      style="border: 1px solid red;position: fixed;right: 10px;padding: 15px;height: calc(100% - 180px);overflow-x: hidden;overflow-y: auto; width: 180px"
+      v-if="tested">
+      <h3>获取数据 <b class="text-danger">{{ testData.content.records }}</b> 条</h3>
+      <template v-for="(item, key) in testData.content.data.model">
+        <p
+          v-if="key.indexOf('global') === -1 && item && item.length > 0"
+          :key="key">
+          <b class="text-danger">
+            {{ key }}
+          </b>
+          {{ item }}
+        </p>
+      </template>
+    </div>
+    <el-form
+      :model="entity"
+      :rules="formRules"
+      ref="update"
+      label-width="100px"
+      label-position="top"
     >
-      <div class="fox-page-header previous">
-        <div class="fox-page-header-back">
-          <p class="el-icon-arrow-left go-back">所有文章</p>
-          <h3>文章采集</h3>
-        </div>
-        <div class="fox-page-header-item"></div>
-      </div>
-      <div class="fox-fixed-action">
-        <div class="fox-fixed-action-label">
-          采集使用异步方式执行，不会直接返回结果。在采集前请测试采集规则是否正确。
-        </div>
-        <div class="fox-fixed-action-button">
-          <el-button
-            plain
-            size="small"
-            @click="copyRule()"
-            v-show="unsaved">复制规则
-          </el-button>
-          <el-button
-            type="primary"
-            size="small"
-            @click="formValidation(true)"
-            v-show="unsaved"
-            :loading="loading">测试
-          </el-button>
-          <el-button
-            type="danger"
-            size="small"
-            @click="formValidation(false)"
-            v-show="tested"
-            :disabled="loading">提交采集任务
-          </el-button>
-        </div>
-      </div>
-      <div
-        style="border: 1px solid red;position: fixed;right: 10px;padding: 15px;height: calc(100% - 180px);overflow-x: hidden;overflow-y: auto; width: 180px"
-        v-if="tested">
-        <h3>获取数据 <b class="text-danger">{{ testData.content.records }}</b> 条</h3>
-        <template v-for="(item, key) in testData.content.data.model">
-          <p
-            v-if="key.indexOf('global') === -1 && item && item.length > 0"
-            :key="key">
-            <b class="text-danger">
-              {{ key }}
-            </b>
-            {{ item }}
-          </p>
-        </template>
-      </div>
-      <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-width="100px"
-        label-position="top"
+      <fox-section
+        heading="基础数据"
       >
-        <fox-section
-          content="基础数据"
-        >
-          <el-form-item
-            prop="firstPage"
-            :label="$t('collect.rule.update.entity.firstPage.label')">
-            <el-input
-              v-model="entity.firstPage"
-              @blur="getDomain"
-              :placeholder="$t('collect.rule.update.entity.firstPage.placeholder')"
-            >
-              <el-select
-                v-model="entity.collectType"
-                placeholder="请选择"
-                slot="append"
-                style="width: 120px;"
-                @change="collectTypeChange">
-                <el-option
-                  v-for="item in collectType"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-              <el-dropdown
-                @command="ruleCommand"
-                slot="prepend"
-                placement="bottom-start">
+        <el-form-item
+          prop="firstPage">
+          <fox-input
+            shrink
+            v-model="entity.firstPage"
+            @blur="getDomain"
+            :placeholder="$t('collect.rule.update.entity.firstPage.label')"
+            :description="$t('collect.rule.update.entity.firstPage.placeholder')"
+          >
+            <el-select
+              v-model="entity.collectType"
+              placeholder="请选择"
+              slot="append"
+              style="width: 120px;"
+              @change="collectTypeChange">
+              <el-option
+                v-for="item in collectType"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+            <el-dropdown
+              @command="ruleCommand"
+              slot="prepend"
+              placement="bottom-start">
               <span class="dropdown-link">
-                规则 <i class="el-icon-arrow-down el-icon--right"></i>
+                常用规则 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
-                <el-dropdown-menu
-                  class="layout-header-dropdown-menu"
-                  slot="dropdown">
-                  <el-dropdown-item command="paste">粘贴规则</el-dropdown-item>
-                  <el-dropdown-item command="bossgo">BOSS GO</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-            </el-input>
-          </el-form-item>
-          <el-form-item
-            prop="pageDetailPrefix"
-            :label="$t('collect.rule.update.entity.pageDetailPrefix.label')">
-            <el-input
-              v-model="entity.pageDetailPrefix"
-              :placeholder="$t('collect.rule.update.entity.pageDetailPrefix.placeholder')"
-            >
-            </el-input>
-          </el-form-item>
-          <el-form-item
-            prop="domainRoot"
-            :label="$t('collect.rule.update.entity.domainRoot.label')">
-            <el-input
-              v-model="entity.domainRoot"
-              :placeholder="$t('collect.rule.update.entity.domainRoot.placeholder')"
-            >
-            </el-input>
-          </el-form-item>
-        </fox-section>
-        <collection-select
-          :inlay="true"
-          :info-type.sync="infoType"
-          v-model="entity.collectionList"
-        ></collection-select>
-        <fox-section
-          content="分页参数"
-          v-if="entity.collectType === 0 || entity.collectType === 1">
-          <el-row :gutter="20">
-            <el-col :span="3">
-              <el-form-item
-                prop="startPage"
-                :label="$t('collect.rule.update.entity.startPage.label')">
-                <el-input
-                  v-model="entity.startPage"
-                  :placeholder="$t('collect.rule.update.entity.startPage.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="3">
-              <el-form-item
-                prop="lastPage"
-                :label="$t('collect.rule.update.entity.lastPage.label')">
-                <el-input
-                  v-model="entity.lastPage"
-                  :placeholder="$t('collect.rule.update.entity.lastPage.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="18">
-              <el-form-item
-                prop="pagingUrl"
-                :label="$t('collect.rule.update.entity.pagingUrl.label')">
-                <el-input
-                  v-model="entity.pagingUrl"
-                  :placeholder="$t('collect.rule.update.entity.pagingUrl.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </fox-section>
+              <el-dropdown-menu
+                class="layout-header-dropdown-menu"
+                slot="dropdown">
+                <el-dropdown-item command="paste">粘贴规则</el-dropdown-item>
+                <el-dropdown-item command="bossgo">BOSS GO</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </fox-input>
+        </el-form-item>
+        <el-form-item
+          prop="pageDetailPrefix">
+          <fox-input
+            shrink
+            v-model="entity.pageDetailPrefix"
+            :placeholder="$t('collect.rule.update.entity.pageDetailPrefix.label')"
+            :description="$t('collect.rule.update.entity.pageDetailPrefix.placeholder')"
+          >
+          </fox-input>
+        </el-form-item>
+        <el-form-item
+          prop="domainRoot">
+          <fox-input
+            shrink
+            v-model="entity.domainRoot"
+            :placeholder="$t('collect.rule.update.entity.domainRoot.label')"
+            :description="$t('collect.rule.update.entity.domainRoot.placeholder')"
+          >
+          </fox-input>
+        </el-form-item>
+      </fox-section>
+      <collection-select
+        :inlay="true"
+        :info-type.sync="infoType"
+        v-model="entity.collectionList"
+      ></collection-select>
+      <fox-section
+        heading="分页参数"
+        v-if="entity.collectType === 0 || entity.collectType === 1">
         <el-row :gutter="20">
-          <el-col :span="12">
-            <fox-section
-              heading="列表参数"
-              v-if="entity.collectType === 0 || entity.collectType === 1">
-              <el-form-item
-                prop="itemSelector"
-                :label="$t('collect.rule.update.entity.itemSelector.label')">
-                <el-input
-                  v-model="entity.itemSelector"
-                  :placeholder="$t('collect.rule.update.entity.itemSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="itemLink"
-                :label="$t('collect.rule.update.entity.itemLink.label')">
-                <el-input
-                  v-model="entity.itemLink"
-                  :placeholder="$t('collect.rule.update.entity.itemLink.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="itemTitleSelector"
-                :label="$t('collect.rule.update.entity.itemTitleSelector.label')">
-                <el-input
-                  v-model="entity.itemTitleSelector"
-                  :placeholder="$t('collect.rule.update.entity.itemTitleSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="itemImgSelector"
-                :label="$t('collect.rule.update.entity.itemImgSelector.label')">
-                <el-input
-                  v-model="entity.itemImgSelector"
-                  :placeholder="$t('collect.rule.update.entity.itemImgSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="itemImgSrcSelector"
-                :label="$t('collect.rule.update.entity.itemImgSrcSelector.label')">
-                <el-input
-                  v-model="entity.itemImgSrcSelector"
-                  :placeholder="$t('collect.rule.update.entity.itemImgSrcSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                v-if="false"
-                prop="itemImgSrcRemoveSelector"
-                :label="$t('collect.rule.update.entity.itemImgSrcRemoveSelector.label')">
-                <el-input
-                  v-model="entity.itemImgSrcRemoveSelector"
-                  :placeholder="$t('collect.rule.update.entity.itemImgSrcRemoveSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="itemSummarySelector"
-                :label="$t('collect.rule.update.entity.itemSummarySelector.label')">
-                <el-input
-                  v-model="entity.itemSummarySelector"
-                  :placeholder="$t('collect.rule.update.entity.itemSummarySelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </fox-section>
-            <fox-section heading="通用参数">
-              <el-form-item
-                prop="itemSubtitleSelector"
-                :label="$t('collect.rule.update.entity.itemSubtitleSelector.label')">
-                <el-input
-                  v-model="entity.itemSubtitleSelector"
-                  :placeholder="$t('collect.rule.update.entity.itemSubtitleSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="brandSelector"
-                :label="$t('collect.rule.update.entity.brandSelector.label')">
-                <el-input
-                  v-model="entity.brandSelector"
-                  :placeholder="$t('collect.rule.update.entity.brandSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </fox-section>
-            <fox-section heading="时间">
-              <el-form-item
-                prop="timeSelector"
-                :label="$t('collect.rule.update.entity.timeSelector.label')">
-                <el-input
-                  v-model="entity.timeSelector"
-                  :placeholder="$t('collect.rule.update.entity.timeSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="timeFormat"
-                :label="$t('collect.rule.update.entity.timeFormat.label')">
-                <el-input
-                  v-model="entity.timeFormat"
-                  :placeholder="$t('collect.rule.update.entity.timeFormat.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="timePattern"
-                :label="$t('collect.rule.update.entity.timePattern.label')">
-                <el-input
-                  v-model="entity.timePattern"
-                  :placeholder="$t('collect.rule.update.entity.timePattern.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </fox-section>
-            <fox-section heading="规格参数">
-              <el-form-item
-                prop="specSelectorGroup"
-                :label="$t('collect.rule.update.entity.specSelectorGroup.label')">
-                <el-input
-                  v-model="entity.specSelectorGroup"
-                  :placeholder="$t('collect.rule.update.entity.specSelectorGroup.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="specTitleSelector"
-                :label="$t('collect.rule.update.entity.specTitleSelector.label')">
-                <el-input
-                  v-model="entity.specTitleSelector"
-                  :placeholder="$t('collect.rule.update.entity.specTitleSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <fox-section content="属性值">
-                <el-form-item
-                  prop="specSelector"
-                  :label="$t('collect.rule.update.entity.specSelector.label')">
-                  <el-input
-                    v-model="entity.specSelector"
-                    :placeholder="$t('collect.rule.update.entity.specSelector.placeholder')"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item
-                  prop="specKeySelector"
-                  :label="$t('collect.rule.update.entity.specKeySelector.label')">
-                  <el-input
-                    v-model="entity.specKeySelector"
-                    :placeholder="$t('collect.rule.update.entity.specKeySelector.placeholder')"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item
-                  prop="specValueSelector"
-                  :label="$t('collect.rule.update.entity.specValueSelector.label')">
-                  <el-input
-                    v-model="entity.specValueSelector"
-                    :placeholder="$t('collect.rule.update.entity.specValueSelector.placeholder')"
-                  ></el-input>
-                </el-form-item>
-              </fox-section>
-            </fox-section>
+          <el-col :span="3">
+            <el-form-item
+              prop="startPage">
+              <fox-input
+                shrink
+                v-model="entity.startPage"
+                :placeholder="$t('collect.rule.update.entity.startPage.label')"
+                :description="$t('collect.rule.update.entity.startPage.placeholder')"
+              ></fox-input>
+            </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <fox-section heading="详情页">
-              <el-form-item
-                prop="detailTitleSelector"
-                :label="$t('collect.rule.update.entity.detailTitleSelector.label')">
-                <el-input
-                  v-model="entity.detailTitleSelector"
-                  :placeholder="$t('collect.rule.update.entity.detailTitleSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="detailDescriptionSelector"
-                :label="$t('collect.rule.update.entity.detailDescriptionSelector.label')">
-                <el-input
-                  v-model="entity.detailDescriptionSelector"
-                  :placeholder="$t('collect.rule.update.entity.detailDescriptionSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="detailImgSrcSelector"
-                :label="$t('collect.rule.update.entity.detailImgSrcSelector.label')">
-                <el-input
-                  v-model="entity.detailImgSrcSelector"
-                  :placeholder="$t('collect.rule.update.entity.detailImgSrcSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="detailSummarySelector"
-                :label="$t('collect.rule.update.entity.detailSummarySelector.label')">
-                <el-input
-                  v-model="entity.detailSummarySelector"
-                  :placeholder="$t('collect.rule.update.entity.detailSummarySelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-            </fox-section>
-
-            <fox-section heading="图片组">
-              <el-form-item
-                prop="imgListSelector"
-                :label="$t('collect.rule.update.entity.imgListSelector.label')">
-                <el-input
-                  v-model="entity.imgListSelector"
-                  :placeholder="$t('collect.rule.update.entity.imgListSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item
-                prop="imgListSrcSelector"
-                :label="$t('collect.rule.update.entity.imgListSrcSelector.label')">
-                <el-input
-                  v-model="entity.imgListSrcSelector"
-                  :placeholder="$t('collect.rule.update.entity.imgListSrcSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </fox-section>
-            <fox-section
-              heading="SKU"
-              v-if="entity.collectType === 1 || entity.collectType === 3">
-              <el-form-item
-                prop="skuListSelector"
-                :label="$t('collect.rule.update.entity.skuListSelector.label')">
-                <el-input
-                  v-model="entity.skuListSelector"
-                  :placeholder="$t('collect.rule.update.entity.skuListSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-
-              <el-row
-                :gutter="20"
-                style="margin-bottom: 20px">
-                <el-col :span="12">
-                  <el-form-item
-                    prop="skuListImgSelector"
-                    :label="$t('collect.rule.update.entity.skuListImgSelector.label')">
-                    <el-input
-                      v-model="entity.skuListImgSelector"
-                      :placeholder="$t('collect.rule.update.entity.skuListImgSelector.placeholder')"
-                    ></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item
-                    prop="skuListSrcSelector"
-                    :label="$t('collect.rule.update.entity.skuListSrcSelector.label')">
-                    <el-input
-                      v-model="entity.skuListSrcSelector"
-                      :placeholder="$t('collect.rule.update.entity.skuListSrcSelector.placeholder')"
-                    ></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-form-item
-                prop="skuListKeySelector"
-                :label="$t('collect.rule.update.entity.skuListKeySelector.label')">
-                <el-input
-                  v-model="entity.skuListKeySelector"
-                  :placeholder="$t('collect.rule.update.entity.skuListKeySelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-              <el-form-item
-                prop="skuListValueSelector"
-                :label="$t('collect.rule.update.entity.skuListValueSelector.label')">
-                <el-input
-                  v-model="entity.skuListValueSelector"
-                  :placeholder="$t('collect.rule.update.entity.skuListValueSelector.placeholder')"
-                ></el-input>
-              </el-form-item>
-            </fox-section>
+          <el-col :span="3">
+            <el-form-item
+              prop="lastPage">
+              <fox-input
+                shrink
+                v-model="entity.lastPage"
+                :placeholder="$t('collect.rule.update.entity.lastPage.label')"
+                :description="$t('collect.rule.update.entity.lastPage.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="18">
+            <el-form-item
+              prop="pagingUrl">
+              <fox-input
+                shrink
+                v-model="entity.pagingUrl"
+                :placeholder="$t('collect.rule.update.entity.pagingUrl.label')"
+                :description="$t('collect.rule.update.entity.pagingUrl.placeholder')"
+              ></fox-input>
+            </el-form-item>
           </el-col>
         </el-row>
-      </el-form>
-    </fox-page-loading>
+      </fox-section>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <fox-section
+            heading="列表参数"
+            v-if="entity.collectType === 0 || entity.collectType === 1">
+            <el-form-item
+              prop="itemSelector">
+              <fox-input
+                shrink
+                v-model="entity.itemSelector"
+                :placeholder="$t('collect.rule.update.entity.itemSelector.label')"
+                :description="$t('collect.rule.update.entity.itemSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="itemLink">
+              <fox-input
+                shrink
+                v-model="entity.itemLink"
+                :placeholder="$t('collect.rule.update.entity.itemLink.label')"
+                :description="$t('collect.rule.update.entity.itemLink.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="itemTitleSelector">
+              <fox-input
+                shrink
+                v-model="entity.itemTitleSelector"
+                :placeholder="$t('collect.rule.update.entity.itemTitleSelector.label')"
+                :description="$t('collect.rule.update.entity.itemTitleSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="itemImgSelector">
+              <fox-input
+                shrink
+                v-model="entity.itemImgSelector"
+                :placeholder="$t('collect.rule.update.entity.itemImgSelector.label')"
+                :description="$t('collect.rule.update.entity.itemImgSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="itemImgSrcSelector">
+              <fox-input
+                shrink
+                v-model="entity.itemImgSrcSelector"
+                :placeholder="$t('collect.rule.update.entity.itemImgSrcSelector.label')"
+                :description="$t('collect.rule.update.entity.itemImgSrcSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              v-if="false"
+              prop="itemImgSrcRemoveSelector">
+              <fox-input
+                shrink
+                v-model="entity.itemImgSrcRemoveSelector"
+                :placeholder="$t('collect.rule.update.entity.itemImgSrcRemoveSelector.label')"
+                :description="$t('collect.rule.update.entity.itemImgSrcRemoveSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="itemSummarySelector">
+              <fox-input
+                shrink
+                v-model="entity.itemSummarySelector"
+                :placeholder="$t('collect.rule.update.entity.itemSummarySelector.label')"
+                :description="$t('collect.rule.update.entity.itemSummarySelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </fox-section>
+          <fox-section heading="通用参数">
+            <el-form-item
+              prop="itemSubtitleSelector">
+              <fox-input
+                shrink
+                v-model="entity.itemSubtitleSelector"
+                :placeholder="$t('collect.rule.update.entity.itemSubtitleSelector.label')"
+                :description="$t('collect.rule.update.entity.itemSubtitleSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="brandSelector">
+              <fox-input
+                shrink
+                v-model="entity.brandSelector"
+                :placeholder="$t('collect.rule.update.entity.brandSelector.label')"
+                :description="$t('collect.rule.update.entity.brandSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </fox-section>
+          <fox-section heading="时间">
+            <el-form-item
+              prop="timeSelector">
+              <fox-input
+                shrink
+                v-model="entity.timeSelector"
+                :placeholder="$t('collect.rule.update.entity.timeSelector.label')"
+                :description="$t('collect.rule.update.entity.timeSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="timeFormat">
+              <fox-input
+                shrink
+                v-model="entity.timeFormat"
+                :placeholder="$t('collect.rule.update.entity.timeFormat.label')"
+                :description="$t('collect.rule.update.entity.timeFormat.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="timePattern">
+              <fox-input
+                shrink
+                v-model="entity.timePattern"
+                :placeholder="$t('collect.rule.update.entity.timePattern.label')"
+                :description="$t('collect.rule.update.entity.timePattern.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </fox-section>
+          <fox-section heading="规格参数">
+            <el-form-item
+              prop="specSelectorGroup">
+              <fox-input
+                shrink
+                v-model="entity.specSelectorGroup"
+                :placeholder="$t('collect.rule.update.entity.specSelectorGroup.label')"
+                :description="$t('collect.rule.update.entity.specSelectorGroup.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="specTitleSelector">
+              <fox-input
+                shrink
+                v-model="entity.specTitleSelector"
+                :placeholder="$t('collect.rule.update.entity.specTitleSelector.label')"
+                :description="$t('collect.rule.update.entity.specTitleSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <fox-section heading="属性值">
+              <el-form-item
+                prop="specSelector">
+                <fox-input
+                  shrink
+                  v-model="entity.specSelector"
+                  :placeholder="$t('collect.rule.update.entity.specSelector.label')"
+                  :description="$t('collect.rule.update.entity.specSelector.placeholder')"
+                ></fox-input>
+              </el-form-item>
+
+              <el-form-item
+                prop="specKeySelector">
+                <fox-input
+                  shrink
+                  v-model="entity.specKeySelector"
+                  :placeholder="$t('collect.rule.update.entity.specKeySelector.label')"
+                  :description="$t('collect.rule.update.entity.specKeySelector.placeholder')"
+                ></fox-input>
+              </el-form-item>
+
+              <el-form-item
+                prop="specValueSelector">
+                <fox-input
+                  shrink
+                  v-model="entity.specValueSelector"
+                  :placeholder="$t('collect.rule.update.entity.specValueSelector.label')"
+                  :description="$t('collect.rule.update.entity.specValueSelector.placeholder')"
+                ></fox-input>
+              </el-form-item>
+            </fox-section>
+          </fox-section>
+        </el-col>
+        <el-col :span="12">
+          <fox-section heading="详情页">
+            <el-form-item
+              prop="detailTitleSelector">
+              <fox-input
+                shrink
+                v-model="entity.detailTitleSelector"
+                :placeholder="$t('collect.rule.update.entity.detailTitleSelector.label')"
+                :description="$t('collect.rule.update.entity.detailTitleSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="detailDescriptionSelector">
+              <fox-input
+                shrink
+                v-model="entity.detailDescriptionSelector"
+                :placeholder="$t('collect.rule.update.entity.detailDescriptionSelector.label')"
+                :description="$t('collect.rule.update.entity.detailDescriptionSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="detailImgSrcSelector">
+              <fox-input
+                shrink
+                v-model="entity.detailImgSrcSelector"
+                :placeholder="$t('collect.rule.update.entity.detailImgSrcSelector.label')"
+                :description="$t('collect.rule.update.entity.detailImgSrcSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="detailSummarySelector">
+              <fox-input
+                shrink
+                v-model="entity.detailSummarySelector"
+                :placeholder="$t('collect.rule.update.entity.detailSummarySelector.label')"
+                :description="$t('collect.rule.update.entity.detailSummarySelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+          </fox-section>
+
+          <fox-section heading="图片组">
+            <el-form-item
+              prop="imgListSelector">
+              <fox-input
+                shrink
+                v-model="entity.imgListSelector"
+                :placeholder="$t('collect.rule.update.entity.imgListSelector.label')"
+                :description="$t('collect.rule.update.entity.imgListSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-form-item
+              prop="imgListSrcSelector">
+              <fox-input
+                shrink
+                v-model="entity.imgListSrcSelector"
+                :placeholder="$t('collect.rule.update.entity.imgListSrcSelector.label')"
+                :description="$t('collect.rule.update.entity.imgListSrcSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </fox-section>
+          <fox-section
+            heading="SKU"
+            v-if="entity.collectType === 1 || entity.collectType === 3">
+            <el-form-item
+              prop="skuListSelector">
+              <fox-input
+                shrink
+                v-model="entity.skuListSelector"
+                :placeholder="$t('collect.rule.update.entity.skuListSelector.label')"
+                :description="$t('collect.rule.update.entity.skuListSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+
+            <el-row
+              :gutter="20"
+              style="margin-bottom: 20px">
+              <el-col :span="12">
+                <el-form-item
+                  prop="skuListImgSelector">
+                  <fox-input
+                    shrink
+                    v-model="entity.skuListImgSelector"
+                    :placeholder="$t('collect.rule.update.entity.skuListImgSelector.label')"
+                    :description="$t('collect.rule.update.entity.skuListImgSelector.placeholder')"
+                  ></fox-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  prop="skuListSrcSelector">
+                  <fox-input
+                    shrink
+                    v-model="entity.skuListSrcSelector"
+                    :placeholder="$t('collect.rule.update.entity.skuListSrcSelector.label')"
+                    :description="$t('collect.rule.update.entity.skuListSrcSelector.placeholder')"
+                  ></fox-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-form-item
+              prop="skuListKeySelector">
+              <fox-input
+                shrink
+                v-model="entity.skuListKeySelector"
+                :placeholder="$t('collect.rule.update.entity.skuListKeySelector.label')"
+                :description="$t('collect.rule.update.entity.skuListKeySelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+            <el-form-item
+              prop="skuListValueSelector">
+              <fox-input
+                shrink
+                v-model="entity.skuListValueSelector"
+                :placeholder="$t('collect.rule.update.entity.skuListValueSelector.label')"
+                :description="$t('collect.rule.update.entity.skuListValueSelector.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </fox-section>
+        </el-col>
+      </el-row>
+    </el-form>
     <el-dialog
       title="粘帖"
       :visible.sync="copyVisible"
@@ -452,13 +478,13 @@
       <p style="margin-bottom: 15px">
         将已有 Schema JSON 代码粘帖到文本框
       </p>
-      <el-input
+      <fox-input
         type="textarea"
         v-model="codeJSON"
         :rows="15"
       >
 
-      </el-input>
+      </fox-input>
       <p
         slot="footer"
         class="dialog-footer">
@@ -469,7 +495,7 @@
         </el-button>
       </p>
     </el-dialog>
-  </main>
+  </fox-layout-main>
 </template>
 
 <script>
