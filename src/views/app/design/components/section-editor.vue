@@ -41,6 +41,11 @@
             :key="`collapse-item-${index}`"
             class="fox-section-item"
           >
+            <div class="editor-section-item" v-if="o.tips[language]">
+              <h6>
+                | {{ o.tips[language] }}
+              </h6>
+            </div>
             <template v-if="o.multiple === 0">
               <template v-for="(el, elIndex) in o.elements">
                 <template v-if="el.type === 'productCollectionPicker' || el.type === 'articleCollectionPicker'">

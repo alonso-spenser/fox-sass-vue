@@ -9,6 +9,7 @@ export default {
       forgetTip: '忘记密码?',
       button: '登录',
       tips: '继续管理的网站',
+      ops: '运营管理中心',
       noAccount: '没有帐号?',
       register: '立即注册',
       mine: '我的网站',

@@ -21,7 +21,12 @@
         @click.native="displaySetting"
         class="text-truncate"
         :span="model.sectionType === 'anchorPin' ? 16 : 13">
-        {{ regionCode === 'en' ? model.sectionEnName || model.sectionName : model.sectionName }}
+        <template v-if="model.sectionGroup === 2000">
+          {{ regionCode === 'en' ? model.sectionEnName || model.sectionName : model.sectionName }}
+        </template>
+        <template v-else>
+          {{ model.sectionName }}
+        </template>
       </el-col>
       <el-col
         :span="3"

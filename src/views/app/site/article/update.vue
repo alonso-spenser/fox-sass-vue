@@ -166,6 +166,73 @@
               </el-tab-pane>
             </el-tabs>
           </fox-section>
+          <fox-section heading="关联产品">
+            <el-button
+              slot="header"
+              size="mini"
+              @click="goodsVisible = true"
+              icon="el-icon-plus"
+              type="text"
+              v-if="entity.refList.length < 12"
+            >
+              添加
+            </el-button>
+            <el-table
+              :data="entity.refList"
+              :show-header="false"
+              class="no-last-border"
+            >
+              <el-table-column
+                width="80">
+                <template slot-scope="scope">
+                  <img
+                    style="width: 50px;"
+                    :src="scope.row.coverImage || resource.image.placeholder">
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="title"
+              >
+              </el-table-column>
+              <el-table-column
+                width="110">
+                <template slot-scope="scope">
+                  <div>
+                    <el-button
+                      size="small"
+                      circle
+                      class="vertical-button"
+                      @click="articleResort(scope.row.id, -1)"
+                      v-if="scope.$index < entity.refList.length - 1">
+                      <i class="el-icon-arrow-down"></i>
+                    </el-button>
+                    <el-button
+                      size="small"
+                      circle
+                      class="vertical-button"
+                      @click="articleResort(scope.row.id, 1)"
+                      v-if="scope.$index > 0">
+                      <i class="el-icon-arrow-up"></i>
+                    </el-button>
+                  </div>
+                </template>
+              </el-table-column>
+              <el-table-column
+                width="60"
+                align="right">
+                <template slot-scope="scope">
+                  <el-button
+                    size="small"
+                    circle
+                    class="vertical-button"
+                    @click="articleRemove(scope.row.id)"
+                  >
+                    <i class="el-icon-delete"></i>
+                  </el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </fox-section>
           <search-engine-preview
             :temp-title="entity.title"
             :temp-desc="entity.description"
@@ -249,6 +316,11 @@
       :visible.sync="resourceVisible"
       @close="resourceSelector"
       :info-type="1"></resource-selector>
+    <available-goods
+      :display.sync="goodsVisible"
+      :ref-list="entity.refList"
+      @close="getRefList"
+    ></available-goods>
   </fox-layout-main>
 </template>
 
@@ -259,8 +331,9 @@ import collectionSelect from '@/components/article/collection-select'
 import tagSelect from '@/components/article/tag-select'
 import resourceSelector from '../goods/components/resource-selector'
 
-import { fileUpload } from '@/plugins/api/core'
+import { fetchFileUpload } from '@/plugins/api/core'
 import { mapState } from 'vuex'
+import availableGoods from '@/components/article/available-goods'
 
 export default {
   name: 'articleUpdate',
@@ -268,7 +341,8 @@ export default {
   components: {
     collectionSelect,
     tagSelect,
-    resourceSelector
+    resourceSelector,
+    availableGoods
   },
   data () {
     return {
@@ -298,6 +372,7 @@ export default {
         blockList: [],
         subtitle: '',
         tagList: [],
+        refList: [],
         collectionList: []
       },
       formRules: {
@@ -363,6 +438,7 @@ export default {
        * 扩展属性
        */
       attributeTabsValue: '',
+      goodsVisible: false,
       resourceVisible: false
     }
   },
@@ -414,7 +490,7 @@ export default {
      * @param func 回调
      */
     ossUpload (formData, func) {
-      fileUpload(formData).then((result) => {
+      fetchFileUpload(formData).then((result) => {
         if (func && typeof (func) === 'function') {
           func.call(this, result)
         }
@@ -437,6 +513,24 @@ export default {
      */
     previous () {
       this.redirectURL(`/site/${this.siteId}/article`)
+    },
+    /**
+     * 从集合删除文章
+     * @param articleId
+     */
+    articleRemove (articleId) {
+      this.entity.refList.forEach((o, index) => {
+        if (o.id === articleId) {
+          this.entity.refList[index].remove()
+        }
+      })
+    },
+    /**
+     * 选择产品回调
+     * @param rows
+     */
+    getRefList (rows) {
+      this.entity.refList = this.entity.refList.concat(rows)
     },
     /**
      * 表单校验

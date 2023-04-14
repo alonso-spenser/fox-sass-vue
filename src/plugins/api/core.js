@@ -41,6 +41,11 @@ export const fetchDeleteRole = (params = {}) => http.post('', params)
 export const fetchUpdateRole = (params = {}) => http.post('/api/role/saveOrUpdate', params)
 
 /**
+ * 上传
+ */
+export const fetchFileUpload = (params = {}) => http.post('/api/common/oss/upload', params)
+
+/**
  * 系统角色详情
  */
 export const fetchAdminRoleDetail = (params = {}) => http.post('/api/ops/role/detail', params)

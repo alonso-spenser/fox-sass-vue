@@ -9,7 +9,7 @@
       class="data-center-tap"
       slot="header">
       <el-col :span="12">
-        <el-tabs v-model="searchConditions.activeName">
+        <el-tabs v-model="activeName">
           <el-tab-pane
             v-for="(item,index) in $t('dashboard.analytics.tabPane')"
             :key="index"
@@ -28,11 +28,13 @@
           {{ $t('dashboard.ga.setting') }}
         </el-button>
         <el-date-picker
-          v-model="searchConditions.daterange"
+          v-model="timeRange"
           type="daterange"
           size="small"
           :picker-options="pickerOptions"
           range-separator="-"
+          unlink-panels
+          @change="dateChange"
           value-format="timestamp"
           :default-time="['00:00:00', '23:59:59']"
           :start-placeholder="$t('base.placeholder.date')"
@@ -44,21 +46,21 @@
     <div class="disabled-container section-neighbor">
       <!--询盘-->
       <inquiry-temp
-        v-if="searchConditions.activeName==='inquiry'"
-        :daterange="searchConditions.daterange"
-        :website-id="searchConditions.websiteId">
+        v-if="activeName==='inquiry'"
+        :daterange="timeRange"
+        :website-id="siteId">
       </inquiry-temp>
       <!--流量-->
       <flow-temp
-        v-if="searchConditions.activeName==='flow'"
-        :daterange="searchConditions.daterange"
-        :website-id="searchConditions.websiteId">
+        v-if="activeName==='flow'"
+        :daterange="timeRange"
+        :website-id="siteId">
       </flow-temp>
       <!--访问-->
       <visit-temp
-        v-if="searchConditions.activeName==='visit'"
-        :daterange="searchConditions.daterange"
-        :website-id="searchConditions.websiteId">
+        v-if="activeName==='visit'"
+        :daterange="timeRange"
+        :website-id="siteId">
       </visit-temp>
     </div>
   </fox-layout-main>
@@ -77,12 +79,13 @@ export default {
   extends: extend,
   data () {
     return {
-      daterange: [],
       pickerOptions: {
         disabledDate (time) {
           return time.getTime() > Date.now()
         }
-      }
+      },
+      activeName: 'inquiry',
+      timeRange: null
     }
   },
   components: {
@@ -95,19 +98,19 @@ export default {
   },
   created () {
     this.pageLoading = false
-    if (!this.searchConditions.activeName) {
-      this.$set(this.searchConditions, 'activeName', 'inquiry')
-    }
-    if (!this.searchConditions.daterange) {
-      let startTime = units.getBeforeDayTimeString(30)
-      let endTime = new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1).getTime()
-      this.$set(this.searchConditions, 'daterange', [startTime, endTime])
-    }
-    this.pagingCache((success) => {
-      this.$set(this.searchConditions, 'websiteId', this.siteModel.id)
-    })
+    this.getRecently()
   },
   methods: {
+    dateChange (value) {
+      if (value === null) {
+
+      }
+    },
+    getRecently () {
+      let startTime = units.getBeforeDayTimeString(30)
+      let endTime = new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1).getTime()
+      this.timeRange = [startTime, endTime]
+    },
     /**
      * GA设置
      */

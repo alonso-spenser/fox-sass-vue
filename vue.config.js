@@ -34,10 +34,10 @@ module.exports = {
   publicPath: '/',
   productionSourceMap: false,
   lintOnSave: false,
-  transpileDependencies: [
-    'vue-echarts',
-    'resize-detector'
-  ],
+  // transpileDependencies: [
+  //   'vue-echarts',
+  //   'resize-detector'
+  // ],
   configureWebpack: (config) => {
     if (process.env.VUE_APP_SUPER === 'fox') {
       let fun = []

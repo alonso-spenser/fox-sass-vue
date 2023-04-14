@@ -130,6 +130,11 @@ export const themeSectionPaging = (params = {}) => http.post('/api/ops/theme/sec
 export const themeSectionDelete = (params = {}) => http.post('/api/ops/theme/section/delete', params)
 
 /**
+ * 复制组件
+ */
+export const themeSectionClone = (params = {}) => http.post('/api/ops/theme/section/clone', params)
+
+/**
  * 主题Schema详情
  */
 export const themeSchemaDetail = (params = {}) => http.post('/api/ops/theme/schema/detail', params)

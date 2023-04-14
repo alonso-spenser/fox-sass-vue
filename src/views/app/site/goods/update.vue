@@ -720,7 +720,7 @@ import videoPicker from '@/views/app/design/components/widget/video-picker'
 import {
   mapState
 } from 'vuex'
-import { fileUpload } from '@/plugins/api/core'
+import { fetchFileUpload } from '@/plugins/api/core'
 import { fetchGoodsLimited } from '@/plugins/api/goods'
 
 export default {
@@ -1167,7 +1167,7 @@ export default {
      * @param func 回调
      */
     ossUpload (formData, func) {
-      fileUpload(formData).then((result) => {
+      fetchFileUpload(formData).then((result) => {
         if (func && typeof (func) === 'function') {
           func.call(this, result)
         }

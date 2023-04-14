@@ -9,7 +9,7 @@
         {{ $t('passport.login.title') }}
       </h1>
       <p class="text-secondary">
-        {{ $t('passport.login.tips') }}
+        {{ $t('passport.login.ops') }}
       </p>
       <el-form
         :model="entity"

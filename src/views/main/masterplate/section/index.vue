@@ -104,7 +104,7 @@ import schemaEditor from '../components/schema-editor'
 import langEditor from '../components/lang-editor'
 import sectionPageType from '../components/page-type'
 import sectionTagSelector from '../components/section-tag-selector'
-import { fetchThemeSectionUpdateSiteType, fetchThemeSectionUpdateTag } from '@/plugins/api/theme'
+import { fetchThemeSectionUpdateSiteType, fetchThemeSectionUpdateTag, themeSectionClone } from '@/plugins/api/theme'
 
 export default {
   name: 'themeSection',
@@ -262,7 +262,7 @@ export default {
           {
             button: true,
             label: '',
-            width: 90,
+            width: 130,
             group: [
               {
                 icon: 'el-icon-edit',
@@ -271,6 +271,15 @@ export default {
                 disabled: false,
                 onClick: (row) => {
                   this.updateSection(row)
+                }
+              },
+              {
+                icon: 'el-icon-copy-document',
+                circle: true,
+                name: null,
+                disabled: false,
+                onClick: (row) => {
+                  this.copySection(row)
                 }
               },
               {
@@ -477,6 +486,43 @@ export default {
      */
     updateSection (row) {
       this.$router.push(`/main/masterplate/element/update/${row.id}`)
+    },
+    /**
+     * 复制跳转
+     */
+    copySection (row) {
+      this.$confirm('确定要复制此组件吗？',
+        'Oops', {
+          confirmButtonText: this.$t('base.operate.confirm'),
+          cancelButtonText: this.$t('base.operate.cancel'),
+          closeOnClickModal: false,
+          type: 'info',
+          beforeClose: (action, instance, done) => {
+            if (action === 'confirm') {
+              http.themeSectionClone({
+                id: row.id
+              })
+                .then(result => {
+                  result.options = {
+                    action: this.actionType.delete
+                  }
+                  this.resultMessage(result, (success) => {
+                    done()
+                    instance.confirmButtonLoading = false
+                    if (success) {
+                      this.getData(true)
+                    }
+                  })
+                }).finally(() => {
+                  done()
+                  instance.confirmButtonLoading = false
+                })
+            } else {
+              instance.confirmButtonLoading = false
+              done()
+            }
+          }
+        })
     },
     /**
      * 删除

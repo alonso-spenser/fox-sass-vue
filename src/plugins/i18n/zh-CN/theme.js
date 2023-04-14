@@ -649,6 +649,57 @@ export default {
       }
     },
     {
+      title: '文章作者页',
+      pageType: 'articleColumnistPage',
+      seoUrl: '/writer/{id}',
+      addSection: 0,
+      bindSection: 0,
+      hasFloatMenu: 0,
+      hasFooter: 0,
+      hasHeader: 0,
+      menuVisible: 0,
+      siteType: [3, 4],
+      dynamic: 0,
+      params: {
+        multiple: 0,
+        dataType: false,
+        subs: 1,
+        max: 0,
+        removable: 0,
+        name: {
+          en: 'Standard',
+          'zh-CN': '基础'
+        },
+        placeholder: {
+          en: '',
+          'zh-CN': ''
+        },
+        tips: {
+          en: '',
+          'zh-CN': ''
+        },
+        elements: [
+          {
+            'type': 'slider',
+            'field': 'globalPageSize',
+            'default': 10,
+            'name': {
+              'en': 'Page size',
+              'zh-CN': '每页显示数量'
+            },
+            'info': {
+              'en': '',
+              'zh-CN': ''
+            },
+            'options': [],
+            'min': 4,
+            'max': 100,
+            'step': 1
+          }
+        ]
+      }
+    },
+    {
       title: '文章详情页',
       pageType: 'articleDetailPage',
       seoUrl: '/item/{url}',

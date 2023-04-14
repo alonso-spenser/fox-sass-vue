@@ -1,4 +1,5 @@
 import http from './http'
+import { fetchCollectRuleDelete } from '@/plugins/api/collect'
 
 /**
  * 文章信息详情
@@ -14,6 +15,11 @@ export const articleUpdate = (params = {}) => http.post('/api/article/update', p
  * 文章信息分页数据
  */
 export const articlePaging = (params = {}) => http.post('/api/article/paging', params)
+
+/**
+ * 查找可引用的产品数据
+ */
+export const fetchAvailableGoods = (params = {}) => http.post('/api/article/available-goods', params)
 
 /**
  * 文章状态

@@ -120,6 +120,7 @@ export default {
       homePage: '首页',
       articleCollectionPage: '文章集合页',
       articlePaginationPage: '文章分页',
+      articleColumnistPage: '文章作者页',
       articleDetailPage: '文章详情页',
       productCollectionPage: '产品集合页',
       productPaginationPage: '产品分页',
