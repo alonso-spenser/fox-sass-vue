@@ -4,6 +4,7 @@ import router from '../../router'
 import passport from '../passport'
 import i18n from '../../plugins/i18n/base'
 import { Message } from 'element-ui'
+import store from '../../store/index'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 const http = axios.create({
@@ -21,9 +22,16 @@ http.interceptors.request.use(
     config.headers['os'] = 0
     config.headers['app'] = admin ? 3000 : 1000
     config.headers['platform'] = '1400692472106991622'
-    config.headers['agent'] = process.env.VUE_APP_DESIGN_AGENT
+    if (store.state.agentModel) {
+      config.headers['agent'] = store.state.agentModel.id
+    } else {
+      config.headers['agent'] = process.env.VUE_APP_DESIGN_AGENT
+    }
     config.headers['authorization'] = passport.token(admin)
     config.headers['region'] = ''
+    if (config['Content-Type'] === 'multipart/form-data') {
+      config.headers['Content-Type'] = 'multipart/form-data'
+    }
     return config
   },
   (error) => {
@@ -38,13 +46,12 @@ http.interceptors.response.use(
   (response) => {
     if (response.data.code === 13010000) {
       let admin = router.currentRoute.fullPath.indexOf('/main') === 0
-      router.push({
-        path: `${admin ? '/main' : ''}/passport`,
-        query: {
-          // redirect: router.currentRoute.fullPath
-        }
-      }).then(() => {
-      })
+      let url = `${admin ? '/main' : ''}/passport`
+      if (router.currentRoute.path !== url) {
+        router.push({
+          path: url
+        })
+      }
     }
     return response.data
   },

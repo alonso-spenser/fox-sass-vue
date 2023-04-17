@@ -637,7 +637,8 @@ export default {
         firstName: '',
         lastName: '',
         name: '',
-        token: ''
+        token: '',
+        shortForm: ''
       })
       this.setSiteModel({
         id: '',

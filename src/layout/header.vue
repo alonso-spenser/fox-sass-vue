@@ -185,7 +185,8 @@ export default {
         firstName: '',
         lastName: '',
         name: '',
-        token: ''
+        token: '',
+        shortForm: ''
       })
       this.$router.push('/passport')
     },

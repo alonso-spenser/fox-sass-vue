@@ -14,7 +14,7 @@
   </div>
   <fox-layout
     v-else
-    :copyright="merchantModel.merchant.shortForm"
+    :copyright="merchantModel.merchant && merchantModel.merchant.shortForm || ''"
     :aside-top="0"
     :aside-bottom="0"
     :aside-width="200"

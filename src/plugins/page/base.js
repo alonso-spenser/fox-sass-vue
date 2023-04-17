@@ -222,7 +222,9 @@ export default {
         avatar: '',
         firstName: '',
         lastName: '',
-        name: ''
+        name: '',
+        token: '',
+        shortForm: ''
       })
       this.redirectURL('/passport')
     },
@@ -233,7 +235,9 @@ export default {
       if (this.agentModel && this.agentModel.id) {
         return
       }
-      fetchAgentDetail()
+      fetchAgentDetail({
+        domain: location.hostname
+      })
         .then((result) => {
           if (result['success']) {
             document.title = `${this.$t('passport.login.pageTitle')}-${result.data.shortForm}`

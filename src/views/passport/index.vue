@@ -336,7 +336,14 @@ export default {
      */
     logout () {
       fetchMerchantLogout()
-      this.setMerchantModel({})
+      this.setMerchantModel({
+        avatar: '',
+        firstName: '',
+        lastName: '',
+        name: '',
+        token: '',
+        shortForm: ''
+      })
     },
     /**
      * 创建新网站

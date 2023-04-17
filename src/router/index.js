@@ -444,25 +444,6 @@ const routes = [
         ]
       },
       {
-        path: 'settings/lang',
-        name: 'site-settings-lang',
-        component: () => import('../views/app/site/settings/lang'),
-        meta: {
-          siteType: [3, 4],
-          sidebar: true,
-          header: true,
-          requireAuth: true,
-          title: i18n.t('site.lang.title'),
-          // parent: '/:siteId:/goods',
-          crumbs: [
-            {
-              title: i18n.t('site.dashboard.title'),
-              path: '/dashboard'
-            }
-          ]
-        }
-      },
-      {
         path: 'masterplate',
         name: 'site-masterplate',
         component: () => import('../views/app/site/masterplate/index'),

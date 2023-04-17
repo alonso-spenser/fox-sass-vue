@@ -43,7 +43,7 @@ export const fetchUpdateRole = (params = {}) => http.post('/api/role/saveOrUpdat
 /**
  * 上传
  */
-export const fetchFileUpload = (params = {}) => http.post('/api/common/oss/upload', params)
+export const fetchFileUpload = (params = {}) => http.post('/api/common/oss/upload', params, { 'Content-Type': 'multipart/form-data' })
 
 /**
  * 系统角色详情

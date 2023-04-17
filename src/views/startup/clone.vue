@@ -3,16 +3,16 @@
     <div class="global-header create-site-header active">
       <div class="container">
         <h3>
-          {{$t('startup.clone.source')}}
+          {{ $t('startup.clone.source') }}
           <small class="text-primary">
             （ {{ $t("siteType")[siteEntity.siteType] }} ）
           </small>
         </h3>
         <p class="text-secondary">
-<!--          {{ $t("startup.clone.siteName") }}：{{siteEntity.siteName}}-->
-<!--          <label class="ml-5">-->
-            {{ $t("startup.clone.siteDomain") }}：{{siteEntity.mainDomain}}
-<!--          </label>-->
+          <!--          {{ $t("startup.clone.siteName") }}：{{siteEntity.siteName}}-->
+          <!--          <label class="ml-5">-->
+          {{ $t("startup.clone.siteDomain") }}：{{ siteEntity.mainDomain }}
+          <!--          </label>-->
         </p>
         <div class="create-site-logout">
           <el-button size="small" @click="logout">
@@ -22,99 +22,100 @@
       </div>
     </div>
     <main class="editable" v-if="canCreate">
-        <div class="global-page-container">
-          <el-form
-            :model="entity"
-            :rules="formRules"
-            ref="ruleForm"
-            label-position="top"
-            @keydown.native.enter.prevent
-          >
-            <div class="container mt-7">
-              <el-row :gutter="20">
-                <el-col :span="8">
-                  <el-form-item prop="siteName" :label="$t('startup.entity.siteName.label')">
-                    <el-input
-                      v-model="entity.siteName"
-                      :placeholder="$t('startup.entity.siteName.placeholder')"
-                      show-word-limit
-                      maxlength="50"
-                    ></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :span="8">
-                  <el-form-item prop="langCode" :label="$t('startup.entity.langCode.label')">
-                    <el-select
-                      v-model="entity.langCode"
-                      filterable
-                      @change="langChange"
-                      style="width: 256px;overflow: hidden"
-                    >
-                      <el-option
-                        v-for="item in regionList"
-                        :key="item.code"
-                        :label="`${item.languageName} - ${item.nativeName}`"
-                        :value="item.code"
-                      >
-                        <div style="width: 256px;overflow: hidden">
-                          {{item.languageName}} - {{item.nativeName}}
-                        </div>
-                      </el-option>
-                    </el-select>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <div class="create-site-info">
-                <h3>{{ $t("startup.original") }}</h3>
-                <div class="create-site-browser">
-                  <el-row>
-                    <el-col :span="4" class="text-center">
-                      <i class="el-icon-back"></i>
-                      <i class="el-icon-right"></i>
-                      <i class="el-icon-refresh"></i>
-                      <i class="el-icon-house"></i>
-                    </el-col>
-                    <el-col :span="18">
-                      <el-form-item prop="domain">
-                        <el-input
-                          @blur="urlBlur"
-                          :placeholder="this.$t('startup.entity.domain.placeholder')"
-                          :maxlength="32"
-                          v-model="entity.domain"
-                        >
-                          <template slot="prepend">https://</template>
-                          <template slot="append">{{ resource.domain }}</template>
-                        </el-input>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-                </div>
-                <ul class="create-site-tips">
-                  <li v-for="(o, index) in $t('startup.tips')" :key="index" v-html="o">{{o}}</li>
-                </ul>
-              </div>
-            </div>
-          </el-form>
-        </div>
-        <div class="create-site-footer">
-          <div class="container">
-            <el-row :gutter="40">
-              <el-col :span="12">
-                <router-link class="text-primary el-button el-button--text" to="/">
-                  <i class="el-icon-d-arrow-left"></i>
-                  {{ $t("startup.mySites") }}
-                </router-link>
+      <div class="global-page-container">
+        <el-form
+          :model="entity"
+          :rules="formRules"
+          ref="ruleForm"
+          label-position="top"
+          @keydown.native.enter.prevent
+        >
+          <div class="container mt-7">
+            <el-row :gutter="20">
+              <el-col :span="8">
+                <el-form-item prop="siteName" :label="$t('startup.entity.siteName.label')">
+                  <el-input
+                    v-model="entity.siteName"
+                    :placeholder="$t('startup.entity.siteName.placeholder')"
+                    show-word-limit
+                    maxlength="50"
+                  ></el-input>
+                </el-form-item>
               </el-col>
-              <el-col :span="12" class="text-right">
-                <el-button
-                  :loading="loading"
-                  type="primary"
-                  @click="formValidation('ruleForm')"
-                >{{ $t("startup.clone.submit") }}</el-button>
+              <el-col :span="8">
+                <el-form-item prop="langCode" :label="$t('startup.entity.langCode.label')">
+                  <el-select
+                    v-model="entity.langCode"
+                    filterable
+                    @change="langChange"
+                    style="width: 256px;overflow: hidden"
+                  >
+                    <el-option
+                      v-for="item in regionList"
+                      :key="item.code"
+                      :label="`${item.languageName} - ${item.nativeName}`"
+                      :value="item.code"
+                    >
+                      <div style="width: 256px;overflow: hidden">
+                        {{ item.languageName }} - {{ item.nativeName }}
+                      </div>
+                    </el-option>
+                  </el-select>
+                </el-form-item>
               </el-col>
             </el-row>
+            <div class="create-site-info">
+              <h3>{{ $t("startup.original") }}</h3>
+              <div class="create-site-browser">
+                <el-row>
+                  <el-col :span="4" class="text-center">
+                    <i class="el-icon-back"></i>
+                    <i class="el-icon-right"></i>
+                    <i class="el-icon-refresh"></i>
+                    <i class="el-icon-house"></i>
+                  </el-col>
+                  <el-col :span="18">
+                    <el-form-item prop="domain">
+                      <el-input
+                        @blur="urlBlur"
+                        :placeholder="this.$t('startup.entity.domain.placeholder')"
+                        :maxlength="32"
+                        v-model="entity.domain"
+                      >
+                        <template slot="prepend">https://</template>
+                        <template slot="append">{{ resource.domain }}</template>
+                      </el-input>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+              </div>
+              <ul class="create-site-tips">
+                <li v-for="(o, index) in $t('startup.tips')" :key="index" v-html="o">{{ o }}</li>
+              </ul>
+            </div>
           </div>
+        </el-form>
+      </div>
+      <div class="create-site-footer">
+        <div class="container">
+          <el-row :gutter="40">
+            <el-col :span="12">
+              <router-link class="text-primary el-button el-button--text" to="/">
+                <i class="el-icon-d-arrow-left"></i>
+                {{ $t("startup.mySites") }}
+              </router-link>
+            </el-col>
+            <el-col :span="12" class="text-right">
+              <el-button
+                :loading="loading"
+                type="primary"
+                @click="formValidation('ruleForm')"
+              >{{ $t("startup.clone.submit") }}
+              </el-button>
+            </el-col>
+          </el-row>
         </div>
+      </div>
     </main>
   </div>
 </template>
@@ -126,6 +127,7 @@ import {
   mapMutations
 } from 'vuex'
 import { fetchBaseLanguage } from '@/plugins/api/core'
+
 export default {
   name: 'startup-duplicate-site',
   extends: extend,
@@ -289,7 +291,8 @@ export default {
         firstName: '',
         lastName: '',
         name: '',
-        token: ''
+        token: '',
+        shortForm: ''
       })
       this.setSiteModel({
         id: '',
@@ -352,6 +355,7 @@ export default {
 
 <style lang='scss'>
 @import "../../assets/var";
+
 .embed-responsive {
   border: 4px solid #fff;
   border-radius: 6px;
@@ -426,10 +430,12 @@ export default {
       padding-bottom: 50px;
     }
   }
+
   &-logout {
     position: absolute;
     right: 40px;
     top: calc(50% - 16px);
+
     .el-button {
       border-radius: 16px;
     }
@@ -441,6 +447,7 @@ export default {
     background-color: #fff;
     border-top: 1px solid #f5f5f5;
   }
+
   h2 {
     color: $colorHeading;
     margin-bottom: 30px;
