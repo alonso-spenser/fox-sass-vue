@@ -328,7 +328,7 @@ export default {
                 name: null,
                 disabled: false,
                 onClick: (row) => {
-                  this.removeSite(row.id)
+                  this.removeSite(row)
                 }
               },
               {
@@ -521,17 +521,41 @@ export default {
     /**
      * 授权登录
      */
-    removeSite (id) {
-      fetchSiteDelete({
-        siteId: id
-      }).then(result => {
-        this.resultMessage(result, (success) => {
-          if (success) {
-            this.getData(true)
+    removeSite (row) {
+      this.$confirm(`确定要删除 ${row.mainDomain} 这个网站吗？`,
+        this.$t('base.delete.heading').toString(), {
+          confirmButtonText: this.$t('base.operate.confirm'),
+          cancelButtonText: this.$t('base.operate.cancel'),
+          closeOnClickModal: false,
+          type: 'error',
+          beforeClose: (action, instance, done) => {
+            if (action === 'confirm') {
+              instance.confirmButtonLoading = true
+              fetchSiteDelete({
+                siteId: row.id
+              }).then(result => {
+                result.options = {
+                  action: this.actionType.delete
+                }
+                this.resultMessage(result, (success) => {
+                  done()
+                  instance.confirmButtonLoading = false
+                  if (success) {
+                    this.getData(true)
+                  }
+                })
+              })
+                .catch(error => {
+                  this.networkMistake(error)
+                  done()
+                  instance.confirmButtonLoading = false
+                })
+            } else {
+              instance.confirmButtonLoading = false
+              done()
+            }
           }
         })
-      }).finally(() => {
-      })
     }
   }
 }
