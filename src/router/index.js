@@ -1152,6 +1152,20 @@ const routes = [
     },
     children: [
       {
+        path: 'transfer',
+        name: 'tool-transfer',
+        component: () => import('../views/main/transfer'),
+        meta: {
+          title: '网站迁移',
+          requireAuth: true,
+          parent: {
+            title: i18n.t('theme.paging.title'),
+            url: '/main/transfer',
+            previous: '/masterplate'
+          }
+        }
+      },
+      {
         path: '',
         name: 'main-dashboard',
         component: () => import('../views/main/index'),

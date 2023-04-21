@@ -177,7 +177,9 @@
 <script>
 import extend from '@/plugins/page/paging'
 import {
+  fetchSiteDelete,
   fetchSitePaging,
+  fetchAuthorizedLogin,
   fetchSiteUpdate
 } from '@/plugins/api/main/site'
 
@@ -309,8 +311,26 @@ export default {
           {
             button: true,
             label: '',
-            width: 90,
+            width: 150,
             group: [
+              {
+                icon: 'el-icon-setting',
+                circle: true,
+                name: null,
+                disabled: false,
+                onClick: (row) => {
+                  this.authorizedLogin(row.merchantId)
+                }
+              },
+              {
+                icon: 'el-icon-delete',
+                circle: true,
+                name: null,
+                disabled: false,
+                onClick: (row) => {
+                  this.removeSite(row.id)
+                }
+              },
               {
                 icon: 'el-icon-edit',
                 circle: true,
@@ -477,6 +497,40 @@ export default {
           })
           this.updateData.visible = false
         }
+      })
+    },
+    /**
+     * 授权登录
+     * @param id 商户ID
+     */
+    authorizedLogin (id) {
+      if (this.utility.isEmpty(id)) {
+        return
+      }
+      fetchAuthorizedLogin({
+        id
+      }).then(result => {
+        this.resultMessage(result, (success) => {
+          if (success && this.utility.isNotEmpty(result.data.url)) {
+            this.utility.openSite(result.data.url)
+          }
+        })
+      }).finally(() => {
+      })
+    },
+    /**
+     * 授权登录
+     */
+    removeSite (id) {
+      fetchSiteDelete({
+        siteId: id
+      }).then(result => {
+        this.resultMessage(result, (success) => {
+          if (success) {
+            this.getData(true)
+          }
+        })
+      }).finally(() => {
       })
     }
   }

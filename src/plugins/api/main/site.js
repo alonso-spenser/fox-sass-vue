@@ -18,4 +18,14 @@ export const fetchSitePaging = (params = {}) => http.post('/api/ops/site/paging'
 /**
  * 删除店铺
  */
-export const fetchSiteDelete = (params = {}) => http.post('/api/ops/site/delete', params)
+export const fetchSiteDelete = (params = {}) => http.post('/api/ops/site/remove', params)
+
+/**
+ * 网站数据复制
+ */
+export const fetchCloneSiteData = (params = {}) => http.post('/api/ops/site/clone-site-data', params)
+
+/**
+ * 授权登录
+ */
+export const fetchAuthorizedLogin = (params = {}) => http.post('/api/passport/merchant/authorized', params)
