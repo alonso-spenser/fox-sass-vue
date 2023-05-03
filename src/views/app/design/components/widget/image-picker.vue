@@ -82,7 +82,7 @@
             >
               <img
                 class="embed-responsive-item"
-                :src="`${o.url}!1`">
+                :src="getImage(o.url)">
               <label></label>
             </div>
             <div
@@ -92,7 +92,7 @@
             >
               <img
                 class="embed-responsive-item"
-                :src="`${o.url}!1`">
+                :src="getImage(o.url)">
               <label></label>
             </div>
           </el-col>
@@ -245,6 +245,12 @@ export default {
     this.aliyunOSS.dir = this.siteId
   },
   methods: {
+    getImage (url) {
+      if (this.utility.isEmpty(url)) {
+        return ''
+      }
+      return url + url.toLowerCase().indexOf('.svg') > -1 ? '' : '!1'
+    },
     removeImage () {
       this.imageURL = ''
     },

@@ -79,7 +79,7 @@
         >
           <img
             class="embed-responsive-item"
-            :src="`${o.url}!2`"
+            :src="getImage(o.url)"
             :alt="o.alt">
         </div>
       </el-col>
@@ -186,6 +186,12 @@ export default {
     this.searchCondition.infoType = this.infoType
   },
   methods: {
+    getImage (url) {
+      if (this.utility.isEmpty(url)) {
+        return ''
+      }
+      return url + url.toLowerCase().indexOf('.svg') > -1 ? '' : '!2'
+    },
     /**
      * 搜索焦点
      */
