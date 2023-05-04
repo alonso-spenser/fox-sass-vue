@@ -249,7 +249,7 @@ export default {
       if (this.utility.isEmpty(url)) {
         return ''
       }
-      return url + url.toLowerCase().indexOf('.svg') > -1 ? '' : '!1'
+      return url + (url.toLowerCase().indexOf('.svg') > -1 ? '' : '!1')
     },
     removeImage () {
       this.imageURL = ''

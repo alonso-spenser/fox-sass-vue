@@ -53,6 +53,16 @@
                   </el-button>
                 </el-input>
               </el-col>
+              <el-col
+                :span="8"
+                v-if="pagingOptions.recordCount > 0">
+                <el-button
+                  :loading="loading"
+                  @click="exportData"
+                >
+                  {{ $t("enquiry.export") }}
+                </el-button>
+              </el-col>
             </el-row>
           </el-col>
           <el-col
