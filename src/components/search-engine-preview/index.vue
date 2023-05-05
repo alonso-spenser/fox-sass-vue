@@ -4,13 +4,15 @@
     :content="$t('searchEngine.tips')"
     class="search-engine-section"
   >
-    <h3 class="mt-0 mb-4">
-      <small
-        @click="seoVisible = true"
-        v-show="!seoVisible"
-        class="text-primary float-right pointer">
-        {{ $t("searchEngine.edit") }}
-      </small>
+    <el-button
+      size="mini"
+      slot="header"
+      @click="seoVisible = !seoVisible"
+      type="text">
+      {{ $t("searchEngine.edit") }}
+      <i :class="seoVisible ? 'el-icon-arrow-down' : 'el-icon-arrow-right'"></i>
+    </el-button>
+    <h3 class="mb-4">
       {{ $t("searchEngine.engine") }}
     </h3>
     <p v-show="previewVisible">

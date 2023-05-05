@@ -32,6 +32,14 @@ body {
   overflow: hidden;
 }
 
+fieldset {
+  min-width: 5rem;
+}
+
+.fox-page-section-action {
+  margin-top: 0!important;
+}
+
 p {
   font-size: 14px;
 }

@@ -1,5 +1,3 @@
-import resource from '@/plugins/resource'
-
 Element.prototype.data = function (key, value) {
   let that = this
   let dataName = 'testData'
@@ -548,5 +546,8 @@ export default {
         }
       }
     })
+  },
+  getImage (url, placeholder) {
+    return this.isEmpty(url) ? placeholder : url
   }
 }

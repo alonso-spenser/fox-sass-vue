@@ -4,10 +4,10 @@
     <el-form class="product-variant" :model="variantModel" ref="variantForm" v-if="priceType > 0">
       <el-row class="mb-3" :gutter="20">
         <el-col :span="4">
-          {{$t('variant.attrKey')}}
+          {{ $t('variant.attrKey') }}
         </el-col>
         <el-col :span="20">
-          {{$t('variant.attrValue')}}
+          {{ $t('variant.attrValue') }}
         </el-col>
       </el-row>
       <el-row
@@ -56,7 +56,7 @@
               v-if="variantValue[index].visible"
             ></el-input>
             <el-button v-else class="button-new-key" size="small" @click="displayValueTextbox(index)">
-              {{$t('variant.button.addValue')}}
+              {{ $t('variant.button.addValue') }}
             </el-button>
           </div>
         </el-col>
@@ -70,171 +70,173 @@
       </el-row>
       <el-row
         :gutter="20"
+        :class="variantModel.variantList.length === 1 ? 'mt-3' : ''"
         v-show="variantModel.variantList.length < 3"
       >
         <el-col :span="21">
           <el-button size="small" class="w-100" @click="addVariant">
-            {{$t('variant.button.addKey')}}
+            {{ $t('variant.button.addKey') }}
           </el-button>
         </el-col>
         <el-col :span="3">
           <el-dropdown @command="singleVariant">
             <label class="el-button el-button--default el-button--small">
-              {{$t('variant.button.single.label')}}<i class="el-icon-arrow-down el-icon--right"></i>
+              {{ $t('variant.button.single.label') }}<i class="el-icon-arrow-down el-icon--right"></i>
             </label>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="english">{{$t('variant.button.single.english.label')}}</el-dropdown-item>
-              <el-dropdown-item command="chinese">{{$t('variant.button.single.chinese.label')}}</el-dropdown-item>
+              <el-dropdown-item command="english">{{ $t('variant.button.single.english.label') }}</el-dropdown-item>
+              <el-dropdown-item command="chinese">{{ $t('variant.button.single.chinese.label') }}</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </el-col>
       </el-row>
     </el-form>
-<!--    <template v-if="tableData.length > 0">-->
-<!--      <div class="mt-4 mb-4 text-normal">-->
-<!--        {{$t('variant.tips')}}-->
-<!--      </div>-->
-<!--      <el-table-->
-<!--        ref="multipleTable"-->
-<!--        :data="tableData"-->
-<!--        style="width: 100%"-->
-<!--        max-height="618"-->
-<!--        @selection-change="variantChange"-->
-<!--        row-key="index"-->
-<!--        class="sku-table"-->
-<!--      >-->
-<!--        <el-table-column-->
-<!--          type="selection"-->
-<!--          width="55"-->
-<!--          :variantChecked="variantChecked"-->
-<!--        ></el-table-column>-->
-<!--        <el-table-column-->
-<!--          v-for="(item, index) in columns"-->
-<!--          :key="index"-->
-<!--          :prop="item.prop"-->
-<!--          :label="item.label"-->
-<!--          :class-name="item.className"-->
-<!--          width="120"-->
-<!--        >-->
-<!--          <template slot-scope="scope">-->
-<!--            {{ scope.row.variantList[index].variantValue }}-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="150" :label="$t('goods.sku.update.entity.skuId.label')">-->
-<!--          <template slot="header">-->
-<!--            类型-->
-<!--            <p>fuck</p>-->
-<!--          </template>-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.skuId"-->
-<!--              :placeholder="$t('goods.sku.update.entity.skuId.label')"-->
-<!--            ></el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="120" :label="`${$t('goods.sku.update.entity.salePrice.label')}`">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.salePrice"-->
-<!--              :placeholder="$t('goods.sku.update.entity.salePrice.label')"-->
-<!--            >-->
-<!--              <template slot="prepend">￥</template>-->
-<!--            </el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column  width="120" :label="`${$t('goods.sku.update.entity.vipPrice.label')}`">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.vipPrice"-->
-<!--              :placeholder="$t('goods.sku.update.entity.vipPrice.label')"-->
-<!--            >-->
-<!--              <template slot="prepend">￥</template>-->
-<!--            </el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="80" :label="`${$t('goods.sku.update.entity.crea.label')}￥`">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.marketPrice"-->
-<!--              :placeholder="$t('goods.sku.update.entity.marketPrice.label')"-->
-<!--            ></el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="80" :label="`${$t('goods.sku.update.entity.costPrice.label')}￥`">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.costPrice"-->
-<!--              :placeholder="$t('goods.sku.update.entity.costPrice.label')"-->
-<!--            ></el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="85" :label="$t('goods.sku.update.entity.shelfLife.label')">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.shelfLife"-->
-<!--              :placeholder="$t('goods.sku.update.entity.shelfLife.label')"-->
-<!--            ></el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="100" :label="$t('goods.sku.update.entity.hsCode.label')">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.hsCode"-->
-<!--              :placeholder="$t('goods.sku.update.entity.hsCode.label')"-->
-<!--            ></el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="100" :label="$t('goods.sku.update.entity.width.label')">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.width"-->
-<!--              :placeholder="$t('goods.sku.update.entity.width.label')"-->
-<!--            ></el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="100" :label="$t('goods.sku.update.entity.height.label')">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.height"-->
-<!--              :placeholder="$t('goods.sku.update.entity.height.label')"-->
-<!--            ></el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="100" :label="$t('goods.sku.update.entity.weight.label')">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-input-->
-<!--              class="absolutely"-->
-<!--              size="small"-->
-<!--              v-model="scope.row.weight"-->
-<!--              :placeholder="$t('goods.sku.update.entity.weight.label')"-->
-<!--            ></el-input>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--      </el-table>-->
-<!--    </template>-->
+    <!--    <template v-if="tableData.length > 0">-->
+    <!--      <div class="mt-4 mb-4 text-normal">-->
+    <!--        {{$t('variant.tips')}}-->
+    <!--      </div>-->
+    <!--      <el-table-->
+    <!--        ref="multipleTable"-->
+    <!--        :data="tableData"-->
+    <!--        style="width: 100%"-->
+    <!--        max-height="618"-->
+    <!--        @selection-change="variantChange"-->
+    <!--        row-key="index"-->
+    <!--        class="sku-table"-->
+    <!--      >-->
+    <!--        <el-table-column-->
+    <!--          type="selection"-->
+    <!--          width="55"-->
+    <!--          :variantChecked="variantChecked"-->
+    <!--        ></el-table-column>-->
+    <!--        <el-table-column-->
+    <!--          v-for="(item, index) in columns"-->
+    <!--          :key="index"-->
+    <!--          :prop="item.prop"-->
+    <!--          :label="item.label"-->
+    <!--          :class-name="item.className"-->
+    <!--          width="120"-->
+    <!--        >-->
+    <!--          <template slot-scope="scope">-->
+    <!--            {{ scope.row.variantList[index].variantValue }}-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="150" :label="$t('goods.sku.update.entity.skuId.label')">-->
+    <!--          <template slot="header">-->
+    <!--            类型-->
+    <!--            <p>fuck</p>-->
+    <!--          </template>-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.skuId"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.skuId.label')"-->
+    <!--            ></el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="120" :label="`${$t('goods.sku.update.entity.salePrice.label')}`">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.salePrice"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.salePrice.label')"-->
+    <!--            >-->
+    <!--              <template slot="prepend">￥</template>-->
+    <!--            </el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column  width="120" :label="`${$t('goods.sku.update.entity.vipPrice.label')}`">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.vipPrice"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.vipPrice.label')"-->
+    <!--            >-->
+    <!--              <template slot="prepend">￥</template>-->
+    <!--            </el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="80" :label="`${$t('goods.sku.update.entity.crea.label')}￥`">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.marketPrice"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.marketPrice.label')"-->
+    <!--            ></el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="80" :label="`${$t('goods.sku.update.entity.costPrice.label')}￥`">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.costPrice"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.costPrice.label')"-->
+    <!--            ></el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="85" :label="$t('goods.sku.update.entity.shelfLife.label')">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.shelfLife"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.shelfLife.label')"-->
+    <!--            ></el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="100" :label="$t('goods.sku.update.entity.hsCode.label')">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.hsCode"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.hsCode.label')"-->
+    <!--            ></el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="100" :label="$t('goods.sku.update.entity.width.label')">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.width"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.width.label')"-->
+    <!--            ></el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="100" :label="$t('goods.sku.update.entity.height.label')">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.height"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.height.label')"-->
+    <!--            ></el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column width="100" :label="$t('goods.sku.update.entity.weight.label')">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-input-->
+    <!--              class="absolutely"-->
+    <!--              size="small"-->
+    <!--              v-model="scope.row.weight"-->
+    <!--              :placeholder="$t('goods.sku.update.entity.weight.label')"-->
+    <!--            ></el-input>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--      </el-table>-->
+    <!--    </template>-->
   </div>
 </template>
 
 <script>
 import sku from '@/plugins/variant'
+
 export default {
   name: 'initVariant',
   data () {
@@ -506,6 +508,7 @@ export default {
   .el-input-group__prepend {
     padding: 0 5px;
   }
+
   .variant-value__tag {
     color: #ffffff;
     margin: 0 8px 12px 0;
@@ -535,6 +538,7 @@ export default {
     margin-right: 10px;
   }
 }
+
 .el-form-item__content {
   line-height: normal;
 }

@@ -178,28 +178,28 @@
                 v-if="!isUpdateSku()"
               >
               </init-variant>
+              <template slot="header" v-if="isUpdateSku()">
+                <el-button
+                  type="text"
+                  size="mini"
+                  @click="displayVariantSort = true">
+                  {{ $t('variant.update.sort') }}
+                </el-button>
+                <el-button
+                  type="text"
+                  size="mini"
+                  @click="displayVariantEdit = true">
+                  {{ $t('variant.update.edit') }}
+                </el-button>
+                <el-button
+                  type="text"
+                  size="mini"
+                  @click="redirectVariant(null)">
+                  {{ $t('variant.update.add') }}
+                </el-button>
+              </template>
               <template>
                 <div
-                  class="text-right"
-                  v-if="isUpdateSku()">
-                  <el-button
-                    type="text"
-                    @click="displayVariantSort = true">
-                    {{ $t('variant.update.sort') }}
-                  </el-button>
-                  <el-button
-                    type="text"
-                    @click="displayVariantEdit = true">
-                    {{ $t('variant.update.edit') }}
-                  </el-button>
-                  <el-button
-                    type="text"
-                    @click="redirectVariant(null)">
-                    {{ $t('variant.update.add') }}
-                  </el-button>
-                </div>
-                <div
-                  class="mt-3"
                   v-if="entity.priceType > 0 && entity.skuList.length > 0">
                   <label class="mr-2">
                     {{ $t("variant.quickSelect") }}
@@ -223,6 +223,7 @@
                       ref="multipleTable"
                       :data="entity.skuList"
                       class="sku-table "
+                      style="width: 100%"
                       @selection-change="multiSelect"
                       @row-click="rowClick"
                       v-if="entity.skuList.length > 0"
@@ -231,14 +232,17 @@
                       <el-table-column
                         type="selection"
                         width="55"
+                        fixed
                         :variantChecked="variantChecked"
                       >
                       </el-table-column>
-                      <el-table-column width="50">
+                      <el-table-column
+                        fixed
+                        width="50">
                         <template slot-scope="scope">
                           <el-image
                             fit="scale-down"
-                            :src="scope.row.skuImage || resource.image.placeholder"
+                            :src="utility.getImage(scope.row.skuImage, resource.image.placeholder)"
                             @click="changeSkuImage(scope.$index, scope.row)"
                             style="cursor: pointer; width: 40px; height: 40px"
                           ></el-image>
@@ -272,6 +276,7 @@
                           <el-table-column
                             :key="`column-header-${index}`"
                             :prop="column.prop"
+                            :fixed="column.fixed"
                             align="center"
                             :width="column.width"
                           >
@@ -335,6 +340,7 @@
                           :key="`column-content-${index}`"
                           :prop="column.prop"
                           align="center"
+                          :fixed="column.fixed"
                           :width="column.width"
                           v-else
                         >
@@ -1052,6 +1058,7 @@ export default {
           button: true,
           label: '',
           width: 80,
+          fixed: 'right',
           group: [
             {
               type: 'normal',
@@ -1836,6 +1843,8 @@ export default {
 }
 
 .sku-table {
+  width: 100%;
+
   .el-input-group__append,
   .el-input-group__prepend {
     padding: 0 5px;

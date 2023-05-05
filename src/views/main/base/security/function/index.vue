@@ -1,22 +1,23 @@
 <template>
-  <main>
-    <fox-page-header></fox-page-header>
-      <fox-page-loading :percentage="100">
-        <fox-paging-table
-          :multiSelect="false"
-          :loading="tableOptions.loading"
-          :columns="dataConfig.columns"
-          :actions="dataConfig.actions"
-          :dataset="pagingOptions.dataset"
-        >
-          </fox-paging-table>
-          </fox-page-loading>
-          <role-dialog
-            :visible.sync="roleVisible"
-            :appType="appType"
-            :roleInfo="roleInfo"
-            @closeDialog="closeRoleDialog"></role-dialog>
-  </main>
+  <fox-layout-main
+    :loading="pageLoading"
+    :offset="200"
+    google-style
+  >
+    <fox-paging-table
+      :multiSelect="false"
+      :loading="tableOptions.loading"
+      :columns="dataConfig.columns"
+      :actions="dataConfig.actions"
+      :dataset="pagingOptions.dataset"
+    >
+    </fox-paging-table>
+    <role-dialog
+      :visible.sync="roleVisible"
+      :appType="appType"
+      :roleInfo="roleInfo"
+      @closeDialog="closeRoleDialog"></role-dialog>
+  </fox-layout-main>
 </template>
 
 <script>
@@ -91,6 +92,7 @@ export default {
   created () {
     this.pagingOptions.dataset = this.$t('core.appTypeList')
     this.tableOptions.loading = false
+    this.pageValid()
   },
   methods: {
     /**

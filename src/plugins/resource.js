@@ -1,9 +1,12 @@
 import logoSVG from '../assets/image/logo.svg'
+import placeholder from '../assets/image/placeholder.jpg'
+import avatar from '../assets/image/avatar.png'
 
 export default {
   logoSVG,
   image: {
-    avatar: '/css/img/avator.png'
+    avatar: avatar,
+    placeholder: placeholder
   },
   domain: `.${process.env.VUE_APP_DESIGN_DOMAIN}`,
   keepDomain: 'theme|verification|www|design|fomille|fomile|file|devin|jason|admin|console|agent|sass|shop|shopify|nginx|phone|jenkins|site|zabbix|nacos|code|test',

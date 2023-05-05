@@ -1552,6 +1552,70 @@ const routes = [
             }
           ]
         }
+      },
+      {
+        path: 'account/personal',
+        name: 'main-account-personal',
+        component: () => import('../views/main/account/personal'),
+        meta: {
+          requireAuth: true,
+          siteType: [1, 2, 3, 4],
+          editable: true,
+          title: i18n.t('merchant.personal.title'),
+          parent: {
+            title: i18n.t('merchant.heading'),
+            url: '/main/account/password',
+            previous: '/main/account'
+          }
+        }
+      },
+      {
+        path: 'account/role',
+        name: 'main-account-role',
+        component: () => import('../views/main/account/role'),
+        meta: {
+          requireAuth: true,
+          editable: true,
+          siteType: [1, 2, 3, 4],
+          title: i18n.t('merchant.role.paging.title'),
+          parent: {
+            title: i18n.t('merchant.employee.paging.heading'),
+            url: '/main/account/role',
+            previous: '/main/account/employee'
+          }
+        }
+      },
+      {
+        path: 'account/employee',
+        name: 'main-account-employee',
+        component: () => import('../views/main/account/employee'),
+        meta: {
+          requireAuth: true,
+          siteType: [1, 2, 3, 4],
+          editable: true,
+          title: i18n.t('merchant.employee.paging.title'),
+          parent: {
+            title: i18n.t('merchant.heading'),
+            url: '/main/account/password',
+            previous: '/main/account'
+          }
+        }
+      },
+      {
+        path: 'account/password',
+        name: 'main-account-password',
+        component: () => import('../views/main/account/password'),
+        meta: {
+          requireAuth: true,
+          siteType: [1, 2, 3, 4],
+          editable: true,
+          title: i18n.t('merchant.password.title'),
+          parent: {
+            title: i18n.t('merchant.heading'),
+            url: '/main/account/password',
+            previous: '/main/account'
+          }
+        }
       }
     ]
   },

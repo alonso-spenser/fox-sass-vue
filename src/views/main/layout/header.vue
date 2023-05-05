@@ -95,7 +95,7 @@ export default {
      */
     goHome () {
       this.$router.push({
-        path: '/dashboard'
+        path: '/main/dashboard'
       })
     },
     /**
@@ -103,7 +103,7 @@ export default {
      */
     myAccount () {
       this.$router.push({
-        path: '/account'
+        path: '/main/account'
       })
     },
     /**
@@ -112,19 +112,19 @@ export default {
     dropCommand (command) {
       switch (command) {
         case 0:
-          this.$router.push('/account/password')
+          this.$router.push('/main/account/password')
           break
         case 1:
           this.logout()
           break
         case 2:
-          this.$router.push('/account/personal')
+          this.$router.push('/main/account/personal')
           break
         case 3:
-          this.$router.push('/account/employee')
+          this.$router.push('/main/account/employee')
           break
         case 4:
-          this.$router.push('/account/personal')
+          this.$router.push('/main/account/personal')
           break
         case 98:
           localStorage.setItem('foUILanguage', 'en')
@@ -150,7 +150,7 @@ export default {
         name: '',
         token: ''
       })
-      this.$router.push('/passport')
+      this.$router.push('/main/passport')
     },
     getScroll () {
       // let el = this.$refs.globalHeader

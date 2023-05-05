@@ -11,12 +11,12 @@ export default {
         label: 'Backstage',
         name: '系统运营平台',
         type: 3000
-      },
-      {
-        label: 'Official',
-        name: 'MyTask',
-        type: 7000
       }
+      // {
+      //   label: 'Official',
+      //   name: 'MyTask',
+      //   type: 7000
+      // }
     ],
     base: {
       lang: {

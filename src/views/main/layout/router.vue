@@ -120,13 +120,13 @@ export default {
      * 首页
      */
     goHome () {
-      this.redirectURL('/dashboard')
+      this.redirectURL('/main/dashboard')
     },
     /**
      * 用户中心
      */
     myAccount () {
-      this.$router.push('/account')
+      this.$router.push('/main/account')
     },
     /**
      * 下拉事件
@@ -134,19 +134,19 @@ export default {
     dropCommand (command) {
       switch (command) {
         case 0:
-          this.redirectURL('/account/password')
+          this.redirectURL('/main/account/password')
           break
         case 1:
           this.logout()
           break
         case 2:
-          this.redirectURL('/account/personal')
+          this.redirectURL('/main/account/personal')
           break
         case 3:
-          this.redirectURL('/account/employee')
+          this.redirectURL('/main/account/employee')
           break
         case 4:
-          this.redirectURL('/account/personal')
+          this.redirectURL('/main/account/personal')
           break
         case 98:
           localStorage.setItem('foUILanguage', 'en')
