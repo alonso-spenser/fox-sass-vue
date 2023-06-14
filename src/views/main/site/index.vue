@@ -171,6 +171,56 @@
         </el-button>
       </div>
     </el-dialog>
+
+    <el-dialog
+      title="语言删除"
+      :visible.sync="removeData.visible"
+      width="800px"
+    >
+      <el-form
+        :model="removeData.entity"
+        :rules="formRules"
+        ref="updateForm"
+        label-width="150px">
+        <p>
+          <label
+            class="el-form-item__label"
+            style="width: 150px;">网站ID</label>
+          {{ removeData.siteData.siteName }}
+          <small class="ml-5">{{ removeData.siteData.id }}</small>
+        </p>
+        <div style="margin-top: 16px;padding-bottom: 16px">
+          <el-checkbox-group
+            class="lang-group"
+            v-model="removeData.entity.regionList"
+            size="small">
+            <template v-for="o in removeData.langList">
+              <el-checkbox
+                :label="o.id"
+                border
+                :key="o.id"
+                :value="o.id"
+                v-if="o.isDefault === 1">
+                {{ o.languageName }}
+              </el-checkbox>
+            </template>
+          </el-checkbox-group>
+        </div>
+      </el-form>
+      <div
+        slot="footer"
+        class="dialog-footer">
+        <el-button
+          size="small"
+          @click="removeData.visible = false">{{ $t("base.cancel") }}
+        </el-button>
+        <el-button
+          size="small"
+          type="primary"
+          @click="removeSiteRegion">{{ $t("base.save") }}
+        </el-button>
+      </div>
+    </el-dialog>
   </fox-layout-main>
 </template>
 
@@ -180,7 +230,9 @@ import {
   fetchSiteDelete,
   fetchSitePaging,
   fetchAuthorizedLogin,
-  fetchSiteUpdate
+  fetchSiteUpdate,
+  fetchSiteRegion,
+  fetchSiteRemoveRegion
 } from '@/plugins/api/main/site'
 
 export default {
@@ -311,8 +363,17 @@ export default {
           {
             button: true,
             label: '',
-            width: 150,
+            width: 200,
             group: [
+              {
+                icon: 'el-icon-location',
+                circle: true,
+                name: null,
+                disabled: false,
+                onClick: (row) => {
+                  this.removeRegion(row)
+                }
+              },
               {
                 icon: 'el-icon-setting',
                 circle: true,
@@ -384,6 +445,15 @@ export default {
           'visible': true,
           maxLang: 1,
           payMonth: 12
+        }
+      },
+      removeData: {
+        visible: false,
+        siteData: {},
+        langList: [],
+        entity: {
+          siteId: '',
+          regionList: []
         }
       }
     }
@@ -498,6 +568,70 @@ export default {
           this.updateData.visible = false
         }
       })
+    },
+    /**
+     * 删除语言
+     * @param row
+     */
+    removeRegion (row) {
+      if (row.maxLang === 1) {
+        return false
+      }
+      this.removeData.visible = false
+      fetchSiteRegion({
+        siteId: row.id
+      })
+        .then(res => {
+          if (res.success) {
+            if (res.data.length > 1) {
+              this.removeData.siteData = row
+              this.removeData.entity.siteId = row.id
+              this.removeData.langList = res.data
+              this.removeData.visible = true
+            }
+          }
+        })
+        .catch(error => console.log(error))
+    },
+    /**
+     * 删除语言
+     */
+    removeSiteRegion () {
+      if (this.removeData.entity.regionList.length < 1) {
+        this.$message({
+          type: 'error',
+          message: '请至少选择一个语言'
+        })
+      } else {
+        this.removeData.visible = false
+        this.$confirm(`你确定要删除这 ${this.removeData.entity.regionList.length} 种语言吗`, '提示', {
+          confirmButtonText: this.$t('base.operate.confirm'),
+          cancelButtonText: this.$t('base.operate.cancel'),
+          type: 'warning',
+          beforeClose: async (action, instance, done) => {
+            if (action === 'confirm') {
+              instance.confirmButtonLoading = true
+              const result = await fetchSiteRemoveRegion(this.removeData.entity)
+              instance.confirmButtonLoading = false
+              result.options = {
+                action: this.actionType.delete
+              }
+              this.resultMessage(result, (success) => {
+                done()
+                this.removeData.langList = []
+                this.removeData.entity.regionList = []
+                instance.confirmButtonLoading = false
+              })
+            } else {
+              done()
+            }
+          }
+        })
+          .then(() => {
+          })
+          .catch(() => {
+          })
+      }
     },
     /**
      * 授权登录

@@ -628,8 +628,16 @@
             <fox-section
               :heading="$t('goods.update.entity.coverVideo.label')"
             >
+              <fox-video-upload
+                v-model="videoModel.own"
+                :server-address="utility.uploadURL()"
+                :file-folder="`${siteId}/video`"
+              ></fox-video-upload>
+              <p>
+                上传视频和Youtube视频都填写时，只会保留上传视频
+              </p>
               <video-picker
-                v-model="entity.coverVideo">
+                v-model="videoModel.youbute">
               </video-picker>
             </fox-section>
             <!--时间-->
@@ -768,6 +776,10 @@ export default {
     }
     return {
       goodsLimited: false,
+      videoModel: {
+        youbute: '',
+        own: ''
+      },
       entity: {
         author: '',
         coverImage: '',
@@ -822,11 +834,11 @@ export default {
       },
       formRules: {
         description: [
-          {
-            required: true,
-            message: this.$t('goods.update.entity.description.required'),
-            trigger: 'blur'
-          }
+          // {
+          //   required: true,
+          //   message: this.$t('goods.update.entity.description.required'),
+          //   trigger: 'blur'
+          // }
         ],
         coverImage: [
           {
@@ -1115,6 +1127,12 @@ export default {
       handler () {
         this.unsaved = true
       }
+    },
+    videoModel: {
+      deep: true,
+      handler () {
+        this.unsaved = true
+      }
     }
   },
   computed: {
@@ -1375,6 +1393,7 @@ export default {
             }
           })
           this.entity.specification = JSON.stringify(this.entity.specList)
+          this.entity.coverVideo = this.utility.isNotEmpty(this.videoModel.own) ? this.videoModel.own : this.videoModel.youtube
           this.loading = true
           if (this.id) {
             this.updateGoods()
@@ -1411,6 +1430,13 @@ export default {
                 title: result.data.seoTitle,
                 url: result.data.seoUrl,
                 heading: result.data.seoH1
+              }
+              if (this.utility.isNotEmpty(result.data.coverVideo)) {
+                if (result.data.coverVideo.indexOf('www.youtube.com') !== -1) {
+                  this.videoModel.youbute = result.data.coverVideo
+                } else {
+                  this.videoModel.own = result.data.coverVideo
+                }
               }
               if (result.data.designMap && result.data.designMap.dataset && result.data.designMap.dataset.imageList) {
                 this.designMap = result.data.designMap

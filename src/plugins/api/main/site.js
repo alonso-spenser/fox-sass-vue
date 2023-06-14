@@ -29,3 +29,13 @@ export const fetchCloneSiteData = (params = {}) => http.post('/api/ops/site/clon
  * 授权登录
  */
 export const fetchAuthorizedLogin = (params = {}) => http.post('/api/passport/merchant/authorized', params)
+
+/**
+ * 网站语言
+ */
+export const fetchSiteRegion = (params = {}) => http.post('/api/ops/site/site-region', params)
+
+/**
+ * 删除网站语言
+ */
+export const fetchSiteRemoveRegion = (params = {}) => http.post('/api/ops/site/remove-site-region', params)
