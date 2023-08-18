@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "./var";
-$labelColor: rgba(0,0,0,.3);
+
+$labelColor: rgba(0, 0, 0, .3);
 /**
 schema editor
  */
@@ -14,9 +15,9 @@ schema editor
   background-color: #fff;
 
   .schema-editor-content {
-    width: calc(100% - 455px);
+    width: calc(100% - 380px);
     position: fixed;
-    left: 182px;
+    left: 150px;
     top: 20px;
     height: calc(100% - 40px);
     overflow-x: hidden;
@@ -36,6 +37,7 @@ schema editor
         margin-bottom: 15px;
       }
     }
+
     small {
       font-weight: normal;
       font-size: 12px;
@@ -149,6 +151,7 @@ schema editor
     }
   }
 }
+
 .preset-button-style {
   .el-button {
     margin-bottom: 5px;
@@ -179,10 +182,12 @@ schema editor
 
   .schema-group-card {
     .el-card__header {
+      background-color: #fff9ef;
       padding: 10px 15px;
     }
 
     .el-card__body {
+      background-color: #effff6;
       padding: 15px 20px;
     }
 
@@ -197,12 +202,18 @@ schema editor
       margin-bottom: 0;
     }
 
+    .schema-group-info {
+      //margin-left: -10px !important;
+      //margin-right: -10px !important;
+    }
+
     .schema-group-action {
       padding-top: 10px;
       text-align: right;
     }
 
     .elements-options {
+      background-color: #fff;
       border: 1px solid #EBEEF5;
       border-radius: 6px;
       padding: 10px;
@@ -313,9 +324,11 @@ schema editor
 
 .schema-multiple {
   padding: 15px 0;
+
   &:not(:last-child) {
     border-bottom: 1px solid #DCDFE6;
   }
+
   .schema-element {
     &:not(:last-child) {
       margin-bottom: 15px;

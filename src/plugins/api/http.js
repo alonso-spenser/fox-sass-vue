@@ -28,7 +28,7 @@ http.interceptors.request.use(
       config.headers['agent'] = process.env.VUE_APP_DESIGN_AGENT
     }
     config.headers['authorization'] = passport.token(admin)
-    config.headers['region'] = ''
+    config.headers['region'] = store.state.globalRegionModel ? store.state.globalRegionModel.code : 'en'
     if (config['Content-Type'] === 'multipart/form-data') {
       config.headers['Content-Type'] = 'multipart/form-data'
     }
