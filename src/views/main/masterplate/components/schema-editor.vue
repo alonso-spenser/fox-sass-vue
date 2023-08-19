@@ -743,6 +743,11 @@
             </draggable>
             <div class="schema-group-action">
               <el-button
+                size="small"
+                icon="el-icon-copy-document"
+                circle
+                @click="copyGroup(index)"></el-button>
+              <el-button
                 v-if="!o.dataType"
                 size="small"
                 circle
@@ -1058,6 +1063,10 @@ export default {
       }).then(() => {
         this.entity.sectionSchema.group.splice(index, 1)
       })
+    },
+    copyGroup (index) {
+      let ob = JSON.parse(JSON.stringify(this.entity.sectionSchema.group[index]))
+      this.entity.sectionSchema.group.push(ob)
     },
     /**
      * 添加下拉框选项
