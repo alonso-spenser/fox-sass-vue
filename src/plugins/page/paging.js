@@ -92,7 +92,17 @@ export default {
      * 搜索焦点
      */
     searchConditionChange (value) {
+      this.pagingOptions.pageIndex = 1
       this.searchConditions.clearVisible = !this.utility.isEmpty(value)
+    },
+    /**
+     * 搜索事件
+     */
+    redirectFirstPage (func) {
+      this.pagingOptions.pageIndex = 1
+      if (func && typeof (func)) {
+        func.call(this)
+      }
     },
     /**
      * 清空搜索条件

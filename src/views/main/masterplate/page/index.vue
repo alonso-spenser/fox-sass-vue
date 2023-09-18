@@ -9,6 +9,20 @@
       <div class="fox-page-content">
         <div
           class="filter-params">
+          <div class="filter-params-element" style="width: 150px">
+            <fox-select
+              v-model="siteTypeId"
+              shrink
+              @change="redirectFirstPage(getData)"
+              filterable
+              placeholder="网站类型">
+              <el-option
+                v-for="(o, index) in siteType"
+                :key="`siteType${index}`"
+                :label="o.label"
+                :value="o.id"></el-option>
+            </fox-select>
+          </div>
           <div class="filter-params-element">
             <fox-input
               shrink
@@ -22,7 +36,7 @@
                 slot="append"
                 icon="el-icon-search"
                 :loading="loading"
-                @click="getData(false)"
+                @click="redirectFirstPage(getData)"
               ></el-button>
             </fox-input>
           </div>
@@ -247,10 +261,11 @@ export default {
           return ''
         }
       },
-      siteType: {},
+      siteType: [],
       initLoading: false,
       bindVisible: false,
-      bindModel: {}
+      bindModel: {},
+      siteTypeId: null
     }
   },
   created () {
@@ -333,24 +348,28 @@ export default {
      * 清空搜索条件
      */
     clearSearchCondition () {
+      this.siteTypeId = null
+      this.searchConditions.keyword = ''
       this.clearCondition(() => {
         this.getData(true)
       })
     },
     /**
      * 分页
-     * @param first 首次加载
      */
-    getData (first) {
+    getData () {
       this.tableOptions.loading = true
-      this.pagingOptions.firstLoading = first
-      http.themePagePaging({
+      let d = {
         current: this.pagingOptions.pageIndex,
         size: this.pagingOptions.pageSize,
         params: {
           title: this.searchConditions.keyword
         }
-      })
+      }
+      if (this.siteTypeId !== null) {
+        d.params.siteType = this.siteTypeId
+      }
+      http.themePagePaging(d)
         .then(result => {
           this.pageValid()
           this.resultMessage(result, (success) => {
@@ -358,10 +377,6 @@ export default {
               this.pagingOptions.recordCount = result.data.total
               this.pagingOptions.dataset = result.data['records']
               this.tableOptions.loading = false
-              if (result.data.records.length > 0) {
-                this.pagingOptions.firstLoading = !first
-              }
-              this.batchActions = !(this.pagingOptions.dataset.length === 0 && this.pagingOptions.firstLoading)
             }
           })
         })

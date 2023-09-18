@@ -52,7 +52,7 @@ export default {
       },
       {
         id: 2,
-        label: 'B2C单页'
+        label: 'B2B单页'
       },
       {
         id: 3,

@@ -10,9 +10,10 @@
           @click="getSections"
           size="small"
           class="float-right"
-        >添加模块</el-button>
+        >添加模块
+        </el-button>
         <span class="el-dialog__title">
-          {{entity.title}}
+          {{ entity.title }}
         </span>
       </template>
       <el-form :model="pageSection" :rules="formRules" ref="update" label-position="top">
@@ -29,7 +30,7 @@
             :key="`section-${index}`"
             :gutter="20">
             <el-col :span="18">
-              {{o.sectionType}} - {{o.sectionName}}
+              {{ o.sectionType }} - {{ o.sectionName }}
             </el-col>
             <el-col :span="4">
               <el-form-item
@@ -62,25 +63,43 @@
     <el-dialog
       :showClose="false"
       :visible.sync="sectionVisible"
-      width="30%"
+      width="800px"
       :before-close="addSection">
       <el-radio-group @change="changeSection" class="el-radio-block" v-model="sectionId">
         <template v-for="(item, index) in sectionsList">
           <el-radio
-            v-if="!hasSection(item.sectionType)"
+            v-if="!hasSection(item.sectionType, item.siteTypeList)"
             :label="item.id"
             :key="index">
-            {{item.sectionType}} - {{item.sectionName}}
+            {{ item.sectionType }} - {{ item.sectionName }}
           </el-radio>
         </template>
       </el-radio-group>
       <div slot="footer" class="dialog-footer">
-        <el-button size="small" @click="sectionVisible = false">{{$t('base.operate.cancel')}}</el-button>
-        <el-button size="small" @click="addSection">{{$t('base.operate.confirm')}}</el-button>
+        <el-button size="small" @click="sectionVisible = false">{{ $t('base.operate.cancel') }}</el-button>
+        <el-button size="small" @click="addSection">{{ $t('base.operate.confirm') }}</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
+<style
+  scoped
+  lang="scss">
+.el-radio-block {
+  overflow: hidden;
+
+  .el-radio {
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    float: left;
+
+    & + .el-radio {
+      margin: 0;
+    }
+  }
+}
+</style>
 
 <script>
 import extend from '@/plugins/page/unsaved'
@@ -120,7 +139,8 @@ export default {
     },
     value: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   computed: {
@@ -148,11 +168,14 @@ export default {
     this.entity = this.value
   },
   methods: {
-    hasSection (sectionType) {
+    hasSection (sectionType, siteTypeList) {
+      let m = siteTypeList.filter((id) => {
+        return this.entity.siteTypeList.indexOf(id) > 0
+      })
       let s = this.pageSection.dataset.filter((o) => {
         return o.sectionType === sectionType
       })
-      return s.length > 0
+      return s.length > 0 && m.length > 0
     },
     /**
      * 选择某个section
@@ -264,7 +287,10 @@ export default {
           http.themePageSectionUpdate({
             pageId: this.entity.id,
             pageType: this.entity.pageType,
-            sectionList: this.pageSection.dataset.reduce((r, v) => { r.push(v.sectionId); return r }, [])
+            sectionList: this.pageSection.dataset.reduce((r, v) => {
+              r.push(v.sectionId)
+              return r
+            }, [])
           })
             .then(result => {
               result.options = {

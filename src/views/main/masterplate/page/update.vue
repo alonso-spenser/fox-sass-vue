@@ -4,7 +4,7 @@
     :offset="200"
     google-style
   >
-    <el-form
+    <fox-form
       :model="entity"
       :rules="formRules"
       ref="update"
@@ -48,7 +48,7 @@
               <fox-select
                 class="w-100"
                 shrink
-                v-model="currentSiteType"
+                v-model="mySiteType"
                 multiple
                 @change="siteTypeChange"
                 :placeholder="$t('theme.page.update.entity.siteType.label')"
@@ -56,7 +56,7 @@
               >
                 <el-option
                   v-for="item in siteType"
-                  :key="item.id"
+                  :key="`st${item.id}`"
                   :label="item.label"
                   :value="item.id"
                 ></el-option>
@@ -147,7 +147,7 @@
           </el-col>
         </el-row>
       </fox-section>
-    </el-form>
+    </fox-form>
     <fox-unsaved
       :unsaved.sync="unsaved"
       :loading="loading"
@@ -174,7 +174,7 @@ export default {
         hasHeader: 0,
         menuVisible: 0,
         pageType: '',
-        siteType: 3,
+        siteType: '3',
         title: ''
       },
       formRules: {
@@ -195,7 +195,7 @@ export default {
       },
       siteType: [],
       pageType: [],
-      currentSiteType: []
+      mySiteType: []
     }
   },
   watch: {
@@ -227,7 +227,7 @@ export default {
      */
     formValidation () {
       let formName = 'update'
-      this.$refs[formName].validate((valid, fields) => {
+      this.formValidate(formName, (valid, fields) => {
         if (valid) {
           this.loading = true
           if (this.id) {
@@ -235,8 +235,6 @@ export default {
           } else {
             this.addPage()
           }
-        } else {
-          this.unverified(fields)
         }
       })
     },
@@ -303,14 +301,14 @@ export default {
         this.entity.menuVisible = s[0].menuVisible
         this.entity.title = s[0].title
         this.entity.pageType = s[0].pageType
-        this.getSiteType(s[0].siteType)
+        this.getSiteType([s[0].siteType])
       }
     },
     siteTypeChange () {
-      this.entity.siteType = this.currentSiteType.join(',')
+      this.entity.siteType = this.mySiteType.join(',')
     },
     getSiteType (siteType) {
-      this.currentSiteType = siteType
+      this.mySiteType = siteType
     },
     /**
      * 更新数据
