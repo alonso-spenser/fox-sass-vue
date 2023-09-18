@@ -11,7 +11,8 @@
     "test": "vue-cli-service build --mode test",
     "prod": "vue-cli-service build --mode production",
     "build:fox": "vue-cli-service build --mode fox",
-    "build:huazhe": "vue-cli-service build --mode huazhe"
+    "build:huazhe": "vue-cli-service build --mode huazhe",
+    "build:seacat": "vue-cli-service build --mode seacat"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.8",
