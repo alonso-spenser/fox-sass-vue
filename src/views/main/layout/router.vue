@@ -86,7 +86,7 @@
 <script>
 import layoutAside from './aside'
 import extend from '@/plugins/page/base'
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import langSVG from '@/assets/svg/lang.svg'
 import avatar from '@/assets/image/avatar.png'
 
@@ -117,6 +117,10 @@ export default {
   },
   methods: {
     /**
+     * 更新缓存
+     */
+    ...mapMutations(['setMasterModel']),
+    /**
      * 首页
      */
     goHome () {
@@ -129,6 +133,13 @@ export default {
       this.$router.push('/main/account')
     },
     /**
+     * 退出
+     */
+    mainLogout () {
+      localStorage.removeItem('masterModel')
+      this.redirectURL('/main/passport')
+    },
+    /**
      * 下拉事件
      */
     dropCommand (command) {
@@ -137,7 +148,7 @@ export default {
           this.redirectURL('/main/account/password')
           break
         case 1:
-          this.logout()
+          this.mainLogout()
           break
         case 2:
           this.redirectURL('/main/account/personal')

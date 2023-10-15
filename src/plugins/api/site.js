@@ -108,3 +108,13 @@ export const fetchReportGenerate = (params = {}) => http.post('/stat/api/report/
  *  SEO目标
  */
 export const fetchSEOTarget = (params = {}) => http.post('/official/api/worksheet/target', params)
+
+/**
+ * site_authorized_login详情
+ */
+export const fetchSiteAuthorizedLoginDetail = (params = {}) => http.post('/api/site/authorized-detail', params)
+
+/**
+ * 添加 & 修改site_authorized_login
+ */
+export const fetchSiteAuthorizedLoginUpdate = (params = {}) => http.post('/api/site/authorized-login-update', params)

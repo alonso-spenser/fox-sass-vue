@@ -6,23 +6,38 @@ export default {
     tabPane: [
       {
         label: '网站信息',
-        name: 'site-setting-general'
+        name: 'site-setting-general',
+        siteType: [1, 2, 3, 4]
       },
       {
         label: '域名绑定',
-        name: 'site-setting-domain'
+        name: 'site-setting-domain',
+        siteType: [1, 2, 3, 4]
       },
       {
         label: '法律政策',
-        name: 'site-setting-legal'
+        name: 'site-setting-legal',
+        siteType: [1, 2, 3, 4]
       },
       {
         label: '追踪与分析',
-        name: 'site-setting-tracking'
+        name: 'site-setting-tracking',
+        siteType: [1, 2, 3, 4]
       },
       {
         label: '路由',
-        name: 'site-setting-route'
+        name: 'site-setting-route',
+        siteType: [1, 2, 3, 4]
+      },
+      {
+        label: 'Google授权登录',
+        name: 'site-google-authorized-login',
+        siteType: [1, 2, 3, 4]
+      },
+      {
+        label: '支付配置',
+        name: 'site-payment-login',
+        siteType: [1, 4]
       }
     ],
     heading: '网站设置',
@@ -46,6 +61,13 @@ export default {
           tips: '',
           placeholder: '网站附加标题',
           required: '请输入网站附加标题',
+          custom: ''
+        },
+        emailSender: {
+          label: '邮件发送人',
+          tips: '',
+          placeholder: '邮件发送人',
+          required: '请输入邮件发送人',
           custom: ''
         },
         email: {
@@ -464,6 +486,46 @@ export default {
             required: '请输入目标地址',
             custom: ''
           }
+        }
+      }
+    },
+    authorizedLogin: {
+      title: 'Google授权登录',
+      entity: {
+        applicationName: {
+          label: 'Application Name',
+          tips: '',
+          placeholder: 'Application Name',
+          required: '请输入Application Name',
+          custom: ''
+        },
+        clientId: {
+          label: 'Client ID',
+          tips: '',
+          placeholder: 'Client ID',
+          required: '请输入Client ID',
+          custom: ''
+        },
+        clientSecret: {
+          label: 'Client Secret',
+          tips: '',
+          placeholder: 'Client Secret',
+          required: '请输入Client Secret',
+          custom: ''
+        },
+        scope: {
+          label: 'Scope',
+          tips: '',
+          placeholder: 'openid email profile',
+          required: '请输入openid email profile',
+          custom: ''
+        },
+        tag: {
+          label: '平台',
+          tips: '',
+          placeholder: '平台',
+          required: '请输入平台',
+          custom: ''
         }
       }
     }

@@ -20,6 +20,11 @@
               <el-button
                 type="text"
                 size="mini"
+                @click="redirectPreview('privacy-policy')">{{ $t('base.operate.preview') }}
+              </el-button>
+              <el-button
+                type="text"
+                size="mini"
                 @click="replaceTemplate('privacyPolicy')">{{ $t('settings.legal.update.template') }}
               </el-button>
             </template>
@@ -37,6 +42,11 @@
             :heading="$t('settings.legal.update.entity.termsOfService.label')"
             class="section-container">
             <template slot="header">
+              <el-button
+                type="text"
+                size="mini"
+                @click="redirectPreview('terms-of-service')">{{ $t('base.operate.preview') }}
+              </el-button>
               <el-button
                 type="text"
                 size="mini"
@@ -60,6 +70,11 @@
               <el-button
                 type="text"
                 size="mini"
+                @click="redirectPreview('refund-policy')">{{ $t('base.operate.preview') }}
+              </el-button>
+              <el-button
+                type="text"
+                size="mini"
                 @click="replaceTemplate('refundPolicy')">{{ $t('settings.legal.update.template') }}
               </el-button>
             </template>
@@ -79,6 +94,11 @@
             <template
               slot="header"
               v-if="false">
+              <el-button
+                type="text"
+                size="mini"
+                @click="redirectPreview('shipping-policy')">{{ $t('base.operate.preview') }}
+              </el-button>
               <el-button
                 type="text"
                 size="mini"
@@ -109,6 +129,7 @@
 import extend from '@/plugins/page/unsaved'
 import { fetchLegalDetail, fetchUpdateLega } from '@/plugins/api/settings'
 import tempConfig from './tempConfig'
+import { mapState } from 'vuex'
 
 export default {
   name: 'siteLegalUpdate',
@@ -122,38 +143,12 @@ export default {
         shippingPolicy: '',
         termsOfService: ''
       },
-      formRules: {
-        // privacyPolicy: [
-        //   {
-        //     required: true,
-        //     message: this.$t('settings.legal.update.entity.privacyPolicy.required'),
-        //     trigger: 'blur'
-        //   }
-        // ],
-        // refundPolicy: [
-        //   {
-        //     required: true,
-        //     message: this.$t('settings.legal.update.entity.refundPolicy.required'),
-        //     trigger: 'blur'
-        //   }
-        // ],
-        // shippingPolicy: [
-        //   {
-        //     required: true,
-        //     message: this.$t('settings.legal.update.entity.shippingPolicy.required'),
-        //     trigger: 'blur'
-        //   }
-        // ],
-        // termsOfService: [
-        //   {
-        //     required: true,
-        //     message: this.$t('settings.legal.update.entity.termsOfService.required'),
-        //     trigger: 'blur'
-        //   }
-        // ]
-      },
+      formRules: {},
       activeName: 'privacyPolicy'
     }
+  },
+  computed: {
+    ...mapState(['siteModel'])
   },
   watch: {
     entity: {
@@ -167,6 +162,13 @@ export default {
     this.getDetail()
   },
   methods: {
+    /**
+     * 预览
+     * @param url
+     */
+    redirectPreview (url) {
+      this.utility.openSite(`//${this.siteModel.mainDomain}/legal/${url}`)
+    },
     /**
      * 从模版中替换
      */

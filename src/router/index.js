@@ -444,6 +444,23 @@ const routes = [
                 }
               ]
             }
+          },
+          {
+            path: 'authorized',
+            name: 'site-google-authorized-login',
+            component: () => import('../views/app/site/settings/authorized'),
+            meta: {
+              title: i18n.t('settings.authorizedLogin.title'),
+              asideVisible: true,
+              headerVisible: true,
+              containerVisible: true,
+              requireAuth: true,
+              parent: {
+                title: i18n.t('settings.authorizedLogin.title'),
+                url: '/site/:siteId:/settings',
+                previous: ''
+              }
+            }
           }
         ]
       },

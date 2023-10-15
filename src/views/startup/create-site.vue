@@ -83,15 +83,37 @@
                   </p>
                 </div>
               </el-col>
-              <!--          <el-col :span="8">-->
-              <!--            <div :class="`create-site${entity.siteType === 4 ? ' active' : ''}`" @click="selectedSite(4)">-->
-              <!--              <h2 v-html="$t('startup.siteType.b2c.heading')"></h2>-->
-              <!--              <p v-html="$t('startup.siteType.b2c.subheading')"></p>-->
-              <!--              <p>-->
-              <!--                {{ $t("startup.siteType.b2c.tips") }}-->
-              <!--              </p>-->
-              <!--            </div>-->
-              <!--          </el-col>-->
+              <el-col :span="12">
+                <div
+                  :class="`create-site mall el-icon-check ${entity.siteType === 1 ? ' active' : ''}`"
+                  @click="selectedSite(1)">
+                  <h2 v-html="$t('startup.siteType.cod.heading')"></h2>
+                  <p v-html="$t('startup.siteType.cod.subheading')"></p>
+                  <p>
+                    {{ $t("startup.siteType.cod.tips") }}
+                  </p>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div
+                  :class="`create-site mall el-icon-check ${entity.siteType === 4 ? ' active' : ''}`"
+                  @click="selectedSite(4)">
+                  <h2 v-html="$t('startup.siteType.b2c.heading')"></h2>
+                  <p v-html="$t('startup.siteType.b2c.subheading')"></p>
+                  <p>
+                    {{ $t("startup.siteType.lp.tips") }}
+                  </p>
+                </div>
+              </el-col>
+              <!--              <el-col :span="8">-->
+              <!--                <div :class="`create-site${entity.siteType === 4 ? ' active' : ''}`" @click="selectedSite(4)">-->
+              <!--                  <h2 v-html="$t('startup.siteType.b2c.heading')"></h2>-->
+              <!--                  <p v-html="$t('startup.siteType.b2c.subheading')"></p>-->
+              <!--                  <p>-->
+              <!--                    {{ $t("startup.siteType.b2c.tips") }}-->
+              <!--                  </p>-->
+              <!--                </div>-->
+              <!--              </el-col>-->
             </el-row>
           </div>
         </div>
@@ -733,6 +755,10 @@ export default {
   border-radius: $borderRadius;
   position: relative;
   transition: $transition;
+
+  &.mall {
+    background-color: #fcf4f4;
+  }
 
   &-header {
     height: auto;

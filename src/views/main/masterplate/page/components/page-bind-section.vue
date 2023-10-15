@@ -68,7 +68,7 @@
       <el-radio-group @change="changeSection" class="el-radio-block" v-model="sectionId">
         <template v-for="(item, index) in sectionsList">
           <el-radio
-            v-if="!hasSection(item.sectionType, item.siteTypeList)"
+            v-if="!hasSection(item.sectionType, item.siteTypeList) && item.siteType.indexOf(siteType) > -1"
             :label="item.id"
             :key="index">
             {{ item.sectionType }} - {{ item.sectionName }}
@@ -137,6 +137,10 @@ export default {
       type: String,
       default: ''
     },
+    siteType: {
+      type: Number,
+      default: 2
+    },
     value: {
       type: Object,
       default: () => {
@@ -202,7 +206,8 @@ export default {
      */
     getPageSection () {
       http.themePageSection({
-        id: this.entity.id
+        pageId: this.entity.id,
+        siteType: this.siteType
       })
         .then(result => {
           this.resultMessage(result, (success) => {
@@ -287,6 +292,7 @@ export default {
           http.themePageSectionUpdate({
             pageId: this.entity.id,
             pageType: this.entity.pageType,
+            siteType: this.siteType,
             sectionList: this.pageSection.dataset.reduce((r, v) => {
               r.push(v.sectionId)
               return r

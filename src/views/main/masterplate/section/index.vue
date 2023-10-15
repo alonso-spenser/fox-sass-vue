@@ -104,7 +104,7 @@ import schemaEditor from '../components/schema-editor'
 import langEditor from '../components/lang-editor'
 import sectionPageType from '../components/page-type'
 import sectionTagSelector from '../components/section-tag-selector'
-import { fetchThemeSectionUpdateSiteType, fetchThemeSectionUpdateTag, themeSectionClone } from '@/plugins/api/theme'
+import { fetchThemeSectionUpdateSiteType, fetchThemeSectionUpdateTag } from '@/plugins/api/theme'
 
 export default {
   name: 'themeSection',
@@ -163,8 +163,8 @@ export default {
             render: (row) => {
               return (
                 <div>
-                  <div>{row.sectionType}</div>
-                  <small className="tab-tag-list">{row.salt}</small>
+                  <div>{row['sectionType']}</div>
+                  <small className="tab-tag-list">{row['salt']}</small>
                 </div>
               )
             }
@@ -175,7 +175,7 @@ export default {
             width: 100,
             align: 'center',
             render: (row) => {
-              return (<label class={row.dynamic === 0 ? 'el-icon-check' : 'el-icon-close'}></label>)
+              return (<label class={row['dynamic'] === 0 ? 'el-icon-check' : 'el-icon-close'}></label>)
             }
           },
           {
@@ -184,7 +184,7 @@ export default {
             width: 60,
             align: 'center',
             render: (row) => {
-              return (<label class={row.once === 0 ? 'el-icon-check' : ''}></label>)
+              return (<label class={row['once'] === 0 ? 'el-icon-check' : ''}></label>)
             }
           },
           {
@@ -205,9 +205,9 @@ export default {
             width: 120,
             render: (row) => {
               return (
-                this.getSiteTypeLabel(row.siteTypeList).map((o) => {
+                this.getSiteType(row['siteType']).map((value) => {
                   return (
-                    <small class="tab-tag-list">{o}</small>
+                    <div>{value}</div>
                   )
                 })
               )
@@ -369,14 +369,17 @@ export default {
     })
   },
   methods: {
-    getSiteTypeLabel (ids) {
-      let s = []
-      this.siteTypeList.forEach((item) => {
-        if (ids.indexOf(item.id.toString()) > -1) {
-          s.push(item.label)
+    /**
+     * 站点类型
+     */
+    getSiteType (index) {
+      let label = []
+      this.siteType.forEach((o) => {
+        if (index.indexOf(o.id) !== -1) {
+          label.push(o.label)
         }
       })
-      return s
+      return label
     },
     updateSiteType (siteType) {
       this.multiSection.visible = false

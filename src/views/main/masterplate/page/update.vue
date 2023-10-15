@@ -314,6 +314,7 @@ export default {
      * 更新数据
      */
     updatePage () {
+      delete this.entity.siteTypeList
       http.themePageUpdate(this.entity)
         .then(result => {
           result.options = {

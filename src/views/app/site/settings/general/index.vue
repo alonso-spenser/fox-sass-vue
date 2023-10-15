@@ -18,7 +18,7 @@
         <el-row
           :gutter="20"
           class="el-form-row">
-          <el-col :span="24">
+          <el-col :span="16">
             <el-form-item
               prop="siteName"
             >
@@ -30,6 +30,20 @@
                 v-model="entity.siteName"
                 :placeholder="$t('settings.basic.entity.title.label')"
                 :description="$t('settings.basic.entity.title.placeholder')"
+              ></fox-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item
+              prop="emailSender"
+            >
+              <fox-input
+                :maxlength="50"
+                shrink
+                show-word-limit
+                v-model="entity.emailSender"
+                :placeholder="$t('settings.basic.entity.emailSender.label')"
+                :description="$t('settings.basic.entity.emailSender.placeholder')"
               ></fox-input>
             </el-form-item>
           </el-col>
@@ -559,6 +573,7 @@ export default {
   data () {
     return {
       entity: {
+        emailSender: '',
         siteName: '',
         langId: '',
         addOnHeader: '',
@@ -890,7 +905,6 @@ export default {
     updateSite () {
       fetchSaveSiteBasicDetail({
         ...this.entity,
-        id: this.siteId,
         targetMarket: JSON.stringify(this.entity.targetMarket)
       }).then(result => {
         result.options = {

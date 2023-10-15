@@ -21,8 +21,8 @@
         ></el-option>
       </el-select>
       <div slot="footer" class="dialog-footer">
-        <el-button size="small" @click="dialogClose">{{$t('base.operate.cancel')}}</el-button>
-        <el-button size="small" @click="addSection">{{$t('base.operate.confirm')}}</el-button>
+        <el-button size="small" @click="dialogClose">{{ $t('base.operate.cancel') }}</el-button>
+        <el-button size="small" @click="addSection">{{ $t('base.operate.confirm') }}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -57,7 +57,7 @@ export default {
     }
   },
   created () {
-    this.siteType = this.resource.siteType
+    this.siteType = this.$t('enumerate.siteType')
   },
   methods: {
     addSection () {

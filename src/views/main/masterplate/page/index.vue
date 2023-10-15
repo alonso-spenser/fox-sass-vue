@@ -11,7 +11,7 @@
           class="filter-params">
           <div class="filter-params-element" style="width: 150px">
             <fox-select
-              v-model="siteTypeId"
+              v-model="searchConditions.siteTypeId"
               shrink
               @change="redirectFirstPage(getData)"
               filterable
@@ -88,6 +88,7 @@
     </fox-paging-table>
     <page-bind-section
       :visible.sync="bindVisible"
+      :site-type="searchConditions.siteTypeId"
       v-model="bindModel"
     ></page-bind-section>
   </fox-layout-main>
@@ -108,7 +109,11 @@ export default {
   data () {
     return {
       dataConfig: {
-        actions: {},
+        actions: {
+          rowClick: (row, column) => {
+            this.columnEvents(row, column)
+          }
+        },
         columns: [
           {
             prop: 'title',
@@ -124,7 +129,7 @@ export default {
             width: 80,
             render: (row) => {
               return (
-                this.getSiteType(row.siteType).map((value) => {
+                this.getSiteType(row['siteType']).map((value) => {
                   return (
                     <div>{value}</div>
                   )
@@ -265,7 +270,10 @@ export default {
       initLoading: false,
       bindVisible: false,
       bindModel: {},
-      siteTypeId: null
+      searchConditions: {
+        ...this.searchConditions,
+        siteTypeId: null
+      }
     }
   },
   created () {
@@ -285,6 +293,26 @@ export default {
     // console.log(s.join('\n'))
   },
   methods: {
+    /**
+     * 行点击事件
+     * @param row       行数据
+     * @param column    列属性
+     */
+    columnEvents (row, column) {
+      this.updatePage(row)
+    },
+    /**
+     * 添加跳转
+     */
+    addPage () {
+      this.$router.push('/main/masterplate/page/add')
+    },
+    /**
+     * 修改跳转
+     */
+    updatePage (row) {
+      this.$router.push(`/main/masterplate/page/update/${row.id}`)
+    },
     /**
      * 追加组件
      * @param row
@@ -348,7 +376,7 @@ export default {
      * 清空搜索条件
      */
     clearSearchCondition () {
-      this.siteTypeId = null
+      this.searchConditions.siteTypeId = null
       this.searchConditions.keyword = ''
       this.clearCondition(() => {
         this.getData(true)
@@ -366,8 +394,8 @@ export default {
           title: this.searchConditions.keyword
         }
       }
-      if (this.siteTypeId !== null) {
-        d.params.siteType = this.siteTypeId
+      if (this.searchConditions.siteTypeId !== null) {
+        d.params.siteType = this.searchConditions.siteTypeId
       }
       http.themePagePaging(d)
         .then(result => {
@@ -384,18 +412,6 @@ export default {
           this.pageInvalid()
           this.networkMistake(error)
         })
-    },
-    /**
-     * 添加跳转
-     */
-    addPage () {
-      this.$router.push('/main/masterplate/page/add')
-    },
-    /**
-     * 修改跳转
-     */
-    updatePage (row) {
-      this.$router.push(`/masterplate/page/update/${row.id}`)
     },
     /**
      * 初始页面类型
@@ -422,7 +438,9 @@ export default {
         })
     },
     initSection () {
-      http.themePageInitSection()
+      http.themePageInitSection({
+        siteType: this.searchConditions.siteTypeId || 2
+      })
         .then(result => {
           result.options = {
             action: this.actionType.update

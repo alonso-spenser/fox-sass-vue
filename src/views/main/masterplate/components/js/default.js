@@ -267,9 +267,7 @@ export default {
             en: '',
             'zh-CN': ''
           },
-          options: [
-
-          ]
+          options: []
         },
         {
           type: 'hidden',
@@ -283,9 +281,7 @@ export default {
             en: '',
             'zh-CN': ''
           },
-          options: [
-
-          ]
+          options: []
         },
         {
           type: 'imagePicker',
@@ -299,9 +295,7 @@ export default {
             en: '',
             'zh-CN': ''
           },
-          options: [
-
-          ]
+          options: []
         },
         {
           type: 'text',
@@ -315,9 +309,7 @@ export default {
             en: '',
             'zh-CN': ''
           },
-          options: [
-
-          ]
+          options: []
         }
       ],
       product: [
@@ -333,9 +325,7 @@ export default {
             en: '',
             'zh-CN': ''
           },
-          options: [
-
-          ]
+          options: []
         },
         {
           type: 'imagePicker',
@@ -349,9 +339,7 @@ export default {
             en: '',
             'zh-CN': ''
           },
-          options: [
-
-          ],
+          options: [],
           altFiled: ''
         },
         {
@@ -366,9 +354,7 @@ export default {
             en: '',
             'zh-CN': ''
           },
-          options: [
-
-          ]
+          options: []
         },
         {
           type: 'text',
@@ -382,9 +368,7 @@ export default {
             en: '',
             'zh-CN': ''
           },
-          options: [
-
-          ]
+          options: []
         }
       ]
     }
@@ -708,18 +692,6 @@ export default {
     'af': {
       'lang': '南非荷兰语'
     },
-    'eu': {
-      'lang': '巴斯克语'
-    },
-    'ca': {
-      'lang': '加泰罗尼亚语'
-    },
-    'eo': {
-      'lang': '世界语'
-    },
-    'hi': {
-      'lang': '北印度语'
-    },
     'el': {
       'lang': '希腊语'
     },
@@ -738,9 +710,6 @@ export default {
     'vi': {
       'lang': '越南语'
     },
-    'cy': {
-      'lang': '威尔士语'
-    },
     'sk': {
       'lang': '斯洛文尼亚语'
     },
@@ -755,9 +724,6 @@ export default {
     },
     'gl': {
       'lang': '加利西亚语'
-    },
-    'gu': {
-      'lang': '古吉特拉语'
     },
     'et': {
       'lang': '爱沙尼亚语'
@@ -780,12 +746,6 @@ export default {
     'ka': {
       'lang': '格鲁吉亚语'
     },
-    'is': {
-      'lang': '冰岛语'
-    },
-    'ht': {
-      'lang': '海地-克里奥尔语'
-    },
     'lt': {
       'lang': '立陶宛语'
     },
@@ -795,29 +755,14 @@ export default {
     'sl': {
       'lang': '斯洛文尼亚语'
     },
-    'ta': {
-      'lang': '泰米尔语'
-    },
     'uk': {
       'lang': '乌克兰语'
-    },
-    'yi': {
-      'lang': '意地绪语'
-    },
-    'ur': {
-      'lang': '乌尔都语'
-    },
-    'te': {
-      'lang': '泰卢固语'
     },
     'fa': {
       'lang': '波斯语'
     },
     'mk': {
       'lang': '马其顿语'
-    },
-    'he': {
-      'lang': '希伯来语'
     },
     'fi': {
       'lang': '芬兰语'
@@ -837,29 +782,11 @@ export default {
     'bs': {
       'lang': '波斯尼亚语'
     },
-    'ceb': {
-      'lang': '宿务语'
-    },
-    'ny': {
-      'lang': '齐佩瓦语'
-    },
     'ha': {
       'lang': '豪撒语'
     },
-    'hmn': {
-      'lang': '苗语'
-    },
-    'ig': {
-      'lang': '伊博语'
-    },
-    'jv': {
-      'lang': '爪哇语'
-    },
     'kk': {
       'lang': '哈萨克语'
-    },
-    'km': {
-      'lang': '高棉语'
     },
     'lo': {
       'lang': '菲律宾语'
@@ -896,9 +823,6 @@ export default {
     },
     'so': {
       'lang': '索马里语'
-    },
-    'su': {
-      'lang': '巽他语'
     },
     'tg': {
       'lang': '塔吉克语'

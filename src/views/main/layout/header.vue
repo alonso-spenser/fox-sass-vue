@@ -141,16 +141,9 @@ export default {
      */
     logout () {
       let code = localStorage.getItem('foUILanguage') || 'en'
-      window.localStorage.clear()
       localStorage.setItem('foUILanguage', code)
-      this.setagentModel({
-        avatar: '',
-        firstName: '',
-        lastName: '',
-        name: '',
-        token: ''
-      })
-      this.$router.push('/main/passport')
+      localStorage.removeItem('masterModel')
+      this.redirectURL('/main/passport')
     },
     getScroll () {
       // let el = this.$refs.globalHeader

@@ -91,10 +91,14 @@ export default {
      * @param formName
      */
     clearValidate (formName) {
-      if (this.$refs[formName] && this.$refs[formName].$children.length > 0) {
-        this.$refs[formName].$children[0].clearValidate()
-      } else if (this.$refs[formName]) {
-        this.$refs[formName].clearValidate()
+      try {
+        if (this.$refs[formName] && this.$refs[formName].$children.length > 0) {
+          this.$refs[formName].$children[0].clearValidate()
+        } else if (this.$refs[formName]) {
+          this.$refs[formName].clearValidate()
+        }
+      } catch (e) {
+        console.log(e)
       }
     },
     /**
