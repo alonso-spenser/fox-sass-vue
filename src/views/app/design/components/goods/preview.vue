@@ -2,28 +2,34 @@
   <div>
     <template v-if="sectionData.imagePercentage === 12 && sectionData.dataset.imageList.data.length > 0">
       <template v-for="(o, salt) in  sectionData.dataset.imageList.data ">
-        <div :key="`salt-${salt}`" :class="`${o.marginTop ? ' design-margin-top': ''}${o.marginBottom ? ' design-margin-bottom': ''} ${ sectionData.sectionSalt } ${ sectionData.sectionSalt }-${ sectionData.articleId }-${ salt }`">
-          <div :class="`container${sectionData.wideScreen ? '-fluid no-gutters' : ''}`">
-            <div :class="`embed-responsive embed-responsive-${sectionData.imageScale} ${o.paddingTop ? ' design-padding-top': ''}${o.paddingBottom ? ' design-padding-bottom': ''}`">
+        <div :key="`salt-${salt}`"
+             :class="`${o.marginTop ? ' design-margin-top': ''}${o.marginBottom ? ' design-margin-bottom': ''} ${ sectionData.sectionSalt } ${ sectionData.sectionSalt }-${ sectionData.articleId }-${ salt }`">
+          <div
+            :class="`container${sectionData.wideScreen ? '-fluid' : ''}${sectionData.wideGutter === 'gutters' ? '' : ' no-gutters'}`">
+            <div
+              :class="`embed-responsive embed-responsive-${sectionData.imageScale} ${o.paddingTop ? ' design-padding-top': ''}${o.paddingBottom ? ' design-padding-bottom': ''}`">
               <img class="embed-responsive-item lazy" :src="o.url" :alt="o.alt" v-if="o.url">
               <div :class="`${ sectionData.sectionSalt }-content ${ o.contentPosition }`">
                 <div class="container">
                   <div :class="`${ sectionData.sectionSalt }-area`">
                     <h3 class="text-headline" v-if="o.heading">{{ o.heading }}</h3>
                     <h5 class="text-subheading" v-if="o.subheading">{{ o.subheading }}</h5>
-                    <ul :class="`text-list ${o.contentAlign === 'text-left' ? o.symbol : ''} ${o.contentAlign}`" v-if="o.contentList.length > 0">
+                    <ul :class="`text-list ${o.contentAlign === 'text-left' ? o.symbol : ''} ${o.contentAlign}`"
+                        v-if="o.contentList.length > 0">
                       <template v-for="(val, salt) in o.contentList">
                         <li :key="`c-${salt}`" v-if="utility.isNotEmpty(val)">
                           {{ val }}
                         </li>
                       </template>
                     </ul>
-<!--                    <p class="text-description" v-if="o.description">{{ o.description }}</p>-->
+                    <!--                    <p class="text-description" v-if="o.description">{{ o.description }}</p>-->
                     <p class="text-button d-md-block d-none" v-if=" o.buttonStyle !== 'invisible' && o.buttonLabel">
-                      <button :class="`btn ${ o.buttonStyle }`" v-if="!o.buttonLink && o.buttonStyle !== 'invisible' && o.buttonLabel">
+                      <button :class="`btn ${ o.buttonStyle }`"
+                              v-if="!o.buttonLink && o.buttonStyle !== 'invisible' && o.buttonLabel">
                         {{ o.buttonLabel }}
                       </button>
-                      <a :href="o.buttonLink" :class="`btn ${ o.buttonStyle }`" v-if="o.buttonLink && o.buttonStyle !== 'invisible' && o.buttonLabel">
+                      <a :href="o.buttonLink" :class="`btn ${ o.buttonStyle }`"
+                         v-if="o.buttonLink && o.buttonStyle !== 'invisible' && o.buttonLabel">
                         {{ o.buttonLabel }}
                       </a>
                     </p>
@@ -37,10 +43,14 @@
     </template>
     <template v-if="sectionData.imagePercentage < 12 && sectionData.dataset.imageList.data.length > 0">
       <template v-for="(o, salt) in  sectionData.dataset.imageList.data ">
-        <div :key="`salt-${salt}`" :class="`${o.marginTop ? ' design-margin-top': ''}${o.marginBottom ? ' design-margin-bottom': ''} ${ sectionData.sectionSalt } ${ sectionData.sectionSalt }-${ sectionData.articleId }-${ salt }`">
-          <div :class="`container${sectionData.wideScreen ? '-fluid no-gutters' : ''}`">
-            <div :class="`row no-gutters ${ sectionData.sectionSalt }-row ${o.paddingTop ? ' design-padding-top': ''}${o.paddingBottom ? ' design-padding-bottom': ''}`">
-              <div :class="`col-md-${ sectionData.imagePercentage } ${ sectionData.firstLayout === 'right' ? (salt % 2 === 0 ? 'order-2' : '') : (salt % 2 === 0 ? '' : 'order-2')}`">
+        <div :key="`salt-${salt}`"
+             :class="`${o.marginTop ? ' design-margin-top': ''}${o.marginBottom ? ' design-margin-bottom': ''} ${ sectionData.sectionSalt } ${ sectionData.sectionSalt }-${ sectionData.articleId }-${ salt }`">
+          <div
+            :class="`container${sectionData.wideScreen ? '-fluid' : ''}${sectionData.wideGutter === 'gutters' ? '' : ' no-gutters'}`">
+            <div
+              :class="`row no-gutters ${ sectionData.sectionSalt }-row ${o.paddingTop ? ' design-padding-top': ''}${o.paddingBottom ? ' design-padding-bottom': ''}`">
+              <div
+                :class="`col-md-${ sectionData.imagePercentage } ${ sectionData.firstLayout === 'right' ? (salt % 2 === 0 ? 'order-2' : '') : (salt % 2 === 0 ? '' : 'order-2')}`">
                 <div :class="`embed-responsive embed-responsive-${sectionData.imageScale}`">
                   <img class="embed-responsive-item lazy" :src="o.url" :alt="o.alt" v-if="o.url">
                 </div>
@@ -49,19 +59,22 @@
                 <div :class="`design-padding-all ${ o.textAlign }`">
                   <h3 class="text-heading" v-if="o.heading">{{ o.heading }}</h3>
                   <h5 class="text-subheading" v-if="o.subheading">{{ o.subheading }}</h5>
-                  <ul :class="`text-list ${o.contentAlign === 'text-left' ? o.symbol : ''} ${o.contentAlign}`" v-if="o.contentList.length > 0">
+                  <ul :class="`text-list ${o.contentAlign === 'text-left' ? o.symbol : ''}`"
+                      v-if="o.contentList.length > 0">
                     <template v-for="(val, salt) in o.contentList">
                       <li :key="`c-${salt}`" v-if="utility.isNotEmpty(val)">
                         {{ val }}
                       </li>
                     </template>
                   </ul>
-<!--                  <p class="text-description" v-if="o.description">{{ o.description }}</p>-->
+                  <!--                  <p class="text-description" v-if="o.description">{{ o.description }}</p>-->
                   <p class="text-button d-md-block d-none" v-if=" o.buttonStyle !== 'invisible' && o.buttonLabel">
-                    <button :class="`btn ${ o.buttonStyle }`" v-if="!o.buttonLink && o.buttonStyle !== 'invisible' && o.buttonLabel">
+                    <button :class="`btn ${ o.buttonStyle }`"
+                            v-if="!o.buttonLink && o.buttonStyle !== 'invisible' && o.buttonLabel">
                       {{ o.buttonLabel }}
                     </button>
-                    <a :href="o.buttonLink" :class="`btn ${ o.buttonStyle }`" v-if="o.buttonLink && o.buttonStyle !== 'invisible' && o.buttonLabel">
+                    <a :href="o.buttonLink" :class="`btn ${ o.buttonStyle }`"
+                       v-if="o.buttonLink && o.buttonStyle !== 'invisible' && o.buttonLabel">
                       {{ o.buttonLabel }}
                     </a>
                   </p>
@@ -77,6 +90,7 @@
 <style lang='scss' src="./FvyQV3.scss"></style>
 <script>
 import schemeData from '../js/design'
+
 export default {
   name: 'design-design-preview',
   data () {
@@ -153,7 +167,13 @@ export default {
           css.push(`.${this.sectionData.sectionSalt}-${this.sectionData.articleId}-${index} .${this.sectionData.sectionSalt}-content:before {background-color: ${o.maskColor};}`)
         }
         if (this.utility.isNotEmpty(o.textColor)) {
-          css.push(`.${this.sectionData.sectionSalt}-${this.sectionData.articleId}-${index} [class*="text-"] {color: ${o.textColor};}`)
+          css.push(`.${this.sectionData.sectionSalt}-${this.sectionData.articleId}-${index} .text-list {color: ${o.textColor};}`)
+        }
+        if (this.utility.isNotEmpty(o.headingColor)) {
+          css.push(`.${this.sectionData.sectionSalt}-${this.sectionData.articleId}-${index} .text-heading {color: ${o.headingColor};}`)
+        }
+        if (this.utility.isNotEmpty(o.subheadingColor)) {
+          css.push(`.${this.sectionData.sectionSalt}-${this.sectionData.articleId}-${index} .text-subheading {color: ${o.subheadingColor};}`)
         }
         if (this.utility.isNotEmpty(o.backgroundColor) || this.utility.isNotEmpty(o.backgroundImage)) {
           css.push(`.${this.sectionData.sectionSalt}-${this.sectionData.articleId}-${index} .${this.sectionData.sectionSalt}-row{background: ${o.backgroundColor || ''}${this.utility.isNotEmpty(o.backgroundImage) ? ' url("' + o.backgroundImage + '")' : ''} ${o.backgroundRepeat || ''};${this.utility.isNotEmpty(o.backgroundSize) ? ' background-size:' + o.backgroundSize : ''}}`)

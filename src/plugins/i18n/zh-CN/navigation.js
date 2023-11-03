@@ -220,6 +220,74 @@ export default {
               id: 99,
               sub: false
             }
+          ],
+          '4': [
+            {
+              label: '首页',
+              id: 0,
+              sub: false
+            },
+            {
+              label: '商品',
+              id: 1,
+              sub: true,
+              all: {
+                title: '全部商品',
+                url: '/products#全部商品'
+              }
+            },
+            {
+              label: '商品集合',
+              id: 2,
+              sub: true,
+              all: {
+                title: '全部商品集合',
+                url: '/products/collection#全部商品集合'
+              }
+            },
+            {
+              label: '文章',
+              id: 3,
+              sub: true,
+              all: {
+                title: '全部文章',
+                url: '/articles#全部文章'
+              }
+            },
+            {
+              label: '文章集合',
+              id: 4,
+              sub: true,
+              all: {
+                title: '全部文章集合',
+                url: '/articles/collection#全部文章集合'
+              }
+            },
+            {
+              label: '自定义页',
+              id: 5,
+              sub: true
+            },
+            {
+              label: '表单',
+              id: 6,
+              sub: true
+            },
+            {
+              label: '下载集合',
+              id: 7,
+              sub: true
+            },
+            {
+              label: '法律政策',
+              id: 8,
+              sub: true
+            },
+            {
+              label: '不跳转',
+              id: 99,
+              sub: false
+            }
           ]
         }
       }

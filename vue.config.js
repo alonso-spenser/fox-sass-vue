@@ -39,7 +39,7 @@ module.exports = {
   //   'resize-detector'
   // ],
   configureWebpack: (config) => {
-    if (process.env.VUE_APP_SUPER === 'fox') {
+    if (process.env.VUE_APP_SUPER === 'fox' || process.env.VUE_APP_SUPER === 'junen') {
       let fun = []
       if (process.env.NODE_ENV === 'production') {
         fun.push(new WebpackAlisunOss({

@@ -119,6 +119,27 @@ export default {
           required: '请输入公司地址',
           custom: ''
         },
+        currencyCode: {
+          label: '货币编码如：CNY',
+          tips: '',
+          placeholder: '货币编码如：CNY',
+          required: '请输入货币编码如：CNY',
+          custom: ''
+        },
+        currencyName: {
+          label: '货币名称',
+          tips: '',
+          placeholder: '货币名称',
+          required: '请输入货币名称',
+          custom: ''
+        },
+        currencySymbol: {
+          label: '货币符号',
+          tips: '',
+          placeholder: '货币符号',
+          required: '请输入货币符号',
+          custom: ''
+        },
         company: {
           label: '公司',
           tips: '',

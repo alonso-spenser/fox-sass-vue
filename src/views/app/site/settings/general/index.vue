@@ -336,10 +336,10 @@
           <bm-view
             class="map"
             style="width: 100%; height: 400px"></bm-view>
-          <bm-marker
+          <bm-markeMr
             :position="addressCenter"
             :dragging="false"
-            animation="BMAP_ANIMATION_BOUNCE"></bm-marker>
+            animation="BMAP_ANIMATION_BOUNCE"></bm-markeMr>
           <bm-local-search
             :keyword="searchAddress"
             :auto-viewport="true"
@@ -354,14 +354,47 @@
         :heading="$t('settings.basic.langAndCurrency.heading')"
         :subheading="$t('settings.basic.langAndCurrency.subheading')"
       >
-        <el-form-item :label="$t('settings.basic.entity.targetMarket.label')">
-          <el-select
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <fox-form-item prop="currencyCode">
+              <fox-input
+                v-model="entity.currencyCode"
+                shrink
+                :placeholder="$t('settings.basic.entity.currencyCode.label')"
+                :description="$t('settings.basic.entity.currencyCode.placeholder')"
+              ></fox-input>
+            </fox-form-item>
+          </el-col>
+          <el-col :span="8">
+            <fox-form-item prop="currencyName">
+              <fox-input
+                v-model="entity.currencyName"
+                shrink
+                :placeholder="$t('settings.basic.entity.currencyName.label')"
+                :description="$t('settings.basic.entity.currencyName.placeholder')"
+              ></fox-input>
+            </fox-form-item>
+          </el-col>
+          <el-col :span="8">
+            <fox-form-item prop="currencySymbol">
+              <fox-input
+                v-model="entity.currencySymbol"
+                shrink
+                :placeholder="$t('settings.basic.entity.currencySymbol.label')"
+                :description="$t('settings.basic.entity.currencySymbol.placeholder')"
+              ></fox-input>
+            </fox-form-item>
+          </el-col>
+        </el-row>
+        <el-form-item>
+          <fox-select
             filterable
             v-model="entity.targetMarket"
             multiple
+            shrink
             class="w-100"
             @change="changeMarket"
-            :placeholder="$t('base.placeholder.select')"
+            :placeholder="$t('settings.basic.entity.targetMarket.label')"
           >
             <el-option
               v-for="item in area.states"
@@ -369,7 +402,7 @@
               :label="`${language === 'zh-CN'? item.cnName || item.enName : item.enName}`"
               :value="language === 'zh-CN' ? item.cnName || item.enName: item.enName">
             </el-option>
-          </el-select>
+          </fox-select>
         </el-form-item>
       </fox-section>
 

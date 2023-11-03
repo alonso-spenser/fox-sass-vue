@@ -9,13 +9,15 @@ export default {
               'url': 'https://theme.fomillesite.com/img/image-with-text.jpg',
               'alt': '',
               'heading': 'This is a heading',
+              'headingColor': '',
               'subheading': 'This is a subheading',
+              'subheadingColor': '',
               'description': 'Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.',
+              'textColor': '',
               'buttonLabel': 'Button',
               'buttonLink': '',
               'buttonStyle': 'invisible',
               'contentPosition': 'left-center',
-              'textColor': '',
               'maskColor': '',
               'textAlign': 'text-center',
               'marginTop': false,
@@ -33,7 +35,7 @@ export default {
       },
       'sectionAlias': '设计详情',
       'wideScreen': false,
-      'symbol': 'normal',
+      'wideGutter': 'no-gutters',
       'firstLayout': 'left',
       'imageScale': '5by4',
       'imagePercentage': '6'
@@ -61,9 +63,7 @@ export default {
               'en': 'Image',
               'zh-CN': '图片'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'imagePicker',
             'altFiled': 'alt',
             'info': {
@@ -78,9 +78,7 @@ export default {
               'en': 'ALT',
               'zh-CN': 'ALT'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'hidden',
             'info': {
               'en': '',
@@ -94,13 +92,11 @@ export default {
               'en': '',
               'zh-CN': ''
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'divider',
             'info': {
-              'en': '',
-              'zh-CN': ''
+              'en': '标题',
+              'zh-CN': '标题'
             }
           },
           {
@@ -110,13 +106,39 @@ export default {
               'en': 'Heading',
               'zh-CN': '标题'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'text',
             'info': {
               'en': '',
               'zh-CN': ''
+            }
+          },
+          {
+            'default': '',
+            'field': 'headingColor',
+            'name': {
+              'en': 'Color',
+              'zh-CN': '颜色'
+            },
+            'options': [],
+            'type': 'colorPicker',
+            'info': {
+              'en': '',
+              'zh-CN': ''
+            }
+          },
+          {
+            'default': '',
+            'field': '',
+            'name': {
+              'en': '',
+              'zh-CN': ''
+            },
+            'options': [],
+            'type': 'divider',
+            'info': {
+              'en': '副标题',
+              'zh-CN': '副标题'
             }
           },
           {
@@ -126,13 +148,39 @@ export default {
               'en': 'Subheading',
               'zh-CN': '副标题'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'text',
             'info': {
               'en': '',
               'zh-CN': ''
+            }
+          },
+          {
+            'default': '',
+            'field': 'subheadingColor',
+            'name': {
+              'en': 'Color',
+              'zh-CN': '颜色'
+            },
+            'options': [],
+            'type': 'colorPicker',
+            'info': {
+              'en': '',
+              'zh-CN': ''
+            }
+          },
+          {
+            'default': '',
+            'field': '',
+            'name': {
+              'en': '',
+              'zh-CN': ''
+            },
+            'options': [],
+            'type': 'divider',
+            'info': {
+              'en': '标题',
+              'zh-CN': '标题'
             }
           },
           {
@@ -142,13 +190,39 @@ export default {
               'en': 'Text',
               'zh-CN': '正文'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'textarea',
             'info': {
               'en': 'Use enter to wrap',
               'zh-CN': '回车键换行'
+            }
+          },
+          {
+            'default': '',
+            'field': 'textColor',
+            'name': {
+              'en': 'Text Color',
+              'zh-CN': '文本颜色'
+            },
+            'options': [],
+            'type': 'colorPicker',
+            'info': {
+              'en': '',
+              'zh-CN': ''
+            }
+          },
+          {
+            'default': '',
+            'field': '',
+            'name': {
+              'en': '',
+              'zh-CN': ''
+            },
+            'options': [],
+            'type': 'divider',
+            'info': {
+              'en': 'Button',
+              'zh-CN': '按钮'
             }
           },
           {
@@ -158,9 +232,7 @@ export default {
               'en': 'Button label',
               'zh-CN': '按钮文字'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'text',
             'info': {
               'en': '',
@@ -174,9 +246,7 @@ export default {
               'en': 'Button link',
               'zh-CN': '按钮链接'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'linkPicker',
             'info': {
               'en': '',
@@ -324,9 +394,7 @@ export default {
               'en': '',
               'zh-CN': ''
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'divider',
             'info': {
               'en': '',
@@ -412,22 +480,6 @@ export default {
             ]
           },
           {
-            'default': '',
-            'field': 'textColor',
-            'name': {
-              'en': 'Text Color',
-              'zh-CN': '文本颜色'
-            },
-            'options': [
-
-            ],
-            'type': 'colorPicker',
-            'info': {
-              'en': '',
-              'zh-CN': ''
-            }
-          },
-          {
             'type': 'colorPicker',
             'field': 'maskColor',
             'default': '',
@@ -439,9 +491,7 @@ export default {
               'en': '',
               'zh-CN': ''
             },
-            'options': [
-
-            ]
+            'options': []
           },
           {
             'type': 'select',
@@ -480,146 +530,13 @@ export default {
             ]
           },
           {
-            'type': 'select',
-            'field': 'contentAlign',
-            'default': 'text-left',
-            'name': {
-              'en': 'Content align',
-              'zh-CN': '正文对齐'
-            },
-            'info': {
-              'en': '',
-              'zh-CN': ''
-            },
-            'options': [
-              {
-                'value': 'text-left',
-                'name': {
-                  'en': 'Left',
-                  'zh-CN': '左'
-                }
-              },
-              {
-                'value': 'text-center',
-                'name': {
-                  'en': 'Center',
-                  'zh-CN': '中'
-                }
-              },
-              {
-                'value': 'text-right',
-                'name': {
-                  'en': 'Right',
-                  'zh-CN': '右'
-                }
-              }
-            ]
-          },
-          {
-            'default': 'normal',
-            field: 'symbol',
-            translate: 1,
-            name: {
-              en: 'Paragraph symbol',
-              'zh-CN': '段落符号'
-            },
-            options: [
-              {
-                name: {
-                  en: 'Digit',
-                  'zh-CN': '数字'
-                },
-                value: 'list-demical'
-              },
-              {
-                name: {
-                  en: 'Circle',
-                  'zh-CN': '空心圆'
-                },
-                value: 'list-circle'
-              },
-              {
-                name: {
-                  en: 'Disc',
-                  'zh-CN': '实心圆'
-                },
-                value: 'list-disc'
-              },
-              {
-                name: {
-                  en: 'Square',
-                  'zh-CN': '实心方块'
-                },
-                value: 'list-square'
-              },
-              {
-                name: {
-                  en: 'Lower-roman',
-                  'zh-CN': '小写罗马数字'
-                },
-                value: 'list-lower-roman'
-              },
-              {
-                name: {
-                  en: 'Upper-roman',
-                  'zh-CN': '大写罗马数字'
-                },
-                value: 'list-upper-roman'
-              },
-              {
-                name: {
-                  en: 'Lower-alpha',
-                  'zh-CN': '小写英文字母'
-                },
-                value: 'list-lower-alpha'
-              },
-              {
-                name: {
-                  en: 'Upper-alpha',
-                  'zh-CN': '大写英文字母'
-                },
-                value: 'list-upper-alpha'
-              },
-              {
-                name: {
-                  en: 'Normal',
-                  'zh-CN': '无'
-                },
-                value: 'normal'
-              }
-            ],
-            type: 'select',
-            info: {
-              en: 'When content align "center"',
-              'zh-CN': '正文对齐为 "左"的时候，段落符号生效'
-            }
-          },
-          {
-            'default': '',
-            'field': '',
-            'name': {
-              'en': '',
-              'zh-CN': ''
-            },
-            'options': [
-
-            ],
-            'type': 'divider',
-            'info': {
-              'en': '',
-              'zh-CN': ''
-            }
-          },
-          {
             'default': false,
             'field': 'marginTop',
             'name': {
               'en': 'Margin top',
               'zh-CN': '外边距（上）'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'switch',
             'info': {
               'en': '',
@@ -633,9 +550,7 @@ export default {
               'en': 'Margin bottom',
               'zh-CN': '外边距（下）'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'switch',
             'info': {
               'en': '',
@@ -649,9 +564,7 @@ export default {
               'en': 'Padding top',
               'zh-CN': '内边距（上）'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'switch',
             'info': {
               'en': '',
@@ -665,9 +578,7 @@ export default {
               'en': 'Padding bottom',
               'zh-CN': '内边距（下）'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'switch',
             'info': {
               'en': '',
@@ -681,9 +592,7 @@ export default {
               'en': 'Background color',
               'zh-CN': '背景色'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'colorPicker',
             'info': {
               'en': '',
@@ -697,9 +606,7 @@ export default {
               'en': 'Background image',
               'zh-CN': '背景图'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'imagePicker',
             'info': {
               'en': '',
@@ -890,10 +797,37 @@ export default {
               'en': 'Wide screen',
               'zh-CN': '宽屏模式'
             },
-            'options': [
-
-            ],
+            'options': [],
             'type': 'switch',
+            'info': {
+              'en': '',
+              'zh-CN': ''
+            }
+          },
+          {
+            'default': 'no-gutters',
+            'field': 'wideGutter',
+            'name': {
+              'en': 'Wide Gutter',
+              'zh-CN': '全屏边距'
+            },
+            'options': [
+              {
+                'value': 'no-gutters',
+                'name': {
+                  'en': 'No',
+                  'zh-CN': '无'
+                }
+              },
+              {
+                'value': 'gutters',
+                'name': {
+                  'en': 'Yes',
+                  'zh-CN': '有'
+                }
+              }
+            ],
+            'type': 'select',
             'info': {
               'en': '',
               'zh-CN': ''
@@ -1120,6 +1054,15 @@ export default {
           'zh-CN': ''
         }
       }
-    ]
+    ],
+    'translate': {
+      'rootFields': [],
+      'imageList': [
+        'heading',
+        'subheading',
+        'description',
+        'buttonLabel'
+      ]
+    }
   }
 }

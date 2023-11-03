@@ -63,15 +63,6 @@ export default {
             prop: 'describe',
             label: this.$t('navigation.paging.tableHeader.describe')
           }
-          // {
-          //   prop: 'title',
-          //   width: 100,
-          //   align: 'right',
-          //   label: '',
-          //   render: (row, index) => {
-          //     return (<label>{this.$t('base.update.button')}</label>)
-          //   }
-          // }
         ]
       },
       updateVisible: false,

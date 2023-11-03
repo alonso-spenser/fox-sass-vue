@@ -310,11 +310,11 @@ export default {
       }
     },
     setLinkPickerPosition () {
-      let warpper = this.utility.getPos(this.$refs.linkPicker.$refs.wrapper)
+      let pos = this.utility.getPos(this.$refs.linkPicker.$refs.wrapper)
       let popper = this.$refs.linkPicker.$refs.popper
       let height = document.getElementById(popper.id).offsetHeight
-      height = height > warpper.top ? warpper.top : height
-      popper.style.top = (warpper.top - height - warpper.height) + 'px'
+      height = height > pos.top ? pos.top : height
+      popper.style.top = (pos.top - height - pos.height) + 'px'
       this.dataLoading = false
     },
     /**
