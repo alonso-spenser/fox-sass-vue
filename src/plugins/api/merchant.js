@@ -61,3 +61,13 @@ export const fetchEmployeeDetail = (params = {}) => http.post('/api/employee/det
  * 添加修改员工
  */
 export const fetchEmployeeUpdate = (params = {}) => http.post('/api/employee/update', params)
+
+/**
+ * 商户分页数据
+ */
+export const fetchOpsMerchantPaging = (params = {}) => http.post('/ops/merchant/paging', params)
+
+/**
+ *      * 管理员密码
+ */
+export const fetchOpsAdminPassword = (params = {}) => http.post('/ops/merchant/admin-password', params)

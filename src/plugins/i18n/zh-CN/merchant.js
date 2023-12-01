@@ -50,7 +50,27 @@ export default {
     welcome: '欢迎您：',
     manage: '管理您的信息、隐私和安全，让弗米乐更好地为您服务。',
     paging: {
-      title: '公司信息'
+      title: '商户',
+      heading: '',
+      subheading: '',
+      add: '添加商户',
+      empty: {
+        content: '添加的商户会被列举在这里。您可以在这里管理所有商户，例如批量删除、修改等。',
+        buttonLabel: '添加商户'
+      },
+      tableHeader: {
+        address: '详细地址',
+        contact: '联系人',
+        createTime: '创建时间',
+        email: '邮件地址',
+        merchantId: '商户ID',
+        mobile: '手机',
+        name: '商户名称',
+        shortForm: '商户简称',
+        signTime: '签约时间',
+        updateTime: '更新时间',
+        webQuantity: '网站数量'
+      }
     },
     corp: '公司信息',
     employeeState: [
@@ -155,8 +175,8 @@ export default {
       }
     },
     /**
-     * 员工管理
-     */
+         * 员工管理
+         */
     employee: {
       paging: {
         title: '员工管理',
@@ -276,8 +296,8 @@ export default {
       }
     },
     /**
-     * 角色管理
-     */
+         * 角色管理
+         */
     role: {
       title: '角色功能',
       paging: {

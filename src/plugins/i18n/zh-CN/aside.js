@@ -204,7 +204,7 @@ export default {
         {
           title: '客户列表',
           code: ['client-list'],
-          url: '/main/client'
+          url: '/main/merchant'
         },
         {
           title: '网站列表',

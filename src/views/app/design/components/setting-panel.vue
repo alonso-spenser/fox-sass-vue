@@ -87,8 +87,8 @@
           @clipboard="pasteFormClipboard"
         ></section-item>
         <!-- 整页复制 -->
+        <!--        v-if="model.isCustom === 0"-->
         <clone-page
-          v-if="model.isCustom === 0"
           :paste-visible="pagePasteVisible"
           @clone="clonePage"
           @paste="pastePageFormClipboard"
@@ -347,7 +347,10 @@ export default {
      */
     clonePage () {
       if (this.utility.isNotEmpty(this.pageId)) {
-        localStorage.setItem(this.clonePageCacheKey, this.pageId)
+        localStorage.setItem(this.clonePageCacheKey, JSON.stringify({
+          pageId: this.pageId,
+          refId: this.refId
+        }))
         this.getPagePasteState()
         this.$message({
           type: 'success',
@@ -355,20 +358,31 @@ export default {
         })
       }
     },
+    getPageCacheKey () {
+      let o = localStorage.getItem(this.clonePageCacheKey)
+      return o == null ? null : JSON.parse(o)
+    },
+    /**
+     * 整页复制状态
+     */
     getPagePasteState () {
-      let pageId = localStorage.getItem(this.clonePageCacheKey)
-      if (this.model.isCustom === 0 && this.utility.isNotEmpty(pageId) && pageId !== this.pageId) {
-        this.pagePasteVisible = true
-      } else {
+      let dt = this.getPageCacheKey()
+      if (dt === null) {
         this.pagePasteVisible = false
+      } else if (this.utility.isNotEmpty(dt.pageId) && ((dt.pageId !== this.pageId) || (dt.pageId === this.pageId && dt.refId !== this.refId))) {
+        this.pagePasteVisible = true
       }
     },
     /**
      * 从剪贴板中复制组件
      */
     pastePageFormClipboard () {
-      let pageId = localStorage.getItem(this.clonePageCacheKey)
-      if (pageId === this.pageId) {
+      let dt = this.getPageCacheKey()
+      if (dt == null) {
+        localStorage.removeItem(this.clonePageCacheKey)
+        return false
+      }
+      if (dt.pageId === this.pageId && dt.refId === this.refId) {
         this.$message({
           type: 'success',
           message: this.$t('design.clonePage.same')
@@ -377,8 +391,10 @@ export default {
       }
       fetchClonePage({
         siteId: this.siteId,
-        originalPageId: pageId,
-        pageId: this.pageId
+        originalPageId: dt.pageId,
+        pageId: this.pageId,
+        originalRefId: dt.refId,
+        refId: this.refId
       }).then(result => {
         this.resultMessage(result, (success) => {
           if (success) {

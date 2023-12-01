@@ -1,67 +1,67 @@
 <template>
   <fox-layout-main
-    :loading="pageLoading"
-    :offset="200"
-    :percentage="100"
-    google-style
+      :loading="pageLoading"
+      :offset="200"
+      :percentage="100"
+      google-style
   >
     <div class="neighbor fox-google-style percent-100" slot="header">
       <div class="fox-page-content">
         <div class="filter-params">
           <div class="filter-params-element">
             <fox-date-picker
-              v-model="filterParams.dateTime"
-              shrink
-              type="month"
-              @change="getData"
-              :placeholder="$t('main.site.paging.expiration')">
+                v-model="filterParams.dateTime"
+                shrink
+                type="month"
+                @change="getData"
+                :placeholder="$t('main.site.paging.expiration')">
             </fox-date-picker>
           </div>
           <div class="filter-params-element" style="width: 150px">
             <fox-select
-              v-model="filterParams.production"
-              shrink
-              @change="getData"
-              filterable
-              placeholder="付费状态">
+                v-model="filterParams.production"
+                shrink
+                @change="getData"
+                filterable
+                placeholder="付费状态">
               <el-option
-                label="全部"
-                :value="0"></el-option>
+                  label="全部"
+                  :value="0"></el-option>
               <el-option
-                label="已付费"
-                :value="1"></el-option>
+                  label="已付费"
+                  :value="1"></el-option>
               <el-option
-                label="未付费"
-                :value="2"></el-option>
+                  label="未付费"
+                  :value="2"></el-option>
               <el-option
-                label="赠送"
-                :value="9"></el-option>
+                  label="赠送"
+                  :value="9"></el-option>
             </fox-select>
           </div>
           <div class="filter-params-element" style="width: 300px">
             <fox-input
-              shrink
-              :placeholder="$t('base.placeholder.label')"
-              :description="$t('main.site.paging.placeholder')"
-              v-model="filterParams.q"
-              clearable
-              @change="searchConditionChange"
-              @clear="clearSearchCondition"
-              @keyup.enter.native="getData"
+                shrink
+                :placeholder="$t('base.placeholder.label')"
+                :description="$t('main.site.paging.placeholder')"
+                v-model="filterParams.q"
+                clearable
+                @change="searchConditionChange"
+                @clear="clearSearchCondition"
+                @keyup.enter.native="getData"
             >
               <el-button
-                slot="append"
-                icon="el-icon-search"
-                :loading="loading"
-                @click="getData(false)"
+                  slot="append"
+                  icon="el-icon-search"
+                  :loading="loading"
+                  @click="getData(false)"
               ></el-button>
             </fox-input>
           </div>
           <div class="filter-params-element">
             <el-button
-              class="el-material-button"
-              icon="el-icon-brush"
-              @click="clearSearchCondition"
+                class="el-material-button"
+                icon="el-icon-brush"
+                @click="clearSearchCondition"
             >
             </el-button>
           </div>
@@ -69,138 +69,138 @@
       </div>
     </div>
     <fox-paging-table
-      :columns="dataConfig.columns"
-      :actions="dataConfig.actions"
-      :dataset="pagingOptions.dataset"
-      :loading="tableOptions.loading"
-      :first-loading="pagingOptions.firstLoading"
-      :empty="dataConfig.empty"
-      :multi-select="false"
-      :page-index.sync="pagingOptions.pageIndex"
-      :page-size.sync="pagingOptions.pageSize"
-      :record-count="pagingOptions.recordCount"
-      :rows-class-name="dataConfig.rowsClassName"
-      @paging="getData"
+        :columns="dataConfig.columns"
+        :actions="dataConfig.actions"
+        :dataset="pagingOptions.dataset"
+        :loading="tableOptions.loading"
+        :first-loading="pagingOptions.firstLoading"
+        :empty="dataConfig.empty"
+        :multi-select="false"
+        :page-index.sync="pagingOptions.pageIndex"
+        :page-size.sync="pagingOptions.pageSize"
+        :record-count="pagingOptions.recordCount"
+        :rows-class-name="dataConfig.rowsClassName"
+        @paging="getData"
     >
     </fox-paging-table>
     <el-dialog
-      title="设置"
-      :visible.sync="updateData.visible"
-      width="800px"
+        title="设置"
+        :visible.sync="updateData.visible"
+        width="800px"
     >
       <el-form
-        :model="updateData.entity"
-        :rules="formRules"
-        ref="updateForm"
-        label-width="150px">
+          :model="updateData.entity"
+          :rules="formRules"
+          ref="updateForm"
+          label-width="150px">
         <p>
           <label
-            class="el-form-item__label"
-            style="width: 150px;">网站ID</label>
+              class="el-form-item__label"
+              style="width: 150px;">网站ID</label>
           {{ updateData.entity.id }}
         </p>
         <p>
           <label
-            class="el-form-item__label"
-            style="width: 150px;">默认域名</label>
+              class="el-form-item__label"
+              style="width: 150px;">默认域名</label>
           <a
-            class="text-primary"
-            :href="`https://${updateData.entity.mainDomain}`"
-            target="_blank">{{ updateData.entity.mainDomain }}</a>
+              class="text-primary"
+              :href="`https://${updateData.entity.mainDomain}`"
+              target="_blank">{{ updateData.entity.mainDomain }}</a>
         </p>
         <el-form-item
-          prop="state"
-          label="网站状态">
+            prop="state"
+            label="网站状态">
           <el-select
-            v-model="updateData.entity.state"
+              v-model="updateData.entity.state"
           >
             <el-option
-              v-for="item in siteState"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+                v-for="item in siteState"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
             </el-option>
           </el-select>
         </el-form-item>
         <el-form-item
-          prop="payMonth"
-          label="支付时长(月)">
+            prop="payMonth"
+            label="支付时长(月)">
           <el-slider
-            v-model="updateData.entity.payMonth"
-            :step="12"
-            show-stops
-            :min="0"
-            :max="60">
+              v-model="updateData.entity.payMonth"
+              :step="12"
+              show-stops
+              :min="0"
+              :max="60">
           </el-slider>
         </el-form-item>
         <el-form-item
-          prop="expiryTime"
-          label="到期时间">
+            prop="expiryTime"
+            label="到期时间">
           <el-date-picker
-            class="date-picker"
-            v-model="updateData.entity.expiryTime"
-            type="date"
-            size="small"
-            placeholder="选择到期时间"
-            format="yyyy-MM-dd"
-            value-format="timestamp"
-            :clearable="false"
+              class="date-picker"
+              v-model="updateData.entity.expiryTime"
+              type="date"
+              size="small"
+              placeholder="选择到期时间"
+              format="yyyy-MM-dd"
+              value-format="timestamp"
+              :clearable="false"
           ></el-date-picker>
         </el-form-item>
 
         <el-form-item
-          prop="maxLang"
-          label="语言数量">
+            prop="maxLang"
+            label="语言数量">
           <el-input
-            v-model="updateData.entity.maxLang"
-            placeholder="请输入语言数量"
+              v-model="updateData.entity.maxLang"
+              placeholder="请输入语言数量"
           ></el-input>
         </el-form-item>
       </el-form>
       <div
-        slot="footer"
-        class="dialog-footer">
+          slot="footer"
+          class="dialog-footer">
         <el-button
-          size="small"
-          @click="updateData.visible = false">{{ $t("base.cancel") }}
+            size="small"
+            @click="updateData.visible = false">{{ $t("base.cancel") }}
         </el-button>
         <el-button
-          size="small"
-          type="primary"
-          @click="updateSiteInfo">{{ $t("base.save") }}
+            size="small"
+            type="primary"
+            @click="updateSiteInfo">{{ $t("base.save") }}
         </el-button>
       </div>
     </el-dialog>
 
     <el-dialog
-      title="语言删除"
-      :visible.sync="removeData.visible"
-      width="800px"
+        title="语言删除"
+        :visible.sync="removeData.visible"
+        width="800px"
     >
       <el-form
-        :model="removeData.entity"
-        :rules="formRules"
-        ref="updateForm"
-        label-width="150px">
+          :model="removeData.entity"
+          :rules="formRules"
+          ref="updateForm"
+          label-width="150px">
         <p>
           <label
-            class="el-form-item__label"
-            style="width: 150px;">网站ID</label>
+              class="el-form-item__label"
+              style="width: 150px;">网站ID</label>
           {{ removeData.siteData.siteName }}
           <small class="ml-5">{{ removeData.siteData.id }}</small>
         </p>
         <div style="margin-top: 16px;padding-bottom: 16px">
           <el-checkbox-group
-            class="lang-group"
-            v-model="removeData.entity.regionList"
-            size="small">
+              class="lang-group"
+              v-model="removeData.entity.regionList"
+              size="small">
             <template v-for="o in removeData.langList">
               <el-checkbox
-                :label="o.id"
-                border
-                :key="o.id"
-                :value="o.id"
-                v-if="o.isDefault === 1">
+                  :label="o.id"
+                  border
+                  :key="o.id"
+                  :value="o.id"
+                  v-if="o.isDefault === 1">
                 {{ o.languageName }}
               </el-checkbox>
             </template>
@@ -208,19 +208,67 @@
         </div>
       </el-form>
       <div
-        slot="footer"
-        class="dialog-footer">
+          slot="footer"
+          class="dialog-footer">
         <el-button
-          size="small"
-          @click="removeData.visible = false">{{ $t("base.cancel") }}
+            size="small"
+            @click="removeData.visible = false">{{ $t("base.cancel") }}
         </el-button>
         <el-button
-          size="small"
-          type="primary"
-          @click="removeSiteRegion">{{ $t("base.save") }}
+            size="small"
+            type="primary"
+            @click="removeSiteRegion">{{ $t("base.save") }}
         </el-button>
       </div>
     </el-dialog>
+
+    <el-dialog
+        title="更改网站所有者"
+        :visible.sync="ownerData.visible"
+        width="800px"
+    >
+      <p>
+        帐号：{{ ownerData.merchantData.account }} - 公司名：{{ ownerData.merchantData.name }}
+      </p>
+      <div>
+        网站ID: {{ ownerData.info.id }} 域名：{{ ownerData.info.systemDomain }}
+      </div>
+      <el-select
+          v-model="ownerData.selected"
+          filterable
+          remote
+          reserve-keyword
+          default-first-option
+          :placeholder="$t('base.placeholder.select')"
+          :remote-method="searchMerchant"
+          class="w-100"
+          style="margin-top: 15px"
+          value-key="merchantId"
+          :loading="loading">
+        <el-option
+            v-for="(item) in ownerData.merchantList"
+            :key="item.merchantId"
+            :label="item.name"
+            :value="item">
+          {{ item.name }}
+        </el-option>
+      </el-select>
+
+      <div
+          slot="footer"
+          class="dialog-footer">
+        <el-button
+            size="small"
+            @click="ownerData.visible = false">{{ $t("base.cancel") }}
+        </el-button>
+        <el-button
+            size="small"
+            type="primary"
+            @click="changeSiteOwner">{{ $t("base.save") }}
+        </el-button>
+      </div>
+    </el-dialog>
+
   </fox-layout-main>
 </template>
 
@@ -232,8 +280,12 @@ import {
   fetchAuthorizedLogin,
   fetchSiteUpdate,
   fetchSiteRegion,
-  fetchSiteRemoveRegion
+  fetchSiteRemoveRegion, fetchChangeSiteOwner
 } from '@/plugins/api/main/site'
+import {
+  fetchMerchantPaging,
+  fetchMerchantOwner
+} from '@/plugins/api/main/merchant'
 
 export default {
   name: 'Site',
@@ -393,6 +445,17 @@ export default {
                 }
               },
               {
+                icon: 'el-icon-refresh',
+                circle: true,
+                name: null,
+                disabled: false,
+                onClick: (row) => {
+                  this.getMerchantDate(row.merchantId)
+                  this.ownerData.info = row
+                  this.ownerData.visible = true
+                }
+              },
+              {
                 icon: 'el-icon-edit',
                 circle: true,
                 name: null,
@@ -454,6 +517,15 @@ export default {
         entity: {
           siteId: '',
           regionList: []
+        }
+      },
+      ownerData: {
+        visible: false,
+        selected: null,
+        merchantData: {},
+        merchantList: [],
+        info: {
+          merchantId: ''
         }
       }
     }
@@ -547,6 +619,18 @@ export default {
      */
     updateSite (row) {
       this.redirectURL(`/main/site/update/${row.id}`)
+    },
+    /**
+     * 商户信息
+     */
+    getMerchantDate (id) {
+      fetchMerchantOwner({
+        id: id
+      }).then((result) => {
+        if (result.success) {
+          this.ownerData.merchantData = result.data
+        }
+      })
     },
     /**
      * 保存网站数据
@@ -651,6 +735,47 @@ export default {
         })
       }).finally(() => {
       })
+    },
+    /**
+     * 商户搜索
+     * @param value
+     */
+    searchMerchant (value) {
+      fetchMerchantPaging({
+        current: 1,
+        size: 10,
+        params: {
+          q: value
+        }
+      })
+        .then(result => {
+          this.resultMessage(result, (success) => {
+            this.ownerData.merchantList = result.data['records']
+          })
+        })
+        .catch(error => {
+          this.networkMistake(error)
+        })
+    },
+    /**
+     * 更改店主
+     */
+    changeSiteOwner () {
+      let selected = this.ownerData.selected
+      if (selected && selected.merchantId !== this.ownerData.info.merchantId) {
+        fetchChangeSiteOwner({
+          siteId: this.ownerData.info.id,
+          merchantId: selected.merchantId
+        }).then(result => {
+          this.resultMessage(result, (success) => {
+            if (success) {
+              this.getData(true)
+            }
+          })
+        }).finally(() => {
+          this.ownerData.visible = false
+        })
+      }
     },
     /**
      * 授权登录

@@ -187,7 +187,7 @@ export default {
         {
           title: 'Client',
           code: ['client-list'],
-          url: '/main/client'
+          url: '/main/merchant'
         },
         {
           title: 'Site',

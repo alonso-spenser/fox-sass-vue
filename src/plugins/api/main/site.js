@@ -6,6 +6,11 @@ import http from '../http'
 export const fetchSiteDetail = (params = {}) => http.post('/api/ops/site/detail', params)
 
 /**
+ * 更改网站所属
+ */
+export const fetchChangeSiteOwner = (params = {}) => http.post('/api/ops/site/change-site-owner', params)
+
+/**
  * 添加 & 修改店铺
  */
 export const fetchSiteUpdate = (params = {}) => http.post('/api/ops/site/update', params)

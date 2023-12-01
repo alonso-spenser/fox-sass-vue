@@ -50,7 +50,61 @@ export default {
     welcome: '欢迎您：',
     manage: '管理您的信息、隐私和安全，让弗米乐更好地为您服务。',
     paging: {
-      title: '公司信息'
+      title: '商户',
+      heading: '',
+      subheading: '',
+      add: '添加商户',
+      empty: {
+        content: '添加的商户会被列举在这里。您可以在这里管理所有商户，例如批量删除、修改等。',
+        buttonLabel: '添加商户'
+      },
+      tableHeader: {
+        address: '详细地址',
+        agentId: '代理商id',
+        breakTime: '断约时间',
+        cityId: '城市ID',
+        cityName: '城市名称',
+        claimTime: '认领时间',
+        contact: '联系人',
+        contactTime: '最近联系时间',
+        countryId: '国家ID',
+        countryName: '国家名称',
+        createTime: '创建时间',
+        email: '邮件地址',
+        entryId: '录入人ID',
+        entryName: '录入人',
+        industryId: '行业id',
+        industryName: '行业名',
+        isAgent: '是否性为代理 0是代理 1 是商户',
+        lastSellerId: '上一个业务员ID',
+        levelId: '客户级别',
+        levelName: '客户级别',
+        mainBusiness: 'main_business',
+        merchantId: '商户ID',
+        mobile: '手机',
+        mobileArea: '国家区号',
+        name: '商户名称',
+        ownerId: '初始用户',
+        platformId: '平台ID',
+        provinceId: '省份ID',
+        provinceName: '省份名称',
+        referralCode: '推荐码',
+        remark: '备注信息',
+        sellerId: '业务员ID',
+        sellerName: '业务员',
+        shortForm: '商户简称',
+        signTime: '签约时间',
+        skype: 'Skype',
+        sourceId: '客户来源',
+        sourceName: '客户来源',
+        state: '0未审核,1正式',
+        synced: '工商信息同步',
+        updateTime: '更新时间',
+        webQuantity: '网站数量',
+        website: 'website',
+        wechat: '微信',
+        whatsapp: 'What&#39;s app'
+      }
     },
     corp: '公司信息',
     employeeState: [
@@ -155,8 +209,8 @@ export default {
       }
     },
     /**
-     * 员工管理
-     */
+         * 员工管理
+         */
     employee: {
       paging: {
         title: '员工管理',
@@ -276,8 +330,8 @@ export default {
       }
     },
     /**
-     * 角色管理
-     */
+         * 角色管理
+         */
     role: {
       title: '角色功能',
       paging: {

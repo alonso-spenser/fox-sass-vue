@@ -1637,6 +1637,23 @@ const routes = [
             previous: '/main/account'
           }
         }
+      },
+      {
+        path: 'merchant',
+        name: 'merchant',
+        component: () => import('../views/main/merchant/index.vue'),
+        meta: {
+          title: i18n.t('merchant.paging.title'),
+          asideVisible: true,
+          headerVisible: true,
+          containerVisible: true,
+          requireAuth: true,
+          parent: {
+            title: i18n.t('merchant.paging.title'),
+            url: '/main/merchant',
+            previous: ''
+          }
+        }
       }
     ]
   },
