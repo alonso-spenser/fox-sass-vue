@@ -1,7 +1,7 @@
 <template>
   <div
-    class="schema-editor"
-    v-if="visible">
+      class="schema-editor"
+      v-if="visible">
     <div class="schema-editor-toolbar">
       <h3>
         {{ dataset.sectionSchema.name['zh-CN'] }}
@@ -11,40 +11,40 @@
       </h3>
       <hr>
       <el-form
-        :model="entity"
-        :rules="formRules"
-        ref="update"
-        label-position="top"
-        label-width="90px"
+          :model="entity"
+          :rules="formRules"
+          ref="update"
+          label-position="top"
+          label-width="90px"
       >
         <el-form-item
-          label="组件类型"
-          size="small"
-          :rules="formRules.english"
-          prop="sectionSchema.type">
+            label="组件类型"
+            size="small"
+            :rules="formRules.english"
+            prop="sectionSchema.type">
           <el-input
-            v-model="entity.sectionSchema.type"
-            placeholder="首字小写驼峰 eg: slideShow"
+              v-model="entity.sectionSchema.type"
+              placeholder="首字小写驼峰 eg: slideShow"
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="中文名称"
-          prop="sectionSchema.name.zh-CN"
-          :rules="formRules.type">
+            label="中文名称"
+            prop="sectionSchema.name.zh-CN"
+            :rules="formRules.type">
           <el-input
-            size="small"
-            v-model="entity.sectionSchema.name['zh-CN']"
-            placeholder="中文名称 eg: 轮播图"
+              size="small"
+              v-model="entity.sectionSchema.name['zh-CN']"
+              placeholder="中文名称 eg: 轮播图"
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="英文名称"
-          prop="sectionSchema.name.en"
-          :rules="formRules.type">
+            label="英文名称"
+            prop="sectionSchema.name.en"
+            :rules="formRules.type">
           <el-input
-            size="small"
-            v-model="entity.sectionSchema.name.en"
-            placeholder="英文名称 eg: slideShow"
+              size="small"
+              v-model="entity.sectionSchema.name.en"
+              placeholder="英文名称 eg: slideShow"
           ></el-input>
         </el-form-item>
         <!--        <el-form-item prop="sectionSchema.icon" :rules="formRules.type">-->
@@ -87,7 +87,7 @@
           <el-col :span="12">
             <el-form-item label="可被移除">
               <el-switch
-                v-model="entity.sectionSchema.removable"
+                  v-model="entity.sectionSchema.removable"
               >
               </el-switch>
             </el-form-item>
@@ -95,7 +95,7 @@
           <el-col :span="12">
             <el-form-item label="全局配置">
               <el-switch
-                v-model="entity.sectionSchema.global"
+                  v-model="entity.sectionSchema.global"
               >
               </el-switch>
             </el-form-item>
@@ -104,7 +104,7 @@
         <el-col :span="12">
           <el-form-item label="仅允许添加一次">
             <el-switch
-              v-model="entity.sectionSchema.onlyOnce"
+                v-model="entity.sectionSchema.onlyOnce"
             >
             </el-switch>
           </el-form-item>
@@ -112,7 +112,7 @@
         <el-col :span="12">
           <el-form-item label="允许复制">
             <el-switch
-              v-model="entity.sectionSchema.duplicate"
+                v-model="entity.sectionSchema.duplicate"
             >
             </el-switch>
           </el-form-item>
@@ -122,26 +122,26 @@
         <el-row :gutter="10">
           <el-col :span="6">
             <el-button
-              icon="el-icon-document-copy"
-              circle
-              size="small"
-              @click="copyVisible = true"></el-button>
+                icon="el-icon-document-copy"
+                circle
+                size="small"
+                @click="copyVisible = true"></el-button>
           </el-col>
           <el-col :span="9">
             <el-button
-              class="w-100"
-              round
-              size="small"
-              @click="formValidation(false)">{{ $t("base.operate.cancel") }}
+                class="w-100"
+                round
+                size="small"
+                @click="formValidation(false)">{{ $t("base.operate.cancel") }}
             </el-button>
           </el-col>
           <el-col :span="9">
             <el-button
-              class="w-100"
-              round
-              type="primary"
-              size="small"
-              @click="formValidation(true)">{{ $t("base.operate.save") }}
+                class="w-100"
+                round
+                type="primary"
+                size="small"
+                @click="formValidation(true)">{{ $t("base.operate.save") }}
             </el-button>
           </el-col>
         </el-row>
@@ -149,14 +149,14 @@
     </div>
     <div class="schema-editor-section">
       <draggable
-        handle="a"
-        :list="entity.sectionSchema.group"
+          handle="a"
+          :list="entity.sectionSchema.group"
       >
         <a
-          class="anchor-item el-icon-rank"
-          v-for="(o, index) in entity.sectionSchema.group"
-          :key="`anchor${index}`"
-          :href="`#anchor${index}`"
+            class="anchor-item el-icon-rank"
+            v-for="(o, index) in entity.sectionSchema.group"
+            :key="`anchor${index}`"
+            :href="`#anchor${index}`"
         >
           {{ o.name['zh-CN'] }}
         </a>
@@ -164,40 +164,40 @@
       <div class="schema-editor-toolbar-section">
         <p>
           <el-button
-            size="small"
-            @click="addGroup(entity.sectionSchema.group, false)"
+              size="small"
+              @click="addGroup(entity.sectionSchema.group, false)"
           >
             静态参数组
           </el-button>
         </p>
         <p>
           <el-button
-            size="small"
-            @click="addGroup(entity.sectionSchema.group, true)"
+              size="small"
+              @click="addGroup(entity.sectionSchema.group, true)"
           >
             数据参数组
           </el-button>
         </p>
         <p>
           <el-button
-            size="small"
-            @click="borderAndBackground(entity.sectionSchema.group)"
+              size="small"
+              @click="borderAndBackground(entity.sectionSchema.group)"
           >
             边框 & 背景
           </el-button>
         </p>
         <p>
           <el-button
-            size="small"
-            @click="titleAndButton(entity.sectionSchema.group, true)"
+              size="small"
+              @click="titleAndButton(entity.sectionSchema.group, true)"
           >
             标题 & 按钮
           </el-button>
         </p>
         <p>
           <el-button
-            size="small"
-            @click="h1AndBreadCrumb(entity.sectionSchema.group, true)"
+              size="small"
+              @click="h1AndBreadCrumb(entity.sectionSchema.group, true)"
           >
             H1 & 面包屑
           </el-button>
@@ -218,99 +218,99 @@
     </div>
     <div class="schema-editor-content">
       <el-form
-        :model="entity.sectionSchema"
-        :rules="formRules"
-        ref="schemaItems"
-        label-position="top">
+          :model="entity.sectionSchema"
+          :rules="formRules"
+          ref="schemaItems"
+          label-position="top">
         <div
-          v-for="(o, index) in entity.sectionSchema.group"
-          :key="`group${index}`"
-          :id="`anchor${index}`"
-          class="schema-group"
+            v-for="(o, index) in entity.sectionSchema.group"
+            :key="`group${index}`"
+            :id="`anchor${index}`"
+            class="schema-group"
         >
           <h4>
             {{ o.name['zh-CN'] }}
           </h4>
           <el-card
-            shadow="hover"
-            class="schema-group-card"
+              shadow="hover"
+              class="schema-group-card"
           >
             <div slot="header">
               <el-row
-                class="schema-group-info"
-                :gutter="10">
+                  class="schema-group-info"
+                  :gutter="10">
                 <el-col :span="4">
                   <el-form-item
-                    label="中文分组名"
-                    :prop="`group.${index}.name.zh-CN`"
-                    :rules="formRules.type">
+                      label="中文分组名"
+                      :prop="`group.${index}.name.zh-CN`"
+                      :rules="formRules.type">
                     <el-input
-                      size="small"
-                      v-model="o.name['zh-CN']"
-                      placeholder="eg: 全局设置"
+                        size="small"
+                        v-model="o.name['zh-CN']"
+                        placeholder="eg: 全局设置"
                     ></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="4">
                   <el-form-item
-                    label="英文分组名"
-                    :prop="`group.${index}.name.en`"
-                    :rules="formRules.type">
+                      label="英文分组名"
+                      :prop="`group.${index}.name.en`"
+                      :rules="formRules.type">
                     <el-input
-                      size="small"
-                      v-model="o.name.en"
-                      placeholder="eg: Global sectionData"
+                        size="small"
+                        v-model="o.name.en"
+                        placeholder="eg: Global sectionData"
                     ></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item
-                    label="中文贴士"
-                    :prop="`group.${index}.tips.zh-CN`">
+                      label="中文贴士"
+                      :prop="`group.${index}.tips.zh-CN`">
                     <el-input
-                      size="small"
-                      v-model="o.tips['zh-CN']"
-                      placeholder="eg: tips"
+                        size="small"
+                        v-model="o.tips['zh-CN']"
+                        placeholder="eg: tips"
                     ></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item
-                    label="英文贴士"
-                    :prop="`group.${index}.tips.en`">
+                      label="英文贴士"
+                      :prop="`group.${index}.tips.en`">
                     <el-input
-                      size="small"
-                      v-model="o.tips.en"
-                      placeholder="eg: tips"
+                        size="small"
+                        v-model="o.tips.en"
+                        placeholder="eg: tips"
                     ></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="4">
                   <el-form-item
-                    v-if="!o.dataType"
-                    label="列表">
+                      v-if="!o.dataType"
+                      label="列表">
                     <el-switch
-                      v-model="o.multiple"
-                      :active-value="1"
-                      :inactive-value="0"
+                        v-model="o.multiple"
+                        :active-value="1"
+                        :inactive-value="0"
                     >
                     </el-switch>
                   </el-form-item>
                   <el-form-item
-                    v-else
-                    label="列表">
+                      v-else
+                      label="列表">
                     <el-select
-                      v-model="o.multiple"
-                      class="w-100"
-                      size="small"
-                      placeholder="请选择">
+                        v-model="o.multiple"
+                        class="w-100"
+                        size="small"
+                        placeholder="请选择">
                       <template
-                        v-for="ct in dataType"
+                          v-for="ct in dataType"
                       >
                         <el-option
-                          :key="ct.value"
-                          :label="ct.title"
-                          :value="ct.value"
+                            :key="ct.value"
+                            :label="ct.title"
+                            :value="ct.value"
                         >
                         </el-option>
                       </template>
@@ -319,104 +319,104 @@
                 </el-col>
               </el-row>
               <el-row
-                class="schema-group-info"
-                :gutter="10">
+                  class="schema-group-info"
+                  :gutter="10">
                 <el-col
-                  v-if="o.multiple > 0"
-                  :span="5">
+                    v-if="o.multiple > 0 && o.multiple !== 3"
+                    :span="5">
                   <el-form-item
-                    label="单项中文占位文字"
-                    :prop="`group.${index}.placeholder.zh-CN`"
-                    :rules="formRules.type">
+                      label="单项中文占位文字"
+                      :prop="`group.${index}.placeholder.zh-CN`"
+                      :rules="formRules.type">
                     <el-input
-                      size="small"
-                      v-model="o.placeholder['zh-CN']"
-                      placeholder="eg: 图片"
+                        size="small"
+                        v-model="o.placeholder['zh-CN']"
+                        placeholder="eg: 图片"
                     ></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col
-                  v-if="o.multiple > 0"
-                  :span="5">
+                    v-if="o.multiple > 0 && o.multiple !== 3"
+                    :span="5">
                   <el-form-item
-                    label="单项英文占位文字"
-                    :prop="`group.${index}.placeholder.en`"
-                    :rules="formRules.type">
+                      label="单项英文占位文字"
+                      :prop="`group.${index}.placeholder.en`"
+                      :rules="formRules.type">
                     <el-input
-                      size="small"
-                      v-model="o.placeholder.en"
-                      placeholder="eg: Image"
+                        size="small"
+                        v-model="o.placeholder.en"
+                        placeholder="eg: Image"
                     ></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col
-                  v-if="o.multiple > 0"
-                  :span="4">
+                    v-if="o.multiple > 0 && o.multiple !== 3"
+                    :span="4">
                   <el-form-item
-                    label="最大允许行数"
-                    :prop="`group.${index}.max`"
-                    :rules="formRules.number">
+                      label="最大允许行数"
+                      :prop="`group.${index}.max`"
+                      :rules="formRules.number">
                     <el-input
-                      size="small"
-                      v-model="o.max"
+                        size="small"
+                        v-model="o.max"
                     ></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col
-                  v-if="o.multiple > 0 && !o.dataType"
-                  :span="4">
+                    v-if="o.multiple > 0 && !o.dataType"
+                    :span="4">
                   <el-form-item
-                    label="列表字段"
-                    :prop="`group.${index}.tag`"
-                    :rules="formRules.uniqueTag">
+                      label="列表字段"
+                      :prop="`group.${index}.tag`"
+                      :rules="formRules.uniqueTag">
                     <el-input
-                      size="small"
-                      v-model="o.tag"
+                        size="small"
+                        v-model="o.tag"
                     ></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
             </div>
             <draggable
-              handle=".element-sort"
-              :list="o.elements"
+                handle=".element-sort"
+                :list="o.elements"
             >
               <template
-                v-for="(el, eIndex) in o.elements"
+                  v-for="(el, eIndex) in o.elements"
               >
                 <el-row
-                  :key="`element${eIndex}`"
-                  :class="`elements${el.type === 'select' ? ' elements-options' : ' elements-options'}`"
-                  :gutter="10">
+                    :key="`element${eIndex}`"
+                    :class="`elements${el.type === 'select' ? ' elements-options' : ' elements-options'}`"
+                    :gutter="10">
                   <el-col :span="3">
                     <el-form-item
-                      label="控件类型"
-                      :prop="`group.${index}.elements.${eIndex}.type`"
-                      :rules="formRules.type">
+                        label="控件类型"
+                        :prop="`group.${index}.elements.${eIndex}.type`"
+                        :rules="formRules.type">
                       <el-select
-                        :key="`sectionData-${index}-elements-${eIndex}-type`"
-                        v-model="el.type"
-                        class="w-100"
-                        size="small"
-                        @change="changeType(el)"
-                        placeholder="请选择">
+                          :key="`sectionData-${index}-elements-${eIndex}-type`"
+                          v-model="el.type"
+                          class="w-100"
+                          size="small"
+                          @change="changeType(el)"
+                          placeholder="请选择">
                         <template
-                          v-for="ct in controls"
+                            v-for="ct in controls"
                         >
                           <template v-if="ct.dataType">
                             <el-option
-                              v-if="o.dataType === ct.dataType && (ct.multiple && ct.dataType && ct.multiple.indexOf(o.multiple) > -1)"
-                              :key="ct.value"
-                              :label="ct.label"
-                              :value="ct.value"
+                                v-if="o.dataType === ct.dataType && (ct.multiple && ct.dataType && ct.multiple.indexOf(o.multiple) > -1)"
+                                :key="ct.value"
+                                :label="ct.label"
+                                :value="ct.value"
                             >
                             </el-option>
                           </template>
                           <el-option
-                            v-else-if="o.dataType === ct.dataType"
-                            :key="ct.value"
-                            :label="ct.label"
-                            :value="ct.value"
+                              v-else-if="o.dataType === ct.dataType"
+                              :key="ct.value"
+                              :label="ct.label"
+                              :value="ct.value"
                           >
                           </el-option>
                         </template>
@@ -424,315 +424,315 @@
                     </el-form-item>
                   </el-col>
                   <el-col
-                    :span="3"
-                    v-if="el.type !== 'divider'">
+                      :span="3"
+                      v-if="el.type !== 'divider'">
                     <el-form-item
-                      label="字段名称"
-                      :prop="`group.${index}.elements.${eIndex}.field`"
-                      :rules="formRules.uniqueKey">
+                        label="字段名称"
+                        :prop="`group.${index}.elements.${eIndex}.field`"
+                        :rules="formRules.uniqueKey">
                       <el-input
-                        size="small"
-                        v-model="entity.sectionSchema.group[index].elements[eIndex].field"
-                        placeholder="eg: textColor"
+                          size="small"
+                          v-model="entity.sectionSchema.group[index].elements[eIndex].field"
+                          placeholder="eg: textColor"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col
-                    :span="2"
-                    v-if="el.type === 'imagePicker' && el.type !== 'divider'">
+                      :span="2"
+                      v-if="el.type === 'imagePicker' && el.type !== 'divider'">
                     <el-form-item
-                      label="ALT关联字段"
-                      :prop="`group.${index}.elements.${eIndex}.field`">
+                        label="ALT关联字段"
+                        :prop="`group.${index}.elements.${eIndex}.field`">
                       <el-input
-                        size="small"
-                        v-model="entity.sectionSchema.group[index].elements[eIndex].altFiled"
-                        placeholder="eg: textColor"
+                          size="small"
+                          v-model="entity.sectionSchema.group[index].elements[eIndex].altFiled"
+                          placeholder="eg: textColor"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col
-                    v-if="el.type !== 'divider'"
-                    :span="el.type === 'imagePicker' ? 3 : 4">
+                      v-if="el.type !== 'divider'"
+                      :span="el.type === 'imagePicker' ? 3 : 4">
                     <el-form-item
-                      label="中文名称"
-                      :prop="`group.${index}.elements.${eIndex}.name.zh-CN`"
-                      :rules="formRules.type">
+                        label="中文名称"
+                        :prop="`group.${index}.elements.${eIndex}.name.zh-CN`"
+                        :rules="formRules.type">
                       <el-input
-                        size="small"
-                        v-model="entity.sectionSchema.group[index].elements[eIndex].name['zh-CN']"
-                        placeholder="eg: 轮播图"
+                          size="small"
+                          v-model="entity.sectionSchema.group[index].elements[eIndex].name['zh-CN']"
+                          placeholder="eg: 轮播图"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col
-                    v-if="el.type !== 'divider'"
-                    :span="el.type === 'imagePicker' ? 3 : 4">
+                      v-if="el.type !== 'divider'"
+                      :span="el.type === 'imagePicker' ? 3 : 4">
                     <el-form-item
-                      label="英文名称"
-                      :prop="`group.${index}.elements.${eIndex}.name.en`"
-                      :rules="formRules.type">
+                        label="英文名称"
+                        :prop="`group.${index}.elements.${eIndex}.name.en`"
+                        :rules="formRules.type">
                       <el-input
-                        size="small"
-                        v-model="entity.sectionSchema.group[index].elements[eIndex].name.en"
-                        placeholder="eg: slideShow"
+                          size="small"
+                          v-model="entity.sectionSchema.group[index].elements[eIndex].name.en"
+                          placeholder="eg: slideShow"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <template v-if="!o.dataType">
                     <el-col
-                      :span="3"
-                      v-if="el.type !== 'divider'">
+                        :span="3"
+                        v-if="el.type !== 'divider'">
                       <el-form-item
-                        label="默认值"
-                        :prop="`group.${index}.elements.${eIndex}.default`">
+                          label="默认值"
+                          :prop="`group.${index}.elements.${eIndex}.default`">
                         <template v-if="el.type === 'colorPicker'">
                           <el-color-picker
-                            show-alpha
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].default"
+                              show-alpha
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].default"
                           ></el-color-picker>
                         </template>
                         <template v-else-if="el.type === 'iconPicker'">
                           <icon-picker
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].default"
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].default"
                           ></icon-picker>
                         </template>
                         <template v-else-if="el.type === 'switch'">
                           <el-switch
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].default"
-                            :active-value="true"
-                            :inactive-value="false"
-                            active-color="#13ce66"
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].default"
+                              :active-value="true"
+                              :inactive-value="false"
+                              active-color="#13ce66"
                           >
                           </el-switch>
                         </template>
                         <template v-else-if="el.type === 'slider'">
                           <el-slider
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].default"
-                            :step="1">
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].default"
+                              :step="1">
                           </el-slider>
                         </template>
                         <template v-else-if="el.type === 'imagePicker'">
                           <preset-image
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].default"
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].default"
                           ></preset-image>
                         </template>
                         <template v-else-if="el.type === 'languagePicker'">
                           <language-picker
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].default"
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].default"
                           ></language-picker>
                         </template>
                         <template v-else-if="el.type === 'videoPicker'">
                           <video-picker
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].default"
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].default"
                           ></video-picker>
                         </template>
                         <el-input
-                          v-else
-                          size="small"
-                          v-model="entity.sectionSchema.group[index].elements[eIndex].default"
-                          placeholder="eg: #FF0000"
+                            v-else
+                            size="small"
+                            v-model="entity.sectionSchema.group[index].elements[eIndex].default"
+                            placeholder="eg: #FF0000"
                         ></el-input>
                       </el-form-item>
                     </el-col>
                   </template>
                   <el-col :span="el.type !== 'divider' ? 2 : 9">
                     <el-form-item
-                      label="中文描述"
-                      :prop="`group.${index}.elements.${eIndex}.info.zh-CN`">
+                        label="中文描述"
+                        :prop="`group.${index}.elements.${eIndex}.info.zh-CN`">
                       <el-input
-                        size="small"
-                        v-model="entity.sectionSchema.group[index].elements[eIndex].info['zh-CN']"
-                        placeholder="中文描述"
+                          size="small"
+                          v-model="entity.sectionSchema.group[index].elements[eIndex].info['zh-CN']"
+                          placeholder="中文描述"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="el.type !== 'divider' ? 2 : 9">
                     <el-form-item
-                      label="英文描述"
-                      :prop="`group.${index}.elements.${eIndex}.info.en`">
+                        label="英文描述"
+                        :prop="`group.${index}.elements.${eIndex}.info.en`">
                       <el-input
-                        size="small"
-                        v-model="entity.sectionSchema.group[index].elements[eIndex].info.en"
-                        placeholder="英文描述"
+                          size="small"
+                          v-model="entity.sectionSchema.group[index].elements[eIndex].info.en"
+                          placeholder="英文描述"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col
-                    v-if="(el.type === 'productCollectionPicker' || el.type === 'articleCollectionPicker') && !o.multiple && el.type !== 'divider'"
-                    :span="2">
+                      v-if="(el.type === 'productCollectionPicker' || el.type === 'articleCollectionPicker') && !o.multiple && el.type !== 'divider'"
+                      :span="2">
                     <el-form-item
-                      label="最大允许行数"
-                      :prop="`group.${index}.elements.${eIndex}.quantity`"
-                      :rules="formRules.number">
+                        label="最大允许行数"
+                        :prop="`group.${index}.elements.${eIndex}.quantity`"
+                        :rules="formRules.number">
                       <el-input
-                        size="small"
-                        v-model="entity.sectionSchema.group[index].elements[eIndex].quantity"
+                          size="small"
+                          v-model="entity.sectionSchema.group[index].elements[eIndex].quantity"
                       ></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col
-                    :span="el.type === 'divider' ? 3 : 3">
+                      :span="el.type === 'divider' ? 3 : 3">
                     <el-button
-                      class="mt-38"
-                      type="danger"
-                      size="small"
-                      icon="el-icon-delete"
-                      circle
-                      @click="removeElement(index, eIndex)"></el-button>
+                        class="mt-38"
+                        type="danger"
+                        size="small"
+                        icon="el-icon-delete"
+                        circle
+                        @click="removeElement(index, eIndex)"></el-button>
                     <el-button
-                      class="mt-38"
-                      size="small"
-                      style="margin-left:5px!important;"
-                      icon="el-icon-copy-document"
-                      circle
-                      @click="copyElement(index, eIndex)"></el-button>
+                        class="mt-38"
+                        size="small"
+                        style="margin-left:5px!important;"
+                        icon="el-icon-copy-document"
+                        circle
+                        @click="copyElement(index, eIndex)"></el-button>
                     <el-button
-                      class="element-sort"
-                      style="margin-top: 5px;margin-left:5px!important;"
-                      size="small"
-                      icon="el-icon-rank"
-                      circle></el-button>
+                        class="element-sort"
+                        style="margin-top: 5px;margin-left:5px!important;"
+                        size="small"
+                        icon="el-icon-rank"
+                        circle></el-button>
                   </el-col>
                   <el-col
-                    class="options"
-                    :span="24"
-                    v-if="el.type === 'select'">
+                      class="options"
+                      :span="24"
+                      v-if="el.type === 'select'">
                     <draggable
-                      handle=".option-sort"
-                      :list="el.options"
+                        handle=".option-sort"
+                        :list="el.options"
                     >
                       <el-row
-                        :gutter="10"
-                        v-for="(option, optionIndex) in el.options"
-                        :key="`options${optionIndex}`"
+                          :gutter="10"
+                          v-for="(option, optionIndex) in el.options"
+                          :key="`options${optionIndex}`"
                       >
                         <el-col
-                          class="text-right"
-                          :span="2">
+                            class="text-right"
+                            :span="2">
                           <label class="el-label">选项 {{ optionIndex + 1 }}</label>
                         </el-col>
                         <el-col
-                          class="text-right"
-                          :span="1">
+                            class="text-right"
+                            :span="1">
                           <label class="el-label">值</label>
                         </el-col>
                         <el-col :span="4">
                           <el-form-item
-                            :prop="`group.${index}.elements.${eIndex}.options.${optionIndex}.value`"
-                            :rules="formRules.type">
+                              :prop="`group.${index}.elements.${eIndex}.options.${optionIndex}.value`"
+                              :rules="formRules.type">
                             <el-input
-                              size="small"
-                              v-model="option.value"
-                              placeholder="描述 eg: 红色"
+                                size="small"
+                                v-model="option.value"
+                                placeholder="描述 eg: 红色"
                             ></el-input>
                           </el-form-item>
                         </el-col>
                         <el-col
-                          class="text-right"
-                          :span="1">
+                            class="text-right"
+                            :span="1">
                           <label class="el-label">中文</label>
                         </el-col>
                         <el-col :span="6">
                           <el-form-item :prop="`group.${index}.elements.${eIndex}.options.${optionIndex}.name.zh-CN`">
                             <el-input
-                              size="small"
-                              v-model="option.name['zh-CN']"
-                              placeholder="描述 eg: 红色"
+                                size="small"
+                                v-model="option.name['zh-CN']"
+                                placeholder="描述 eg: 红色"
                             ></el-input>
                           </el-form-item>
                         </el-col>
                         <el-col
-                          class="text-right"
-                          :span="1">
+                            class="text-right"
+                            :span="1">
                           <label class="el-label">英</label>
                         </el-col>
                         <el-col :span="6">
                           <el-form-item
-                            :prop="`group.${index}.elements.${eIndex}.options.${optionIndex}.name.en`"
-                            :rules="formRules.type">
+                              :prop="`group.${index}.elements.${eIndex}.options.${optionIndex}.name.en`"
+                              :rules="formRules.type">
                             <el-input
-                              size="small"
-                              v-model="option.name.en"
-                              placeholder="描述 eg: Red"
+                                size="small"
+                                v-model="option.name.en"
+                                placeholder="描述 eg: Red"
                             ></el-input>
                           </el-form-item>
                         </el-col>
                         <el-col
-                          class="text-right"
-                          :span="1"
-                          v-if="el.options.length > 1">
+                            class="text-right"
+                            :span="1"
+                            v-if="el.options.length > 1">
                           <el-button
-                            style="margin-top: 5px"
-                            size="small"
-                            icon="el-icon-delete"
-                            circle
-                            @click="removeOption(index, eIndex, optionIndex)"></el-button>
+                              style="margin-top: 5px"
+                              size="small"
+                              icon="el-icon-delete"
+                              circle
+                              @click="removeOption(index, eIndex, optionIndex)"></el-button>
                         </el-col>
                         <el-col :span="1">
                           <el-button
-                            class="option-sort"
-                            style="margin-top: 5px"
-                            size="small"
-                            icon="el-icon-rank"
-                            circle></el-button>
+                              class="option-sort"
+                              style="margin-top: 5px"
+                              size="small"
+                              icon="el-icon-rank"
+                              circle></el-button>
                         </el-col>
                       </el-row>
                     </draggable>
                     <el-row
-                      class="options-add"
-                      :gutter="10">
+                        class="options-add"
+                        :gutter="10">
                       <el-col
-                        :span="23"
-                        :offset="3">
+                          :span="23"
+                          :offset="3">
                         <el-button
-                          size="small"
-                          icon="el-icon-plus"
-                          @click="addOption(index, eIndex)">
+                            size="small"
+                            icon="el-icon-plus"
+                            @click="addOption(index, eIndex)">
                           添加选项
                         </el-button>
                       </el-col>
                     </el-row>
                   </el-col>
                   <el-col
-                    v-if="el.type === 'slider'"
-                    :span="24">
+                      v-if="el.type === 'slider'"
+                      :span="24">
                     <!--slider-->
                     <el-row
-                      :gutter="10"
-                      :key="`element-slider-option-${eIndex}`"
+                        :gutter="10"
+                        :key="`element-slider-option-${eIndex}`"
                     >
                       <el-col
-                        :offset="14"
-                        :span="2">
+                          :offset="14"
+                          :span="2">
                         <el-form-item
-                          label="最小值"
-                          :prop="`group.${index}.elements.${eIndex}.min`">
+                            label="最小值"
+                            :prop="`group.${index}.elements.${eIndex}.min`">
                           <el-input
-                            size="small"
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].min"
-                            placeholder="最小值"
+                              size="small"
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].min"
+                              placeholder="最小值"
                           ></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="2">
                         <el-form-item
-                          label="最大值"
-                          :prop="`group.${index}.elements.${eIndex}.max`">
+                            label="最大值"
+                            :prop="`group.${index}.elements.${eIndex}.max`">
                           <el-input
-                            size="small"
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].max"
-                            placeholder="最大值"
+                              size="small"
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].max"
+                              placeholder="最大值"
                           ></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="2">
                         <el-form-item
-                          label="步长值"
-                          :prop="`group.${index}.elements.${eIndex}.step`">
+                            label="步长值"
+                            :prop="`group.${index}.elements.${eIndex}.step`">
                           <el-input
-                            size="small"
-                            v-model="entity.sectionSchema.group[index].elements[eIndex].step"
-                            placeholder="步长值"
+                              size="small"
+                              v-model="entity.sectionSchema.group[index].elements[eIndex].step"
+                              placeholder="步长值"
                           ></el-input>
                         </el-form-item>
                       </el-col>
@@ -743,64 +743,63 @@
             </draggable>
             <div class="schema-group-action">
               <el-button
-                size="small"
-                icon="el-icon-copy-document"
-                circle
-                @click="copyGroup(index)"></el-button>
+                  size="small"
+                  icon="el-icon-copy-document"
+                  circle
+                  @click="copyGroup(index)"></el-button>
               <el-button
-                v-if="!o.dataType"
-                size="small"
-                circle
-                style="margin-right: 10px"
-                icon="el-icon-plus"
-                @click="addParameter(o)"
+                  v-if="!o.dataType"
+                  size="small"
+                  circle
+                  style="margin-right: 10px"
+                  icon="el-icon-plus"
+                  @click="addParameter(o)"
               ></el-button>
               <el-popover
-                placement="top-start"
-                width="260"
-                trigger="hover"
-                v-if="!(o.elements.length > 0 && o.dataType)"
-              >
+                  placement="top-start"
+                  width="260"
+                  trigger="hover"
+                  v-if="!(o.elements.length > 0 && o.dataType)">
                 <div
-                  v-if="!o.dataType"
-                  class="preset-button preset-button-style"
+                    v-if="!o.dataType"
+                    class="preset-button preset-button-style"
                 >
                   <el-button
-                    size="small"
-                    @click="addButton(o)">
+                      size="small"
+                      @click="addButton(o)">
                     按钮组
                   </el-button>
                   <el-button
-                    size="small"
-                    @click="addImageWithAlt(o)">
+                      size="small"
+                      @click="addImageWithAlt(o)">
                     图片 & ALT
                   </el-button>
                   <el-button
-                    size="small"
-                    @click="addColumn(o)">
+                      size="small"
+                      @click="addColumn(o)">
                     列数
                   </el-button>
                   <el-button
-                    size="small"
-                    @click="addColor(o)">
+                      size="small"
+                      @click="addColor(o)">
                     颜色组
                   </el-button>
                 </div>
                 <template
-                  v-for="(preset, presetIndex) in presetSections"
+                    v-for="(preset, presetIndex) in presetSections"
                 >
                   <div
-                    :key="`presets${presetIndex}`"
-                    class="preset-button preset-button-style"
+                      :key="`presets${presetIndex}`"
+                      class="preset-button preset-button-style"
                   >
                     <template
-                      v-for="(el, key) in preset"
+                        v-for="(el, key) in preset"
                     >
                       <el-button
-                        v-if="el.dataType === o.dataType"
-                        :key="key"
-                        size="small"
-                        @click="addPreset(o, key, presetIndex)"
+                          v-if="el.dataType === o.dataType"
+                          :key="key"
+                          size="small"
+                          @click="addPreset(o, key, presetIndex)"
                       >
                         {{ el.label }}
                       </el-button>
@@ -808,21 +807,21 @@
                   </div>
                 </template>
                 <el-button
-                  icon="el-icon-menu"
-                  size="small"
-                  circle
-                  style="margin-right: 10px"
-                  type="primary"
-                  slot="reference">
+                    icon="el-icon-menu"
+                    size="small"
+                    circle
+                    style="margin-right: 10px"
+                    type="primary"
+                    slot="reference">
                 </el-button>
               </el-popover>
               <el-button
-                size="small"
-                circle
-                type="danger"
-                icon="el-icon-delete"
-                v-if="!(o.removable === 0)"
-                @click="deleteGroup(index)"
+                  size="small"
+                  circle
+                  type="danger"
+                  icon="el-icon-delete"
+                  v-if="!(o.removable === 0)"
+                  @click="deleteGroup(index)"
               ></el-button>
             </div>
           </el-card>
@@ -830,30 +829,30 @@
       </el-form>
     </div>
     <el-dialog
-      title="粘帖"
-      :visible.sync="copyVisible"
-      width="60%"
-      :fullscreen="true"
-      :modal="false"
-      z-index="3000"
+        title="粘帖"
+        :visible.sync="copyVisible"
+        width="60%"
+        :fullscreen="true"
+        :modal="false"
+        z-index="3000"
     >
       <p style="margin-bottom: 15px">
         将已有 Schema JSON 代码粘帖到文本框
       </p>
       <el-input
-        type="textarea"
-        v-model="codeJSON"
-        :rows="15"
+          type="textarea"
+          v-model="codeJSON"
+          :rows="15"
       >
 
       </el-input>
       <p
-        slot="footer"
-        class="dialog-footer">
+          slot="footer"
+          class="dialog-footer">
         <el-button @click="copyVisible = false">取 消</el-button>
         <el-button
-          type="primary"
-          @click="pasteCode">确 定
+            type="primary"
+            @click="pasteCode">确 定
         </el-button>
       </p>
     </el-dialog>
@@ -1500,6 +1499,8 @@ export default {
       const sectionData = defaultSettings[controlType][multiple]
       if (controlType === 'inquiryFormPicker') {
         return defaultSettings.inquiryFormPicker
+      } else if (controlType === 'menuPicker') {
+        return defaultSettings.menuPicker
       } else {
         return sectionData || {
           dataset: {},

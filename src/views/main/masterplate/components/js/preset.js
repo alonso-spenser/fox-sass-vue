@@ -11,17 +11,21 @@ export default {
     {
       value: 2,
       title: '集合 & 数据列表'
+    },
+    {
+      value: 3,
+      title: '菜单'
     }
   ],
   /**
-   * 基本组件
-   */
+     * 基本组件
+     */
   section: {
     multiple: 0,
     dataType: false,
     /**
-     * 如果节点为循环
-     */
+         * 如果节点为循环
+         */
     subs: 1,
     max: 0,
     name: {
@@ -39,8 +43,8 @@ export default {
     elements: []
   },
   /**
-   * 基本元素
-   */
+     * 基本元素
+     */
   element: {
     standard: {
       type: 'text',
@@ -66,8 +70,8 @@ export default {
     }
   },
   /**
-   * 预设置
-   */
+     * 预设置
+     */
   sections: [
     {
       target: {
@@ -934,6 +938,26 @@ export default {
           name: {
             en: 'Form',
             'zh-CN': '表单'
+          },
+          info: {
+            en: '',
+            'zh-CN': ''
+          }
+        }
+      },
+      menuPicker: {
+        label: '菜单',
+        dataType: true,
+        schema: {
+          type: 'menuPicker',
+          field: 'menuType',
+          translate: 1,
+          default: {
+            id: 3
+          },
+          name: {
+            en: 'Menu',
+            'zh-CN': '菜单'
           },
           info: {
             en: '',
@@ -1862,8 +1886,8 @@ export default {
     }
   ],
   /**
-   * 组件
-   */
+     * 组件
+     */
   controls: [
     {
       label: '正整数',
@@ -1942,11 +1966,14 @@ export default {
       multiple: [0],
       translate: 1
     },
-    // {
-    //   label: 'Section选择器',
-    //   value: 'sectionPicker',
-    //   dataType: false
-    // },
+    {
+      label: '菜单选择器',
+      value: 'menuPicker',
+      dataType: true,
+      default: 'product',
+      multiple: [3],
+      translate: 1
+    },
     {
       label: '商品集合选择器',
       value: 'productCollectionPicker',
@@ -2018,12 +2045,12 @@ export default {
     }
   ],
   /**
-   * 预设组
-   */
+     * 预设组
+     */
   group: {
     /**
-     * 边框 & 背景
-     */
+         * 边框 & 背景
+         */
     borderAndBackground: {
       'multiple': 0,
       'dataType': false,
@@ -2309,8 +2336,8 @@ export default {
       }
     },
     /**
-     * 标题 & 按钮
-     */
+         * 标题 & 按钮
+         */
     titleAndButton: {
       'multiple': 0,
       'dataType': false,
@@ -2850,8 +2877,8 @@ export default {
       }
     },
     /**
-     * H1 & 面包屑
-     */
+         * H1 & 面包屑
+         */
     h1AndBreadCrumb: {
       'max': 0,
       'dataType': false,
@@ -2998,16 +3025,16 @@ export default {
     }
   },
   /**
-   * 数据
-   */
+     * 数据
+     */
   dataSource: {
     /**
-     * 商品
-     */
+         * 商品
+         */
     product: {
       /**
-       * 商品
-       */
+             * 商品
+             */
       entity: {
         'coverImage': 'https://theme.fomillesite.com/img/placeholder.jpg',
         'name': 'Apple iPhone XS Max (A2104) 256GB',
@@ -3016,8 +3043,8 @@ export default {
         'summary': 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
       },
       /**
-       * 集合
-       */
+             * 集合
+             */
       collection: {
         'coverImage': 'https://theme.fomillesite.com/img/placeholder.jpg',
         'seoUrl': '',
@@ -3026,12 +3053,12 @@ export default {
       }
     },
     /**
-     * 文章
-     */
+         * 文章
+         */
     article: {
       /**
-       * 文章
-       */
+             * 文章
+             */
       entity: {
         'coverImage': 'https://theme.fomillesite.com/img/placeholder.jpg',
         'createTime': 1562222541298,
@@ -3040,8 +3067,8 @@ export default {
         'summary': 'The budget is the most basic thing in financial planning. It is therefore especially important to be careful when compiling the budget. To start you have to draw up your own budget for the next month and only after it you may make a yearly budget'
       },
       /**
-       * 集合
-       */
+             * 集合
+             */
       collection: {
         'coverImage': 'https://theme.fomillesite.com/img/placeholder.jpg',
         'seoUrl': '',

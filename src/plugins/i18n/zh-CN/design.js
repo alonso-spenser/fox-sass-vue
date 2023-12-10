@@ -29,6 +29,14 @@ export default {
     select: '选择集合',
     add: '添加集合'
   },
+  menuPicker: {
+    header: 'Header 顶栏菜单',
+    product: '商品列表页侧栏菜单',
+    article: '文章列表页侧栏菜单',
+    footMenu: 'Footer 1 底栏菜单',
+    footMenu2: 'Footer 2 底栏菜单',
+    footMenu3: 'Footer 2 底栏菜单'
+  },
   /**
    * youtube
    */

@@ -1,114 +1,122 @@
 <template>
   <div
-    v-if="visible"
-    class="editor-section"
+      v-if="visible"
+      class="editor-section"
   >
     <h3
-      class="editor-section-title"
-      @click="dialogClose">
+        class="editor-section-title"
+        @click="dialogClose">
       {{ dataset.schemeData.name[language] }}
     </h3>
     <div
-      class="editor-section-content"
-      v-loading="schemaLoading"
-      element-loading-background="#424242"
+        class="editor-section-content"
+        v-loading="schemaLoading"
+        element-loading-background="#424242"
     >
       <div
-        class="editor-section-item"
-        v-if="sectionNameVisible">
+          class="editor-section-item"
+          v-if="sectionNameVisible">
         <h6>
           {{ $t('design.sectionAlias.heading') }}
         </h6>
         <p>
           <el-input
-            size="small"
-            @blur="updateSectionName"
-            class="change-section-name"
-            v-model="sectionData.data.sectionName"
-            :placeholder="$t('design.sectionAlias.placeholder')"
+              size="small"
+              @blur="updateSectionName"
+              class="change-section-name"
+              v-model="sectionData.data.sectionName"
+              :placeholder="$t('design.sectionAlias.placeholder')"
           >
           </el-input>
         </p>
       </div>
       <el-collapse
-        v-model="activeName"
-        accordion
-        class="fox-section-collapse">
+          v-model="activeName"
+          accordion
+          class="fox-section-collapse">
         <template v-for="(o, index) in dataset.schemeData.group">
           <el-collapse-item
-            :title="o.name[language]"
-            :name="`element-${index}`"
-            :key="`collapse-item-${index}`"
-            class="fox-section-item"
+              :title="o.name[language]"
+              :name="`element-${index}`"
+              :key="`collapse-item-${index}`"
+              class="fox-section-item"
           >
             <div class="editor-section-item" v-if="o.tips[language]">
               <h6>
                 | {{ o.tips[language] }}
               </h6>
             </div>
-            <template v-if="o.multiple === 0">
+            <template v-if="o.multiple === 0 || o.multiple === 3">
               <template v-for="(el, elIndex) in o.elements">
                 <template v-if="el.type === 'productCollectionPicker' || el.type === 'articleCollectionPicker'">
-                  <section-widget
-                    :key="`collapse-widget-${index}-${elIndex}`"
-                    :schema="el"
-                    v-model="dataset.sectionData.dataset[el.field].data[0]"
-                  >
-                  </section-widget>
                   <!--显示单个集合下的（文章/商品），限制数量-->
                   <div
-                    class="editor-section-item"
-                    :key="`quantity-${index}-${elIndex}`">
+                      class="editor-section-item"
+                      :key="`quantity-${index}-${elIndex}`">
                     <h6>
                       {{ $t(`design.${el.type}.name['${language}']`) }}
                     </h6>
                     <p>
                       <el-input-number
-                        size="small"
-                        class="w-100"
-                        :min="1"
-                        :max="99"
-                        v-model="dataset.sectionData.dataset[el.field].quantity"
-                        :placeholder="$t(`design.${el.type}.placeholder['${language}']`)"
+                          size="small"
+                          class="w-100"
+                          :min="1"
+                          :max="99"
+                          v-model="dataset.sectionData.dataset[el.field].quantity"
+                          :placeholder="$t(`design.${el.type}.placeholder['${language}']`)"
                       ></el-input-number>
                     </p>
                   </div>
+                  <section-widget
+                      :key="`collapse-widget-${index}-${elIndex}`"
+                      :schema="el"
+                      v-model="dataset.sectionData.dataset[el.field].data[0]"
+                  >
+                  </section-widget>
                 </template>
                 <template v-else-if="el.type === 'inquiryFormPicker'">
                   <section-widget
-                    :key="`collapse-widget-${index}-${elIndex}`"
-                    :schema="el"
-                    v-model="dataset.sectionData.dataset[el.field].data[0]"
+                      :key="`collapse-widget-${index}-${elIndex}`"
+                      :schema="el"
+                      v-model="dataset.sectionData.dataset[el.field].data[0]"
+                  >
+                  </section-widget>
+                </template>
+                <template v-else-if="el.type === 'menuPicker'">
+                  <section-widget
+                      :key="`collapse-widget-${index}-${elIndex}`"
+                      :schema="el"
+                      v-model="dataset.sectionData.dataset[el.field].data[0]"
                   >
                   </section-widget>
                 </template>
                 <section-widget
-                  v-else
-                  :schema="el"
-                  :key="`collapse-widget-${index}-${elIndex}`"
-                  v-model="dataset.sectionData"
+                    v-else
+                    :schema="el"
+                    :key="`collapse-widget-${index}-${elIndex}`"
+                    v-model="dataset.sectionData"
                 >
                 </section-widget>
               </template>
             </template>
             <template v-else>
               <template
-                v-if="o.multiple === 2 && o.elements.length === 1 && (o.elements[0].type === 'productCollectionPicker' || o.elements[0].type === 'articleCollectionPicker')">
+                  v-if="o.multiple === 2 && o.elements.length === 1 && (o.elements[0].type === 'productCollectionPicker' || o.elements[0].type === 'articleCollectionPicker')">
                 <div
-                  class="editor-section-item"
-                  :key="`multiple-collection-${index}`"
+                    class="editor-section-item"
+                    :key="`multiple-collection-${index}`"
                 >
                   <h6>
                     {{ $t(`design.productCollectionPicker.name['${language}']`) }}
                   </h6>
                   <p>
                     <el-input-number
-                      size="small"
-                      class="w-100"
-                      :min="1"
-                      :max="99"
-                      v-model="dataset.sectionData.dataset[o.tag].quantity"
-                      :placeholder="$t(`design.productCollectionPicker.placeholder['${language}']`)"
+                        size="small"
+                        class="w-100"
+                        :min="1"
+                        :max="99"
+                        v-model="dataset.sectionData.dataset[o.tag].quantity"
+                        :placeholder="$t(`design.productCollectionPicker.placeholder['${language}']`)"
                     ></el-input-number>
                   </p>
                 </div>
@@ -116,66 +124,66 @@
               <template slot="title">
                 {{ o.name[language] }}
                 <sub
-                  class="ml-3"
-                  v-if="dataset.sectionData.dataset[o.tag].data.length > 0">
+                    class="ml-3"
+                    v-if="dataset.sectionData.dataset[o.tag].data.length > 0">
                   {{ dataset.sectionData.dataset[o.tag].data.length }}
                 </sub>
               </template>
               <div
-                class="sub-item text-right cursor-pointer"
-                @click="loadBatchImage(o.tag)"
-                v-if="getBatchImage(o)">
+                  class="sub-item text-right cursor-pointer"
+                  @click="loadBatchImage(o.tag)"
+                  v-if="getBatchImage(o)">
                 <el-button
-                  type="text"
-                  icon="el-icon-picture-outline-round">
+                    type="text"
+                    icon="el-icon-picture-outline-round">
                   图片选择
                 </el-button>
               </div>
               <el-collapse
-                v-model="subActiveName"
-                accordion
-                class="fox-section-sub-collapse">
+                  v-model="subActiveName"
+                  accordion
+                  class="fox-section-sub-collapse">
                 <draggable
-                  handle=".fox-section-sub-move"
-                  :list="dataset.sectionData.dataset[o.tag].data"
+                    handle=".fox-section-sub-move"
+                    :list="dataset.sectionData.dataset[o.tag].data"
                 >
                   <template v-for="(sub, subIndex) in dataset.sectionData.dataset[o.tag].data">
                     <el-collapse-item
-                      :title="o.name[language]"
-                      :name="`element-${index}-${subIndex}`"
-                      :key="`collapse-item-${index}-${subIndex}`"
-                      class="fox-section-sub-item"
+                        :title="o.name[language]"
+                        :name="`element-${index}-${subIndex}`"
+                        :key="`collapse-item-${index}-${subIndex}`"
+                        class="fox-section-sub-item"
                     >
                       <template slot="title">
                         <div
-                          class="fox-section-sub-title"
-                          v-html="getPlaceholder(o.elements, sub, o.placeholder[language])"></div>
+                            class="fox-section-sub-title"
+                            v-html="getPlaceholder(o.elements, sub, o.placeholder[language])"></div>
                         <div class="fox-section-sub-move el-icon-rank">
                         </div>
                       </template>
                       <template v-for="(el, elIndex) in o.elements">
                         <section-widget
-                          :schema="el"
-                          :key="`collapse-widget-${index}-${elIndex}-${subIndex}`"
-                          v-model="dataset.sectionData.dataset[o.tag].data[subIndex]"
+                            :schema="el"
+                            :key="`collapse-widget-${index}-${elIndex}-${subIndex}`"
+                            v-model="dataset.sectionData.dataset[o.tag].data[subIndex]"
                         >
                         </section-widget>
                       </template>
                       <!--复制、删除项-->
                       <div class="editor-section-bottom">
                         <el-button
-                          size="small"
-                          type="danger"
-                          @click="removeSlide(o, subIndex)"
-                          class="mr-4"
-                          plain>
+                            size="small"
+                            type="danger"
+                            @click="removeSlide(o, subIndex)"
+                            class="mr-4"
+                            plain>
                           {{ $t('base.operate.remove') }}
                         </el-button>
                         <el-button
-                          v-if="dataset.sectionData.dataset[o.tag] && dataset.sectionData.dataset[o.tag].data.length < o.max"
-                          size="small"
-                          @click="copySlide(o, subIndex)"
-                          plain>
+                            v-if="dataset.sectionData.dataset[o.tag] && dataset.sectionData.dataset[o.tag].data.length < o.max"
+                            size="small"
+                            @click="copySlide(o, subIndex)"
+                            plain>
                           {{ $t('design.copyItem') }}
                         </el-button>
                       </div>
@@ -184,17 +192,18 @@
                 </draggable>
               </el-collapse>
               <div
-                :key="`addSlide-${index}`"
-                @click="addSlide(o)"
-                v-if="dataset.sectionData.dataset[o.tag] && dataset.sectionData.dataset[o.tag].data.length < o.max"
-                class="fox-slide-add">
+                  :key="`addSlide-${index}`"
+                  @click="addSlide(o)"
+                  v-if="dataset.sectionData.dataset[o.tag] && dataset.sectionData.dataset[o.tag].data.length < o.max"
+                  class="fox-slide-add">
                 <i class="el-icon-plus"></i>
                 {{ $t('base.operate.add') }}
               </div>
               <div
-                :key="`clearSlide-${index}`"
-                @click="clearSlide(o)"
-                class="fox-slide-add">
+                  :key="`clearSlide-${index}`"
+                  @click="clearSlide(o)"
+                  v-if="o.tag !== 'menuType'"
+                  class="fox-slide-add">
                 <i class="el-icon-refresh"></i>
                 {{ $t('design.clear') }}
               </div>
@@ -203,14 +212,14 @@
         </template>
       </el-collapse>
       <div
-        class="editor-section-bottom"
-        v-if="dataset.schemeData.removable">
+          class="editor-section-bottom"
+          v-if="dataset.schemeData.removable">
         <p>
           <el-button
-            v-if="dataset.schemeData.removable"
-            size="small"
-            class="w-100"
-            @click="copySection"
+              v-if="dataset.schemeData.removable"
+              size="small"
+              class="w-100"
+              @click="copySection"
           >
             {{ $t('design.copy') }}
           </el-button>
@@ -218,30 +227,30 @@
 
         <p>
           <el-button
-            v-if="dataset.schemeData.removable"
-            size="small"
-            class="w-100"
-            @click="copyToClip"
+              v-if="dataset.schemeData.removable"
+              size="small"
+              class="w-100"
+              @click="copyToClip"
           >
             {{ $t('design.copyToClip') }}
           </el-button>
         </p>
         <el-button
-          v-if="dataset.schemeData.removable"
-          size="small"
-          type="warning"
-          class="w-100"
-          v-loading="removeLoading"
-          @click="removeSection"
+            v-if="dataset.schemeData.removable"
+            size="small"
+            type="warning"
+            class="w-100"
+            v-loading="removeLoading"
+            @click="removeSection"
         >
           {{ $t('design.remove') }}
         </el-button>
       </div>
     </div>
     <resource-selector
-      :visible.sync="batchImage.visible"
-      @close="resourceSelector"
-      :info-type="0"></resource-selector>
+        :visible.sync="batchImage.visible"
+        @close="resourceSelector"
+        :info-type="0"></resource-selector>
   </div>
 </template>
 

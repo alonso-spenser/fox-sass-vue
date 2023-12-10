@@ -1,7 +1,7 @@
 export default {
   /**
-   * 表单选择器
-   */
+     * 表单选择器
+     */
   inquiryFormPicker: {
     dataset: {
       buttonLabel: '',
@@ -63,6 +63,17 @@ export default {
           required: true
         }
       ]
+    }
+  },
+  /**
+     * 菜单
+     */
+  menuPicker: {
+    dataset: {
+      id: 3
+    },
+    default: {
+      id: 3
     }
   },
   productCollectionPicker: {

@@ -14,7 +14,8 @@
     "build:fox": "vue-cli-service build --mode fox",
     "build:huazhe": "vue-cli-service build --mode huazhe",
     "build:seacat": "vue-cli-service build --mode seacat",
-    "build:junen": "vue-cli-service build --mode junen"
+    "build:junen": "vue-cli-service build --mode junen",
+    "build:fomille": "vue-cli-service build --mode fomille"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.8",

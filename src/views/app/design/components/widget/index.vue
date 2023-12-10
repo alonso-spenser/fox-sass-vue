@@ -121,7 +121,8 @@
       >
       </inquiry-form-picker>
     </template>
-    <template v-else-if="schemeData.type === 'productCollectionPicker' || schemeData.type === 'articleCollectionPicker'">
+    <template
+      v-else-if="schemeData.type === 'productCollectionPicker' || schemeData.type === 'articleCollectionPicker'">
       <collection-picker
         :name="schemeData.name"
         :picker-type="schemeData.type"
@@ -136,6 +137,13 @@
           show-alpha></el-color-picker>
         {{ schemeData.name[language] }}
       </p>
+    </template>
+    <template v-else-if="schemeData.type === 'menuPicker'">
+      <menu-picker
+        :name="schemeData.name"
+        v-model="model"
+      >
+      </menu-picker>
     </template>
     <template v-else-if="schemeData.type === 'slider'">
       <h6>
@@ -246,6 +254,7 @@ import CollectionPicker from './collection-picker'
 import iconPicker from './icon-picker'
 import PositiveInteger from './positive-integer'
 import googleMapPicker from './google-map-picker'
+import menuPicker from './menu-picker.vue'
 import resource from '@/plugins/resource'
 import extend from '@/plugins/page/base'
 import richText from '@/assets/image/rich-text.jpg'
@@ -260,7 +269,8 @@ export default {
     InquiryFormPicker,
     CollectionPicker,
     iconPicker,
-    googleMapPicker
+    googleMapPicker,
+    menuPicker
   },
   data () {
     return {
