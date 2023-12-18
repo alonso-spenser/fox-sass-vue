@@ -591,6 +591,7 @@ export default {
      */
     dataValidation (dt) {
       let nextTicks = true
+      // sectionData.dataset[o.tag]
       dt.schemeData.group.forEach((o) => {
         if (o.multiple !== 0 && !dt.sectionData.dataset[o.tag]) {
           dt.sectionData.dataset[o.tag] = JSON.parse(JSON.stringify(dt.schemeData.default.dataset[o.tag]))
@@ -600,6 +601,7 @@ export default {
           o.elements.forEach((sb) => {
             if (this.utility.isNotEmpty(sb.field) && dt.sectionData[sb.field] === undefined && dt.schemeData.default[sb.field] !== undefined) {
               dt.sectionData[sb.field] = dt.schemeData.default[sb.field]
+              dt.sectionData.dataset[sb.field] = dt.schemeData.default.dataset[sb.field]
               nextTicks = false
             }
           })

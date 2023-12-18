@@ -1,10 +1,10 @@
 <template>
   <div
-    class="global-page"
-    v-loading="loading">
+      class="global-page"
+      v-loading="loading">
     <div
-      class="global-header create-site-header active"
-      v-if="canCreate">
+        class="global-header create-site-header active"
+        v-if="canCreate">
       <div class="container">
         <h3 v-if="activeIndex === 0">
           {{ $t("startup.siteType.heading") }}
@@ -18,19 +18,19 @@
           </h3>
           <div class="mt-3">
             <el-button
-              round
-              :type="'' === tagId ? 'primary' : ''"
-              @click="tagsChange('')"
-              size="small">
+                round
+                :type="'' === tagId ? 'primary' : ''"
+                @click="tagsChange('')"
+                size="small">
               {{ $t("startup.all") }}
             </el-button>
             <el-button
-              round
-              v-for="o in tagList"
-              :key="o.id"
-              :type="o.id === tagId ? 'primary' : ''"
-              @click="tagsChange(o.id)"
-              size="small">
+                round
+                v-for="o in tagList"
+                :key="o.id"
+                :type="o.id === tagId ? 'primary' : ''"
+                @click="tagsChange(o.id)"
+                size="small">
               {{ o.tagName }}
             </el-button>
           </div>
@@ -43,26 +43,26 @@
         </h3>
         <div class="create-site-logout">
           <el-button
-            size="small"
-            @click="logout">
+              size="small"
+              @click="logout">
             {{ $t('passport.login.logout') }}
           </el-button>
         </div>
       </div>
     </div>
     <main
-      class="editable"
-      v-if="canCreate">
+        class="editable"
+        v-if="canCreate">
       <template v-if="activeIndex === 0">
         <div class="global-page-container">
           <div class="container">
             <el-row
-              :gutter="20"
-              class="mt-7">
+                :gutter="20"
+                class="mt-7">
               <el-col :span="12">
                 <div
-                  :class="`create-site el-icon-check ${entity.siteType === 3 ? ' active' : ''}`"
-                  @click="selectedSite(3)">
+                    :class="`create-site el-icon-check ${entity.siteType === 3 ? ' active' : ''}`"
+                    @click="selectedSite(3)">
                   <h2>
                     {{ $t("startup.siteType.b2b.heading") }}
                   </h2>
@@ -74,8 +74,8 @@
               </el-col>
               <el-col :span="12">
                 <div
-                  :class="`create-site el-icon-check ${entity.siteType === 2 ? ' active' : ''}`"
-                  @click="selectedSite(2)">
+                    :class="`create-site el-icon-check ${entity.siteType === 2 ? ' active' : ''}`"
+                    @click="selectedSite(2)">
                   <h2 v-html="$t('startup.siteType.lp.heading')"></h2>
                   <p v-html="$t('startup.siteType.lp.subheading')"></p>
                   <p>
@@ -83,10 +83,10 @@
                   </p>
                 </div>
               </el-col>
-              <el-col :span="12">
+              <el-col :span="12" v-if="false">
                 <div
-                  :class="`create-site mall el-icon-check ${entity.siteType === 1 ? ' active' : ''}`"
-                  @click="selectedSite(1)">
+                    :class="`create-site mall el-icon-check ${entity.siteType === 1 ? ' active' : ''}`"
+                    @click="selectedSite(1)">
                   <h2 v-html="$t('startup.siteType.cod.heading')"></h2>
                   <p v-html="$t('startup.siteType.cod.subheading')"></p>
                   <p>
@@ -94,10 +94,10 @@
                   </p>
                 </div>
               </el-col>
-              <el-col :span="12">
+              <el-col :span="12" v-if="false">
                 <div
-                  :class="`create-site mall el-icon-check ${entity.siteType === 4 ? ' active' : ''}`"
-                  @click="selectedSite(4)">
+                    :class="`create-site mall el-icon-check ${entity.siteType === 4 ? ' active' : ''}`"
+                    @click="selectedSite(4)">
                   <h2 v-html="$t('startup.siteType.b2c.heading')"></h2>
                   <p v-html="$t('startup.siteType.b2c.subheading')"></p>
                   <p>
@@ -122,19 +122,19 @@
             <el-row :gutter="20">
               <el-col :span="12">
                 <a
-                  class="text-primary el-button el-button--text"
-                  href="/owned">
+                    class="text-primary el-button el-button--text"
+                    href="/owned">
                   <i class="el-icon-d-arrow-left"></i>
                   {{ $t("startup.mySites") }}
                 </a>
               </el-col>
               <el-col
-                :span="12"
-                class="text-right">
+                  :span="12"
+                  class="text-right">
                 <el-button
-                  :loading="loading"
-                  @click="stepChange(0, 1)"
-                  type="primary"
+                    :loading="loading"
+                    @click="stepChange(0, 1)"
+                    type="primary"
                 >{{ $t("startup.nextStep") }}
                 </el-button>
               </el-col>
@@ -146,35 +146,35 @@
         <div class="global-page-container">
           <div class="container">
             <el-row
-              :gutter="20"
-              class="site-template">
+                :gutter="20"
+                class="site-template">
               <el-col
-                v-for="o in dataset"
-                class="mt-4"
-                :key="o.id"
-                :span="6">
+                  v-for="o in dataset"
+                  class="mt-4"
+                  :key="o.id"
+                  :span="6">
                 <div
-                  class="embed-responsive embed-responsive-5by4"
-                  :class="o.id === entity.themeId ? ' active' : ''">
+                    class="embed-responsive embed-responsive-5by4"
+                    :class="o.id === entity.themeId ? ' active' : ''">
                   <img
-                    class="embed-responsive-item"
-                    :src="o.screenshot">
+                      class="embed-responsive-item"
+                      :src="o.screenshot">
                   <div class="site-template-mask">
                     <el-button
-                      type="primary"
-                      round
-                      @click="themeSelected(o)"
+                        type="primary"
+                        round
+                        @click="themeSelected(o)"
                     >
                       {{ $t("startup.selected") }}
                     </el-button>
                     <a
-                      :href="o.demoUrl"
-                      target="_blank"
-                      v-if="o.demoUrl">
+                        :href="o.demoUrl"
+                        target="_blank"
+                        v-if="o.demoUrl">
                       <el-button
-                        type="primary"
-                        round
-                        plain>
+                          type="primary"
+                          round
+                          plain>
                         {{ $t("startup.preview") }}
                       </el-button>
                     </a>
@@ -191,19 +191,19 @@
             <el-row :gutter="40">
               <el-col :span="12">
                 <a
-                  class="text-primary el-button el-button--text"
-                  href="/">
+                    class="text-primary el-button el-button--text"
+                    href="/">
                   <i class="el-icon-d-arrow-left"></i>
                   {{ $t("startup.mySites") }}
                 </a>
               </el-col>
               <el-col
-                :span="12"
-                class="text-right">
+                  :span="12"
+                  class="text-right">
                 <el-button
-                  @click="stepChange(1, 0)"
-                  type="text"
-                  icon="el-icon-arrow-left">
+                    @click="stepChange(1, 0)"
+                    type="text"
+                    icon="el-icon-arrow-left">
                   {{ $t("startup.prevStep") }}
                 </el-button>
                 <!--              <el-button-->
@@ -214,10 +214,10 @@
                 <!--                <i class="el-icon-arrow-right"></i>-->
                 <!--              </el-button>-->
                 <el-button
-                  :loading="loading"
-                  type="primary"
-                  class="ml-5"
-                  @click="stepChange(1, 2)"
+                    :loading="loading"
+                    type="primary"
+                    class="ml-5"
+                    @click="stepChange(1, 2)"
                 >{{ $t("startup.nextStep") }}
                 </el-button>
               </el-col>
@@ -228,45 +228,45 @@
       <template v-if="activeIndex === 2">
         <div class="global-page-container">
           <el-form
-            :model="entity"
-            :rules="formRules"
-            ref="ruleForm"
-            label-position="top"
-            @keydown.native.enter.prevent
+              :model="entity"
+              :rules="formRules"
+              ref="ruleForm"
+              label-position="top"
+              @keydown.native.enter.prevent
           >
             <div class="container mt-7">
               <el-row :gutter="20">
                 <el-col :span="8">
                   <el-form-item
-                    :show-message="false"
-                    prop="siteName">
+                      :show-message="false"
+                      prop="siteName">
                     <fox-input
-                      shrink
-                      v-model="entity.siteName"
-                      :placeholder="$t('startup.entity.siteName.label')"
-                      :description="$t('startup.entity.siteName.placeholder')"
-                      show-word-limit
-                      maxlength="50"
+                        shrink
+                        v-model="entity.siteName"
+                        :placeholder="$t('startup.entity.siteName.label')"
+                        :description="$t('startup.entity.siteName.placeholder')"
+                        show-word-limit
+                        maxlength="50"
                     ></fox-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="8">
                   <fox-form-item
-                    :show-message="false"
-                    prop="langCode">
+                      :show-message="false"
+                      prop="langCode">
                     <fox-select
-                      shrink
-                      :placeholder="$t('startup.entity.langCode.label')"
-                      :description="$t('startup.entity.langCode.placeholder')"
-                      v-model="entity.langCode"
-                      filterable
-                      @change="langChange"
+                        shrink
+                        :placeholder="$t('startup.entity.langCode.label')"
+                        :description="$t('startup.entity.langCode.placeholder')"
+                        v-model="entity.langCode"
+                        filterable
+                        @change="langChange"
                     >
                       <el-option
-                        v-for="item in area.language"
-                        :key="item.code"
-                        :label="`${item.languageName} - ${item.nativeName}`"
-                        :value="item.code"
+                          v-for="item in area.language"
+                          :key="item.code"
+                          :label="`${item.languageName} - ${item.nativeName}`"
+                          :value="item.code"
                       >
                         {{ item.languageName }} - {{ item.nativeName }}
                       </el-option>
@@ -279,8 +279,8 @@
                 <div class="create-site-browser">
                   <el-row>
                     <el-col
-                      :span="4"
-                      class="text-center">
+                        :span="4"
+                        class="text-center">
                       <i class="el-icon-back"></i>
                       <i class="el-icon-right"></i>
                       <i class="el-icon-refresh"></i>
@@ -289,10 +289,10 @@
                     <el-col :span="18">
                       <el-form-item prop="domain">
                         <el-input
-                          @blur="urlBlur"
-                          :placeholder="this.$t('startup.entity.domain.placeholder')"
-                          :maxlength="32"
-                          v-model="entity.domain"
+                            @blur="urlBlur"
+                            :placeholder="this.$t('startup.entity.domain.placeholder')"
+                            :maxlength="32"
+                            v-model="entity.domain"
                         >
                           <template slot="prepend">https://</template>
                           <template slot="append">{{ resource.domain }}</template>
@@ -303,9 +303,9 @@
                 </div>
                 <ul class="create-site-tips">
                   <li
-                    v-for="(o, index) in $t('startup.tips')"
-                    :key="index"
-                    v-html="o">{{ o }}
+                      v-for="(o, index) in $t('startup.tips')"
+                      :key="index"
+                      v-html="o">{{ o }}
                   </li>
                 </ul>
               </div>
@@ -318,25 +318,25 @@
             <el-row :gutter="40">
               <el-col :span="12">
                 <a
-                  class="text-primary el-button el-button--text"
-                  href="/">
+                    class="text-primary el-button el-button--text"
+                    href="/">
                   <i class="el-icon-d-arrow-left"></i>
                   {{ $t("startup.mySites") }}
                 </a>
               </el-col>
               <el-col
-                :span="12"
-                class="text-right">
+                  :span="12"
+                  class="text-right">
                 <el-button
-                  @click="stepChange(1, 0)"
-                  type="text"
-                  icon="el-icon-arrow-left">
+                    @click="stepChange(1, 0)"
+                    type="text"
+                    icon="el-icon-arrow-left">
                   {{ $t("startup.prevStep") }}
                 </el-button>
                 <el-button
-                  :loading="loading"
-                  type="primary"
-                  @click="formValidation('ruleForm')"
+                    :loading="loading"
+                    type="primary"
+                    @click="formValidation('ruleForm')"
                 >{{ $t("startup.create") }}
                 </el-button>
               </el-col>
