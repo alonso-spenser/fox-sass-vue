@@ -241,7 +241,7 @@ export default {
       ]
     },
     {
-      title: 'Theme development',
+      title: 'Theme',
       code: ['theme'],
       submenu: [
         {

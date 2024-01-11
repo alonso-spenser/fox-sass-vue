@@ -44,3 +44,8 @@ export const fetchSiteRegion = (params = {}) => http.post('/api/ops/site/site-re
  * 删除网站语言
  */
 export const fetchSiteRemoveRegion = (params = {}) => http.post('/api/ops/site/remove-site-region', params)
+
+/**
+ * 丢失的页面
+ */
+export const fetchLostPages = (params = {}) => http.post('/api/ops/site/lost-pages', params)

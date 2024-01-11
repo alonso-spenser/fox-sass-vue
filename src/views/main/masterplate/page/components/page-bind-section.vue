@@ -1,15 +1,15 @@
 <template>
   <div>
     <el-dialog
-      :show-close="false"
-      :visible="visible"
-      width="800px"
+        :show-close="false"
+        :visible="visible"
+        width="800px"
     >
       <template slot="title">
         <el-button
-          @click="getSections"
-          size="small"
-          class="float-right"
+            @click="getSections"
+            size="small"
+            class="float-right"
         >添加模块
         </el-button>
         <span class="el-dialog__title">
@@ -27,29 +27,29 @@
         </el-row>
         <template v-for="(o,index) in pageSection.dataset">
           <el-row
-            :key="`section-${index}`"
-            :gutter="20">
+              :key="`section-${index}`"
+              :gutter="20">
             <el-col :span="18">
               {{ o.sectionType }} - {{ o.sectionName }}
             </el-col>
             <el-col :span="4">
               <el-form-item
-                style="margin: 0"
-                :prop="`dataset.${index}.sortIndex`"
-                :rules="formRules.sortIndex"
+                  style="margin: 0"
+                  :prop="`dataset.${index}.sortIndex`"
+                  :rules="formRules.sortIndex"
               >
                 <el-input
-                  size="small"
-                  v-model="o.sortIndex"
+                    size="small"
+                    v-model="o.sortIndex"
                 ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="2" class="text-right">
               <el-button
-                round
-                size="small"
-                @click="removeSection(index)"
-                icon="el-icon-delete"></el-button>
+                  round
+                  size="small"
+                  @click="removeSection(index)"
+                  icon="el-icon-delete"></el-button>
             </el-col>
           </el-row>
 
@@ -61,16 +61,16 @@
       </div>
     </el-dialog>
     <el-dialog
-      :showClose="false"
-      :visible.sync="sectionVisible"
-      width="800px"
-      :before-close="addSection">
+        :showClose="false"
+        :visible.sync="sectionVisible"
+        width="800px"
+        :before-close="addSection">
       <el-radio-group @change="changeSection" class="el-radio-block" v-model="sectionId">
         <template v-for="(item, index) in sectionsList">
           <el-radio
-            v-if="!hasSection(item.sectionType, item.siteTypeList) && item.siteType.indexOf(siteType) > -1"
-            :label="item.id"
-            :key="index">
+              v-if="hasSection(item.sectionType, item.siteTypeList)"
+              :label="item.id"
+              :key="index">
             {{ item.sectionType }} - {{ item.sectionName }}
           </el-radio>
         </template>
@@ -83,8 +83,8 @@
   </div>
 </template>
 <style
-  scoped
-  lang="scss">
+    scoped
+    lang="scss">
 .el-radio-block {
   overflow: hidden;
 
@@ -176,10 +176,10 @@ export default {
       let m = siteTypeList.filter((id) => {
         return this.entity.siteTypeList.indexOf(id) > 0
       })
-      let s = this.pageSection.dataset.filter((o) => {
+      let s = this.sectionsList.filter((o) => {
         return o.sectionType === sectionType
       })
-      return s.length > 0 && m.length > 0
+      return s.length > 0 || m.length > 0
     },
     /**
      * 选择某个section
@@ -206,8 +206,8 @@ export default {
      */
     getPageSection () {
       http.themePageSection({
-        pageId: this.entity.id,
-        siteType: this.siteType
+        pageId: this.entity.id
+        // siteType: this.entity.siteTypeList
       })
         .then(result => {
           this.resultMessage(result, (success) => {

@@ -1,7 +1,7 @@
 export default {
   /**
-   * youtube
-   */
+     * youtube
+     */
   videoPicker: {
     placeholder: '请输入Youtube视频的分享链接'
   },
@@ -1012,6 +1012,19 @@ export default {
       title: '支付结果',
       pageType: 'paymentResultPage',
       seoUrl: '/payment/{id}/{status}',
+      addSection: 0,
+      bindSection: 0,
+      hasFloatMenu: 0,
+      hasFooter: 0,
+      hasHeader: 0,
+      menuVisible: 0,
+      siteType: [3, 4],
+      dynamic: 0
+    },
+    {
+      title: '用户中心-首页',
+      pageType: 'mineOverviewPage',
+      seoUrl: '/mine/overview',
       addSection: 0,
       bindSection: 0,
       hasFloatMenu: 0,

@@ -280,7 +280,9 @@ import {
   fetchAuthorizedLogin,
   fetchSiteUpdate,
   fetchSiteRegion,
-  fetchSiteRemoveRegion, fetchChangeSiteOwner
+  fetchSiteRemoveRegion,
+  fetchChangeSiteOwner,
+  fetchLostPages
 } from '@/plugins/api/main/site'
 import {
   fetchMerchantPaging,
@@ -415,8 +417,17 @@ export default {
           {
             button: true,
             label: '',
-            width: 200,
+            width: 250,
             group: [
+              {
+                icon: 'el-icon-s-help',
+                circle: true,
+                name: null,
+                disabled: false,
+                onClick: (row) => {
+                  this.lostPages(row)
+                }
+              },
               {
                 icon: 'el-icon-location',
                 circle: true,
@@ -674,6 +685,15 @@ export default {
               this.removeData.visible = true
             }
           }
+        })
+        .catch(error => console.log(error))
+    },
+    lostPages (row) {
+      fetchLostPages({
+        siteId: row.id,
+        siteType: row.siteType
+      })
+        .then(res => {
         })
         .catch(error => console.log(error))
     },
