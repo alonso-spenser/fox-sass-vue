@@ -318,6 +318,20 @@ export default {
             placeholder: 'eg: https://www.domain.com',
             required: '请输入域名',
             custom: ''
+          },
+          imgListSelectorOriginal: {
+            label: '图片URL字符串',
+            tips: '',
+            placeholder: 'eg: -300x300',
+            required: '',
+            custom: ''
+          },
+          imgListSelectorReplacement: {
+            label: '图片URL替换字符串',
+            tips: '',
+            placeholder: 'eg: -800x800',
+            required: '',
+            custom: ''
           }
         }
       }

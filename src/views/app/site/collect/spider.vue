@@ -214,16 +214,32 @@
               ></fox-input>
             </el-form-item>
 
-            <el-form-item
-              v-if="false"
-              prop="itemImgSrcRemoveSelector">
-              <fox-input
-                shrink
-                v-model="entity.itemImgSrcRemoveSelector"
-                :placeholder="$t('collect.rule.update.entity.itemImgSrcRemoveSelector.label')"
-                :description="$t('collect.rule.update.entity.itemImgSrcRemoveSelector.placeholder')"
-              ></fox-input>
-            </el-form-item>
+            <el-row
+              :gutter="20"
+              style="margin-bottom: 20px">
+              <el-col :span="12">
+                <el-form-item
+                  prop="itemImgSrcSelectorOriginal">
+                  <fox-input
+                    shrink
+                    v-model="entity.itemImgSrcSelectorOriginal"
+                    :placeholder="$t('collect.rule.update.entity.imgListSelectorOriginal.label')"
+                    :description="$t('collect.rule.update.entity.imgListSelectorOriginal.placeholder')"
+                  ></fox-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  prop="itemImgSrcSelectorReplacement">
+                  <fox-input
+                    shrink
+                    v-model="entity.itemImgSrcSelectorReplacement"
+                    :placeholder="$t('collect.rule.update.entity.imgListSelectorReplacement.label')"
+                    :description="$t('collect.rule.update.entity.imgListSelectorReplacement.placeholder')"
+                  ></fox-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
 
             <el-form-item
               prop="itemSummarySelector">
@@ -395,7 +411,6 @@
                 :description="$t('collect.rule.update.entity.imgListSelector.placeholder')"
               ></fox-input>
             </el-form-item>
-
             <el-form-item
               prop="imgListSrcSelector">
               <fox-input
@@ -405,6 +420,32 @@
                 :description="$t('collect.rule.update.entity.imgListSrcSelector.placeholder')"
               ></fox-input>
             </el-form-item>
+            <el-row
+              :gutter="20"
+              style="margin-bottom: 20px">
+              <el-col :span="12">
+                <el-form-item
+                  prop="imgListSelectorOriginal">
+                  <fox-input
+                    shrink
+                    v-model="entity.imgListSelectorOriginal"
+                    :placeholder="$t('collect.rule.update.entity.imgListSelectorOriginal.label')"
+                    :description="$t('collect.rule.update.entity.imgListSelectorOriginal.placeholder')"
+                  ></fox-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  prop="imgListSelectorReplacement">
+                  <fox-input
+                    shrink
+                    v-model="entity.imgListSelectorReplacement"
+                    :placeholder="$t('collect.rule.update.entity.imgListSelectorReplacement.label')"
+                    :description="$t('collect.rule.update.entity.imgListSelectorReplacement.placeholder')"
+                  ></fox-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
           </fox-section>
           <fox-section
             heading="SKU"
@@ -583,6 +624,8 @@ export default {
         imgListSrcSelector: 'src',
         itemImgSelector: 'img',
         itemImgSrcSelector: 'src',
+        itemImgSrcSelectorReplacement: '',
+        itemImgSrcSelectorOriginal: '',
         itemSelector: '',
         itemSummarySelector: '',
         itemTitleSelector: '',
@@ -612,6 +655,8 @@ export default {
         timeSelector: '',
         region: '',
         domainRoot: '',
+        imgListSelectorOriginal: '',
+        imgListSelectorReplacement: '',
         collectionList: []
       },
       formRules: {

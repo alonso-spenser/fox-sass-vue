@@ -627,6 +627,7 @@ export default {
         if (this.designCallData.dataId.indexOf('?') > -1) {
           this.designCallData.dataId = this.designCallData.dataId.split('?')[0]
         }
+        console.log('update', this.pageId)
         data.data = {
           ...data.data,
           pageId: this.pageId,
