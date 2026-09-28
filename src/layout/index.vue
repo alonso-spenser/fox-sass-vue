@@ -72,7 +72,6 @@
           </el-dropdown-menu>
         </el-dropdown>
         <el-dropdown
-          v-if="false"
           @command="dropCommand"
           class="mr-3">
           <div
