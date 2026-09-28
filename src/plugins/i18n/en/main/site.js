@@ -1,358 +1,357 @@
 export default {
   site: {
     paging: {
-      title: '店铺',
+      title: 'Stores',
       heading: '',
       subheading: '',
-      add: '添加店铺',
+      add: 'Add store',
       empty: {
-        content: '添加的店铺会被列举在这里。您可以在这里管理所有店铺，例如批量删除、修改等。',
-        buttonLabel: '添加店铺'
+        content: 'Stores you add will appear here. You can edit, delete, and manage them in bulk.',
+        buttonLabel: 'Add store'
       },
-      placeholder: '客户名称/网站名/网站ID/域名',
-      expiration: '到期时间',
+      placeholder: 'Customer name / website name / website ID / domain',
+      expiration: 'Expires at',
       tableHeader: {
-        articleQuantity: '文章',
-        time: '时间',
-        expiryTime: '到期',
-        firstOnline: '上线',
-        create: '创建',
-        formQuantity: '询盘数',
-        goodsQuantity: '产品',
-        langName: '语言',
-        mainDomain: '域名',
-        payMonth: '付费月数',
-        siteType: '网站类型',
-        state: '状态',
-        videoLimit: '视频限制',
-        siteName: '网站'
+        articleQuantity: 'Article',
+        time: 'Time',
+        expiryTime: 'Expiration',
+        firstOnline: 'Published',
+        create: 'Created',
+        formQuantity: 'Enquiries',
+        goodsQuantity: 'Product',
+        langName: 'Language',
+        mainDomain: 'Domain',
+        payMonth: 'Paid months',
+        siteType: 'Website type',
+        state: 'Status',
+        videoLimit: 'Video limit',
+        siteName: 'Websites'
       }
     },
     update: {
-      addTitle: '添加店铺',
-      updateTitle: '编辑店铺',
+      addTitle: 'Add store',
+      updateTitle: 'Edit store',
       entity: {
-
         agentId: {
-          label: '代理商Id',
+          label: 'Agent ID',
           tips: '',
-          placeholder: '代理商Id',
-          required: '请输入代理商Id',
+          placeholder: 'Agent ID',
+          required: 'Enter an agent ID',
           custom: ''
         },
         articleQuantity: {
-          label: '文章',
+          label: 'Article',
           tips: '',
-          placeholder: '文章',
-          required: '请输入文章',
+          placeholder: 'Article',
+          required: 'Enter articles',
           custom: ''
         },
         createTime: {
-          label: '开店时间',
+          label: 'Store opening date',
           tips: '',
-          placeholder: '开店时间',
-          required: '请输入开店时间',
+          placeholder: 'Store opening date',
+          required: 'Enter the store opening date',
           custom: ''
         },
         currencyCode: {
-          label: '货币编码如：CNY',
+          label: 'Currency code, such as CNY',
           tips: '',
-          placeholder: '货币编码如：CNY',
-          required: '请输入货币编码如：CNY',
+          placeholder: 'Currency code, such as CNY',
+          required: 'Enter a currency code, such as CNY',
           custom: ''
         },
         currencyName: {
-          label: '货币名称',
+          label: 'Currency name',
           tips: '',
-          placeholder: '货币名称',
-          required: '请输入货币名称',
+          placeholder: 'Currency name',
+          required: 'Enter a currency name',
           custom: ''
         },
         currencySymbol: {
-          label: '货币符号',
+          label: 'Currency symbol',
           tips: '',
-          placeholder: '货币符号',
-          required: '请输入货币符号',
+          placeholder: 'Currency symbol',
+          required: 'Enter a currency symbol',
           custom: ''
         },
         defaultRegion: {
-          label: '默认语言Code',
+          label: 'Default language code',
           tips: '',
-          placeholder: '默认语言Code',
-          required: '请输入默认语言Code',
+          placeholder: 'Default language code',
+          required: 'Enter a default language code',
           custom: ''
         },
         defaultSite: {
-          label: '默认站点',
+          label: 'Default website',
           tips: '',
-          placeholder: '默认站点',
-          required: '请输入默认站点',
+          placeholder: 'Default website',
+          required: 'Enter a default website',
           custom: ''
         },
         designArticle: {
-          label: '设计产品',
+          label: 'Design products',
           tips: '',
-          placeholder: '设计产品',
-          required: '请输入设计产品',
+          placeholder: 'Design products',
+          required: 'Enter design products',
           custom: ''
         },
         downPass: {
-          label: '下载密码',
+          label: 'Download password',
           tips: '',
-          placeholder: '下载密码',
-          required: '请输入下载密码',
+          placeholder: 'Download password',
+          required: 'Enter a download password',
           custom: ''
         },
         expiryTime: {
-          label: '到期时间',
+          label: 'Expires at',
           tips: '',
-          placeholder: '到期时间',
-          required: '请输入到期时间',
+          placeholder: 'Expires at',
+          required: 'Enter an expiration time',
           custom: ''
         },
         facebookPixel: {
-          label: '像素代码',
+          label: 'Pixel code',
           tips: '',
-          placeholder: '像素代码',
-          required: '请输入像素代码',
+          placeholder: 'Pixel code',
+          required: 'Enter pixel code',
           custom: ''
         },
         favicon: {
-          label: '收藏图标',
+          label: 'Favicon',
           tips: '',
-          placeholder: '收藏图标',
-          required: '请输入收藏图标',
+          placeholder: 'Favicon',
+          required: 'Enter a favicon',
           custom: ''
         },
         firstOnline: {
-          label: '首次上线时间',
+          label: 'First published at',
           tips: '',
-          placeholder: '首次上线时间',
-          required: '请输入首次上线时间',
+          placeholder: 'First published at',
+          required: 'Enter the first publication time',
           custom: ''
         },
         followers: {
-          label: '关注人数',
+          label: 'Followers',
           tips: '',
-          placeholder: '关注人数',
-          required: '请输入关注人数',
+          placeholder: 'Followers',
+          required: 'Enter the follower count',
           custom: ''
         },
         formQuantity: {
-          label: '询盘表单',
+          label: 'Enquiry forms',
           tips: '',
-          placeholder: '询盘表单',
-          required: '请输入询盘表单',
+          placeholder: 'Enquiry forms',
+          required: 'Enter an enquiry form',
           custom: ''
         },
         freeRenewal: {
-          label: '免费续期次数',
+          label: 'Free renewal count',
           tips: '',
-          placeholder: '免费续期次数',
-          required: '请输入免费续期次数',
+          placeholder: 'Free renewal count',
+          required: 'Enter the free renewal count',
           custom: ''
         },
         goodsQuantity: {
-          label: '产品',
+          label: 'Product',
           tips: '',
-          placeholder: '产品',
-          required: '请输入产品',
+          placeholder: 'Product',
+          required: 'Enter products',
           custom: ''
         },
         honestScore: {
-          label: '描述相符得分',
+          label: 'Description accuracy score',
           tips: '',
-          placeholder: '描述相符得分',
-          required: '请输入描述相符得分',
+          placeholder: 'Description accuracy score',
+          required: 'Enter a description accuracy score',
           custom: ''
         },
         issued: {
-          label: '是否上线 0：已上线 1： 未上线',
+          label: 'Publication status: 0 for published, 1 for unpublished',
           tips: '',
-          placeholder: '是否上线 0：已上线 1： 未上线',
-          required: '请输入是否上线 0：已上线 1： 未上线',
+          placeholder: 'Publication status: 0 for published, 1 for unpublished',
+          required: 'Enter a publication status: 0 for published or 1 for unpublished',
           custom: ''
         },
         keepLang: {
-          label: '已开通语言',
+          label: 'Enabled languages',
           tips: '',
-          placeholder: '已开通语言',
-          required: '请输入已开通语言',
+          placeholder: 'Enabled languages',
+          required: 'Enter enabled languages',
           custom: ''
         },
         langCode: {
-          label: '默认语言Code',
+          label: 'Default language code',
           tips: '',
-          placeholder: '默认语言Code',
-          required: '请输入默认语言Code',
+          placeholder: 'Default language code',
+          required: 'Enter a default language code',
           custom: ''
         },
         langName: {
-          label: '语言名称',
+          label: 'Language name',
           tips: '',
-          placeholder: '语言名称',
-          required: '请输入语言名称',
+          placeholder: 'Language name',
+          required: 'Enter a language name',
           custom: ''
         },
         lengthUnit: {
-          label: '长度单位',
+          label: 'Length unit',
           tips: '',
-          placeholder: '长度单位',
-          required: '请输入长度单位',
+          placeholder: 'Length unit',
+          required: 'Enter a length unit',
           custom: ''
         },
         logisticsScore: {
-          label: '物流服务得分',
+          label: 'Shipping service score',
           tips: '',
-          placeholder: '物流服务得分',
-          required: '请输入物流服务得分',
+          placeholder: 'Shipping service score',
+          required: 'Enter a shipping service score',
           custom: ''
         },
         logo: {
           label: 'LOGO',
           tips: '',
           placeholder: 'LOGO',
-          required: '请输入LOGO',
+          required: 'Enter a logo',
           custom: ''
         },
         mainDomain: {
-          label: '主域名',
+          label: 'Primary domain',
           tips: '',
-          placeholder: '主域名',
-          required: '请输入主域名',
+          placeholder: 'Primary domain',
+          required: 'Enter a primary domain',
           custom: ''
         },
         maxLang: {
-          label: '最大语言',
+          label: 'Maximum languages',
           tips: '',
-          placeholder: '最大语言',
-          required: '请输入最大语言',
+          placeholder: 'Maximum languages',
+          required: 'Enter the maximum number of languages',
           custom: ''
         },
         merchantId: {
-          label: '商户Id',
+          label: 'Merchant ID',
           tips: '',
-          placeholder: '商户Id',
-          required: '请输入商户Id',
+          placeholder: 'Merchant ID',
+          required: 'Enter a merchant ID',
           custom: ''
         },
         payMonth: {
-          label: '付费月份数（理论每次 累加12个月）',
+          label: 'Paid months (normally increased by 12 per renewal)',
           tips: '',
-          placeholder: '付费月份数（理论每次 累加12个月）',
-          required: '请输入付费月份数（理论每次 累加12个月）',
+          placeholder: 'Paid months (normally increased by 12 per renewal)',
+          required: 'Enter paid months (normally increased by 12 per renewal)',
           custom: ''
         },
         praiseRate: {
-          label: '好评率(好评/总评 )',
+          label: 'Positive review rate (positive reviews / total reviews)',
           tips: '',
-          placeholder: '好评率(好评/总评 )',
-          required: '请输入好评率(好评/总评 )',
+          placeholder: 'Positive review rate (positive reviews / total reviews)',
+          required: 'Enter the positive review rate (positive reviews / total reviews)',
           custom: ''
         },
         protectionProtocol: {
-          label: '消费者保护协议',
+          label: 'Consumer protection agreement',
           tips: '',
-          placeholder: '消费者保护协议',
-          required: '请输入消费者保护协议',
+          placeholder: 'Consumer protection agreement',
+          required: 'Enter a consumer protection agreement',
           custom: ''
         },
         scriptBottom: {
-          label: '底部代码',
+          label: 'Footer code',
           tips: '',
-          placeholder: '底部代码',
-          required: '请输入底部代码',
+          placeholder: 'Footer code',
+          required: 'Enter footer code',
           custom: ''
         },
         scriptHead: {
-          label: '头部代码',
+          label: 'Header code',
           tips: '',
-          placeholder: '头部代码',
-          required: '请输入头部代码',
+          placeholder: 'Header code',
+          required: 'Enter header code',
           custom: ''
         },
         scriptService: {
-          label: '服务代码',
+          label: 'Service code',
           tips: '',
-          placeholder: '服务代码',
-          required: '请输入服务代码',
+          placeholder: 'Service code',
+          required: 'Enter service code',
           custom: ''
         },
         seoService: {
-          label: 'SEO服务',
+          label: 'SEO service',
           tips: '',
-          placeholder: 'SEO服务',
-          required: '请输入SEO服务',
+          placeholder: 'SEO service',
+          required: 'Enter an SEO service',
           custom: ''
         },
         serviceScore: {
-          label: '售后服务得分',
+          label: 'After-sales service score',
           tips: '',
-          placeholder: '售后服务得分',
-          required: '请输入售后服务得分',
+          placeholder: 'After-sales service score',
+          required: 'Enter an after-sales service score',
           custom: ''
         },
         siteType: {
-          label: '网站类型 B2B/B2C',
+          label: 'Website type: B2B/B2C',
           tips: '',
-          placeholder: '网站类型 B2B/B2C',
-          required: '请输入网站类型 B2B/B2C',
+          placeholder: 'Website type: B2B/B2C',
+          required: 'Enter a website type: B2B/B2C',
           custom: ''
         },
         state: {
-          label: '状态，0为启用，1为禁用，2为冻结',
+          label: 'Status: 0 for enabled, 1 for disabled, 2 for frozen',
           tips: '',
-          placeholder: '状态，0为启用，1为禁用，2为冻结',
-          required: '请输入状态，0为启用，1为禁用，2为冻结',
+          placeholder: 'Status: 0 for enabled, 1 for disabled, 2 for frozen',
+          required: 'Enter a status: 0 for enabled, 1 for disabled, or 2 for frozen',
           custom: ''
         },
         systemDomain: {
-          label: '临时域名',
+          label: 'Temporary domain',
           tips: '',
-          placeholder: '临时域名',
-          required: '请输入临时域名',
+          placeholder: 'Temporary domain',
+          required: 'Enter a temporary domain',
           custom: ''
         },
         targetMarket: {
-          label: '目标市场',
+          label: 'Target market',
           tips: '',
-          placeholder: '目标市场',
-          required: '请输入目标市场',
+          placeholder: 'Target market',
+          required: 'Enter a target market',
           custom: ''
         },
         thumbnail: {
-          label: '预览图',
+          label: 'Preview image',
           tips: '',
-          placeholder: '预览图',
-          required: '请输入预览图',
+          placeholder: 'Preview image',
+          required: 'Enter a preview image',
           custom: ''
         },
         timeZone: {
-          label: '时区',
+          label: 'Time zone',
           tips: '',
-          placeholder: '时区',
-          required: '请输入时区',
+          placeholder: 'Time zone',
+          required: 'Enter a time zone',
           custom: ''
         },
         unitSystem: {
-          label: '系统单位(英制、公制)',
+          label: 'Unit system (imperial/metric)',
           tips: '',
-          placeholder: '系统单位(英制、公制)',
-          required: '请输入系统单位(英制、公制)',
+          placeholder: 'Unit system (imperial/metric)',
+          required: 'Enter a unit system (imperial/metric)',
           custom: ''
         },
         videoLimit: {
-          label: '视频上传限制',
+          label: 'Video upload limit',
           tips: '',
-          placeholder: '视频上传限制',
-          required: '请输入视频上传限制',
+          placeholder: 'Video upload limit',
+          required: 'Enter a video upload limit',
           custom: ''
         },
         weightUnit: {
-          label: '重量单位',
+          label: 'Weight unit',
           tips: '',
-          placeholder: '重量单位',
-          required: '请输入重量单位',
+          placeholder: 'Weight unit',
+          required: 'Enter a weight unit',
           custom: ''
         }
       }

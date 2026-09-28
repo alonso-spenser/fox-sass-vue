@@ -2,333 +2,347 @@ export default {
   collect: {
     rule: {
       paging: {
-        title: '采集规则',
+        title: 'Scraping rules',
         heading: '',
         subheading: '',
-        add: '添加采集规则',
+        add: 'Add scraping rule',
         empty: {
-          content: '添加的采集规则会被列举在这里。您可以在这里管理所有采集规则，例如批量删除、修改等。',
-          buttonLabel: '添加采集规则'
+          content: 'Scraping rules you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add scraping rule'
         },
         tableHeader: {
-          brandSelector: '品牌 CSS选择器',
-          detailDescriptionSelector: '详情页 内容CSS选择器',
-          detailImgSrcSelector: '详情页 图片地址 CSS选择器',
-          detailSummarySelector: '详情页 摘要CSS选择器',
-          detailTitleSelector: '详情页 标题CSS选择器',
-          domain: '域名',
-          firstPage: '首页',
-          itemLink: '详情链接 CSS选择器',
-          imgListSelector: '多图 CSS选择器',
-          imgListSrcSelector: '图片地址 CSS选择器',
-          itemImgSelector: '图片CSS选择器',
-          itemImgSrcRemoveSelector: '图片需要移除部分CSS选择器',
-          itemImgSrcSelector: '图片地址 CSS选择器',
-          itemSelector: '项目CSS选择器',
-          itemSummarySelector: '摘要 CSS选择器',
-          itemTitleSelector: '标题CSS选择器',
-          lastPage: '末页',
-          pageDetailPrefix: '详情页URL前缀',
-          pagingUrl: '分页URL，页码用{page}',
-          platformCode: '第三方平台代号',
-          siteId: '网站ID',
-          skuListImgSelector: 'SKU 图片 CSS选择器',
-          skuListSelector: 'SKU CSS选择器',
-          skuListSrcSelector: '图片地址 CSS选择器',
-          skuListValueSelector: 'SKU 属性值 CSS选择器',
-          skuListKeySelector: 'SKU 属性名 CSS选择器',
-          specKeySelector: '规格参数 KEY CSS选择器',
-          specSelector: '规格参数 CSS选择器',
-          specValueSelector: '规格参数 VALUE CSS选择器',
-          startPage: '第二页',
-          imgSeparator: '图片分隔符',
-          timeFormat: '时间格式化',
-          timePattern: '时间提取正则',
-          timeSelector: '时间选择器',
-          itemSubtitleSelector: '副标题CSS选择器',
-          title: '网站标题'
+          brandSelector: 'Brand CSS selector',
+          detailDescriptionSelector: 'Detail page content CSS selector',
+          detailImgSrcSelector: 'Detail page image URL CSS selector',
+          detailSummarySelector: 'Detail page summary CSS selector',
+          detailTitleSelector: 'Detail page title CSS selector',
+          domain: 'Domain',
+          firstPage: 'Home',
+          itemLink: 'Detail link CSS selector',
+          imgListSelector: 'Image gallery CSS selector',
+          imgListSrcSelector: 'Image URL CSS selector',
+          itemImgSelector: 'Image CSS selector',
+          itemImgSrcRemoveSelector: 'CSS selector for image elements to remove',
+          itemImgSrcSelector: 'Image URL CSS selector',
+          itemSelector: 'Item CSS selector',
+          itemSummarySelector: 'Summary CSS selector',
+          itemTitleSelector: 'Title CSS selector',
+          lastPage: 'Last page',
+          pageDetailPrefix: 'Detail page URL prefix',
+          pagingUrl: 'Pagination URL, using {page} for the page number',
+          platformCode: 'Third-party platform code',
+          siteId: 'Website ID',
+          skuListImgSelector: 'SKU image CSS selector',
+          skuListSelector: 'SKU CSS selector',
+          skuListSrcSelector: 'Image URL CSS selector',
+          skuListValueSelector: 'SKU attribute value CSS selector',
+          skuListKeySelector: 'SKU attribute name CSS selector',
+          specKeySelector: 'Specification key CSS selector',
+          specSelector: 'Specification CSS selector',
+          specValueSelector: 'Specification value CSS selector',
+          startPage: 'Second page',
+          imgSeparator: 'Image separator',
+          timeFormat: 'Date format',
+          timePattern: 'Date extraction regex',
+          timeSelector: 'Date selector',
+          itemSubtitleSelector: 'Subtitle CSS selector',
+          title: 'Website title'
         }
       },
       update: {
-        article: '文章采集',
-        updateTitle: '编辑采集规则',
+        article: 'Article scraping',
+        updateTitle: 'Edit scraping rule',
         entity: {
           itemSubtitleSelector: {
-            label: '副标题CSS选择器',
+            label: 'Subtitle',
             tips: '',
-            placeholder: '副标题CSS选择器',
-            required: '请输入副标题CSS选择器',
+            placeholder: 'Subtitle CSS selector',
+            required: 'Enter a subtitle CSS selector',
             custom: ''
           },
           timeFormat: {
-            label: '时间格式化',
+            label: 'Format',
             tips: '',
-            placeholder: '时间格式化',
-            required: '请输入时间格式化',
+            placeholder: 'Date format',
+            required: 'Enter a date format',
             custom: ''
           },
           timePattern: {
-            label: '时间提取正则',
+            label: 'Extraction regex',
             tips: '',
-            placeholder: '时间提取正则',
-            required: '请输入时间提取正则',
+            placeholder: 'Date extraction regex',
+            required: 'Enter a date extraction regex',
             custom: ''
           },
           timeSelector: {
-            label: '时间选择器',
+            label: 'Selector',
             tips: '',
-            placeholder: '时间选择器',
-            required: '请输入时间选择器',
+            placeholder: 'Date selector',
+            required: 'Enter a date selector',
             custom: ''
           },
           imgSeparator: {
-            label: '图片分隔符',
+            label: 'Image separator',
             tips: '',
-            placeholder: '图片分隔符',
-            required: '请输入图片分隔符',
+            placeholder: 'Image separator',
+            required: 'Enter an image separator',
             custom: ''
           },
           itemLink: {
-            label: '详情链接 CSS选择器',
+            label: 'Detail link',
             tips: '',
-            placeholder: '详情链接 CSS选择器',
-            required: '请输入详情链接 CSS选择器',
+            placeholder: 'Detail link CSS selector',
+            required: 'Enter a detail link CSS selector',
             custom: ''
           },
           brandSelector: {
-            label: '品牌 CSS选择器',
+            label: 'Brand',
             tips: '',
-            placeholder: '品牌 CSS选择器',
-            required: '请输入品牌 CSS选择器',
+            placeholder: 'Brand CSS selector',
+            required: 'Enter a brand CSS selector',
             custom: ''
           },
           detailDescriptionSelector: {
-            label: '详情页 内容CSS选择器',
+            label: 'Content',
             tips: '',
-            placeholder: '详情页 内容CSS选择器',
-            required: '请输入详情页 内容CSS选择器',
+            placeholder: 'Detail page content CSS selector',
+            required: 'Enter a detail page content CSS selector',
             custom: ''
           },
           detailImgSrcSelector: {
-            label: '详情页 图片地址 CSS选择器',
+            label: 'Image URL',
             tips: '',
-            placeholder: '详情页 图片地址 CSS选择器',
-            required: '请输入详情页 图片地址 CSS选择器',
+            placeholder: 'Detail page image URL CSS selector',
+            required: 'Enter a detail page image URL CSS selector',
             custom: ''
           },
           detailSummarySelector: {
-            label: '详情页 摘要CSS选择器',
+            label: 'Summary',
             tips: '',
-            placeholder: '详情页 摘要CSS选择器',
-            required: '请输入详情页 摘要CSS选择器',
+            placeholder: 'Detail page summary CSS selector',
+            required: 'Enter a detail page summary CSS selector',
             custom: ''
           },
           detailTitleSelector: {
-            label: '详情页 标题CSS选择器',
+            label: 'Title',
             tips: '',
-            placeholder: '详情页 标题CSS选择器',
-            required: '请输入详情页 标题CSS选择器',
+            placeholder: 'Detail page title CSS selector',
+            required: 'Enter a detail page title CSS selector',
             custom: ''
           },
           domain: {
-            label: '域名',
+            label: 'Domain',
             tips: '',
             placeholder: 'eg. www.domain.com',
-            required: '请输入域名',
+            required: 'Enter a domain',
             custom: ''
           },
           firstPage: {
-            label: '首页URL',
+            label: 'Homepage URL',
             tips: '',
             placeholder: 'eg. https://www.domain.com/singing-and-dancing-plush-toys/',
-            required: '首页URL',
+            required: 'Homepage URL',
             custom: ''
           },
           imgListSelector: {
-            label: '多图 CSS选择器',
+            label: 'Image gallery',
             tips: '',
-            placeholder: '多图 CSS选择器',
-            required: '请输入多图 CSS选择器',
+            placeholder: 'Image gallery CSS selector',
+            required: 'Enter an image gallery CSS selector',
             custom: ''
           },
           imgListSrcSelector: {
-            label: '图片地址 CSS选择器',
+            label: 'Image URL',
             tips: '',
-            placeholder: '图片地址 CSS选择器',
-            required: '请输入图片地址 CSS选择器',
+            placeholder: 'Image URL CSS selector',
+            required: 'Enter an image URL CSS selector',
             custom: ''
           },
           itemImgSelector: {
-            label: '图片CSS选择器',
+            label: 'Image',
             tips: '',
-            placeholder: '图片CSS选择器',
-            required: '请输入图片CSS选择器',
+            placeholder: 'Image CSS selector',
+            required: 'Enter an image CSS selector',
             custom: ''
           },
           itemImgSrcRemoveSelector: {
-            label: '图片需要移除部分CSS选择器',
+            label: 'CSS selector for image elements to remove',
             tips: '',
-            placeholder: '图片需要移除部分CSS选择器',
-            required: '图片需要移除部分CSS选择器',
+            placeholder: 'CSS selector for image elements to remove',
+            required: 'CSS selector for image elements to remove',
             custom: ''
           },
           itemImgSrcSelector: {
-            label: '图片地址 CSS选择器',
+            label: 'Image URL',
             tips: '',
-            placeholder: '图片地址 CSS选择器',
-            required: '请输入图片地址 CSS选择器',
+            placeholder: 'Image URL CSS selector',
+            required: 'Enter an image URL CSS selector',
             custom: ''
           },
           itemSelector: {
-            label: '项目CSS选择器',
+            label: 'Item',
             tips: '',
-            placeholder: '项目CSS选择器',
-            required: '请输入项目CSS选择器',
+            placeholder: 'Item CSS selector',
+            required: 'Enter an item CSS selector',
             custom: ''
           },
           itemSummarySelector: {
-            label: '摘要 CSS选择器',
+            label: 'Summary',
             tips: '',
-            placeholder: '摘要 CSS选择器',
-            required: '请输入摘要 CSS选择器',
+            placeholder: 'Summary CSS selector',
+            required: 'Enter a summary CSS selector',
             custom: ''
           },
           itemTitleSelector: {
-            label: '标题CSS选择器',
+            label: 'Title',
             tips: '',
-            placeholder: '标题CSS选择器',
-            required: '请输入标题CSS选择器',
+            placeholder: 'Title CSS selector',
+            required: 'Enter a title CSS selector',
             custom: ''
           },
           lastPage: {
-            label: '末页',
+            label: 'Last page',
             tips: '',
-            placeholder: '末页',
-            required: '请输入末页',
-            custom: '请输入正整数'
+            placeholder: 'Last page',
+            required: 'Enter the last page',
+            custom: 'Enter a positive integer'
           },
           pageDetailPrefix: {
-            label: '详情页URL前缀',
+            label: 'Detail page URL prefix',
             tips: '',
             placeholder: 'https://www.hayidaiusa.com/',
-            required: '请输入详情页URL前缀',
+            required: 'Enter a detail page URL prefix',
             custom: ''
           },
           pagingUrl: {
-            label: '分页URL 页码变量：{page}',
+            label: 'Pagination URL; page number variable: {page}',
             tips: '',
             placeholder: 'https://www.domain.com/products/{page}/',
-            required: '请输入分页URL，页码用{page}',
+            required: 'Enter a pagination URL, using {page} for the page number',
             custom: ''
           },
           platformCode: {
-            label: '第三方平台代号',
+            label: 'Third-party platform code',
             tips: '',
-            placeholder: '第三方平台代号',
-            required: '请输入第三方平台代号',
+            placeholder: 'Third-party platform code',
+            required: 'Enter a third-party platform code',
             custom: ''
           },
           skuListImgSelector: {
-            label: 'SKU 图片 CSS选择器',
+            label: 'Image',
             tips: '',
-            placeholder: 'SKU 图片 CSS选择器',
-            required: '请输入SKU 图片 CSS选择器',
+            placeholder: 'SKU image CSS selector',
+            required: 'Enter an SKU image CSS selector',
             custom: ''
           },
           skuListSelector: {
-            label: 'SKU CSS选择器',
+            label: 'SKU',
             tips: '',
-            placeholder: 'SKU CSS选择器',
-            required: '请输入SKU CSS选择器',
+            placeholder: 'SKU CSS selector',
+            required: 'Enter an SKU CSS selector',
             custom: ''
           },
           skuListSrcSelector: {
-            label: '图片地址 CSS选择器',
+            label: 'Image URL',
             tips: '',
-            placeholder: '图片地址 CSS选择器',
-            required: '请输入图片地址 CSS选择器',
+            placeholder: 'Image URL CSS selector',
+            required: 'Enter an image URL CSS selector',
             custom: ''
           },
           skuListValueSelector: {
-            label: 'SKU 属性值 CSS选择器',
+            label: 'SKU attribute value',
             tips: '',
-            placeholder: 'SKU 属性值 CSS选择器',
-            required: '请输入SKU 属性值 CSS选择器',
+            placeholder: 'SKU attribute value CSS selector',
+            required: 'Enter an SKU attribute value CSS selector',
             custom: ''
           },
           skuListKeySelector: {
-            label: 'SKU 属性名 CSS选择器',
+            label: 'SKU attribute name',
             tips: '',
-            placeholder: 'SKU 属性名 CSS选择器',
-            required: '请输入SKU 属性名 CSS选择器',
+            placeholder: 'SKU attribute name CSS selector',
+            required: 'Enter an SKU attribute name CSS selector',
             custom: ''
           },
           specKeySelector: {
-            label: '规格参数 KEY CSS选择器',
+            label: 'Specification key',
             tips: '',
-            placeholder: '规格参数 KEY CSS选择器',
-            required: '请输入规格参数 KEY CSS选择器',
+            placeholder: 'Specification key CSS selector',
+            required: 'Enter a specification key CSS selector',
             custom: ''
           },
           specSelector: {
-            label: '规格参数 CSS选择器',
+            label: 'Specifications',
             tips: '',
-            placeholder: '规格参数 CSS选择器',
-            required: '请输入规格参数 CSS选择器',
+            placeholder: 'Specification CSS selector',
+            required: 'Enter a specification CSS selector',
             custom: ''
           },
           specSelectorGroup: {
-            label: '规格参数分组 CSS选择器',
+            label: 'Specification group',
             tips: '',
-            placeholder: '规格参数分组 CSS选择器',
-            required: '请输入规格参数分组 CSS选择器',
+            placeholder: 'Specification group CSS selector',
+            required: 'Enter a specification group CSS selector',
             custom: ''
           },
           specTitleSelector: {
-            label: '规格参数分组标题 KEY CSS选择器',
+            label: 'Specification group title key',
             tips: '',
-            placeholder: '规格参数分组标题 KEY CSS选择器',
-            required: '请输入规格参数分组标题 KEY CSS选择器',
+            placeholder: 'Specification group title key CSS selector',
+            required: 'Enter a specification group title key CSS selector',
             custom: ''
           },
           specValueSelector: {
-            label: '规格参数 VALUE CSS选择器',
+            label: 'Specification value',
             tips: '',
-            placeholder: '规格参数 VALUE CSS选择器',
-            required: '请输入规格参数 VALUE CSS选择器',
+            placeholder: 'Specification value CSS selector',
+            required: 'Enter a specification value CSS selector',
             custom: ''
           },
           startPage: {
-            label: '第二页',
+            label: 'Second page',
             tips: '',
-            placeholder: '第二页',
-            required: '请输入第二页',
-            custom: '请输入正整数'
+            placeholder: 'Second page',
+            required: 'Enter the second page',
+            custom: 'Enter a positive integer'
           },
           title: {
-            label: '网站标题',
+            label: 'Website title',
             tips: '',
-            placeholder: '网站标题',
-            required: '请输入网站标题',
+            placeholder: 'Website title',
+            required: 'Enter a website title',
             custom: ''
           },
           domainRoot: {
-            label: '域名 (http或https开始）结尾不要 / ',
+            label: 'Domain (starting with http or https), without a trailing slash',
             tips: '',
             placeholder: 'eg: https://www.domain.com',
-            required: '请输入域名',
+            required: 'Enter a domain',
+            custom: ''
+          },
+          imgListSelectorOriginal: {
+            label: 'Image URL string',
+            tips: '',
+            placeholder: 'eg: -300x300',
+            required: '',
+            custom: ''
+          },
+          imgListSelectorReplacement: {
+            label: 'Image URL replacement string',
+            tips: '',
+            placeholder: 'eg: -800x800',
+            required: '',
             custom: ''
           }
         }
       }
     },
     alibaba: {
-      title: '阿里国际站产品导入',
+      title: 'Import products from Alibaba.com',
       ids: {
-        label: '阿里国际站产品ID列表',
+        label: 'Alibaba.com product IDs',
         tips: '',
-        placeholder: '阿里国际站产品ID列表，多个ID以半角逗号相分割',
-        required: '请输入阿里国际站产品ID列表',
+        placeholder: 'Alibaba.com product IDs, separated by commas',
+        required: 'Enter Alibaba.com product IDs',
         custom: ''
       }
     }

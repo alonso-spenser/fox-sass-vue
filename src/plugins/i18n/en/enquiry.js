@@ -1,97 +1,83 @@
 export default {
   enquiry: {
-    /**
-     * pane nav
-     */
     tabPane: [
       {
-        label: 'My inquiry',
+        label: 'My enquiries',
         name: 'enquiry-record',
         service: false
       },
       {
-        label: 'Recipients',
+        label: 'Enquiry emails',
         name: 'enquiry-email',
         service: true
-      }, {
-        label: 'Form',
+      },
+      {
+        label: 'Enquiry forms',
         name: 'enquiry-form',
         service: true
       }
     ],
-    /**
-     * 详情
-     */
     paging: {
-      title: 'Inquiry management'
+      title: 'Enquiry management'
     },
     export: 'Export',
-    all: 'All',
-    /**
-     * 我的询盘记录
-     */
+    all: 'Select all',
     record: {
-      title: 'Inquiry',
-      description: 'Inquiry record',
+      title: 'Enquiry',
+      description: 'Enquiry records',
       export: 'Export',
-      clearAllFilter: 'Clean up',
+      clearAllFilter: 'Clear all filters',
       tableHeader: {
         createTime: 'Time',
-        country: 'Country/Region',
-        Name: 'Name',
+        country: 'Country',
+        Name: 'Full name',
         email: 'Email',
         phone: 'Phone',
-        content: 'Content',
-        sendUrl: 'URL',
-        state: 'State',
-        annex: 'Annex'
+        content: 'Enquiry content',
+        sendUrl: 'Submission URL',
+        annex: 'Attachments',
+        state: 'Status'
       },
-      /**
-       *  搜索类型
-       */
       searchType: [
         {
           value: 1,
-          label: 'NO.'
-        }, {
-          label: 'Client',
+          label: 'Number'
+        },
+        {
+          label: 'Customers',
           value: 2
-        }, {
-          label: 'Form',
+        },
+        {
+          label: 'Form name',
           value: 3
         }
       ],
-      /**
-       * 排序
-       */
-      recordOrderBy: [{
-        label: 'CreateTime，DESC',
-        value: 'createTime-DESC'
-      },
-      {
-        label: 'CreateTime，ASC',
-        value: 'createTime-ASC'
-      },
-      {
-        label: 'ClientName，A-Z',
-        value: 'clientName-ASC'
-      },
-      {
-        label: 'ClientName，Z-A',
-        value: 'clientName-DESC'
-      },
-      {
-        label: 'FormName，A-Z',
-        value: 'formName-ASC'
-      },
-      {
-        label: 'FormName，Z-A',
-        value: 'formName-DESC'
-      }],
-
-      /**
-       * 轮盘查询状态
-       */
+      recordOrderBy: [
+        {
+          label: 'Created, newest first',
+          value: 'createTime-DESC'
+        },
+        {
+          label: 'Created, oldest first',
+          value: 'createTime-ASC'
+        },
+        {
+          label: 'Customer, A–Z',
+          value: 'clientName-ASC'
+        },
+        {
+          label: 'Customer, Z–A',
+          value: 'clientName-DESC'
+        },
+        {
+          label: 'Form name, A–Z',
+          value: 'formName-ASC'
+        },
+        {
+          label: 'Form name, Z–A',
+          value: 'formName-DESC'
+        }
+      ],
       recordState: [
         {
           label: 'Pending',
@@ -99,7 +85,7 @@ export default {
           type: 'success'
         },
         {
-          label: 'Processing',
+          label: 'In progress',
           value: 2,
           type: 'warning'
         },
@@ -109,111 +95,102 @@ export default {
           type: 'info'
         },
         {
-          label: 'Abolished',
+          label: 'Voided',
           value: 4,
           type: 'danger'
         },
         {
-          label: 'Hang up',
+          label: 'On hold',
           value: 5,
           type: 'hold'
         }
       ]
     },
-    /**
-     *  询盘详情
-     */
     recordDetails: {
-      title: 'Inquiry detail',
-      change: 'Change state',
+      title: 'Enquiry details',
+      change: 'Update status',
       userInfoLabel: {
-        code: 'ID.',
+        code: 'Number',
         form: 'Form',
         ip: 'IP',
         time: 'Time',
-        state: 'State',
-        userSubmit: 'Inquiry quantity'
+        state: 'Status',
+        userSubmit: 'Enquiries and submissions'
       }
     },
-    /**
-     * 设备类型列表
-     */
-    deviceTypeList: [{
-      label: 'All',
-      icon: 'fo-all_devices',
-      value: ''
-    },
-    {
-      label: 'Mobile',
-      icon: 'el-icon-mobile-phone',
-      value: 1
-    },
-    {
-      label: 'Desktop',
-      icon: 'el-icon-monitor',
-      value: 2
-    }],
-    /**
-     * 询盘邮箱
-     */
+    deviceTypeList: [
+      {
+        label: 'All devices',
+        icon: 'fo-all_devices',
+        value: ''
+      },
+      {
+        label: 'Mobile',
+        icon: 'el-icon-mobile-phone',
+        value: 1
+      },
+      {
+        label: 'Desktop',
+        icon: 'el-icon-monitor',
+        value: 2
+      }
+    ],
     email: {
-      title: 'Recipients',
-      description: 'Enquiry recipient',
+      title: 'Recipient',
+      description: 'Enquiry recipients',
       entity: {
-        exists: 'Recipients already exists'
+        exists: 'This email address already exists'
       },
       update: {
         email: {
           label: 'Email',
-          description: 'E-mail address',
-          placeholder: 'Email',
-          formatError: 'E-mail format error',
-          required: 'Please input a email address'
+          description: 'Email address',
+          tips: '',
+          placeholder: 'Email address',
+          formatError: 'Invalid email address',
+          required: 'Enter an email address'
         },
         userName: {
           label: 'Recipient',
-          description: '',
+          tips: '',
           placeholder: 'Recipient',
-          required: 'Please enter recipient'
+          required: "Enter the recipient's name",
+          description: ''
         }
       }
     },
-    /**
-     * 询盘表单
-     */
     form: {
-      title: 'Form',
-      description: 'Inquiry form',
+      title: 'Enquiry',
+      description: 'Enquiry forms',
       section: {
         source: {
-          content: 'Content',
-          heading: 'Source',
-          refTitle: 'Title',
-          refUrl: 'URL',
-          userAgent: 'Browser',
-          user: 'Client info'
+          content: 'Enquiry content',
+          heading: 'Enquiry sources',
+          refTitle: 'Page title',
+          refUrl: 'Page URL',
+          userAgent: 'Browser information',
+          user: 'Customer information'
         },
         record: {
-          heading: 'Records'
+          heading: 'Activity records'
         }
       },
       tableHeader: {
-        buttonLabel: 'Button label',
-        remark: 'Remark',
+        buttonLabel: 'Submit button',
+        remark: 'Form notes',
         title: 'Form name',
-        updateTime: 'Update time'
+        updateTime: 'Updated at'
       },
-      // 更新表单 && 添加表单
       updateForm: {
         content: 'Form content',
-        addForm: 'Add Form',
-        editForm: 'Edit Form',
+        addForm: 'Add form',
+        editForm: 'Edit form',
         info: 'Form information',
-        fieldList: 'The form must contain: mail or phone or phone (including country/area code), and it is "required"',
+        fieldList: 'The form must include a required email, phone, or phone with country/region code field.',
         add: {
-          button: 'Add Field',
-          normal: 'Generic',
-          custom: 'Customize',
+          button: 'Add field',
+          normal: 'Common fields',
+          custom: 'Custom field types',
           option: 'Add option'
         },
         entity: {
@@ -221,21 +198,21 @@ export default {
             label: 'Name',
             tips: '',
             placeholder: 'Form name',
-            required: 'Please enter a form name',
+            required: 'Enter a form name',
             custom: ''
           },
           buttonLabel: {
             label: 'Button',
             tips: '',
-            placeholder: 'Button label',
-            required: 'Please enter button label',
+            placeholder: 'Submit button text',
+            required: 'Enter submit button text',
             custom: ''
           },
           remark: {
-            label: 'Description',
+            label: 'Notes',
             tips: '',
-            placeholder: 'Form description',
-            required: 'Please enter description',
+            placeholder: 'Form notes',
+            required: 'Enter form notes',
             custom: ''
           }
         },
@@ -261,7 +238,7 @@ export default {
             custom: true
           },
           countryRegion: {
-            label: 'Phone(Include Country/Region code)',
+            label: 'Phone (with country/region code)',
             fieldLabel: 'Phone',
             placeholder: 'Please enter phone number',
             required: true,
@@ -300,7 +277,7 @@ export default {
             preset: true
           },
           position: {
-            label: 'Position',
+            label: 'Job title',
             fieldLabel: 'Position',
             placeholder: 'Please enter position',
             required: false,
@@ -311,7 +288,7 @@ export default {
           message: {
             label: 'Message',
             fieldLabel: 'Message',
-            placeholder: 'Please tell us the message',
+            placeholder: 'Enter your message',
             required: true,
             filedType: 'textarea',
             preset: true
@@ -344,23 +321,23 @@ export default {
             preset: true
           },
           attachment: {
-            label: 'Attachment',
+            label: 'Attachments',
             fieldLabel: 'Attachment',
             placeholder: 'Upload file',
             required: false,
             filedType: 'file',
             tips: {
-              fileType: 'Type：rar/zip/jpg/png',
-              quantity: 'Quantity：1',
-              size: 'Limit：10MB',
-              notice: 'Note: Guest-submitted attachments take up space in your file'
+              fileType: 'Allowed file types: rar/zip/jpg/png',
+              quantity: 'Maximum attachments: 1',
+              size: 'Maximum attachment size: 10 MB',
+              notice: 'Attachments submitted by visitors count toward your storage usage'
             },
             quantity: 1,
             preset: true,
             custom: true
           },
           select: {
-            label: 'Select',
+            label: 'Dropdown',
             fieldLabel: '',
             placeholder: 'Please select',
             required: false,
@@ -370,7 +347,7 @@ export default {
             options: []
           },
           checkbox: {
-            label: 'Checkbox',
+            label: 'Checkboxes',
             fieldLabel: '',
             placeholder: 'Please select',
             required: false,
@@ -380,7 +357,7 @@ export default {
             options: []
           },
           radio: {
-            label: 'Radio',
+            label: 'Radio buttons',
             fieldLabel: '',
             placeholder: 'Please select',
             required: false,
@@ -390,7 +367,7 @@ export default {
             options: []
           },
           text: {
-            label: 'Text',
+            label: 'Single-line text',
             fieldLabel: '',
             placeholder: '',
             required: false,
@@ -399,7 +376,7 @@ export default {
             custom: true
           },
           textarea: {
-            label: 'Textarea',
+            label: 'Multiline text',
             fieldLabel: '',
             placeholder: '',
             required: false,
@@ -409,21 +386,21 @@ export default {
           }
         },
         option: {
-          label: 'Label',
+          label: 'Tags',
           value: 'Value',
-          item: 'Option',
+          item: 'Options',
           default: 'Default'
         },
         field: {
-          title: 'Name',
+          title: 'Title',
           required: 'Required',
           placeholder: 'Placeholder'
         }
       },
       paging: {
         empty: {
-          content: '添加到网站中的表单会被列举在这里。您可以在这里管理所有表单，例如编辑修改。',
-          buttonLabel: '添加表单'
+          content: 'Forms added to your website will appear here. You can edit and manage them here.',
+          buttonLabel: 'Add form'
         }
       }
     }

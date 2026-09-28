@@ -5,94 +5,85 @@ export default {
       1: 'Medium quality',
       2: 'Low quality'
     },
-    siteState: [
-      {
-        value: 0,
-        label: '正常'
-      },
-      {
-        value: 1,
-        label: '禁用'
-      },
-      {
-        value: 2,
-        label: '冻结'
-      }
-    ],
-    /**
-     * 审核状态
-     */
     auditState: {
-      '0': '已确认',
-      '1': '待确认',
-      '2': '已驳回'
+      0: 'Confirmed',
+      1: 'Awaiting confirmation',
+      2: 'Rejected'
     },
     stateClassName: {
-      '0': 'text-success',
-      '1': 'text-warning',
-      '2': 'text-danger',
-      '3': 'text-secondary'
+      0: 'text-success',
+      1: 'text-warning',
+      2: 'text-danger',
+      3: 'text-secondary'
     },
-    /**
-     * 工作单状态
-     */
     worksheetState: {
-      '-1': '全部',
-      '0': '审核中',
-      '1': '进行中',
-      '2': '已暂停',
-      '7': '已驳回',
-      '9': '已完成'
+      0: 'Under review',
+      1: 'In progress',
+      2: 'Paused',
+      7: 'Rejected',
+      9: 'Completed',
+      '-1': 'All'
     },
     worksheetClassName: {
-      '0': 'text-info',
-      '1': 'text-success',
-      '2': 'text-warning',
-      '7': 'text-danger',
-      '9': 'text-secondary'
+      0: 'text-info',
+      1: 'text-success',
+      2: 'text-warning',
+      7: 'text-danger',
+      9: 'text-secondary'
     },
     urgentState: {
-      '0': 'Normal',
-      '1': 'Urgent',
-      '2': 'Unusually urgent'
+      0: 'Normal',
+      1: 'Urgent',
+      2: 'Very urgent'
     },
-    /**
-     * 站点类型
-     */
     siteType: [
       {
         id: 1,
-        label: 'B2C单页'
+        label: 'B2C single page'
       },
       {
         id: 2,
-        label: 'B2C单页'
+        label: 'B2B single page'
       },
       {
         id: 3,
-        label: '企业网站'
+        label: 'Business website'
       },
       {
         id: 4,
-        label: '在线商店'
+        label: 'Online store'
       }
     ],
     sectionGroup: [
       {
         id: 1000,
-        label: '页面组件'
+        label: 'Page section'
       },
       {
         id: 2000,
-        label: '全局组件'
+        label: 'Global section'
       },
       {
         id: 3000,
-        label: '普通组件'
+        label: 'Standard section'
       },
       {
         id: 4000,
-        label: '商详设计'
+        label: 'Product detail design'
+      }
+    ],
+    siteState: [
+      {
+        value: 0,
+        label: 'Active'
+      },
+      {
+        value: 1,
+        label: 'Disabled'
+      },
+      {
+        value: 2,
+        label: 'Frozen'
       }
     ]
   }

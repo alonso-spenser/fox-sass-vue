@@ -1,18 +1,17 @@
 export default {
   variant: {
-    heading: '变体商品',
-    subheading: '如果该商品有多个不同的版本，例如颜色、尺寸等，您可以添加变体商品',
-    // tips: '如果该商品有多个属性，例如颜色、尺寸等，您可以',
+    heading: 'Product variants',
+    subheading: 'Add variants if this product comes in different versions, such as colors or sizes',
     entity: {
       value: {
-        label: '属性值',
-        placeholder: '请输入属性值',
-        required: '属性值不能为空'
+        label: 'Attribute value',
+        placeholder: 'Enter an attribute value',
+        required: 'Attribute value is required'
       },
       name: {
-        label: '属性',
-        placeholder: '请输入属性',
-        required: '属性不能为空'
+        label: 'Attribute',
+        placeholder: 'Enter an attribute',
+        required: 'Attribute is required'
       }
     },
     defaultValue: [
@@ -29,698 +28,680 @@ export default {
         valueList: []
       }
     ],
-    attrKey: '属性名',
-    attrValue: '属性值',
-    tips: '创建以下选中的变体商品',
-    sku: 'SKU编号',
-    skuContent: '请输入 SKU 编号',
-    quickSelect: '快速选择',
+    attrKey: 'Attribute name',
+    attrValue: 'Attribute value',
+    tips: 'Create the selected product variants below',
+    sku: 'SKU code',
+    skuContent: 'Enter an SKU code',
+    quickSelect: 'Quick select',
     button: {
-      addKey: '添加属性',
-      addValue: '添加属性值',
+      addKey: 'Add attribute',
+      addValue: 'Add value',
       single: {
-        label: '单品',
+        label: 'Single product',
         english: {
-          label: '英文版',
+          label: 'English version',
           key: 'Default',
           value: 'Default'
         },
         chinese: {
-          label: '中文版',
-          key: '默认',
-          value: '默认'
+          label: 'Chinese version',
+          key: 'Default',
+          value: 'Default'
         }
       }
     },
     batch: {
-      title: '批量操作',
-      image: 'SKU 图片',
-      params: '价格 & 参数',
-      remove: '删除 SKU'
+      title: 'Bulk actions',
+      image: 'SKU image',
+      params: 'Price & specifications',
+      remove: 'Delete SKU'
     },
     edit: {
-      heading: '修改属性'
+      heading: 'Edit attributes'
     },
-    /**
-     * 批量图片
-     */
     avatar: {
-      heading: '更新商品图片',
-      remove: '移除图片'
+      heading: 'Update product images',
+      remove: 'Remove image'
     },
     update: {
-      sort: '调整顺序',
-      edit: '修改属性',
-      add: '添加 & 修改规格'
+      sort: 'Reorder',
+      edit: 'Edit attributes',
+      add: 'Add & edit specifications'
     }
   },
   specSelector: {
-    heading: '规格参数',
-    subheading: '为商品添加规格参数表，这部分内容会在网站展示给您的访客',
-    paste: '参数粘帖',
-    tips: '数组，包含3个参数',
+    heading: 'Specifications',
+    subheading: 'Add a specification table for visitors to this product page',
+    paste: 'Paste specifications',
+    tips: 'Array containing 3 parameters',
     button: {
-      title: '添加标题',
-      item: '添加一项',
-      clear: '清空'
+      title: 'Add heading',
+      item: 'Add item',
+      clear: 'Clear'
     },
     entity: {
       key: {
-        placeholder: '属性名'
+        placeholder: 'Attribute name'
       },
       value: {
-        placeholder: '属性值'
+        placeholder: 'Attribute value'
       },
       title: {
-        placeholder: '标题'
+        placeholder: 'Title'
       }
     }
   },
-  /**
-   * 规格参数预设保存
-   */
   specPresetSave: {
     dropdown: {
-      label: '预设',
-      save: '存为预设',
-      select: '选择预设',
-      digit: '字段转换',
-      manage: '管理预设'
+      label: 'Presets',
+      save: 'Save as preset',
+      select: 'Select preset',
+      digit: 'Convert fields',
+      manage: 'Manage presets'
     },
     product: {
-      heading: '保存为预设',
-      subheading: '将当前规格参数表保存为预设，在编辑其他商品的的时候可以直接使用该表格格式内容'
+      heading: 'Save as preset',
+      subheading: 'Save these specifications as a preset to reuse the table format and content when editing other products'
     },
     entity: {
       title: {
-        label: '预设名称',
-        placeholder: '请输入预设名称',
-        required: '预设名称不能为空',
+        label: 'Preset name',
+        placeholder: 'Enter a preset name',
+        required: 'Preset name is required',
         description: ''
       },
       isDefault: {
-        label: '设为默认预设',
+        label: 'Set as default preset',
         placeholder: '',
         required: '',
-        description: '创建新的商品时，规格参数表会使用默认预设'
+        description: 'New products will use the default specification preset'
       }
     }
   },
-  /**
-   * 规格参数预设选择
-   */
   specPresetSelect: {
-    heading: '选择预设',
-    subheading: '选择一个预设，应用到本商品中'
+    heading: 'Select preset',
+    subheading: 'Select a preset to apply to this product'
   },
-  /**
-   * 规格参数预设管理
-   */
   specPresetManage: {
-    heading: '管理预设',
-    subheading: '您可以修改、删除预设以及变更默认预设',
+    heading: 'Manage presets',
+    subheading: 'You can edit or delete presets and change the default preset',
     title: {
-      label: '预设名称',
-      placeholder: '请输入预设名称',
-      required: '预设名称不能为空',
+      label: 'Preset name',
+      placeholder: 'Enter a preset name',
+      required: 'Preset name is required',
       description: ''
     },
     tableHeader: {
-      title: '预设名称',
-      isDefault: '默认'
+      title: 'Preset name',
+      isDefault: 'Default'
     }
   },
-  /**
-   * 购买按钮
-   */
   buyButton: {
-    title: '购买按钮',
-    subheading: '在商品详情页中，会显示该购买按钮',
+    title: 'Purchase buttons',
+    subheading: 'This purchase button will appear on the product detail page',
     buttonLabel: {
-      label: '按钮名称',
+      label: 'Button name',
       tips: '',
-      placeholder: '例如 Amazon，Alibaba，Buy now 等',
-      required: '请输入按钮名称',
+      placeholder: 'For example: Amazon, Alibaba, Buy now',
+      required: 'Enter a button name',
       custom: ''
     },
     buttonLink: {
-      label: '链接地址',
+      label: 'Link URL',
       tips: '',
-      placeholder: '输入链接地址',
-      required: '请输入按钮链接',
-      custom: '请输入正确的链接地址'
+      placeholder: 'Enter a link URL',
+      required: 'Enter a button link',
+      custom: 'Enter a valid URL'
     }
   },
   ladderPrice: {
-    button: '编辑价格',
-    heading: '编辑阶梯价格',
-    subheading: '客户购买同一个商品下的各个SKU数量总和在指定阶梯范围内，将能享受对应阶梯价',
-    step: '阶梯',
-    add: '添加阶梯价',
-    piece: '件',
+    button: 'Edit price',
+    heading: 'Edit tiered pricing',
+    subheading: 'The combined quantity of all SKUs purchased for the same product determines the applicable price tier',
+    step: 'Tier',
+    add: 'Add price tier',
+    piece: 'pieces',
     entity: {
       price: {
-        label: '价格',
-        placeholder: '销售价格',
-        required: '请输入销售价格',
-        custom: '请输入正确的销售价格'
+        label: 'Price',
+        placeholder: 'Sale price',
+        required: 'Enter a sale price',
+        custom: 'Enter a valid sale price'
       }
     }
   },
   goods: {
     variant: {
-      title: '商品详情',
-      updateTitle: '修改规格',
-      add: '添加新规格',
-      delete: '删除规格',
-      edit: '编辑商品规格'
+      title: 'Product details',
+      updateTitle: 'Edit variant',
+      add: 'Add variant',
+      delete: 'Delete variant',
+      edit: 'Edit product variant'
     },
     shelves: {
-      on: '上架',
-      off: '下架'
+      on: 'Publish',
+      off: 'Unpublish'
     },
     addition: {
       currency: '￥',
-      shelfLife: '月'
+      shelfLife: 'months'
     },
     priceType: {
-      '0': '不报价',
-      '1': '正常价格',
-      '2': '阶梯价格'
+      0: 'No price displayed',
+      1: 'Standard pricing',
+      2: 'Tiered pricing'
     },
     orderBy: {
-      updateTimeASC: '修改时间，旧到新',
-      updateTimeDESC: '修改时间，新到旧',
-      createTimeASC: '创建时间，旧到新',
-      createTimeDESC: '创建时间，新到旧',
-      initialASC: '名称，A-Z',
-      initialDESC: '名称，Z-A',
-      sortDesc: '序号倒序'
+      updateTimeASC: 'Modified, oldest first',
+      updateTimeDESC: 'Modified, newest first',
+      createTimeASC: 'Created, oldest first',
+      createTimeDESC: 'Created, newest first',
+      initialASC: 'Name, A–Z',
+      initialDESC: 'Name, Z–A',
+      sortDesc: 'Sequence number, descending'
     },
     searchType: {
-      name: '产品名称',
-      collection: '产品集合',
-      tag: '产品标签'
+      name: 'Product name',
+      collection: 'Product collections',
+      tag: 'Product tags'
     },
     paging: {
-      title: '所有产品',
+      title: 'All products',
       heading: '',
       subheading: '',
-      add: '添加产品',
+      add: 'Add product',
       actions: {
-        disable: '停用',
-        enable: '启用',
-        addCollection: '加入 & 移除集合',
-        addTag: '加入 & 移除标签',
-        sticky: '置顶',
-        cancelSticky: '取消置顶',
+        disable: 'Disable',
+        enable: 'Enable',
+        addCollection: 'Add to / remove from collections',
+        addTag: 'Add / remove tags',
+        sticky: 'Pin to top',
+        cancelSticky: 'Unpin',
         clone: {
-          button: '复制产品',
-          tips: '确定要复制选中的 {0} 个产品吗?？'
+          button: 'Duplicate product',
+          tips: 'Are you sure you want to duplicate the {0} selected products?'
         }
       },
       empty: {
-        content: '添加的产品信息会被列举在这里。您可以在这里管理所有产品信息，例如批量删除、修改等。',
-        buttonLabel: '添加产品信息'
+        content: 'Products you add will appear here. You can edit, delete, and manage them in bulk.',
+        buttonLabel: 'Add product'
       },
       tableHeader: {
-        comments: '评论数',
-        coverImage: '图片',
-        coverVideo: '视频地址',
-        createTime: '创建时间',
-        hits: '阅读次数',
-        seoUrl: 'URL地址',
-        minPrice: '销售价',
-        sortIndex: '排序',
-        state: '状态',
-        sticky: '置顶',
-        sales: '销量',
+        comments: 'Comments',
+        coverImage: 'Image',
+        coverVideo: 'Video URL',
+        createTime: 'Created at',
+        hits: 'Views',
+        seoUrl: 'URL',
+        minPrice: 'Sale price',
+        sortIndex: 'Sort by',
+        state: 'Status',
+        sticky: 'Pin to top',
+        sales: 'Units sold',
         skuCount: 'SKU',
-        title: '标题',
-        updateTime: '更新时间',
-        visibilityTime: '上架时间'
+        title: 'Title',
+        updateTime: 'Updated at',
+        visibilityTime: 'Published at'
       }
     },
     update: {
-      addTitle: '添加产品',
-      updateTitle: '编辑产品',
-      info: 'Information',
+      addTitle: 'Add product',
+      updateTitle: 'Edit product',
+      info: 'Basic information',
       attribute: {
-        heading: '扩展属性',
-        desc: '为商品添加更多的属性介绍，如：详细规格参数、应用场景、物流等',
+        heading: 'Additional attributes',
+        desc: 'Add more product information, such as detailed specifications, applications, and shipping.',
         title: {
-          label: '属性标题',
-          placeholder: '属性标题',
-          required: '请填写属性标题',
+          label: 'Attribute title',
+          placeholder: 'Attribute title',
+          required: 'Enter an attribute title',
           custom: ''
         },
         content: {
-          label: '属性内容',
-          placeholder: '属性内容',
-          required: '请填写属性内容',
+          label: 'Attribute content',
+          placeholder: 'Attribute content',
+          required: 'Enter attribute content',
           custom: ''
         }
       },
-      attachment: '附件',
-      pricePlan: '报价方式',
+      attachment: 'Attachments',
+      pricePlan: 'Pricing method',
       entity: {
         barcode: {
-          label: '条码',
+          label: 'Barcode',
           tips: '',
-          placeholder: '条码',
-          required: '请输入条码',
+          placeholder: 'Barcode',
+          required: 'Enter a barcode',
           custom: ''
         },
         hsCode: {
-          label: '海关编码',
+          label: 'HS code',
           tips: '',
-          placeholder: '海关编码',
-          required: '请输入海关编码',
+          placeholder: 'HS code',
+          required: 'Enter an HS code',
           custom: ''
         },
         skuId: {
-          label: 'SKU Id',
+          label: 'SKU ID',
           tips: '',
-          placeholder: 'SKU Id',
-          required: '请输入SKU Id',
+          placeholder: 'SKU ID',
+          required: 'Enter an SKU ID',
           custom: ''
         },
         skuImage: {
-          label: '图片',
+          label: 'Image',
           tips: '',
-          placeholder: '图片',
-          required: '请输入图片',
+          placeholder: 'Image',
+          required: 'Enter an image',
           custom: ''
         },
         skuName: {
-          label: '名称',
+          label: 'Name',
           tips: '',
-          placeholder: '名称',
-          required: '请输入名称',
+          placeholder: 'Name',
+          required: 'Enter a name',
           custom: ''
         },
         surplusStock: {
-          label: '库存',
+          label: 'Stock',
           tips: '',
-          placeholder: '库存',
-          required: '请输入库存',
-          custom: '库存数量应该大于0'
+          placeholder: 'Stock',
+          required: 'Enter stock quantity',
+          custom: 'Stock quantity must be greater than 0'
         },
         marketPrice: {
-          label: '市场价',
+          label: 'Market price',
           tips: '',
-          placeholder: '市场价',
-          required: '请输入市场价',
-          custom: '市场价应该大于0'
+          placeholder: 'Market price',
+          required: 'Enter a market price',
+          custom: 'Market price must be greater than 0'
         },
         salePrice: {
-          label: '销售价',
+          label: 'Sale price',
           tips: '',
-          placeholder: '销售价',
-          required: '请输入销售价',
-          custom: '销售价应该大于0'
+          placeholder: 'Sale price',
+          required: 'Enter a sale price',
+          custom: 'Sale price must be greater than 0'
         },
         shelfLife: {
-          label: '保质期',
+          label: 'Shelf life',
           tips: '',
-          placeholder: '保质期',
-          required: '请输入保质期',
-          custom: '保质期应该大于0'
+          placeholder: 'Shelf life',
+          required: 'Enter the shelf life',
+          custom: 'Shelf life must be greater than 0'
         },
         weight: {
-          label: '重量',
+          label: 'Weight',
           tips: '',
-          placeholder: '重量',
-          required: '请输入重量',
+          placeholder: 'Weight',
+          required: 'Enter a weight',
           custom: ''
         },
         width: {
-          label: '宽度',
+          label: 'Width',
           tips: '',
-          placeholder: '宽度',
-          required: '请输入宽度',
-          custom: '宽度应该大于0'
+          placeholder: 'Width',
+          required: 'Enter a width',
+          custom: 'Width must be greater than 0'
         },
         coverImage: {
-          label: '图片',
+          label: 'Image',
           tips: '',
-          placeholder: '图片',
-          required: '请上传图片',
+          placeholder: 'Image',
+          required: 'Upload an image',
           custom: ''
         },
         coverVideo: {
-          label: '视频地址',
+          label: 'Video URL',
           tips: '',
-          placeholder: '视频地址',
-          required: '请输入视频地址',
+          placeholder: 'Video URL',
+          required: 'Enter a video URL',
           custom: ''
         },
         createTime: {
-          label: '创建时间',
+          label: 'Created at',
           tips: '',
-          placeholder: '创建时间',
-          required: '请输入创建时间',
+          placeholder: 'Created at',
+          required: 'Enter the creation time',
           custom: ''
         },
         description: {
-          label: '产品详情',
+          label: 'Product details',
           tips: '',
-          placeholder: '产品详情',
-          required: '请输入产品详情',
+          placeholder: 'Product details',
+          required: 'Enter product details',
           custom: ''
         },
         initial: {
-          label: '首字母',
+          label: 'Initial letter',
           tips: '',
-          placeholder: '首字母',
-          required: '请输入首字母',
+          placeholder: 'Initial letter',
+          required: 'Enter the initial letter',
           custom: ''
         },
         source: {
-          label: '来源',
+          label: 'Source',
           tips: '',
-          placeholder: '来源',
-          required: '请输入来源',
+          placeholder: 'Source',
+          required: 'Enter a source',
           custom: ''
         },
         specification: {
-          label: '规格参数',
+          label: 'Specifications',
           tips: '',
-          placeholder: '规格参数',
-          required: '请输入规格参数',
+          placeholder: 'Specifications',
+          required: 'Enter specifications',
           custom: ''
         },
         subtitle: {
-          label: '副标题',
-          tips: '显示在网页列表中',
-          placeholder: '副标题',
-          required: '请输入副标题',
+          label: 'Subtitle',
+          tips: 'Displayed in page listings',
+          placeholder: 'Subtitle',
+          required: 'Enter a subtitle',
           custom: ''
         },
         summary: {
-          label: '摘要',
-          tips: '显示在详情页面中',
-          placeholder: '摘要',
-          required: '请输入摘要',
+          label: 'Summary',
+          tips: 'Displayed on the detail page',
+          placeholder: 'Summary',
+          required: 'Enter a summary',
           custom: ''
         },
         title: {
-          label: '产品名称',
+          label: 'Product name',
           tips: '',
-          placeholder: '产品名称',
-          required: '请输入产品名称',
+          placeholder: 'Product name',
+          required: 'Enter a product name',
           custom: ''
         },
         visibilityTime: {
-          label: '上架时间',
+          label: 'Published at',
           tips: '',
-          placeholder: '上架时间',
-          required: '请输入上架时间',
+          placeholder: 'Published at',
+          required: 'Enter the publication time',
           custom: ''
         }
       },
       collection: {
-        label: '产品集合',
-        placeholder: '输入集合名称',
-        exist: '该集合已被添加',
-        add: '添加集合',
-        manage: '管理集合',
-        loadingText: '加载中',
-        noMatchText: '无匹配数据',
-        noDataText: '无数据'
+        label: 'Product collections',
+        placeholder: 'Enter a collection name',
+        exist: 'This collection has already been added',
+        add: 'Add collection',
+        manage: 'Manage collections',
+        loadingText: 'Loading',
+        noMatchText: 'No matches found',
+        noDataText: 'No data'
       },
       tags: {
-        label: '产品标签',
-        placeholder: '输入标签名称',
-        exist: '该标签已被添加',
-        add: '添加标签',
-        manage: '管理标签',
-        loadingText: '加载中',
-        noMatchText: '无匹配数据',
-        noDataText: '无数据'
+        label: 'Product tags',
+        placeholder: 'Enter a tag name',
+        exist: 'This tag has already been added',
+        add: 'Add tags',
+        manage: 'Manage tags',
+        loadingText: 'Loading',
+        noMatchText: 'No matches found',
+        noDataText: 'No data'
       },
       design: {
-        title: '个性化详情',
-        design: '设计详情',
-        save: '保存设计',
-        content: '效果预览，实际的效果以界面设计器为准',
-        tips: '点击设计详情，为您的产品介绍页面个性化设计吧'
+        title: 'Custom product details',
+        design: 'Design details',
+        save: 'Save design',
+        content: 'Preview only. Refer to the page designer for the final appearance.',
+        tips: 'Click Design details to customize your product introduction page'
       }
     },
     collection: {
       paging: {
-        title: '产品集合',
+        title: 'Product collections',
         heading: '',
         subheading: '',
-        add: '添加产品集合',
+        add: 'Add product collection',
         actions: {
-          disable: '停用',
-          enable: '启用'
+          disable: 'Disable',
+          enable: 'Enable'
         },
         empty: {
-          content: '添加的产品集合会被列举在这里。您可以在这里管理所有产品集合，例如批量删除、修改等。',
-          buttonLabel: '添加产品集合'
+          content: 'Product collections you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add product collection'
         },
         tableHeader: {
-          coverImage: '图片',
-          refCount: '产品数量',
-          state: '状态',
-          title: '集合名称',
-          updateTime: '更新时间'
+          coverImage: 'Image',
+          refCount: 'Product count',
+          state: 'Status',
+          title: 'Collection name',
+          updateTime: 'Updated at'
         }
       },
       update: {
-        addTitle: '添加产品集合',
-        updateTitle: '编辑产品集合',
-        selectArticle: '选择产品',
-        dataHeading: '产品',
-        addToCollection: '添加产品',
+        addTitle: 'Add product collection',
+        updateTitle: 'Edit product collection',
+        selectArticle: 'Select products',
+        dataHeading: 'Product',
+        addToCollection: 'Add product',
         entity: {
           banner: {
-            label: '横幅图片',
+            label: 'Banner image',
             tips: '',
-            placeholder: '横幅图片',
-            required: '请输入横幅图片',
+            placeholder: 'Banner image',
+            required: 'Enter a banner image',
             custom: ''
           },
           collectionType: {
-            label: '集合类型，1为手动，2为自动',
+            label: 'Collection type: 1 for manual, 2 for automatic',
             tips: '',
-            placeholder: '集合类型，1为手动，2为自动',
-            required: '请输入集合类型，1为手动，2为自动',
+            placeholder: 'Collection type: 1 for manual, 2 for automatic',
+            required: 'Enter a collection type: 1 for manual or 2 for automatic',
             custom: ''
           },
           conditionData: {
-            label: '查询条件的JSON',
+            label: 'Query conditions (JSON)',
             tips: '',
-            placeholder: '查询条件的JSON',
-            required: '请输入查询条件的JSON',
+            placeholder: 'Query conditions (JSON)',
+            required: 'Enter query conditions as JSON',
             custom: ''
           },
           coverImage: {
-            label: '封面图片',
+            label: 'Cover image',
             tips: '',
-            placeholder: '封面图片',
-            required: '请输入封面图片',
+            placeholder: 'Cover image',
+            required: 'Enter a cover image',
             custom: ''
           },
           coverVideo: {
-            label: '视频地址',
+            label: 'Video URL',
             tips: '',
-            placeholder: '视频地址',
-            required: '请输入视频地址',
+            placeholder: 'Video URL',
+            required: 'Enter a video URL',
             custom: ''
           },
           createTime: {
-            label: '创建时间',
+            label: 'Created at',
             tips: '',
-            placeholder: '创建时间',
-            required: '请输入创建时间',
+            placeholder: 'Created at',
+            required: 'Enter the creation time',
             custom: ''
           },
           deleteFlag: {
-            label: '删除状态',
+            label: 'Deletion status',
             tips: '',
-            placeholder: '删除状态',
-            required: '请输入删除状态',
+            placeholder: 'Deletion status',
+            required: 'Enter a deletion status',
             custom: ''
           },
           description: {
-            label: '说明',
+            label: 'Description',
             tips: '',
-            placeholder: '说明',
-            required: '请输入说明',
+            placeholder: 'Description',
+            required: 'Enter a description',
             custom: ''
           },
           infoType: {
-            label: '业务类型',
+            label: 'Business type',
             tips: '',
-            placeholder: '业务类型',
-            required: '请输入业务类型',
+            placeholder: 'Business type',
+            required: 'Enter a business type',
             custom: ''
           },
           joinType: {
-            label: '连接方式，1OR;2AND',
+            label: 'Condition operator: 1 for OR, 2 for AND',
             tips: '',
-            placeholder: '连接方式，1OR;2AND',
-            required: '请输入连接方式，1OR;2AND',
+            placeholder: 'Condition operator: 1 for OR, 2 for AND',
+            required: 'Enter a condition operator: 1 for OR or 2 for AND',
             custom: ''
           },
           refCount: {
-            label: '产品数量',
+            label: 'Product count',
             tips: '',
-            placeholder: '产品数量',
-            required: '请输入产品数量',
+            placeholder: 'Product count',
+            required: 'Enter a product count',
             custom: ''
           },
           refId: {
-            label: '引用Id',
+            label: 'Reference ID',
             tips: '',
-            placeholder: '引用Id',
-            required: '请输入引用Id',
+            placeholder: 'Reference ID',
+            required: 'Enter a reference ID',
             custom: ''
           },
           region: {
-            label: '语言标识',
+            label: 'Language code',
             tips: '',
-            placeholder: '语言标识',
-            required: '请输入语言标识',
+            placeholder: 'Language code',
+            required: 'Enter a language code',
             custom: ''
           },
           seoDescription: {
-            label: 'Meta描述',
+            label: 'Meta description',
             tips: '',
-            placeholder: 'Meta描述',
-            required: '请输入Meta描述',
+            placeholder: 'Meta description',
+            required: 'Enter a meta description',
             custom: ''
           },
           seoKeywords: {
-            label: 'Meta关键词',
+            label: 'Meta keywords',
             tips: '',
-            placeholder: 'Meta关键词',
-            required: '请输入Meta关键词',
+            placeholder: 'Meta keywords',
+            required: 'Enter meta keywords',
             custom: ''
           },
           seoTitle: {
-            label: '页面标题',
+            label: 'Page title',
             tips: '',
-            placeholder: '页面标题',
-            required: '请输入页面标题',
+            placeholder: 'Page title',
+            required: 'Enter a page title',
             custom: ''
           },
           seoUrl: {
-            label: 'URL地址',
+            label: 'URL',
             tips: '',
-            placeholder: 'URL地址',
-            required: '请输入URL地址',
+            placeholder: 'URL',
+            required: 'Enter a URL',
             custom: ''
           },
           siteId: {
-            label: '站点ID',
+            label: 'Website ID',
             tips: '',
-            placeholder: '站点ID',
-            required: '请输入站点ID',
+            placeholder: 'Website ID',
+            required: 'Enter a website ID',
             custom: ''
           },
           state: {
-            label: '0启用，1停用',
+            label: '0: Enabled, 1: Disabled',
             tips: '',
-            placeholder: '0启用，1停用',
-            required: '请输入0启用，1停用',
+            placeholder: '0: Enabled, 1: Disabled',
+            required: 'Enter 0 to enable or 1 to disable',
             custom: ''
           },
           title: {
-            label: '标题',
+            label: 'Title',
             tips: '',
-            placeholder: '标题',
-            required: '请输入标题',
+            placeholder: 'Title',
+            required: 'Enter a title',
             custom: ''
           },
           updateTime: {
-            label: '更新时间',
+            label: 'Updated at',
             tips: '',
-            placeholder: '更新时间',
-            required: '请输入更新时间',
+            placeholder: 'Updated at',
+            required: 'Enter an update time',
             custom: ''
           }
         }
       }
     },
-    /**
-     * 商品 & 产品集合条件筛选器
-     */
     conditionFilter: {
       collectionType: {
-        label: '集合类型',
-        tips: 'Tips: 集合创建后，类型将无法再变更',
+        label: 'Collection type',
+        tips: 'The collection type cannot be changed after creation.',
         manual: {
-          label: '手动',
-          tips: '将产品手动逐个添加到本集合中'
+          label: 'Manual',
+          tips: 'Add products to this collection manually'
         },
         auto: {
-          label: '自动',
-          tips: '设置规则，符合规则的产品将会自动归集到本集合中'
+          label: 'Automatic',
+          tips: 'Products matching the rules will be added to this collection automatically'
         }
       },
       productType: {
-        label: '集合类型',
-        tips: 'Tips: 集合创建后，类型将无法再变更',
+        label: 'Collection type',
+        tips: 'The collection type cannot be changed after creation.',
         manual: {
-          label: '手动',
-          tips: '将商品手动逐个添加到本集合中'
+          label: 'Manual',
+          tips: 'Add products to this collection manually'
         },
         auto: {
-          label: '自动',
-          tips: '设置规则，符合规则的商品将会自动归集到本集合中'
+          label: 'Automatic',
+          tips: 'Products matching the rules will be added to this collection automatically'
         }
       },
       rule: {
-        label: '规则',
+        label: 'Rules',
         one: {
-          label: '满足任意一个条件'
+          label: 'Match any condition'
         },
         all: {
-          label: '满足全部条件'
+          label: 'Match all conditions'
         }
       }
     },
     tag: {
       paging: {
-        title: '产品标签',
+        title: 'Product tags',
         heading: '',
         subheading: '',
-        add: '添加产品标签',
+        add: 'Add product tag',
         empty: {
-          content: '添加的产品标签会被列举在这里。您可以在这里管理所有产品标签，例如批量删除、修改等。',
-          buttonLabel: '添加产品标签'
+          content: 'Product tags you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add product tag'
         },
         tableHeader: {
-          tagName: '标签名称'
+          tagName: 'Tag name'
         }
       },
       update: {
-        addTitle: '添加产品标签',
-        updateTitle: '编辑产品标签',
+        addTitle: 'Add product tag',
+        updateTitle: 'Edit product tag',
         entity: {
           sortIndex: {
-            label: '排序',
+            label: 'Sort by',
             tips: '',
-            placeholder: '排序',
-            required: '请输入排序',
+            placeholder: 'Sort by',
+            required: 'Enter a sort order',
             custom: ''
           },
           tagName: {
-            label: '标签名称',
+            label: 'Tag name',
             tips: '',
-            placeholder: '标签名称',
-            required: '请输入标签名称',
+            placeholder: 'Tag name',
+            required: 'Enter a tag name',
             custom: ''
           },
           tagUrl: {
-            label: '自定义URL',
+            label: 'Custom URL',
             tips: '',
-            placeholder: '自定义URL',
-            required: '请输入自定义URL',
+            placeholder: 'Custom URL',
+            required: 'Enter a custom URL',
             custom: ''
           }
         }
@@ -728,188 +709,188 @@ export default {
     },
     sku: {
       paging: {
-        title: '商品SKU',
+        title: 'Product SKUs',
         heading: '',
         subheading: '',
         empty: {
-          content: '添加的商品SKU会被列举在这里。您可以在这里管理所有商品SKU，例如批量删除、修改等。',
-          buttonLabel: '添加商品SKU'
+          content: 'Product SKUs you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add product SKU'
         },
         tableHeader: {
-          barcode: '条码',
-          costPrice: '成本价',
-          deleteFlag: '删除标识',
-          goodsPrice: '商品价',
-          height: '高度',
-          hsCode: '海关编码',
-          length: '长度',
-          lockStock: '锁定库存',
-          marketPrice: '市场价',
-          salePrice: '销售价',
-          servicePrice: '服务费',
-          shelfLife: '保质期',
-          skuId: 'SKU Id',
-          skuImage: '图片',
-          skuName: '名称',
-          soldStock: '已售库存',
-          spuId: 'SPU Id',
-          storageSkuId: '仓储SKU ID',
-          surplusStock: '库存',
-          vipPrice: '会员价',
-          weight: '重量',
-          width: '宽度'
+          barcode: 'Barcode',
+          costPrice: 'Cost price',
+          deleteFlag: 'Deletion flag',
+          goodsPrice: 'Product price',
+          height: 'Height',
+          hsCode: 'HS code',
+          length: 'Length',
+          lockStock: 'Reserved stock',
+          marketPrice: 'Market price',
+          salePrice: 'Sale price',
+          servicePrice: 'Service fee',
+          shelfLife: 'Shelf life',
+          skuId: 'SKU ID',
+          skuImage: 'Image',
+          skuName: 'Name',
+          soldStock: 'Sold quantity',
+          spuId: 'SPU ID',
+          storageSkuId: 'Warehouse SKU ID',
+          surplusStock: 'Stock',
+          vipPrice: 'Member price',
+          weight: 'Weight',
+          width: 'Width'
         }
       },
       update: {
-        addTitle: '添加商品SKU',
-        updateTitle: '编辑商品SKU',
+        addTitle: 'Add product SKU',
+        updateTitle: 'Edit product SKU',
         entity: {
           barcode: {
-            label: '条码',
+            label: 'Barcode',
             tips: '',
-            placeholder: '条码',
-            required: '请输入条码',
+            placeholder: 'Barcode',
+            required: 'Enter a barcode',
             custom: ''
           },
           costPrice: {
-            label: '成本价',
+            label: 'Cost price',
             tips: '',
-            placeholder: '成本价',
-            required: '请输入成本价',
-            custom: '成本价应该大于0'
+            placeholder: 'Cost price',
+            required: 'Enter a cost price',
+            custom: 'Cost price must be greater than 0'
           },
           goodsPrice: {
-            label: '商品价',
+            label: 'Product price',
             tips: '',
-            placeholder: '商品价',
-            required: '请输入商品价',
-            custom: '商品价应该大于0'
+            placeholder: 'Product price',
+            required: 'Enter a product price',
+            custom: 'Product price must be greater than 0'
           },
           height: {
-            label: '高度',
+            label: 'Height',
             tips: '',
-            placeholder: '高度',
-            required: '请输入高度',
+            placeholder: 'Height',
+            required: 'Enter a height',
             custom: ''
           },
           hsCode: {
-            label: '海关编码',
+            label: 'HS code',
             tips: '',
-            placeholder: '海关编码',
-            required: '请输入海关编码',
+            placeholder: 'HS code',
+            required: 'Enter an HS code',
             custom: ''
           },
           length: {
-            label: '长度',
+            label: 'Length',
             tips: '',
-            placeholder: '长度',
-            required: '请输入长度',
-            custom: '长度应该大于0'
+            placeholder: 'Length',
+            required: 'Enter a length',
+            custom: 'Length must be greater than 0'
           },
           lockStock: {
-            label: '锁定库存',
+            label: 'Reserved stock',
             tips: '',
-            placeholder: '锁定库存',
-            required: '请输入锁定库存',
+            placeholder: 'Reserved stock',
+            required: 'Enter reserved stock quantity',
             custom: ''
           },
           marketPrice: {
-            label: '市场价',
+            label: 'Market price',
             tips: '',
-            placeholder: '市场价',
-            required: '请输入市场价',
-            custom: '市场价应该大于0'
+            placeholder: 'Market price',
+            required: 'Enter a market price',
+            custom: 'Market price must be greater than 0'
           },
           salePrice: {
-            label: '销售价',
+            label: 'Sale price',
             tips: '',
-            placeholder: '销售价',
-            required: '请输入销售价',
-            custom: '销售价应该大于0'
+            placeholder: 'Sale price',
+            required: 'Enter a sale price',
+            custom: 'Sale price must be greater than 0'
           },
           servicePrice: {
-            label: '服务费',
+            label: 'Service fee',
             tips: '',
-            placeholder: '服务费',
-            required: '请输入服务费',
-            custom: '服务费应该大于0'
+            placeholder: 'Service fee',
+            required: 'Enter a service fee',
+            custom: 'Service fee must be greater than 0'
           },
           shelfLife: {
-            label: '保质期',
+            label: 'Shelf life',
             tips: '',
-            placeholder: '保质期',
-            required: '请输入保质期',
-            custom: '保质期应该大于0'
+            placeholder: 'Shelf life',
+            required: 'Enter the shelf life',
+            custom: 'Shelf life must be greater than 0'
           },
           skuId: {
-            label: 'SKU Id',
+            label: 'SKU ID',
             tips: '',
-            placeholder: 'SKU Id',
-            required: '请输入SKU Id',
+            placeholder: 'SKU ID',
+            required: 'Enter an SKU ID',
             custom: ''
           },
           skuImage: {
-            label: '图片',
+            label: 'Image',
             tips: '',
-            placeholder: '图片',
-            required: '请输入图片',
+            placeholder: 'Image',
+            required: 'Enter an image',
             custom: ''
           },
           skuName: {
-            label: '名称',
+            label: 'Name',
             tips: '',
-            placeholder: '名称',
-            required: '请输入名称',
+            placeholder: 'Name',
+            required: 'Enter a name',
             custom: ''
           },
           soldStock: {
-            label: '已售库存',
+            label: 'Sold quantity',
             tips: '',
-            placeholder: '已售库存',
-            required: '请输入已售库存',
+            placeholder: 'Sold quantity',
+            required: 'Enter sold quantity',
             custom: ''
           },
           spuId: {
-            label: 'SPU Id',
+            label: 'SPU ID',
             tips: '',
-            placeholder: 'SPU Id',
-            required: '请输入SPU Id',
+            placeholder: 'SPU ID',
+            required: 'Enter an SPU ID',
             custom: ''
           },
           storageSkuId: {
-            label: '仓储SKU ID',
+            label: 'Warehouse SKU ID',
             tips: '',
-            placeholder: '仓储SKU ID',
-            required: '请输入仓储SKU ID',
+            placeholder: 'Warehouse SKU ID',
+            required: 'Enter a warehouse SKU ID',
             custom: ''
           },
           surplusStock: {
-            label: '库存',
+            label: 'Stock',
             tips: '',
-            placeholder: '库存',
-            required: '请输入库存',
-            custom: '库存数量应该大于0'
+            placeholder: 'Stock',
+            required: 'Enter stock quantity',
+            custom: 'Stock quantity must be greater than 0'
           },
           vipPrice: {
-            label: '会员价',
+            label: 'Member price',
             tips: '',
-            placeholder: '会员价',
-            required: '请输入会员价',
-            custom: '会员价应该大于0'
+            placeholder: 'Member price',
+            required: 'Enter a member price',
+            custom: 'Member price must be greater than 0'
           },
           weight: {
-            label: '重量',
+            label: 'Weight',
             tips: '',
-            placeholder: '重量',
-            required: '请输入重量',
+            placeholder: 'Weight',
+            required: 'Enter a weight',
             custom: ''
           },
           width: {
-            label: '宽度',
+            label: 'Width',
             tips: '',
-            placeholder: '宽度',
-            required: '请输入宽度',
-            custom: '宽度应该大于0'
+            placeholder: 'Width',
+            required: 'Enter a width',
+            custom: 'Width must be greater than 0'
           }
         }
       }

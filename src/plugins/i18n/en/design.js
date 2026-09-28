@@ -1,96 +1,78 @@
 export default {
-  /**
-   * 图片ALT编辑弹窗
-   */
   imageAlt: {
-    heading: 'ALT',
-    subheading: 'Add a short description to the picture to increase the chance of being indexed by search engines',
+    heading: 'Edit image alt text',
+    subheading: 'Add a short image description to help search engines understand the image',
     entity: {
       alt: {
-        label: 'ALT Description',
-        placeholder: 'ALT',
+        label: 'ALT',
+        placeholder: 'Enter alt text',
         required: ''
       }
     }
   },
-  /**
-   * 数字输入器
-   */
   numberOnly: {
-    placeholder: '请输入大于0的数字'
+    placeholder: 'Enter a number greater than 0'
   },
   inquiryFormPicker: {
-    edit: 'edit form',
-    select: 'inquiry form',
-    add: '添加表单'
+    edit: 'Edit form',
+    select: 'Select a form',
+    add: 'Add form'
   },
   collectionPicker: {
-    edit: '编辑集合',
-    select: '选择集合',
-    add: '添加集合'
+    edit: 'Edit collection',
+    select: 'Select a collection',
+    add: 'Add collection'
   },
   menuPicker: {
     header: 'Header menu',
-    product: 'Product menu',
-    article: 'Article menu',
-    footMenu: 'Footer 1 menu',
-    footMenu2: 'Footer 2 menu',
-    footMenu3: 'Footer 3 menu'
+    product: 'Product listing sidebar menu',
+    article: 'Article listing sidebar menu',
+    footMenu: 'Footer menu 1',
+    footMenu2: 'Footer menu 2',
+    footMenu3: 'Footer menu 2'
   },
-  /**
-   * youtube
-   */
   videoPicker: {
-    placeholder: '请输入Youtube视频的分享链接'
+    placeholder: 'Enter a YouTube share link'
   },
-  /**
-   * youtube
-   */
   mapPicker: {
-    placeholder: '请输入Google地图分享 【 嵌入地图 】代码',
-    get: '获取Google地图代码'
+    placeholder: 'Paste the Google Maps embed code',
+    get: 'Get Google Maps embed code'
   },
   design: {
-    title: 'Design',
+    title: 'Website design',
     addPage: 'Add page',
-    editMenu: '编辑菜单',
+    editMenu: 'Edit menu',
     settings: 'Theme',
-    selected: 'OK',
-    remove: 'Remove section',
-    copy: 'Copy to current page',
-    copyItem: 'Copy',
-    hide: 'Hide',
-    visible: 'Visible',
-    apply: {
-      current: 'Apply to current',
-      all: 'Apply to all'
-    },
+    selected: 'Select',
+    remove: 'Remove this section',
+    copy: 'Copy to this page',
+    copyItem: 'Duplicate',
     copyToClip: 'Copy to clipboard',
-    copySucceeded: 'Copy successfully',
-    override: 'Save and set as default',
-    clear: 'clear',
+    copySucceeded: 'Copied successfully',
+    override: 'Save as default',
+    clear: 'Clear',
     manage: 'Manage',
-    cancelManage: 'Cancel management',
-    clearTips: '该操作会移除当前模块内已添加的项目，你可以在清空之后重新添加新的项目。确认要清空吗？',
-    clearHeading: '清空确认',
-    addSection: '添加模块',
-    changeSection: '更换风格',
+    cancelManage: 'Exit management',
+    clearTips: 'This will remove all items in this section. You can add new items afterward. Clear this section?',
+    clearHeading: 'Confirm clearing',
+    addSection: 'Add section',
+    changeSection: 'Change style',
     clonePage: {
-      title: '整页复制',
-      tips: '复制成功，请在其它页面粘帖',
-      same: '不能粘贴自身页面'
+      title: 'Copy entire page',
+      tips: 'Copied. You can now paste it into another page.',
+      same: 'You cannot paste a page into itself'
     },
     meta: {
-      name: '名称',
-      version: '版本',
-      author: '作者'
+      name: 'Name',
+      version: 'Version',
+      author: 'Author'
     },
     imageBlock: {
-      button: 'Gallery',
-      change: 'Change',
+      button: 'Select image',
+      change: 'Replace',
       clear: 'Clear',
-      selected: 'OK',
-      heading: 'Gallery'
+      selected: 'Select',
+      heading: 'Image'
     },
     section: {
       title: 'Section',
@@ -102,7 +84,7 @@ export default {
       global: [
         {
           sectionType: 'globalColorsSchema',
-          sectionName: 'Color',
+          sectionName: 'Colors',
           sectionIcon: '<svg t="1625656472269" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22147"><path d="M512 853.333333c-55.466667 0-21.333333-38.4-85.333333-102.4-59.733333-64-256-25.6-256-238.933333 0-187.733333 153.6-341.333333 341.333333-341.333333s341.333333 153.6 341.333333 341.333333-153.6 341.333333-341.333333 341.333333z m256-341.333333c0-140.8-115.2-256-256-256s-256 115.2-256 256c0 68.266667 21.333333 89.6 81.066667 110.933333 4.266667 0 12.8 4.266667 21.333333 4.266667 4.266667 0 17.066667 4.266667 21.333333 8.533333 55.466667 17.066667 81.066667 29.866667 106.666667 55.466667 21.333333 21.333333 34.133333 42.666667 46.933333 64 0 4.266667 4.266667 8.533333 4.266667 12.8 128-12.8 230.4-123.733333 230.4-256z m-128-85.333333c-25.6 0-42.666667-17.066667-42.666667-42.666667s17.066667-42.666667 42.666667-42.666667 42.666667 17.066667 42.666667 42.666667-17.066667 42.666667-42.666667 42.666667z m-119.466667-55.466667c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666666 42.666667 17.066667 42.666667 42.666666-17.066667 42.666667-42.666667 42.666667z m183.466667 162.133333c-25.6 0-42.666667-17.066667-42.666667-42.666666s17.066667-42.666667 42.666667-42.666667 42.666667 17.066667 42.666667 42.666667-17.066667 42.666667-42.666667 42.666666zM392.533333 413.866667c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667 42.666667 17.066667 42.666667 42.666667-17.066667 42.666667-42.666667 42.666667z m196.266667 298.666666c-34.133333 0-64-29.866667-64-64s29.866667-64 64-64 64 29.866667 64 64c-4.266667 34.133333-29.866667 64-64 64z" p-id="22148"></path></svg>'
         },
         {
@@ -117,7 +99,7 @@ export default {
         },
         {
           sectionType: 'globalGeneralSchema',
-          sectionName: 'General',
+          sectionName: 'General settings',
           sectionIcon: '<svg t="1625657199728" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22537"><path d="M533.333333 853.333333c-196.266667 0-354.133333-153.6-354.133333-341.333333s157.866667-341.333333 354.133333-341.333333 354.133333 153.6 354.133334 341.333333-157.866667 341.333333-354.133334 341.333333z m0-85.333333c149.333333 0 268.8-115.2 268.8-256S682.666667 256 533.333333 256s-268.8 115.2-268.8 256 123.733333 256 268.8 256z" p-id="22538"></path></svg>'
         },
         {
@@ -128,72 +110,79 @@ export default {
       ]
     },
     presetSection: {
-      header: '页头',
-      footer: '页尾',
-      floatMenu: '悬浮菜单',
-      homePage: '首页',
-      articleCollectionPage: '文章集合页',
-      articlePaginationPage: '文章分页',
-      articleDetailPage: '文章详情页',
-      productCollectionPage: '产品集合页',
-      productPaginationPage: '产品分页',
-      productDetailPage: '产品详情页',
-      downloadPaginationPage: '下载分页',
+      header: 'Header',
+      footer: 'Footer',
+      floatMenu: 'Floating menu',
+      homePage: 'Home',
+      articleCollectionPage: 'Article collection page',
+      articlePaginationPage: 'Article listing',
+      articleColumnistPage: 'Author page',
+      articleDetailPage: 'Article detail page',
+      productCollectionPage: 'Product collection page',
+      productPaginationPage: 'Product listing',
+      productDetailPage: 'Product detail page',
+      downloadPaginationPage: 'Download listing',
       pageNotFoundPage: '404',
-      customPage: '自定义页',
-      thanksPage: '感谢页',
-      outOfServicePage: '服务到期页',
-      legalPage: '法律条款页',
-      passportPage: '通行证',
-      changePasswordPage: '修改密码',
-      resetPasswordPage: '重置密码',
-      shoppingCartPage: '购物车',
-      checkoutPage: '结算',
-      cashierPage: '收银台',
-      paymentResultPage: '支付结果',
-      mineOrderPage: '用户中心-订单',
-      mineOrderDetailPage: '用户中心-订单详情',
-      mineInquiryPage: '用户中心-询盘',
-      mineInquiryDetailPage: '用户中心-询盘详情',
-      mineCommentPage: '用户中心-评论',
-      mineCollectPage: '用户中心-收藏',
-      mineCouponPage: '用户中心-优惠券'
+      customPage: 'Custom page',
+      thanksPage: 'Thank-you page',
+      outOfServicePage: 'Service expired page',
+      legalPage: 'Legal terms page',
+      passportPage: 'Authentication',
+      changePasswordPage: 'Change password',
+      resetPasswordPage: 'Reset password',
+      shoppingCartPage: 'Cart',
+      checkoutPage: 'Checkout',
+      cashierPage: 'Payment',
+      paymentResultPage: 'Payment result',
+      mineOrderPage: 'Account – orders',
+      mineOrderDetailPage: 'Account – order details',
+      mineInquiryPage: 'Account – enquiries',
+      mineInquiryDetailPage: 'Account – enquiry details',
+      mineCommentPage: 'Account – reviews',
+      mineCollectPage: 'Account – favorites',
+      mineCouponPage: 'Account – coupons'
     },
     sectionSelector: {
       title: 'Add section',
-      change: 'Change section',
+      change: 'Replace section',
       action: {
         add: 'Add',
-        change: 'Change'
+        change: 'Replace'
       }
     },
     sectionAlias: {
-      heading: 'Section remark',
-      placeholder: 'Section remark'
+      heading: 'Section notes',
+      placeholder: 'Enter notes'
     },
     productCollectionPicker: {
       type: 'number',
       field: 'quantity',
       name: {
-        'en': 'MAX Quantity',
-        'zh-CN': '显示数量'
+        en: 'Maximum quantity',
+        'zh-CN': 'Number to display'
       },
       placeholder: {
-        'en': 'Quantity',
-        'zh-CN': '商品显示数量'
+        en: 'Quantity',
+        'zh-CN': 'Number of products to display'
       }
     },
     articleCollectionPicker: {
       type: 'number',
       field: 'quantity',
       name: {
-        'en': 'MAX Quantity',
-        'zh-CN': '最多显示数量'
+        en: 'Maximum quantity',
+        'zh-CN': 'Maximum items to display'
       },
       placeholder: {
-        'en': 'Quantity',
-        'zh-CN': '文章显示数量'
+        en: 'Quantity',
+        'zh-CN': 'Number of articles to display'
       }
+    },
+    hide: 'Hide',
+    visible: 'Visible',
+    apply: {
+      current: 'Apply to current',
+      all: 'Apply to all'
     }
   }
 }

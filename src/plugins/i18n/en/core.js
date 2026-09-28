@@ -1,96 +1,90 @@
 export default {
   core: {
-    title: '基础数据',
+    title: 'Reference data',
     appTypeList: [
       {
         label: 'Merchant',
-        name: '商户运营平台',
+        name: 'Merchant operations platform',
         type: 1000
       },
       {
         label: 'Backstage',
-        name: '系统运营平台',
+        name: 'System operations platform',
         type: 3000
-      },
-      {
-        label: 'Official',
-        name: 'MyTask',
-        type: 7000
       }
     ],
     base: {
       lang: {
         paging: {
-          title: '语言',
+          title: 'Language',
           heading: '',
           subheading: '',
-          add: '添加语言',
+          add: 'Add language',
           empty: {
-            content: '添加的语言会被列举在这里。您可以在这里管理所有语言，例如批量删除、修改等。',
-            buttonLabel: '添加语言'
+            content: 'Languages you add will appear here. You can edit, delete, and manage them in bulk.',
+            buttonLabel: 'Add language'
           },
           tableHeader: {
-            aliCode: '阿里翻译代码',
-            aliNo: '阿里翻译序号',
-            code: '语言标识',
-            icon: '图标',
-            languageName: '标准名称',
-            nativeName: '本地名称',
-            state: '状态'
+            aliCode: 'Alibaba translation code',
+            aliNo: 'Alibaba translation sequence number',
+            code: 'Language code',
+            icon: 'Icon',
+            languageName: 'Standard name',
+            nativeName: 'Local name',
+            state: 'Status'
           }
         },
         update: {
-          addTitle: '添加语言',
-          updateTitle: '编辑语言',
+          addTitle: 'Add language',
+          updateTitle: 'Edit language',
           entity: {
-
             aliCode: {
-              label: '阿里翻译代码',
+              label: 'Alibaba translation code',
               tips: '',
-              placeholder: '阿里翻译代码',
-              required: '请输入阿里翻译代码',
+              placeholder: 'Alibaba translation code',
+              required: 'Enter an Alibaba translation code',
               custom: ''
             },
             aliNo: {
-              label: '阿里翻译序号',
+              label: 'Alibaba translation sequence number',
               tips: '',
-              placeholder: '阿里翻译序号',
-              required: '请输入阿里翻译序号',
+              placeholder: 'Alibaba translation sequence number',
+              required: 'Enter an Alibaba translation sequence number',
               custom: ''
             },
             code: {
-              label: '语言标识',
+              label: 'Language code',
               tips: '',
-              placeholder: '语言标识',
-              required: '请输入语言标识',
+              placeholder: 'Language code',
+              required: 'Enter a language code',
               custom: ''
             },
             icon: {
-              label: '图标',
+              label: 'Icon',
               tips: '',
-              placeholder: '图标',
-              required: '请输入图标',
+              placeholder: 'Icon',
+              required: 'Enter an icon',
               custom: ''
             },
             languageName: {
-              label: '标准名称',
+              label: 'Standard name',
               tips: '',
-              placeholder: '标准名称',
-              required: '请输入标准名称',
+              placeholder: 'Standard name',
+              required: 'Enter a standard name',
               custom: ''
             },
             nativeName: {
-              label: '本地名称',
+              label: 'Local name',
               tips: '',
-              placeholder: '本地名称',
-              required: '请输入本地名称',
+              placeholder: 'Local name',
+              required: 'Enter a local name',
               custom: ''
             },
             state: {
-              label: '状态',
+              label: 'Status',
               tips: '',
-              placeholder: '状态',
-              required: '请输入状态',
+              placeholder: 'Status',
+              required: 'Enter a status',
               custom: ''
             }
           }
@@ -99,155 +93,155 @@ export default {
     },
     security: {
       paging: {
-        title: '权限'
+        title: 'Permissions'
       },
       role: {
-        title: '角色管理',
+        title: 'Role management',
         empty: {
-          content: '添加的角色会被列举在这里。您可以在这里管理所有角色，例如批量删除、修改等。',
-          buttonLabel: '添加角色'
+          content: 'Roles you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add role'
         },
         update: {
-          addTitle: '添加角色',
-          updateTitle: '编辑角色',
-          selectAppType: '请选择appType',
-          notAddRole: '平台角色管理已满',
-          roleName: '超级管理员',
+          addTitle: 'Add role',
+          updateTitle: 'Edit role',
+          selectAppType: 'Select an application type',
+          notAddRole: 'The platform role limit has been reached',
+          roleName: 'Super administrator',
           entity: {
             functionAuthority: {
-              label: '功能权限设置',
+              label: 'Feature permissions',
               tips: '',
-              placeholder: '功能权限设置',
-              required: '请选择功能权限'
+              placeholder: 'Feature permissions',
+              required: 'Select feature permissions'
             },
             dataAccess: {
-              label: '数据权限',
+              label: 'Data permissions',
               tips: '',
-              placeholder: '0自己的,1本部门,2全部',
-              required: '请输入0自己的,1本部门,2全部',
+              placeholder: '0: Own data, 1: Department data, 2: All data',
+              required: 'Enter a data scope: 0 for own data, 1 for department data, or 2 for all data',
               custom: ''
             },
             isDelete: {
-              label: '是否删除 0:未删除 1：已删除',
+              label: 'Deletion status: 0 for active, 1 for deleted',
               tips: '',
-              placeholder: '是否删除 0:未删除 1：已删除',
-              required: '请输入是否删除 0:未删除 1：已删除',
+              placeholder: 'Deletion status: 0 for active, 1 for deleted',
+              required: 'Enter a deletion status: 0 for active or 1 for deleted',
               custom: ''
             },
             keepValue: {
-              label: '保留客户最大值',
+              label: 'Maximum retained customers',
               tips: '',
-              placeholder: '保留客户最大值',
-              required: '请输入保留客户最大值',
+              placeholder: 'Maximum retained customers',
+              required: 'Enter the maximum number of retained customers',
               custom: ''
             },
             appTypeName: {
-              label: '功能名称',
+              label: 'Feature name',
               tips: '',
-              placeholder: '功能名称',
-              required: '请选择入功能名称',
+              placeholder: 'Feature name',
+              required: 'Select a feature name',
               custom: ''
             },
             roleName: {
-              label: '角色名称',
+              label: 'Role name',
               tips: '',
-              placeholder: '角色名称',
-              required: '请输入角色名称',
+              placeholder: 'Role name',
+              required: 'Enter a role name',
               custom: ''
             },
             roleRemark: {
-              label: '角色描述',
+              label: 'Role description',
               tips: '',
-              placeholder: '角色描述',
-              required: '请输入角色描述',
+              placeholder: 'Role description',
+              required: 'Enter a role description',
               custom: ''
             }
           }
         },
         delete: {
-          msg: '删除角色{role},将导致关联的员工无法登录，确定删除吗?'
+          msg: 'Deleting the role {role} will prevent associated employees from signing in. Delete this role?'
         },
         tableHeader: {
-          roleName: '角色名称',
-          roleRemark: '角色描述',
-          keepValue: '保留客户最大值'
+          roleName: 'Role name',
+          roleRemark: 'Role description',
+          keepValue: 'Maximum retained customers'
         }
       },
       function: {
         paging: {
-          title: '应用功能'
+          title: 'Application features'
         },
         update: {
-          add: '添加一项',
-          title: '编辑应用功能',
-          saveSuccess: '保存成功',
+          add: 'Add item',
+          title: 'Edit application feature',
+          saveSuccess: 'Saved successfully',
           form: {
             functionName: 'functionName',
             functionCode: 'functionCode'
           }
         },
         delete: {
-          deleteParent: '删除当前父级，连同子级？',
-          deleteChild: '删除当前子级配置?'
+          deleteParent: 'Delete this parent and all its children?',
+          deleteChild: 'Delete this child configuration?'
         },
         tableHeader: {
-          name: '功能名称',
-          type: '代码',
-          typeCode: '应用ID',
+          name: 'Feature name',
+          type: 'Code',
+          typeCode: 'Application ID',
           role: '',
-          mg: '系统角色'
+          mg: 'System role'
         }
       }
     },
     bumeng: [
       {
-        name: '自己的',
+        name: 'Own data',
         type: '0'
       },
       {
-        name: '本部门',
+        name: 'Department data',
         type: '1'
       },
       {
-        name: '全部',
+        name: 'All',
         type: '2'
       }
     ],
     dictType: [
       {
         value: 'service_category',
-        label: '服务商品类型',
+        label: 'Service product type',
         url: '/service/category',
         alias: 'service'
       }
     ],
     dict: {
       remark: {
-        label: '备注',
+        label: 'Notes',
         tips: '',
-        placeholder: '备注',
-        required: '请输入备注',
+        placeholder: 'Notes',
+        required: 'Enter notes',
         custom: ''
       },
       sort: {
-        label: '排序',
+        label: 'Sort by',
         tips: '',
-        placeholder: '越大越前',
-        required: '请输入排序',
+        placeholder: 'Higher values appear first',
+        required: 'Enter a sort order',
         custom: ''
       },
       dicType: {
-        label: '字典类型',
+        label: 'Dictionary type',
         tips: '',
-        placeholder: '字典类型',
+        placeholder: 'Dictionary type',
         required: '',
         custom: ''
       },
       title: {
-        label: '名称',
+        label: 'Name',
         tips: '',
-        placeholder: '请输入名称',
-        required: '请输入名称',
+        placeholder: 'Enter a name',
+        required: 'Enter a name',
         custom: ''
       }
     },
@@ -255,73 +249,73 @@ export default {
       title: 'System configuration',
       entity: {
         address: {
-          label: '联系地址',
+          label: 'Contact address',
           tips: '',
-          placeholder: '联系地址',
-          required: '请输入联系地址',
+          placeholder: 'Contact address',
+          required: 'Enter a contact address',
           custom: ''
         },
         name: {
-          label: '名称',
+          label: 'Name',
           tips: '',
-          placeholder: '名称',
-          required: '请输入名称',
+          placeholder: 'Name',
+          required: 'Enter a name',
           custom: ''
         },
         contact: {
-          label: '联系人',
+          label: 'Contact person',
           tips: '',
-          placeholder: '联系人',
-          required: '请输入联系人',
+          placeholder: 'Contact person',
+          required: 'Enter a contact person',
           custom: ''
         },
         domain: {
-          label: '网站管理域名',
+          label: 'Website management domain',
           tips: '',
-          placeholder: '网站管理域名',
-          required: '请输入网站管理域名',
+          placeholder: 'Website management domain',
+          required: 'Enter a website management domain',
           custom: ''
         },
         email: {
-          label: '邮件地址',
+          label: 'Email address',
           tips: '',
-          placeholder: '邮件地址',
-          required: '请输入邮件地址',
+          placeholder: 'Email address',
+          required: 'Enter an email address',
           custom: ''
         },
         icp: {
-          label: '备案号',
+          label: 'ICP registration number',
           tips: '',
-          placeholder: '备案号',
-          required: '请输入备案号',
+          placeholder: 'ICP registration number',
+          required: 'Enter an ICP registration number',
           custom: ''
         },
         logo: {
           label: 'LOGO',
           tips: '',
           placeholder: 'LOGO',
-          required: '请输入LOGO',
+          required: 'Enter a logo',
           custom: ''
         },
         mobile: {
-          label: '联系手机',
+          label: 'Contact mobile number',
           tips: '',
-          placeholder: '联系手机',
-          required: '请输入联系手机',
+          placeholder: 'Contact mobile number',
+          required: 'Enter a contact mobile number',
           custom: ''
         },
         shortForm: {
-          label: '简称',
+          label: 'Short name',
           tips: '',
-          placeholder: '简称',
-          required: '请输入简称',
+          placeholder: 'Short name',
+          required: 'Enter a short name',
           custom: ''
         },
         website: {
-          label: '官网域名',
+          label: 'Official website domain',
           tips: '',
-          placeholder: '官网域名',
-          required: '请输入官网域名',
+          placeholder: 'Official website domain',
+          required: 'Enter an official website domain',
           custom: ''
         }
       }
@@ -332,50 +326,48 @@ export default {
       title: 'GOOGLE API KEY',
       heading: '',
       subheading: '',
-      add: '添加GOOGLE API KEY',
+      add: 'Add Google API key',
       empty: {
-        content: '添加的GOOGLE API KEY会被列举在这里。您可以在这里管理所有GOOGLE API KEY，例如批量删除、修改等。',
-        buttonLabel: '添加GOOGLE API KEY'
+        content: 'Google API keys you add will appear here. You can edit, delete, and manage them in bulk.',
+        buttonLabel: 'Add Google API key'
       },
       tableHeader: {
-
         gamKey: 'GAM KEY',
         gmail: 'GMAIL',
-        merchantId: '商户Id',
-        quantity: '已绑定网站数量'
+        merchantId: 'Merchant ID',
+        quantity: 'Linked websites'
       }
     },
     update: {
-      addTitle: '添加GOOGLE API KEY',
-      updateTitle: '编辑GOOGLE API KEY',
+      addTitle: 'Add Google API key',
+      updateTitle: 'Edit Google API key',
       entity: {
-
         gamKey: {
           label: 'GAM KEY',
           tips: '',
           placeholder: 'GAM KEY',
-          required: '请输入GAM KEY',
+          required: 'Enter a GAM key',
           custom: ''
         },
         gmail: {
           label: 'GMAIL',
           tips: '',
           placeholder: 'GMAIL',
-          required: '请输入GMAIL',
+          required: 'Enter a Gmail address',
           custom: ''
         },
         merchantId: {
-          label: '商户Id',
+          label: 'Merchant ID',
           tips: '',
-          placeholder: '商户Id',
-          required: '请输入商户Id',
+          placeholder: 'Merchant ID',
+          required: 'Enter a merchant ID',
           custom: ''
         },
         quantity: {
-          label: '已绑定网站数量',
+          label: 'Linked websites',
           tips: '',
-          placeholder: '已绑定网站数量',
-          required: '请输入已绑定网站数量',
+          placeholder: 'Linked websites',
+          required: 'Enter the number of linked websites',
           custom: ''
         }
       }
@@ -384,43 +376,42 @@ export default {
   audit: {
     project: {
       paging: {
-        title: '审批流程配置',
+        title: 'Approval workflow configuration',
         heading: '',
         subheading: '',
-        add: '添加审批流程配置',
+        add: 'Add approval workflow',
         empty: {
-          content: '添加的审批流程配置会被列举在这里。您可以在这里管理所有审批流程配置，例如批量删除、修改等。',
-          buttonLabel: '添加审批流程配置'
+          content: 'Approval workflows you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add approval workflow'
         },
         tableHeader: {
-
-          name: '名称',
+          name: 'Name',
           tag: 'TAG'
         }
       },
       update: {
-        addTitle: '添加审批流程配置',
-        updateTitle: '编辑审批流程配置',
+        addTitle: 'Add approval workflow',
+        updateTitle: 'Edit approval workflow',
         entity: {
           appType: {
-            label: '场景',
+            label: 'Scenario',
             tips: '',
             placeholder: 'APP TYPE',
-            required: '请输入APP TYPE',
+            required: 'Enter an application type',
             custom: ''
           },
           name: {
-            label: '名称',
+            label: 'Name',
             tips: '',
-            placeholder: '名称',
-            required: '请输入名称',
+            placeholder: 'Name',
+            required: 'Enter a name',
             custom: ''
           },
           tag: {
             label: 'TAG',
             tips: '',
             placeholder: 'TAG',
-            required: '请输入TAG',
+            required: 'Enter a tag',
             custom: ''
           }
         }
@@ -428,68 +419,67 @@ export default {
     },
     config: {
       paging: {
-        title: '审批流程配置',
+        title: 'Approval workflow configuration',
         heading: '',
         subheading: '',
-        add: '添加审批流程配置',
+        add: 'Add approval workflow',
         empty: {
-          content: '添加的审批流程配置会被列举在这里。您可以在这里管理所有审批流程配置，例如批量删除、修改等。',
-          buttonLabel: '添加审批流程配置'
+          content: 'Approval workflows you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add approval workflow'
         },
         tableHeader: {
-          agentId: 'ID',
-          goodsId: '产品id',
-          goodsName: '产品id',
-          name: '名称',
-          serviceGoodsId: '系统产品ID',
+          agentId: 'Agent ID',
+          goodsId: 'Agent product ID',
+          goodsName: 'Agent product ID',
+          name: 'Name',
+          serviceGoodsId: 'System product ID',
           tag: 'TAG'
         }
       },
       update: {
-        addTitle: '添加审批流程配置',
-        updateTitle: '编辑审批流程配置',
+        addTitle: 'Add approval workflow',
+        updateTitle: 'Edit approval workflow',
         entity: {
-
           agentId: {
-            label: 'ID',
+            label: 'Agent ID',
             tips: '',
-            placeholder: 'ID',
-            required: '请输入ID',
+            placeholder: 'Agent ID',
+            required: 'Enter an agent ID',
             custom: ''
           },
           goodsId: {
-            label: '产品id',
+            label: 'Agent product ID',
             tips: '',
-            placeholder: '产品id',
-            required: '请输入产品id',
+            placeholder: 'Agent product ID',
+            required: 'Enter an agent product ID',
             custom: ''
           },
           goodsName: {
-            label: '产品id',
+            label: 'Agent product ID',
             tips: '',
-            placeholder: '产品id',
-            required: '请输入产品id',
+            placeholder: 'Agent product ID',
+            required: 'Enter an agent product ID',
             custom: ''
           },
           name: {
-            label: '名称',
+            label: 'Name',
             tips: '',
-            placeholder: '名称',
-            required: '请输入名称',
+            placeholder: 'Name',
+            required: 'Enter a name',
             custom: ''
           },
           serviceGoodsId: {
-            label: '系统产品ID',
+            label: 'System product ID',
             tips: '',
-            placeholder: '系统产品ID',
-            required: '请输入系统产品ID',
+            placeholder: 'System product ID',
+            required: 'Enter a system product ID',
             custom: ''
           },
           tag: {
             label: 'TAG',
             tips: '',
             placeholder: 'TAG',
-            required: '请输入TAG',
+            required: 'Enter a tag',
             custom: ''
           }
         }

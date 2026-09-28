@@ -1,273 +1,271 @@
 export default {
-  /**
-     * youtube
-     */
   videoPicker: {
-    placeholder: '请输入Youtube视频的分享链接'
+    placeholder: 'Enter a YouTube share link'
   },
   theme: {
     paging: {
-      title: '主题风格',
+      title: 'Themes',
       heading: '',
       subheading: '',
-      add: '添加主题',
+      add: 'Add theme',
       empty: {
-        content: '添加的主题会被列举在这里。您可以在这里管理所有主题，例如批量删除、修改等。',
-        buttonLabel: '添加主题'
+        content: 'Themes you add will appear here. You can edit, delete, and manage them in bulk.',
+        buttonLabel: 'Add theme'
       },
       tableHeader: {
-        author: '作者',
-        description: '主题介绍',
-        longImage: '主题长图',
-        mobileImage: '手机版截图',
-        name: '主题名称',
-        screenshot: '主题小图',
-        siteType: '模版类型',
-        sortIndex: '排序',
-        state: '状态',
-        synopsis: '主题简介',
-        updateTime: '更新时间',
-        version: '版本号'
+        author: 'Author',
+        description: 'Theme description',
+        longImage: 'Full-length theme screenshot',
+        mobileImage: 'Mobile screenshot',
+        name: 'Theme name',
+        screenshot: 'Theme thumbnail',
+        siteType: 'Template type',
+        sortIndex: 'Sort by',
+        state: 'Status',
+        synopsis: 'Theme summary',
+        updateTime: 'Updated at',
+        version: 'Version number'
       }
     },
     update: {
-      addTitle: '添加主题',
-      updateTitle: '编辑主题',
+      addTitle: 'Add theme',
+      updateTitle: 'Edit theme',
       entity: {
         author: {
-          label: '作者',
+          label: 'Author',
           tips: '',
-          placeholder: '作者',
-          required: '请输入作者',
+          placeholder: 'Author',
+          required: 'Enter an author',
           custom: ''
         },
         sourceType: {
-          label: '类型',
+          label: 'Type',
           option: [
             {
               id: 0,
-              label: '系统默认'
+              label: 'System default'
             },
             {
               id: 1,
-              label: '网站模版'
+              label: 'Website template'
             }
           ]
         },
         tagList: {
-          label: '主题分类',
+          label: 'Theme category',
           tips: '',
-          placeholder: '请选择主题分类',
-          required: '请选择主题分类',
+          placeholder: 'Select a theme category',
+          required: 'Select a theme category',
           custom: ''
         },
         demoUrl: {
-          label: '演示站URL',
+          label: 'Demo website URL',
           tips: '',
-          placeholder: '演示站URL',
-          required: '请输入演示站URL',
+          placeholder: 'Demo website URL',
+          required: 'Enter a demo website URL',
           custom: ''
         },
         description: {
-          label: '详情',
+          label: 'Details',
           tips: '',
-          placeholder: '详情',
-          required: '请输入详情',
+          placeholder: 'Details',
+          required: 'Enter details',
           custom: ''
         },
         longImage: {
-          label: '主题长图',
+          label: 'Full-length theme screenshot',
           tips: '',
-          placeholder: '主题长图',
-          required: '请输入主题长图',
+          placeholder: 'Full-length theme screenshot',
+          required: 'Enter a full-length theme screenshot',
           custom: ''
         },
         mobileImage: {
-          label: '手机版截图',
+          label: 'Mobile screenshot',
           tips: '',
-          placeholder: '手机版截图',
-          required: '请输入手机版截图',
+          placeholder: 'Mobile screenshot',
+          required: 'Enter a mobile screenshot',
           custom: ''
         },
         name: {
-          label: '主题名称',
+          label: 'Theme name',
           tips: '',
-          placeholder: '主题名称',
-          required: '请输入主题名称',
+          placeholder: 'Theme name',
+          required: 'Enter a theme name',
           custom: ''
         },
         screenshot: {
-          label: '主题小图',
+          label: 'Theme thumbnail',
           tips: '',
-          placeholder: '主题小图',
-          required: '请输入主题小图',
+          placeholder: 'Theme thumbnail',
+          required: 'Enter a theme thumbnail',
           custom: ''
         },
         siteId: {
-          label: '模版站Id',
+          label: 'Template website ID',
           tips: '',
-          placeholder: '模版站Id',
-          required: '请输入模版站Id',
+          placeholder: 'Template website ID',
+          required: 'Enter a template website ID',
           custom: ''
         },
         siteType: {
-          label: '模版类型',
+          label: 'Template type',
           tips: '',
-          placeholder: '请选择模版类型',
-          required: '请选择模版类型',
+          placeholder: 'Select a template type',
+          required: 'Select a template type',
           custom: ''
         },
         sortIndex: {
-          label: '排序',
+          label: 'Sort by',
           tips: '',
-          placeholder: '排序',
-          required: '请输入排序',
+          placeholder: 'Sort by',
+          required: 'Enter a sort order',
           custom: ''
         },
         state: {
-          label: '是否启用',
+          label: 'Enabled',
           tips: '',
-          placeholder: '是否启用',
-          required: '请输入是否启用',
+          placeholder: 'Enabled',
+          required: 'Specify whether it is enabled',
           custom: ''
         },
         synopsis: {
-          label: '简介',
+          label: 'Summary',
           tips: '',
-          placeholder: '主题简介',
-          required: '请输入主题简介',
+          placeholder: 'Theme summary',
+          required: 'Enter a theme summary',
           custom: ''
         },
         updateTime: {
-          label: '更新时间',
+          label: 'Updated at',
           tips: '',
-          placeholder: '更新时间',
-          required: '请输入更新时间',
+          placeholder: 'Updated at',
+          required: 'Enter an update time',
           custom: ''
         },
         version: {
-          label: '版本号',
+          label: 'Version number',
           tips: '',
-          placeholder: '版本号',
-          required: '请输入版本号',
+          placeholder: 'Version number',
+          required: 'Enter a version number',
           custom: ''
         }
       }
     },
     tag: {
-      title: '主题标签',
-      tips: '为主题模版归类',
+      title: 'Theme tags',
+      tips: 'Categorize theme templates',
       entity: {
         tagName: {
-          label: '标签名称',
+          label: 'Tag name',
           tips: '',
-          placeholder: '标签名称',
-          required: '请输入标签名称',
+          placeholder: 'Tag name',
+          required: 'Enter a tag name',
           custom: ''
         }
       }
     },
     sectionTag: {
-      title: '组件标签',
-      tips: '为功能组件（SECTION）归类',
+      title: 'Section tags',
+      tips: 'Categorize sections',
+      siteType: 'Website type',
       entity: {
         tagName: {
-          label: '标签名称',
+          label: 'Tag name',
           tips: '',
-          placeholder: '标签名称',
-          required: '请输入标签名称',
+          placeholder: 'Tag name',
+          required: 'Enter a tag name',
           custom: ''
         }
       }
     },
     page: {
       paging: {
-        title: '模板页面',
+        title: 'Template pages',
         heading: '',
         subheading: '',
-        add: '添加模板页面',
+        add: 'Add template page',
         empty: {
-          content: '添加的模板页面会被列举在这里。您可以在这里管理所有模板页面，例如批量删除、修改等。',
-          buttonLabel: '添加模板页面'
+          content: 'Template pages you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add template page'
         },
         tableHeader: {
-          addSection: '组件添加',
-          bindSection: '默认组件',
-          hasFloatMenu: '悬浮菜单',
-          hasFooter: '页脚',
-          hasHeader: '页头',
-          menuVisible: '菜单可见',
-          pageType: '页面类型',
-          siteType: '适用网站',
-          title: '页面名称',
+          addSection: 'Section additions',
+          bindSection: 'Default section',
+          hasFloatMenu: 'Floating menu',
+          hasFooter: 'Footer',
+          hasHeader: 'Header',
+          menuVisible: 'Menu visibility',
+          pageType: 'Page type',
+          siteType: 'Applicable website',
+          title: 'Page name',
           section: 'SECTION'
         }
       },
       update: {
-        addTitle: '添加模板页面',
-        updateTitle: '编辑模板页面',
+        addTitle: 'Add template page',
+        updateTitle: 'Edit template page',
         entity: {
           addSection: {
-            label: '添加组件',
+            label: 'Add section',
             tips: '',
-            placeholder: '添加组件',
-            required: '请输入添加组件',
+            placeholder: 'Add section',
+            required: 'Enter sections to add',
             custom: ''
           },
           bindSection: {
-            label: '默认组件',
+            label: 'Default section',
             tips: '',
-            placeholder: '默认组件',
-            required: '请输入默认组件',
+            placeholder: 'Default section',
+            required: 'Enter a default section',
             custom: ''
           },
           hasFloatMenu: {
-            label: '悬浮菜单',
+            label: 'Floating menu',
             tips: '',
-            placeholder: '悬浮菜单',
-            required: '请输入悬浮菜单',
+            placeholder: 'Floating menu',
+            required: 'Enter a floating menu',
             custom: ''
           },
           hasFooter: {
-            label: '页脚',
+            label: 'Footer',
             tips: '',
-            placeholder: '页脚',
-            required: '请输入页脚',
+            placeholder: 'Footer',
+            required: 'Enter a footer',
             custom: ''
           },
           hasHeader: {
-            label: '页头',
+            label: 'Header',
             tips: '',
-            placeholder: '页头',
-            required: '请输入页头',
+            placeholder: 'Header',
+            required: 'Enter a header',
             custom: ''
           },
           menuVisible: {
-            label: '菜单可见',
+            label: 'Menu visibility',
             tips: '',
-            placeholder: '菜单可见',
-            required: '请输入菜单可见',
+            placeholder: 'Menu visibility',
+            required: 'Enter menu visibility',
             custom: ''
           },
           pageType: {
-            label: '页面类型',
+            label: 'Page type',
             tips: '',
-            placeholder: '页面类型',
-            required: '请输入页面类型',
+            placeholder: 'Page type',
+            required: 'Enter a page type',
             custom: ''
           },
           siteType: {
-            label: '网站类型',
+            label: 'Website type',
             tips: '',
-            placeholder: '网站类型',
-            required: '请输入网站类型',
+            placeholder: 'Website type',
+            required: 'Enter a website type',
             custom: ''
           },
           title: {
-            label: '页面名称',
+            label: 'Page name',
             tips: '',
-            placeholder: '页面名称',
-            required: '请输入页面名称',
+            placeholder: 'Page name',
+            required: 'Enter a page name',
             custom: ''
           }
         }
@@ -275,256 +273,255 @@ export default {
     },
     section: {
       paging: {
-        title: '组件',
+        title: 'Sections',
         heading: '',
         subheading: '',
-        add: '添加组件',
+        add: 'Add section',
         empty: {
-          content: '添加的组件会被列举在这里。您可以在这里管理所有组件，例如批量删除、修改等。',
-          buttonLabel: '添加组件'
+          content: 'Sections you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add section'
         },
         tableHeader: {
-          author: '作者',
-          description: '组件介绍',
-          dynamic: '数据组件',
-          sectionGroup: '类型',
-          sectionImage: '示意图',
-          sectionIcon: 'SVG图标',
-          sectionName: 'Section名称',
-          sectionType: '组件类型',
-          updateTime: '更新时间',
+          author: 'Author',
+          description: 'Section description',
+          dynamic: 'Data component',
+          sectionGroup: 'Type',
+          sectionImage: 'Preview image',
+          sectionIcon: 'SVG icon',
+          sectionName: 'Section name',
+          sectionType: 'Section type',
+          updateTime: 'Updated at',
           tag: 'TAG',
-          salt: '盐值',
+          salt: 'Salt',
           sectionSchema: 'SCHEMA'
         }
       },
       update: {
-        addTitle: '添加组件',
-        updateTitle: '编辑组件',
+        addTitle: 'Add section',
+        updateTitle: 'Edit section',
         entity: {
           sectionIcon: {
-            label: '图标',
+            label: 'Icon',
             tips: '',
-            placeholder: '图标',
-            required: '请输入图标',
+            placeholder: 'Icon',
+            required: 'Enter an icon',
             custom: ''
           },
           state: {
-            label: '是否开放',
+            label: 'Available',
             tips: '',
-            placeholder: '是否开放',
-            required: '请输入是否开放',
+            placeholder: 'Available',
+            required: 'Specify whether it is available',
             custom: ''
           },
           salt: {
-            label: '盐值',
+            label: 'Salt',
             tips: '',
-            placeholder: '盐值',
-            required: '请输入盐值',
+            placeholder: 'Salt',
+            required: 'Enter a salt value',
             custom: ''
           },
           tag: {
             label: 'TAG',
             tips: '',
             placeholder: 'TAG',
-            required: '请选择TAG',
+            required: 'Select a tag',
             custom: ''
           },
           scriptCode: {
-            label: '脚本代码',
+            label: 'Script code',
             tips: '',
-            placeholder: '脚本代码\n请使用packed压缩',
-            required: '请输入脚本代码: https://tool.lu/js',
+            placeholder: 'Script code — use packed compression',
+            required: 'Enter script code: https://tool.lu/js',
             custom: ''
           },
           variableCss: {
-            label: '变量 CSS',
+            label: 'CSS variables',
             tips: '',
-            placeholder: '变量 CSS',
-            required: '请输入变量 CSS',
+            placeholder: 'CSS variables',
+            required: 'Enter CSS variables',
             custom: ''
           },
           ampCss: {
             label: 'AMP CSS',
             tips: '',
             placeholder: 'AMP CSS',
-            required: '请输入AMP CSS',
+            required: 'Enter AMP CSS',
             custom: ''
           },
           ampTemplate: {
-            label: 'AMP模板',
+            label: 'AMP template',
             tips: '',
-            placeholder: 'AMP模板',
-            required: '请输入AMP模板',
+            placeholder: 'AMP template',
+            required: 'Enter an AMP template',
             custom: ''
           },
           artTemplate: {
-            label: 'ART模板',
+            label: 'ART template',
             tips: '',
-            placeholder: 'ART模板',
-            required: '请输入ART模板',
+            placeholder: 'ART template',
+            required: 'Enter an ART template',
             custom: ''
           },
           author: {
-            label: '作者',
+            label: 'Author',
             tips: '',
-            placeholder: '作者',
-            required: '请输入作者',
+            placeholder: 'Author',
+            required: 'Enter an author',
             custom: ''
           },
           baseCss: {
-            label: '基础 CSS',
+            label: 'Base CSS',
             tips: '',
-            placeholder: '基础 CSS',
-            required: '请输入基础 CSS',
+            placeholder: 'Base CSS',
+            required: 'Enter base CSS',
             custom: ''
           },
           description: {
-            label: '组件介绍',
+            label: 'Section description',
             tips: '',
-            placeholder: '组件介绍',
-            required: '请输入组件介绍',
+            placeholder: 'Section description',
+            required: 'Enter a section description',
             custom: ''
           },
           dynamic: {
-            label: '数据组件',
+            label: 'Data component',
             tips: '',
-            placeholder: '数据组件',
-            required: '请输入数据组件',
+            placeholder: 'Data component',
+            required: 'Enter a data component',
             custom: ''
           },
           language: {
-            label: '语言包',
+            label: 'Language pack',
             tips: '',
-            placeholder: '语言包',
-            required: '请输入语言包',
+            placeholder: 'Language pack',
+            required: 'Enter a language pack',
             custom: ''
           },
           sectionData: {
-            label: '默认设置',
+            label: 'Default settings',
             tips: '',
-            placeholder: '默认设置',
-            required: '请输入默认设置',
+            placeholder: 'Default settings',
+            required: 'Enter default settings',
             custom: ''
           },
           sectionGroup: {
-            label: '类型',
+            label: 'Type',
             tips: '',
-            placeholder: '类型',
-            required: '请输入类型',
+            placeholder: 'Type',
+            required: 'Enter a type',
             custom: ''
           },
           sectionImage: {
-            label: '示意图',
+            label: 'Preview image',
             tips: '',
-            placeholder: '示意图',
-            required: '请输入示意图',
+            placeholder: 'Preview image',
+            required: 'Enter a preview image',
             custom: ''
           },
           sectionName: {
-            label: 'Section名称',
+            label: 'Section name',
             tips: '',
-            placeholder: 'Section名称',
-            required: '请输入Section名称',
+            placeholder: 'Section name',
+            required: 'Enter a section name',
             custom: ''
           },
           sectionSchema: {
             label: 'SCHEMA',
             tips: '',
             placeholder: 'SCHEMA',
-            required: '请输入SCHEMA',
+            required: 'Enter a schema',
             custom: ''
           },
           sectionType: {
-            label: '组件类型',
+            label: 'Section type',
             tips: '',
-            placeholder: '组件类型',
-            required: '请输入组件类型',
+            placeholder: 'Section type',
+            required: 'Enter a section type',
             custom: ''
           },
           thymeleafTemplate: {
-            label: 'Thymeleaf模板',
+            label: 'Thymeleaf template',
             tips: '',
-            placeholder: 'Thymeleaf模板',
-            required: '请输入Thymeleaf模板',
+            placeholder: 'Thymeleaf template',
+            required: 'Enter a Thymeleaf template',
             custom: ''
           },
           updateTime: {
-            label: '更新时间',
+            label: 'Updated at',
             tips: '',
-            placeholder: '更新时间',
-            required: '请输入更新时间',
+            placeholder: 'Updated at',
+            required: 'Enter an update time',
             custom: ''
           }
         }
       }
     },
     schema: {
-      title: '主题设置',
-      globalColorsSchema: '颜色',
-      globalFaviconSchema: '收藏图标',
-      globalGeneralSchema: '通用设置',
-      globalSocialSchema: '社交媒体',
-      globalTypographySchema: '字体',
+      title: 'Theme settings',
+      globalColorsSchema: 'Colors',
+      globalFaviconSchema: 'Favicon',
+      globalGeneralSchema: 'General settings',
+      globalSocialSchema: 'Social media',
+      globalTypographySchema: 'Typography',
       globalCss: {
-        label: '基础CSS',
+        label: 'Base CSS',
         tips: '',
-        placeholder: '基础CSS',
-        required: '请输入基础CSS',
+        placeholder: 'Base CSS',
+        required: 'Enter base CSS',
         custom: ''
       },
       globalLanguage: {
-        label: '基础语言包',
+        label: 'Base language pack',
         tips: '',
-        placeholder: '基础语言包',
-        required: '请输入基础语言包',
+        placeholder: 'Base language pack',
+        required: 'Enter a base language pack',
         custom: ''
       },
       pageLayout: {
-        label: '基础页面HTML',
+        label: 'Base page HTML',
         tips: '',
-        placeholder: '基础页面HTML',
-        required: '请输入内容',
+        placeholder: 'Base page HTML',
+        required: 'Enter content',
         custom: ''
       }
     },
     pageSection: {
       paging: {
-        title: '模板页面Section',
+        title: 'Template page sections',
         heading: '',
         subheading: '',
-        add: '添加模板页面Section',
+        add: 'Add template page section',
         empty: {
-          content: '添加的模板页面Section会被列举在这里。您可以在这里管理所有模板页面Section，例如批量删除、修改等。',
-          buttonLabel: '添加模板页面Section'
+          content: 'Template page sections you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add template page section'
         },
         tableHeader: {
-
-          pageId: '页面id',
-          pageType: '页面类型',
-          sectionData: '数据源',
+          pageId: 'Page ID',
+          pageType: 'Page type',
+          sectionData: 'Data source',
           sectionId: 'SECTION ID',
-          sectionType: '关联的模块',
-          sortIndex: '排序，越大越靠前',
-          visible: '0为可见，1为隐藏'
+          sectionType: 'Linked section',
+          sortIndex: 'Sort order (higher values appear first)',
+          visible: '0: Visible, 1: Hidden'
         }
       },
       update: {
-        addTitle: '添加模板页面Section',
-        updateTitle: '编辑模板页面Section',
+        addTitle: 'Add template page section',
+        updateTitle: 'Edit template page section',
         entity: {
           pageType: {
-            label: '页面类型',
+            label: 'Page type',
             tips: '',
-            placeholder: '页面类型',
-            required: '请输入页面类型',
+            placeholder: 'Page type',
+            required: 'Enter a page type',
             custom: ''
           },
           sortIndex: {
-            label: '排序，越大越靠前',
+            label: 'Sort order (higher values appear first)',
             tips: '',
-            placeholder: '排序，越大越靠前',
-            required: '请输入排序，越大越靠前',
+            placeholder: 'Sort order (higher values appear first)',
+            required: 'Enter a sort order; higher values appear first',
             custom: ''
           }
         }
@@ -533,7 +530,7 @@ export default {
   },
   pageType: [
     {
-      title: '首页',
+      title: 'Home',
       pageType: 'homePage',
       seoUrl: '/',
       addSection: 0,
@@ -542,11 +539,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '文章集合页',
+      title: 'Article collection page',
       pageType: 'articleCollectionPage',
       seoUrl: '/collection/article',
       addSection: 0,
@@ -555,7 +556,10 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0,
       params: {
         multiple: 0,
@@ -565,7 +569,7 @@ export default {
         removable: 0,
         name: {
           en: 'Standard',
-          'zh-CN': '基础'
+          'zh-CN': 'Basic'
         },
         placeholder: {
           en: '',
@@ -577,27 +581,27 @@ export default {
         },
         elements: [
           {
-            'type': 'slider',
-            'field': 'globalPageSize',
-            'default': 10,
-            'name': {
-              'en': 'Page size',
-              'zh-CN': '每页显示数量'
+            type: 'slider',
+            field: 'globalPageSize',
+            default: 10,
+            name: {
+              en: 'Page size',
+              'zh-CN': 'Items per page'
             },
-            'info': {
-              'en': '',
+            info: {
+              en: '',
               'zh-CN': ''
             },
-            'options': [],
-            'min': 4,
-            'max': 100,
-            'step': 1
+            options: [],
+            min: 4,
+            max: 100,
+            step: 1
           }
         ]
       }
     },
     {
-      title: '文章分页',
+      title: 'Article listing',
       pageType: 'articlePaginationPage',
       seoUrl: '/collection/{collectionId}',
       addSection: 0,
@@ -606,7 +610,10 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0,
       params: {
         multiple: 0,
@@ -616,7 +623,7 @@ export default {
         removable: 0,
         name: {
           en: 'Standard',
-          'zh-CN': '基础'
+          'zh-CN': 'Basic'
         },
         placeholder: {
           en: '',
@@ -628,27 +635,81 @@ export default {
         },
         elements: [
           {
-            'type': 'slider',
-            'field': 'globalPageSize',
-            'default': 10,
-            'name': {
-              'en': 'Page size',
-              'zh-CN': '每页显示数量'
+            type: 'slider',
+            field: 'globalPageSize',
+            default: 10,
+            name: {
+              en: 'Page size',
+              'zh-CN': 'Items per page'
             },
-            'info': {
-              'en': '',
+            info: {
+              en: '',
               'zh-CN': ''
             },
-            'options': [],
-            'min': 4,
-            'max': 100,
-            'step': 1
+            options: [],
+            min: 4,
+            max: 100,
+            step: 1
           }
         ]
       }
     },
     {
-      title: '文章详情页',
+      title: 'Author page',
+      pageType: 'articleColumnistPage',
+      seoUrl: '/writer/{id}',
+      addSection: 0,
+      bindSection: 0,
+      hasFloatMenu: 0,
+      hasFooter: 0,
+      hasHeader: 0,
+      menuVisible: 0,
+      siteType: [
+        3,
+        4
+      ],
+      dynamic: 0,
+      params: {
+        multiple: 0,
+        dataType: false,
+        subs: 1,
+        max: 0,
+        removable: 0,
+        name: {
+          en: 'Standard',
+          'zh-CN': 'Basic'
+        },
+        placeholder: {
+          en: '',
+          'zh-CN': ''
+        },
+        tips: {
+          en: '',
+          'zh-CN': ''
+        },
+        elements: [
+          {
+            type: 'slider',
+            field: 'globalPageSize',
+            default: 10,
+            name: {
+              en: 'Page size',
+              'zh-CN': 'Items per page'
+            },
+            info: {
+              en: '',
+              'zh-CN': ''
+            },
+            options: [],
+            min: 4,
+            max: 100,
+            step: 1
+          }
+        ]
+      }
+    },
+    {
+      title: 'Article detail page',
       pageType: 'articleDetailPage',
       seoUrl: '/item/{url}',
       addSection: 0,
@@ -657,11 +718,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '产品集合页',
+      title: 'Product collection page',
       pageType: 'productCollectionPage',
       seoUrl: '/collection',
       addSection: 0,
@@ -670,7 +734,10 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0,
       params: {
         multiple: 0,
@@ -680,7 +747,7 @@ export default {
         removable: 0,
         name: {
           en: 'Standard',
-          'zh-CN': '基础'
+          'zh-CN': 'Basic'
         },
         placeholder: {
           en: '',
@@ -692,27 +759,27 @@ export default {
         },
         elements: [
           {
-            'type': 'slider',
-            'field': 'globalPageSize',
-            'default': 10,
-            'name': {
-              'en': 'Page size',
-              'zh-CN': '每页显示数量'
+            type: 'slider',
+            field: 'globalPageSize',
+            default: 10,
+            name: {
+              en: 'Page size',
+              'zh-CN': 'Items per page'
             },
-            'info': {
-              'en': '',
+            info: {
+              en: '',
               'zh-CN': ''
             },
-            'options': [],
-            'min': 4,
-            'max': 100,
-            'step': 1
+            options: [],
+            min: 4,
+            max: 100,
+            step: 1
           }
         ]
       }
     },
     {
-      title: '产品分页',
+      title: 'Product listing',
       pageType: 'productPaginationPage',
       seoUrl: '/collection/{collectionId}}',
       addSection: 0,
@@ -721,7 +788,10 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0,
       params: {
         multiple: 0,
@@ -731,7 +801,7 @@ export default {
         removable: 0,
         name: {
           en: 'Standard',
-          'zh-CN': '基础'
+          'zh-CN': 'Basic'
         },
         placeholder: {
           en: '',
@@ -743,27 +813,27 @@ export default {
         },
         elements: [
           {
-            'type': 'slider',
-            'field': 'globalPageSize',
-            'default': 10,
-            'name': {
-              'en': 'Page size',
-              'zh-CN': '每页显示数量'
+            type: 'slider',
+            field: 'globalPageSize',
+            default: 10,
+            name: {
+              en: 'Page size',
+              'zh-CN': 'Items per page'
             },
-            'info': {
-              'en': '',
+            info: {
+              en: '',
               'zh-CN': ''
             },
-            'options': [],
-            'min': 4,
-            'max': 100,
-            'step': 1
+            options: [],
+            min: 4,
+            max: 100,
+            step: 1
           }
         ]
       }
     },
     {
-      title: '产品详情页',
+      title: 'Product detail page',
       pageType: 'productDetailPage',
       seoUrl: '/item/{url}',
       addSection: 0,
@@ -772,11 +842,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '下载分页',
+      title: 'Download listing',
       pageType: 'downloadPaginationPage',
       seoUrl: '/collection/download',
       addSection: 0,
@@ -785,7 +858,10 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0,
       params: {
         multiple: 0,
@@ -795,7 +871,7 @@ export default {
         removable: 0,
         name: {
           en: 'Standard',
-          'zh-CN': '基础'
+          'zh-CN': 'Basic'
         },
         placeholder: {
           en: '',
@@ -807,27 +883,27 @@ export default {
         },
         elements: [
           {
-            'type': 'slider',
-            'field': 'globalPageSize',
-            'default': 10,
-            'name': {
-              'en': 'Page size',
-              'zh-CN': '每页显示数量'
+            type: 'slider',
+            field: 'globalPageSize',
+            default: 10,
+            name: {
+              en: 'Page size',
+              'zh-CN': 'Items per page'
             },
-            'info': {
-              'en': '',
+            info: {
+              en: '',
               'zh-CN': ''
             },
-            'options': [],
-            'min': 4,
-            'max': 100,
-            'step': 1
+            options: [],
+            min: 4,
+            max: 100,
+            step: 1
           }
         ]
       }
     },
     {
-      title: 'TAG页',
+      title: 'Tag page',
       pageType: 'tagPage',
       seoUrl: '/tag',
       addSection: 0,
@@ -836,11 +912,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: 'TAG信息页',
+      title: 'Tag information page',
       pageType: 'tagPaginationPage',
       seoUrl: '/tag/{tagUrl}',
       addSection: 0,
@@ -849,7 +928,10 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
@@ -862,7 +944,10 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
@@ -875,11 +960,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '自定义页',
+      title: 'Custom page',
       pageType: 'customPage',
       seoUrl: '/page/{url}',
       addSection: 0,
@@ -888,11 +977,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '感谢页',
+      title: 'Thank-you page',
       pageType: 'thanksPage',
       seoUrl: '/thanks',
       addSection: 0,
@@ -901,11 +994,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '服务到期页',
+      title: 'Service expired page',
       pageType: 'outOfServicePage',
       seoUrl: '/out-of-service',
       addSection: 0,
@@ -914,11 +1011,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '法律条款页',
+      title: 'Legal terms page',
       pageType: 'legalPage',
       seoUrl: '/legal/{code}',
       addSection: 0,
@@ -927,11 +1028,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '通行证',
+      title: 'Authentication',
       pageType: 'passportPage',
       seoUrl: '/passport',
       addSection: 0,
@@ -940,11 +1045,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '修改密码',
+      title: 'Change password',
       pageType: 'changePasswordPage',
       seoUrl: '/passport/change-password',
       addSection: 0,
@@ -953,11 +1062,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '重置密码',
+      title: 'Reset password',
       pageType: 'resetPasswordPage',
       seoUrl: '/passport/reset-password',
       addSection: 0,
@@ -966,11 +1079,15 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '购物车',
+      title: 'Cart',
       pageType: 'shoppingCartPage',
       seoUrl: '/cart',
       addSection: 0,
@@ -979,11 +1096,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '结算',
+      title: 'Checkout',
       pageType: 'checkoutPage',
       seoUrl: '/checkout',
       addSection: 0,
@@ -992,11 +1112,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '收银台',
+      title: 'Payment',
       pageType: 'cashierPage',
       seoUrl: '/cashier',
       addSection: 0,
@@ -1005,11 +1128,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '支付结果',
+      title: 'Payment result',
       pageType: 'paymentResultPage',
       seoUrl: '/payment/{id}/{status}',
       addSection: 0,
@@ -1018,11 +1144,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '用户中心-首页',
+      title: 'Account – home',
       pageType: 'mineOverviewPage',
       seoUrl: '/mine/overview',
       addSection: 0,
@@ -1031,11 +1160,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '用户中心-订单',
+      title: 'Account – orders',
       pageType: 'mineOrderPage',
       seoUrl: '/mine/orders',
       addSection: 0,
@@ -1044,11 +1176,14 @@ export default {
       hasFooter: 0,
       hasHeader: 0,
       menuVisible: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '用户中心-订单详情',
+      title: 'Account – order details',
       pageType: 'mineOrderDetailPage',
       seoUrl: '/mine/orders/item/{id}',
       addSection: 0,
@@ -1056,11 +1191,14 @@ export default {
       hasFloatMenu: 0,
       hasFooter: 0,
       hasHeader: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '用户中心-询盘',
+      title: 'Account – enquiries',
       pageType: 'mineInquiryPage',
       seoUrl: '/mine/inquiry',
       addSection: 0,
@@ -1068,11 +1206,15 @@ export default {
       hasFloatMenu: 0,
       hasFooter: 0,
       hasHeader: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '用户中心-询盘详情',
+      title: 'Account – enquiry details',
       pageType: 'mineInquiryDetailPage',
       seoUrl: '/mine/inquiry/item/{id}',
       addSection: 0,
@@ -1080,11 +1222,15 @@ export default {
       hasFloatMenu: 0,
       hasFooter: 0,
       hasHeader: 0,
-      siteType: [2, 3, 4],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '用户中心-评论',
+      title: 'Account – reviews',
       pageType: 'mineCommentPage',
       seoUrl: '/mine/comment',
       addSection: 0,
@@ -1092,11 +1238,14 @@ export default {
       hasFloatMenu: 0,
       hasFooter: 0,
       hasHeader: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '用户中心-收藏',
+      title: 'Account – favorites',
       pageType: 'mineCollectPage',
       seoUrl: '/mine/collect',
       addSection: 0,
@@ -1104,11 +1253,14 @@ export default {
       hasFloatMenu: 0,
       hasFooter: 0,
       hasHeader: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     },
     {
-      title: '用户中心-优惠券',
+      title: 'Account – coupons',
       pageType: 'mineCouponPage',
       seoUrl: '/mine/coupon',
       addSection: 0,
@@ -1116,25 +1268,28 @@ export default {
       hasFloatMenu: 0,
       hasFooter: 0,
       hasHeader: 0,
-      siteType: [3, 4],
+      siteType: [
+        3,
+        4
+      ],
       dynamic: 0
     }
   ],
   globalSection: [
     {
-      title: '网站页头',
+      title: 'Website header',
       sectionType: 'header',
       sectionGroup: 2000,
       icon: '<svg t="1625644302660" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21364"><path d="M893.3960565 471.27278826H145.65042881v-209.36877569h747.74562769v209.36877569zM310.1544667 763.72607303V680.64156396h83.09946409v83.08450909H310.1544667z m333.99304722 2e-8V680.64156396h83.0994641v83.08450909H644.14751392z m-86.38954473 0H474.65850511V680.64156396h83.09946408v83.08450909z m333.99304722-232.63363474V614.1919024H808.65155232V531.09243833h83.0994641z m-83.09946409 149.54912565h83.09946409V763.74102802H808.65155232V680.64156396z m-579.90165942-149.54912565V614.1919024H145.65042881V531.09243833h83.09946409zM145.65042881 680.64156396h83.09946409V763.74102802H145.65042881V680.64156396z" p-id="21365"></path></svg>'
     },
     {
-      title: '网站页脚',
+      title: 'Website footer',
       sectionType: 'footer',
       sectionGroup: 2000,
       icon: '<svg t="1625644315079" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21491"><path d="M130.6039435 552.72721174L878.34957119 552.72721174l0 209.36877569-747.74562769 0 0-209.36877569zM713.8455333 260.27392697L713.84553329 343.35843604l-83.09946408 0 0-83.08450909L713.84553329 260.27392695z m-333.99304721-2e-8L379.85248608 343.35843603l-83.0994641 1e-8 0-83.08450909L379.85248609 260.27392695z m86.38954472 0L549.34149489 260.27392695 549.34149489 343.35843604l-83.09946408 0 0-83.08450909z m-333.99304722 232.63363474L132.24898358 409.8080976 215.34844768 409.80809761 215.34844768 492.90756167l-83.0994641 0z m83.09946409-149.54912565l-83.09946409 0L132.24898359 260.25897198 215.34844768 260.25897198 215.34844768 343.35843604z m579.90165942 149.54912565L795.2501071 409.8080976 878.34957119 409.8080976 878.34957119 492.90756167l-83.09946409 0zM878.34957119 343.35843604l-83.09946409 0L795.2501071 260.25897198 878.34957119 260.25897198 878.34957119 343.35843604z" p-id="21492"></path></svg>'
     },
     {
-      title: '悬浮菜单',
+      title: 'Floating menu',
       sectionType: 'floatMenu',
       sectionGroup: 2000,
       icon: '<svg t="1625644279731" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21237"><path d="M552.727 893.396L552.727 145.65 762.096 145.65l0 747.746-209.369 0zM260.27399999 310.154l83.08400001 0 0 83.1-83.084 0-1e-8-83.1z m1e-8 333.994l83.084 0 0 83.099-83.084 0 0-83.1z m0-86.39l0-83.1 83.084 0 0 83.1-83.084 0z m232.634 333.993l-83.1 0 0-83.1 83.1 0 0 83.1z m-149.55-83.1l0 83.1-83.099 0 0-83.1 83.1 0zM492.90799999 228.75l-83.09999999 0 0-83.1 83.1 0-1e-8 83.1z m-149.54999999-83.1l0 83.1-83.099 0 0-83.1 83.1 0z" p-id="21238"></path></svg>'

@@ -1,355 +1,422 @@
 export default {
   startup: {
-    title: 'Startup',
-    pageTitle: 'Create a site',
-    returnHome: 'Return to Home',
-    mySites: 'My Sites',
+    title: 'Get started',
+    pageTitle: 'Create website',
+    returnHome: 'Back to home',
+    mySites: 'My websites',
     nextStep: 'Next',
-    prevStep: 'Prev',
-    create: 'Submit',
-    chooseTemplate: 'Select Template',
+    prevStep: 'Previous',
+    create: 'Create website',
+    chooseTemplate: 'Select template',
     siteTheme: 'Website template',
     all: 'All',
     preview: 'Preview',
-    original: 'Set default URL',
-    empty: 'Please select a template',
+    original: 'Set the initial address',
+    empty: 'Select a template',
     selected: 'Select',
     skip: 'Skip',
     siteType: {
-      heading: 'Please select a site type',
+      heading: 'Select a website type',
       cod: {
-        heading: 'B2C Single page',
-        subheading: 'Applicable to <b>Similar COD product single page</b> business type',
-        tips: 'The site will automatically generate a page based on the items you add. You can edit and modify these page, and your visitors can place orders directly through this page'
+        heading: 'Product landing page',
+        subheading: 'Suitable for <b>single-product campaigns, such as cash on delivery (COD)</b>',
+        tips: 'A landing page is generated for each product you add. You can edit these pages, and visitors can place orders directly from them.'
       },
       lp: {
-        heading: 'B2B Single page',
-        subheading: 'Suitable for <b>Single Page Impressions (Landing Pages) and Inquiry </b> business types',
-        tips: 'You can create and edit multiple independent single pages on the site, and your visitors can directly submit forms such as registration and inquiry through this single page'
+        heading: 'B2B landing page',
+        subheading: 'Suitable for <b>landing pages and enquiry generation</b>',
+        tips: 'Create and edit multiple standalone pages. Visitors can submit registrations, enquiries, and other forms directly from these pages.'
       },
       b2b: {
-        heading: 'B2B Official website',
-        subheading: 'Suitable for <b>Official website and Inquiry </b> business types',
-        tips: 'You can create the official website of the enterprise and edit the entire website. Your visitors can browse the enterprise introduction, products, news and other content and make inquiries'
+        heading: 'B2B business website',
+        subheading: 'Suitable for <b>company websites and enquiries</b>',
+        tips: 'Create and customize your company website. Visitors can browse company information, products, and news, and submit enquiries.'
       },
       b2c: {
-        heading: 'B2C Shop',
-        subheading: 'Suitable Business Types for Selling Online',
-        tips: 'No matter what kind of consumers your products are aimed at and which corner of the world they are sold to, we can help you realize them one by one, from "store", online transactions, social media, to point-to-point personal marketing。'
+        heading: 'B2C online store',
+        subheading: 'Suitable for <b>online sales</b>',
+        tips: 'Reach customers anywhere in the world through online stores, transactions, social media, and personalized marketing.'
       }
     },
-    initial: 'Default',
+    initial: 'Blank theme',
     tips: [
-      'After a website is created, the original address <label class="text-primary"> cannot be modified </label>. Exercise caution when setting this parameter\n',
-      'Your customers can view your website and pages by visiting this address in their browser\n',
-      'You can then add your own domain name and set it as the site\'s main domain name\n'
+      'The original address <label class="text-primary">cannot be changed</label> after the website is created. Choose it carefully.',
+      'Customers can visit this address in their browser to view your website and pages',
+      'You can connect your own domain later and set it as the primary domain'
     ],
     entity: {
       domain: {
-        label: 'URL',
-        placeholder: 'Please enter a URL',
-        custom: 'URL cannot be empty',
-        required: 'The URL is a string of 4 ~ 32 characters, including digits and hyphens (-)',
-        async: 'URL already exists'
+        label: 'Website address',
+        placeholder: 'Enter a website address',
+        custom: 'Website address is required',
+        required: 'Use 4–32 letters, numbers, or hyphens for the website address',
+        async: 'This website address is already in use. Choose another.'
       },
       siteName: {
-        label: 'Site name',
-        placeholder: 'Please enter a site name',
-        required: '',
+        label: 'Website name',
+        placeholder: 'Enter a website name',
+        required: 'Website name is required',
         custom: ''
       },
       langCode: {
         label: 'Default language',
-        placeholder: 'Please select the default language',
-        required: '',
+        placeholder: 'Select a default language',
+        required: 'Default language is required',
         custom: ''
       }
     },
-    success: 'The program is being processed. It is expected to be completed within 5 minutes. Please check later',
+    success: 'Your request is being processed and should finish within 5 minutes. Check back shortly.',
     clone: {
-      pageTitle: '复制站点',
-      source: '来源网站',
-      tips: '复制以上网站的全部设置，以创建一个新的站点',
-      siteName: '网站名称',
-      siteDomain: '网站域名',
-      siteType: '网站类型',
-      submit: '复制站点',
-      error: '原网站信息不存在',
-      success: '复制程序处理中，预计5分内钟内处理完成，请稍后查看'
+      pageTitle: 'Duplicate website',
+      source: 'Source website',
+      tips: 'Copy all settings from the website above to create a new website',
+      siteName: 'Website name',
+      siteDomain: 'Website domain',
+      siteType: 'Website type',
+      submit: 'Duplicate website',
+      error: 'Source website information not found',
+      success: 'The website is being copied and should be ready within 5 minutes. Check back shortly.'
     }
   },
-  /**
-   * 站点导航菜单
-   */
   siteAside: {
     menu: {
-      'home': '首页',
-      'enquiry': '询盘管理',
-      'ranking': '排名管理',
-      'site-dashboard': '网站数据',
-      'site-product-root': '商品',
-      'site-product': '全部商品',
-      'site-product-collection': '商品集合',
-      'site-article-root': '文章',
-      'site-article': '全部文章',
+      home: 'Home',
+      enquiry: 'Enquiry management',
+      ranking: 'Rank tracking',
+      'site-dashboard': 'Website data',
+      'site-product-root': 'Product',
+      'site-product': 'All products',
+      'site-product-collection': 'Product collections',
+      'site-article-root': 'Article',
+      'site-article': 'All articles',
       'site-tag': 'TAG',
-      'site-article-collection': '文章集合',
-      'site-customer': '客户',
-      'site-setting-root': '网站设置',
-      'site-theme': '主题',
-      'site-settings': '通用',
-      'site-legal': '法律政策',
-      'site-navigation': '导航菜单',
-      'site-domain': '域名绑定',
-      'site-pages': '自定义页面',
-      'site-tracking': '追踪与分析',
-      'site-enquiry': '我的询盘',
-      'enquiry-form': '询盘表单',
-      'enquiry-email': '询盘邮件',
-      'site-seo': '页面SEO',
-      'site-down-root': '下载',
-      'site-content': '内容',
-      'site-down': '全部下载',
-      'site-down-collection': '下载集合',
-      'site-order': '订单',
-      'plugs': '应用市场',
-      'seo_plug': 'SEO API'
+      'site-article-collection': 'Article collections',
+      'site-customer': 'Customers',
+      'site-setting-root': 'Website settings',
+      'site-theme': 'Theme',
+      'site-settings': 'General',
+      'site-legal': 'Legal policies',
+      'site-navigation': 'Navigation menus',
+      'site-domain': 'Domain connections',
+      'site-pages': 'Custom pages',
+      'site-tracking': 'Tracking & analytics',
+      'site-enquiry': 'My enquiries',
+      'enquiry-form': 'Enquiry forms',
+      'enquiry-email': 'Enquiry emails',
+      'site-seo': 'Page SEO',
+      'site-down-root': 'Download',
+      'site-content': 'Content',
+      'site-down': 'All downloads',
+      'site-down-collection': 'Download collections',
+      'site-order': 'Orders',
+      plugs: 'App marketplace',
+      seo_plug: 'SEO API'
     },
     aside: {
-      builder: '网站设置',
-      mainMenu: '主菜单',
-      admin: '管理网站',
-      mySites: '我的网站',
-      tips: '商品、文章、下载、表单、界面排版及有任何内容更新时，点此发布网站更新。请不要频繁点击'
+      builder: 'Website settings',
+      mainMenu: 'Main menu',
+      admin: 'Manage website',
+      mySites: 'My websites',
+      tips: 'Click here to publish changes to products, articles, downloads, forms, layouts, or other website content. Avoid clicking repeatedly.'
     }
   },
   siteStatus: {
-    '0': 'Enable',
-    '1': 'Deactivate',
-    '2': 'Frozen'
+    0: 'Enable',
+    1: 'Disable',
+    2: 'Frozen'
   },
-  /**
-   * 站点类型
-   */
   siteType: {
-    '1': '商品单页',
-    '2': '企业单页',
-    '3': 'B2B',
-    '4': 'Mall',
-    '11': 'Video B2B',
-    '12': 'Video B2C'
+    1: 'Product landing page',
+    2: 'Business landing page',
+    3: 'Business website',
+    4: 'Online store',
+    11: 'Video B2B',
+    12: 'Video B2C'
   },
   site: {
-    title: '网站管理',
+    title: 'Website management',
     pass: {
-      title: '下载密码',
-      setPass: '下载密码',
-      content: '"通用下载密码" 用于产品附件、文章附件等通用附件下载（有设置为需要密码时）',
+      title: 'Download password',
+      setPass: 'Set download password >',
+      content: 'The shared download password protects product, article, and other attachments marked as requiring a password',
       downPass: {
-        label: '下载密码',
+        label: 'Download password',
         tips: '',
-        placeholder: '下载密码',
-        required: '密码为英文和数字的组合',
-        custom: '4 ~ 10 英文和数字的组合'
+        placeholder: 'Download password',
+        required: 'Use a combination of letters and numbers',
+        custom: '4–10 letters and numbers'
       }
     },
     dashboard: {
-      title: 'My site',
-      createNew: 'New',
-      editButton: 'Manage site',
+      title: 'My websites',
+      createNew: 'Add website',
+      editButton: 'Manage website',
       subscription: 'Renew',
-      clone: 'Duplicate',
+      clone: 'Duplicate website',
       expired: 'Expired',
       trial: {
-        label: 'extended trial period',
-        tips: 'Unpaid sites can extend the trial time up to 5 times at a time, each time adding 7 days. Clicking "Extend Trial" consecutively will not add up to the time. But it will consume 1 operation times, please don\'t click continuously.',
-        keep: 'You can only keep one trial site, and you can create a new trial site for a fee.'
+        label: 'Extend trial',
+        tips: 'Unpaid websites can extend their trial up to 5 times, for 7 days each time. Repeated clicks do not add more days, but each click uses one extension. Do not click repeatedly.',
+        keep: 'You can have only one trial website at a time. Upgrade it to a paid plan before creating another trial website.'
       },
       remove: {
-        label: 'Remove',
-        tips: 'Deleting the website will completely delete all the data you uploaded: products, articles, forms, website decoration, etc., and the data cannot be recovered. '
+        label: 'Delete website',
+        tips: 'Deleting this website permanently removes all products, articles, forms, designs, and other data. This cannot be undone. Continue?'
       },
       paging: {
-        administrationButton: '管理网站',
-        addButton: '添加网站',
-        addLanguage: '添加语言',
-        endTime: '到期时间',
-        onLineTime: '上线时间',
-        setSite: '设计网站'
+        administrationButton: 'Manage website',
+        addButton: 'Add website',
+        addLanguage: 'Add language',
+        endTime: 'Expires at',
+        onLineTime: 'Published at',
+        setSite: 'Design website'
       },
       statistics: {
-        languageType: 'Multilingual',
-        products: 'Products',
-        articles: 'Articles',
-        inquiry: 'Inquiries',
+        languageType: 'Language versions',
+        products: 'Product count',
+        articles: 'Article count',
+        inquiry: 'Enquiries',
         online: 'Online',
         usable: 'Usable'
       },
       tableHeader: {
-        languageName: 'Language',
+        languageName: 'Language name',
         nativeName: 'Native language',
-        onlineTime: 'Online time',
-        state: 'State'
+        onlineTime: 'Published at',
+        state: 'Status'
       },
       state: {
         stop: 'Disable',
         enable: 'Enable'
       },
       language: {
-        heading: 'Tips',
+        heading: 'Notice',
         translate: 'Translate and save',
         clone: 'Copy data only',
-        tips: 'The content is provided by the translation tool. If you need more accurate translation, please go to this site to edit the sub-language site. There is no such product.'
+        tips: 'Translations are generated automatically. For greater accuracy, edit the content on the target language website. Related data is synced only if the product does not already exist; existing data is not overwritten.'
       }
     },
     resource: {
       paging: {
-        title: '下载中心',
+        title: 'Downloads',
         heading: '',
         subheading: '',
-        addCollection: '添加集合',
-        addButton: '添加下载资源',
+        addCollection: 'Add collection',
+        addButton: 'Add download resource',
         empty: {
-          content: '添加的下载资源会被列举在这里。您可以在这里管理所有下载资源，例如批量删除、修改等。',
-          buttonLabel: '添加下载资源'
+          content: 'Download resources you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add download resource'
         },
         tableHeader: {
-          coverImage: '封面图片',
-          createTime: '上传时间',
-          title: '文件名称',
-          url: '文件地址',
-          visit: '查看文件',
-          suffix: '后缀'
+          coverImage: 'Cover image',
+          createTime: 'Uploaded at',
+          title: 'File name',
+          url: 'File URL',
+          visit: 'View file',
+          suffix: 'File extension'
         }
       },
       update: {
-        addTitle: '添加下载',
-        updateTitle: '编辑下载',
+        addTitle: 'Add download',
+        updateTitle: 'Edit download',
         entity: {
           coverImage: {
-            label: '封面图片',
+            label: 'Cover image',
             tips: '',
-            placeholder: '封面图片',
-            required: '请输入封面图片',
+            placeholder: 'Cover image',
+            required: 'Enter a cover image',
             custom: ''
           },
           title: {
-            label: '文件名称',
+            label: 'File name',
             tips: '',
-            placeholder: '文件名称',
-            required: '请输入文件名称',
+            placeholder: 'File name',
+            required: 'Enter a file name',
             custom: ''
           },
           url: {
-            label: '文件地址',
+            label: 'File URL',
             tips: '',
-            placeholder: '文件地址',
-            required: '请输入文件地址',
+            placeholder: 'File URL',
+            required: 'Enter a file URL',
             custom: ''
           },
           description: {
-            label: '简要介绍',
+            label: 'Brief introduction',
             tips: '',
-            placeholder: '简要介绍',
-            required: '请输入简要介绍',
+            placeholder: 'Brief introduction',
+            required: 'Enter a brief introduction',
             custom: ''
           }
         }
       }
     },
     down: {
-      /**
-       * 上传附件
-       */
       fileUpload: {
-        label: '下载中心',
-        remove: '移除',
-        placeholder: '上传文件',
-        maxSize: '文件最大 {size} MB',
-        drag: '将文件拖到此处，或',
-        fileName: '文件名称',
-        content: '资源介绍'
+        label: 'Downloads',
+        remove: 'Remove',
+        placeholder: 'Upload file',
+        maxSize: 'Maximum file size: {size} MB',
+        drag: 'Drop files here, or',
+        fileName: 'File name',
+        content: 'Resource description'
       },
       update: {
         collection: {
-          label: '下载集合',
-          placeholder: '输入集合名称',
-          exist: '该集合已被添加',
-          add: '添加集合',
-          manage: '管理集合',
-          loadingText: '加载中',
-          noMatchText: '无匹配数据',
-          noDataText: '无数据'
+          label: 'Download collections',
+          placeholder: 'Enter a collection name',
+          exist: 'This collection has already been added',
+          add: 'Add collection',
+          manage: 'Manage collections',
+          loadingText: 'Loading',
+          noMatchText: 'No matches found',
+          noDataText: 'No data'
         }
       },
-      /**
-       * 集合多选器
-       */
       multipleSelector: {
-        heading: '添加集合',
-        subheading: '将选中的资源添加以下集合',
-        placeholder: '输入集合名称',
-        loadingText: '加载中',
-        noMatchText: '无匹配数据',
-        noDataText: '无数据'
+        heading: 'Add collection',
+        subheading: 'Add the selected resources to the following collections',
+        placeholder: 'Enter a collection name',
+        loadingText: 'Loading',
+        noMatchText: 'No matches found',
+        noDataText: 'No data'
       }
     },
     theme: {
       current: {
-        heading: '默认主题',
-        subheading: '当前用户访问您的网站时，他们看到的是这个主题'
+        heading: 'Default theme',
+        subheading: 'Visitors currently see this theme on your website'
       },
-      design: 'Design',
-      preview: 'Visit',
-      active: 'Using',
-      edit: 'Manage',
+      design: 'Design page',
+      preview: 'View website',
+      active: 'In use',
+      edit: 'Content management',
       get: 'Add theme',
       owned: {
-        heading: 'Theme',
-        subheading: 'Manage all themes for this site. You can add or modify more themes, and choose one to publish as the current theme.'
+        heading: 'My themes',
+        subheading: 'Manage all themes for this website. Add or edit themes, then publish one as the active theme.'
       },
       publish: {
-        title: 'Publish',
-        content: 'Publishing your website will bring all unpublished content online where your visitors will see it. Are you sure ?',
+        title: 'Publish website',
+        content: 'Publishing makes all unpublished changes visible to visitors. Publish now?',
         success: 'Published successfully'
       },
       rename: {
         title: 'Rename',
-        content: 'Modify the name. Your visitors won\'t see this part.',
-        placeholder: 'Please enter a name',
-        error: 'Limit 32 characters'
+        content: "Change this theme's name. Visitors will not see it.",
+        placeholder: 'Enter a theme name',
+        error: 'Theme names must not exceed 32 characters'
       },
       duplicate: {
-        title: '复制主题',
-        content: '复制此主题的内容，并以此创建一个新的主题'
+        title: 'Duplicate theme',
+        content: "Copy this theme's content to create a new theme"
       },
       paging: {
-        title: '主题',
+        title: 'Theme',
         empty: {
-          content: '添加的网站主题会被列举在这里。您可以在这里管理所有网站主题，例如批量删除、修改等。',
-          buttonLabel: '添加网站主题'
+          content: 'Website themes you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add website theme'
         },
         tableHeader: {
-          name: 'Name',
+          name: 'Theme name',
           state: 'Default',
           version: 'Version'
         }
       }
     },
     lang: {
-      title: '网站多语言'
+      title: 'Website languages'
     },
     statement: {
-      title: '数据报表'
+      title: 'Reports'
+    },
+    cloudflare: {
+      title: 'Cloudflare configuration',
+      add: 'Add Cloudflare configuration',
+      edit: 'Edit Cloudflare configuration',
+      addTitle: 'Add Cloudflare configuration',
+      updateTitle: 'Edit Cloudflare configuration',
+      empty: {
+        content: 'Cloudflare configurations you add will appear here. You can edit, delete, and manage them in bulk.',
+        buttonLabel: 'Add Cloudflare configuration'
+      },
+      tableHeader: {
+        accountId: 'Cloudflare account ID',
+        domain: 'Domain',
+        email: 'Cloudflare account email',
+        globalApiKey: 'Global API Key',
+        siteId: 'Website ID',
+        state: 'State',
+        updateTime: 'Modified at',
+        zoneId: 'Cloudflare Zone ID'
+      },
+      entity: {
+        accountId: {
+          label: 'Cloudflare account ID',
+          tips: '',
+          placeholder: 'Cloudflare account ID',
+          required: 'Enter a Cloudflare account ID',
+          custom: ''
+        },
+        domain: {
+          label: 'Domain',
+          tips: '',
+          placeholder: 'Domain',
+          required: 'Enter a domain',
+          custom: ''
+        },
+        email: {
+          label: 'Cloudflare account email',
+          tips: '',
+          placeholder: 'Cloudflare account email',
+          required: 'Enter a Cloudflare account email',
+          custom: ''
+        },
+        globalApiKey: {
+          label: 'Global API Key',
+          tips: '',
+          placeholder: 'Global API Key',
+          required: 'Please enter Global API Key',
+          custom: ''
+        },
+        siteId: {
+          label: 'Website ID',
+          tips: '',
+          placeholder: 'Website ID',
+          required: 'Enter a website ID',
+          custom: ''
+        },
+        state: {
+          label: 'State',
+          tips: '',
+          placeholder: 'State',
+          required: 'Please enter State',
+          custom: ''
+        },
+        updateTime: {
+          label: 'Modified at',
+          tips: '',
+          placeholder: 'Modified at',
+          required: 'Enter a modification time',
+          custom: ''
+        },
+        zoneId: {
+          label: 'Cloudflare Zone ID',
+          tips: '',
+          placeholder: 'Cloudflare Zone ID',
+          required: 'Please enter Cloudflare Zone ID',
+          custom: ''
+        }
+      }
     }
   },
   resourceSelector: {
-    heading: '资源选择器',
-    lib: '图库',
+    heading: 'Resource picker',
+    lib: 'Image library',
     infoType: {
-      article: '文章',
-      goods: '产品',
-      design: '资源'
+      article: 'Article',
+      goods: 'Product',
+      design: 'Resources'
     }
   }
 }

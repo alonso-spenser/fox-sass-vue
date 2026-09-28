@@ -1,228 +1,352 @@
 export default {
   menuList: [
     {
-      title: 'Dashboard',
-      abbr: 'Dashboard',
+      title: 'Home',
+      abbr: 'Home',
       submenu: [],
       icon: 'fo-ico-home',
-      code: ['dashboard-startup'],
+      code: [
+        'dashboard-startup'
+      ],
       url: '/dashboard',
-      siteType: [2, 3, 4]
+      siteType: [
+        2,
+        3,
+        4
+      ]
     },
     {
-      title: 'Enquiries',
-      abbr: '询盘',
+      title: 'Enquiry management',
+      abbr: 'Enquiry',
       icon: '',
       url: '/site/:siteId:/enquiry',
-      code: ['site-enquiry-record'],
-      siteType: [2, 3, 4],
+      code: [
+        'site-enquiry-record'
+      ],
+      siteType: [
+        2,
+        3,
+        4
+      ],
       submenu: [
         {
-          title: 'Inquiry',
+          title: 'My enquiries',
           icon: 'fo-ico-message',
-          code: ['site-enquiry-record'],
+          code: [
+            'site-enquiry-record'
+          ],
           url: '/site/:siteId:/enquiry',
-          siteType: [2, 3, 4]
+          siteType: [
+            2,
+            3,
+            4
+          ]
         },
         {
-          title: 'Form',
+          title: 'Enquiry forms',
           icon: 'fo-ico-info',
-          code: ['site-enquiry-form'],
+          code: [
+            'site-enquiry-form'
+          ],
           url: '/site/:siteId:/enquiry/form',
-          siteType: [2, 3, 4]
+          siteType: [
+            2,
+            3,
+            4
+          ]
         },
         {
-          title: 'Recipients',
+          title: 'Recipient email addresses',
           icon: 'fo-ico-email',
-          code: ['site-enquiry-email'],
+          code: [
+            'site-enquiry-email'
+          ],
           url: '/site/:siteId:/enquiry/email',
-          siteType: [2, 3, 4]
+          siteType: [
+            2,
+            3,
+            4
+          ]
         }
       ]
     },
     {
-      title: 'Data board',
-      abbr: '数据',
+      title: 'Analytics dashboard',
+      abbr: 'Data',
       submenu: [],
       icon: 'fo-ico-pie',
-      code: ['site-analytics'],
+      code: [
+        'site-analytics'
+      ],
       url: '/site/:siteId:/analytics',
-      siteType: [2, 3, 4]
+      siteType: [
+        2,
+        3,
+        4
+      ]
     },
-    // {
-    //   title: 'Ranking',
-    //   abbr: '排名',
-    //   submenu: [],
-    //   code: ['site-ranking'],
-    //   icon: 'fo-ico-line-chart',
-    //   url: '/site/:siteId:/ranking',
-    //   siteType: []
-    // },
     {
-      title: 'SEO',
+      title: 'SEO settings',
       abbr: 'SEO',
       submenu: [],
       icon: 'fo-ico-sorting',
-      code: ['site-optimize'],
+      code: [
+        'site-optimize'
+      ],
       url: '/site/:siteId:/optimize',
-      siteType: [2, 3, 4]
+      siteType: [
+        2,
+        3,
+        4
+      ]
     },
     {
-      title: 'Client',
-      abbr: '客户',
+      title: 'Customer management',
+      abbr: 'Customers',
       submenu: [],
       icon: 'fo-ico-smile',
-      code: ['site-client'],
+      code: [
+        'site-client'
+      ],
       url: '/site/:siteId:/client',
-      siteType: [2, 3, 4]
+      siteType: [
+        2,
+        3,
+        4
+      ]
     },
     {
-      title: 'Content',
-      abbr: '网站',
+      title: 'Website management',
+      abbr: 'Websites',
       icon: 'fo-ico-wangzhanshezhi',
       url: '/site/:siteId:/dashboard',
-      siteType: [2, 3, 4],
-      code: ['site'],
+      siteType: [
+        2,
+        3,
+        4
+      ],
+      code: [
+        'site'
+      ],
       submenu: [
         {
-          title: 'My site',
+          title: 'My websites',
           icon: 'fo-ico-english',
-          code: ['dashboard-site'],
+          code: [
+            'dashboard-site'
+          ],
           url: '/owned',
-          siteType: [2, 3, 4]
+          siteType: [
+            2,
+            3,
+            4
+          ]
         },
         {
-          title: 'Product collection',
+          title: 'Product collections',
           abbr: 'Product',
           submenu: [],
           icon: 'fo-ico-package',
-          code: ['site-article-collection'],
+          code: [
+            'site-article-collection'
+          ],
           url: '/site/:siteId:/goods/collection',
-          siteType: [3, 4]
+          siteType: [
+            3,
+            4
+          ]
         },
         {
-          title: 'Products',
+          title: 'All products',
           icon: 'fo-ico-app',
-          code: ['site-goods'],
+          code: [
+            'site-goods'
+          ],
           url: '/site/:siteId:/goods',
-          siteType: [3, 4]
+          siteType: [
+            3,
+            4
+          ]
         },
         {
-          title: 'Article collection',
+          title: 'Article collections',
           abbr: 'Article',
           submenu: [],
-          code: ['site-article-collection'],
+          code: [
+            'site-article-collection'
+          ],
           icon: 'fo-ico-package',
           url: '/site/:siteId:/article/collection',
-          siteType: [3, 4]
+          siteType: [
+            3,
+            4
+          ]
         },
         {
-          title: 'Articles',
-          abbr: 'Articles',
+          title: 'All articles',
+          abbr: 'Article',
           submenu: [],
-          code: ['site-article'],
+          code: [
+            'site-article'
+          ],
           icon: 'fo-ico-article',
           url: '/site/:siteId:/article',
-          siteType: [3, 4]
+          siteType: [
+            3,
+            4
+          ]
         },
         {
-          title: 'Pages',
+          title: 'Page management',
           abbr: 'Pages',
           submenu: [],
-          code: ['site-page'],
+          code: [
+            'site-page'
+          ],
           icon: 'fo-ico-frame',
           url: '/site/:siteId:/pages',
-          siteType: [3, 4]
+          siteType: [
+            3,
+            4
+          ]
         },
         {
-          title: 'Menu',
-          abbr: 'Menu',
+          title: 'Navigation menus',
+          abbr: 'Menus',
           submenu: [],
           icon: 'fo-ico-menu',
-          code: ['site-navigation'],
+          code: [
+            'site-navigation'
+          ],
           url: '/site/:siteId:/navigation',
-          siteType: [3, 4]
+          siteType: [
+            3,
+            4
+          ]
         },
         {
-          title: 'Download',
+          title: 'Downloads',
           abbr: 'Download',
           submenu: [],
           icon: 'fo-ico-download',
-          code: ['site-download'],
+          code: [
+            'site-download'
+          ],
           url: '/site/:siteId:/download',
-          siteType: [3, 4]
+          siteType: [
+            3,
+            4
+          ]
         },
         {
-          title: 'Theme',
+          title: 'Themes',
           abbr: 'Theme',
           submenu: [],
-          code: ['site-masterplate'],
+          code: [
+            'site-masterplate'
+          ],
           icon: 'fo-ico-palette',
           url: '/site/:siteId:/masterplate',
-          siteType: [2, 3, 4]
+          siteType: [
+            2,
+            3,
+            4
+          ]
         },
         {
-          title: 'Settings',
+          title: 'Website settings',
           abbr: 'Settings',
           submenu: [],
-          code: ['site-settings'],
+          code: [
+            'site-settings'
+          ],
           icon: 'fo-ico-setting',
           url: '/site/:siteId:/settings',
-          siteType: [2, 3, 4]
+          siteType: [
+            2,
+            3,
+            4
+          ]
         }
       ]
     }
   ],
   mainMenuList: [
     {
-      title: 'Dashboard',
-      code: ['dashboard'],
-      url: '/main',
+      title: 'Home',
+      code: [
+        'dashboard'
+      ],
+      url: '/main/dashboard',
       submenu: []
     },
     {
-      title: 'Client',
-      code: ['agent', 'site'],
+      title: 'Customer management',
+      code: [
+        'agent',
+        'site'
+      ],
       submenu: [
         {
-          title: 'Client',
-          code: ['client-list'],
+          title: 'Customer list',
+          code: [
+            'client-list'
+          ],
           url: '/main/merchant'
         },
         {
-          title: 'Site',
+          title: 'Website list',
           url: '/main/site',
-          code: ['site-all'],
+          code: [
+            'site-all'
+          ],
+          submenu: []
+        },
+        {
+          title: 'Website migration',
+          url: '/main/tool/transfer',
+          code: [
+            'tool-transfer'
+          ],
           submenu: []
         }
       ]
     },
     {
-      title: 'Basic data',
-      code: ['base'],
+      title: 'Reference data',
+      code: [
+        'base'
+      ],
       submenu: [
         {
           title: 'System',
-          // code: ['main-base-super'],
-          code: [''],
+          code: [
+            ''
+          ],
           url: '/main/base/super',
           submenu: []
         },
         {
           title: 'Language',
-          code: ['base-lang'],
+          code: [
+            'base-lang'
+          ],
           url: '/main/base/lang',
           submenu: []
         },
         {
-          title: 'IP Address',
-          code: ['ip-repository'],
+          title: 'IP address database',
+          code: [
+            'ip-repository'
+          ],
           url: '/main/base/ip',
           submenu: []
         },
         {
-          title: 'Support',
-          code: ['base-support'],
+          title: 'Help documentation',
+          code: [
+            'base-support'
+          ],
           url: '/main/base/support',
           submenu: []
         },
@@ -233,8 +357,10 @@ export default {
           submenu: []
         },
         {
-          title: 'Function & Role',
-          code: ['security-function'],
+          title: 'Application features & default roles',
+          code: [
+            'security-function'
+          ],
           url: '/main/base/security/function',
           submenu: []
         }
@@ -242,41 +368,55 @@ export default {
     },
     {
       title: 'Theme',
-      code: ['theme'],
+      code: [
+        'theme'
+      ],
       submenu: [
         {
-          title: 'Theme Tag',
-          code: ['theme-tag'],
+          title: 'Template tags',
+          code: [
+            'theme-tag'
+          ],
           url: '/main/masterplate/tag',
           submenu: []
         },
         {
-          title: 'Section Tag',
-          code: ['theme-element-tag'],
+          title: 'Section tags',
+          code: [
+            'theme-element-tag'
+          ],
           url: '/main/masterplate/element-tag',
           submenu: []
         },
         {
-          title: 'Global Parameters',
-          code: ['theme-element-schema'],
+          title: 'Global settings',
+          code: [
+            'theme-element-schema'
+          ],
           url: '/main/masterplate/schema',
           submenu: []
         },
         {
-          title: 'Theme',
+          title: 'Themes',
           url: '/main/masterplate',
-          code: ['theme-masterplate'],
+          code: [
+            'theme-masterplate'
+          ],
           submenu: []
         },
         {
-          title: 'Page',
-          code: ['theme-page'],
+          title: 'Pages',
+          code: [
+            'theme-page'
+          ],
           url: '/main/masterplate/page',
           submenu: []
         },
         {
-          title: 'Section',
-          code: ['theme-element'],
+          title: 'Sections',
+          code: [
+            'theme-element'
+          ],
           url: '/main/masterplate/element',
           submenu: []
         }

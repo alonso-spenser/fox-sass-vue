@@ -1,76 +1,73 @@
 export default {
   client: {
     paging: {
-      title: '客户'
+      title: 'Customers'
     },
     orderBy: {
-      createTimeDESC: '创建时间，新到旧',
-      createTimeASC: '创建时间，旧到新',
-      lastNameASC: '姓氏，A-Z',
-      lastNameDESC: '姓氏，Z-A',
-      firstNameASC: '名称，A-Z',
-      firstNameDESC: '名称，Z-A'
+      createTimeDESC: 'Created, newest first',
+      createTimeASC: 'Created, oldest first',
+      lastNameASC: 'Last name, A–Z',
+      lastNameDESC: 'Last name, Z–A',
+      firstNameASC: 'Name, A–Z',
+      firstNameDESC: 'Name, Z–A'
     },
     searchType: {
-      email: '邮箱',
-      mobile: '电话',
-      enquiry: '询盘编号',
-      lastName: '姓氏',
-      firstName: '名称'
+      email: 'Email',
+      mobile: 'Phone',
+      enquiry: 'Enquiry number',
+      lastName: 'Last name',
+      firstName: 'Name'
     },
     tableHeader: {
-      name: '姓名',
-      enquires: '询盘数量',
-      remark: '备注'
+      name: 'Full name',
+      enquires: 'Enquiries',
+      remark: 'Notes'
     },
-    /**
-     * 客户更新
-     */
     update: {
-      title: '客户详情',
-      heading: '联系信息',
+      title: 'Customer details',
+      heading: 'Contact information',
       tableHeader: {
-        code: '编码',
-        createTime: '提交时间',
-        customer: '客户',
-        form: '表单',
-        terminal: '终端',
-        state: '状态'
+        code: 'Code',
+        createTime: 'Submitted at',
+        customer: 'Customers',
+        form: 'Form',
+        terminal: 'Device',
+        state: 'Status'
       },
       entity: {
         email: {
-          label: '邮箱',
+          label: 'Email',
           tips: '',
-          placeholder: '用户邮箱账号',
-          required: '请输入用户邮箱账号',
+          placeholder: 'User email address',
+          required: 'Enter the user email address',
           custom: ''
         },
         firstName: {
-          label: '名',
+          label: 'First name',
           tips: '',
-          placeholder: '名',
-          required: '请输入名',
+          placeholder: 'First name',
+          required: 'Enter a first name',
           custom: ''
         },
         lastName: {
-          label: '姓',
+          label: 'Last name',
           tips: '',
-          placeholder: '姓',
-          required: '请输入姓',
+          placeholder: 'Last name',
+          required: 'Enter a last name',
           custom: ''
         },
         mobile: {
-          label: '电话',
+          label: 'Phone',
           tips: '',
-          placeholder: '用户手机账号',
-          required: '请输入用户手机账号',
+          placeholder: 'User mobile number',
+          required: 'Enter the user mobile number',
           custom: ''
         },
         remark: {
-          label: '备注',
+          label: 'Notes',
           tips: '',
-          placeholder: '请输入内容',
-          required: '请输入内容',
+          placeholder: 'Enter content',
+          required: 'Enter content',
           custom: ''
         }
       }

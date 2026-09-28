@@ -1,42 +1,43 @@
 export default {
   passport: {
     logout: {
-      title: 'Logout'
+      title: 'Sign out'
     },
     login: {
       pageTitle: 'Sign in',
       title: 'Sign in',
       forgetTip: 'Forgot password?',
       button: 'Sign in',
-      tips: 'Continue to MySite',
-      noAccount: 'New to MySite?',
-      register: 'Get started',
-      mine: 'My sites',
-      logout: 'Log out',
-      create: 'Create a new website',
-      other: 'Login to another account',
+      tips: 'Continue managing your website',
+      ops: 'Operations center',
+      noAccount: "Don't have an account?",
+      register: 'Register now',
+      mine: 'My websites',
+      logout: 'Sign out',
+      create: 'Create a website',
+      other: 'Sign in to another account',
       entity: {
         password: {
           label: 'Password',
           placeholder: 'Password',
-          required: 'Please enter a password.'
+          required: 'Enter a password'
         },
         account: {
           label: 'Account',
-          placeholder: 'Email / Mobile',
-          required: 'Please enter your account',
-          custom: 'Email format error'
+          placeholder: 'Mobile number / email address',
+          required: 'Enter your account',
+          custom: ''
         }
       }
     },
     register: {
-      pageTitle: 'Create A ID',
-      haveAccount: 'Already have a ID？',
-      login: 'Log in',
-      h1: 'Create ID',
-      tips: 'One last step before starting your free trial.',
-      getCode: 'Get A Code',
-      firstCode: 'Please get a code first',
+      pageTitle: 'Create an account',
+      haveAccount: 'Already have an account?',
+      login: 'Sign in now',
+      h1: 'Register now',
+      tips: 'Try the SaaS platform, create a website for free, and start your business journey',
+      getCode: 'Get verification code',
+      firstCode: 'Get a verification code first',
       button: 'Register',
       loginTips: 'Email has already been taken.',
       entity: {
@@ -50,95 +51,95 @@ export default {
         firstName: {
           label: 'First name',
           tips: '',
-          placeholder: 'First name',
-          required: 'Please enter first name',
+          placeholder: 'Your first name',
+          required: 'Enter your first name',
           custom: ''
         },
         lastName: {
           label: 'Last name',
           tips: '',
-          placeholder: 'Last name',
-          required: 'Please enter last name',
+          placeholder: 'Your last name',
+          required: 'Enter your last name',
           custom: ''
         },
         password: {
           label: 'Password',
-          placeholder: 'Password(6-20 digit,numbers or underscores)',
-          required: 'Please enter Password',
-          custom: 'Password format error'
+          placeholder: '6–20 letters, numbers, or underscores',
+          required: 'Enter a password',
+          custom: 'Invalid password format'
         },
         confirmPassword: {
-          label: 'Confirm password',
-          placeholder: 'Confirm new password',
-          required: 'Please enter password',
-          custom: 'Password confirmation does not match.'
+          label: 'Confirm new password',
+          placeholder: 'Enter a new password',
+          required: 'Enter a new password',
+          custom: 'The passwords do not match'
         },
         account: {
           label: 'Email',
-          placeholder: 'Please enter email',
-          required: 'Please enter email',
-          custom: 'Email format error',
-          exists: 'Email has already been taken.',
-          validationFailed: 'Email validation failed'
+          placeholder: 'Email address',
+          required: 'Enter an email address',
+          custom: 'Invalid email address',
+          exists: 'This email address is already registered. Use another address or sign in.',
+          validationFailed: 'Email verification failed'
         },
         code: {
-          label: 'Verification Code',
-          placeholder: 'Please get the verification code first',
-          required: 'Please enter verification Code',
-          custom: 'Please get a verification code first'
+          label: 'Verification code',
+          placeholder: 'Get a verification code first',
+          required: 'Enter the verification code',
+          custom: 'Get a verification code first'
         }
       },
       success: {
-        heading: 'Register was successful',
-        tips: 'Please use your computer to log in to the following website to create or manage your website'
+        heading: 'Registration successful',
+        tips: 'Open the following website on a desktop computer to create or manage your website'
       }
     },
     forget: {
       pageTitle: 'Forgot password',
       nextStep: 'Next',
-      tips: 'Please enter your email',
+      tips: 'Enter an email address',
       entity: {
         account: {
           label: 'Email',
           placeholder: 'Email address',
-          required: 'Please enter your email',
-          custom: 'Email format error',
-          exists: 'Sorry, we could not find your account.'
+          required: 'Enter an email address',
+          custom: 'Invalid email address',
+          exists: 'No account found for this email address'
         }
       }
     },
     reset: {
       pageTitle: 'Reset password',
-      success: 'Reset succeeded, please login again',
+      success: 'Password changed. Sign in again.',
       entity: {
         password: {
-          label: 'Password',
-          placeholder: '6-20 digit,numbers or underscores',
-          required: 'Please enter Password',
-          custom: 'Password format error'
+          label: 'New password',
+          placeholder: '6–20 letters, numbers, or underscores',
+          required: 'Enter a password',
+          custom: 'Use 6–20 letters, numbers, or underscores'
         },
         passAgain: {
           label: 'Confirm password',
-          placeholder: 'Confirm new password',
-          required: 'Please enter password',
-          custom: 'Password confirmation does not match.'
+          placeholder: 'Confirm password',
+          required: 'Confirm your password',
+          custom: 'The passwords do not match'
         }
       }
     },
-    codeExpired: {
-      pageTitle: 'Link has expired',
-      tips: 'This link has expired, please click to resend'
-    },
     emailSendSuccess: {
-      pageTitle: 'Rest password mail has been sent.',
-      h1: 'The reset mail has been sent. ',
-      tips: 'We have sent your email {email} with a link to reset your password.',
-      p: 'This may take several minutes, please be patient. After you receive the email, please click the link in the email to complete the password reset. The link is valid for 24 hours from the time you send the email. Please click the link within the valid time.',
-      p1: 'If you did not receive an email:',
-      p2: '• Please check your junk mailbox',
-      p3: '• Please check your email address',
+      pageTitle: 'Email sent successfully',
+      h1: 'Email sent',
+      tips: 'We have sent an email with a password reset link to {email}',
+      p: 'The email may take a few minutes to arrive. Click the link in the email to reset your password. The link expires 10 minutes after the email is sent.',
+      p1: 'If you have not received the email',
+      p2: '• Check your spam folder',
+      p3: '• Check your email address for typos',
       resend: 'Resend',
-      login: 'Back to Login'
+      login: 'Back to sign in'
+    },
+    codeExpired: {
+      pageTitle: 'This link has expired',
+      tips: 'This link has expired. Click Resend to request a new password reset link.'
     }
   }
 }

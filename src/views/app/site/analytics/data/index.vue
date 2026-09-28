@@ -72,7 +72,6 @@ import flowTemp from '../components/flow'
 import visitTemp from '../components/visit'
 import inquiryTemp from '../components/inquiry'
 import { mapState } from 'vuex'
-import units from '@/plugins/utility'
 
 export default {
   name: 'dataCenter',
@@ -103,13 +102,11 @@ export default {
   methods: {
     dateChange (value) {
       if (value === null) {
-
+        this.getRecently()
       }
     },
     getRecently () {
-      let startTime = units.getBeforeDayTimeString(30)
-      let endTime = new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1).getTime()
-      this.timeRange = [startTime, endTime]
+      this.timeRange = this.initSearchTime()
     },
     /**
      * GA设置
@@ -120,10 +117,14 @@ export default {
     /**
      * 初始搜索时间* @param day 天数
      */
-    initSearchTime (day = 30) {
-      let nowDate = new Date()
-      nowDate.setDate(nowDate.getDate() - day)
-      return [nowDate.getTime(), new Date().getTime()]
+    initSearchTime (day = 7) {
+      const now = new Date()
+      const start = new Date(now.getTime())
+      start.setDate(start.getDate() - day)
+      start.setHours(0, 0, 0, 0)
+      const end = new Date(now.getTime())
+      end.setHours(23, 59, 59, 999)
+      return [start.getTime(), end.getTime()]
     }
   }
 }

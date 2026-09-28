@@ -1,186 +1,151 @@
 export default {
   dashboard: {
     title: 'Home',
-    /**
-     *首页
-     */
     tabPane: [
       {
         label: 'Traffic distribution',
         name: 'flow'
       },
       {
-        label: 'Inquiry distribution',
+        label: 'Enquiry distribution',
         name: 'inquiry'
       }
     ],
-    // 统计
     aggregate: {
       inquiry: {
-        label: 'Cumulative inquiries',
-        currentMonth: 'This month: '
+        label: 'Total enquiries',
+        currentMonth: 'Enquiries this month: '
       },
       visit: {
-        label: 'Cumulative (PV)',
-        currentMonth: 'This month (PV): '
+        label: 'Total page views (PV)',
+        currentMonth: 'Page views this month: '
       },
       visitor: {
-        label: 'Cumulative (IP)',
-        currentMonth: 'This month (IP): '
+        label: 'Total visitors (IP)',
+        currentMonth: 'Visitors this month: '
       }
     },
-    // 时间选择
     selectDay: {
-      seven: 'Nearly seven days',
-      thirty: 'Nearly thirty days'
+      seven: 'Last 7 days',
+      thirty: 'Last 30 days'
     },
-    // 流量分布
     flow: {
       title: 'Traffic ranking',
-      trend: 'Traffic trend',
-      source: 'Traffic source',
+      trend: 'Traffic trends',
+      source: 'Traffic sources',
       ranking: {
-        // 所属排名流量
         header: [
           {
-            name: 'Country / region'
+            name: 'Country/region'
           },
           {
-            name: 'Visit(PV)'
-          }, {
-            name: 'Ratio'
+            name: 'Page views (PV)'
+          },
+          {
+            name: 'Share'
           }
         ]
       }
     },
-    // 询盘分布
     inquiry: {
-      title: 'Inquiry ranking',
+      title: 'Enquiry ranking',
       ranking: {
-        // 所属排名流量
         header: [
           {
-            name: 'Country / region'
+            name: 'Country/region'
           },
           {
-            name: 'Inquiries'
-          }, {
-            name: 'Ratio'
+            name: 'Enquiries'
+          },
+          {
+            name: 'Share'
           }
         ]
       }
-
     },
-    /**
-     * 数据中心
-     */
     analytics: {
-      title: 'Data dashboard',
-      /**
-       * pane nav
-       */
+      title: 'Analytics dashboard',
       tabPane: [
         {
-          label: 'Inquiry analysis',
+          label: 'Enquiry analytics',
           name: 'inquiry'
         },
         {
-          label: 'Traffic analysis',
+          label: 'Traffic analytics',
           name: 'flow'
         }
-        // , {
-        //   label: '访问明细',
-        //   name: 'visit'
-        // }
       ],
-      /**
-       * 询盘分析
-       */
       inquiry: {
         radio: {
-          'mobile': 'Mobile',
-          'pc': 'Desktop'
+          mobile: 'Mobile',
+          pc: 'Desktop'
         },
         aggregate: {
-          nowMonth: 'This month',
-          previousMonth: 'Last month',
-          total: 'Cumulative inquiries'
+          nowMonth: 'Enquiries this month',
+          previousMonth: 'Enquiries last month',
+          total: 'Total enquiries'
         },
-        // 分布
         distribution: {
-          title: 'Inquiry distribution'
+          title: 'Enquiry distribution'
         },
-        // 来源
         source: {
-          title: 'Inquiry source'
+          title: 'Enquiry sources'
         },
-        // 趋势
         trend: {
-          title: 'Inquiry trend'
+          title: 'Enquiry trends'
         },
         terminal: {
-          title: 'Terminal ratio'
+          title: 'Device share'
         }
       },
-      /**
-       * 流量分析
-       */
       flow: {
         aggregate: {
-          nowMonthVisit: 'This month(IP)',
-          nowMonthVisitNumber: 'This month(UV)',
-          totalPeopleVisit: 'Cumulative(IP)',
-          totalVisitNumber: 'Cumulative(UV)'
+          nowMonthVisit: 'Visits this month',
+          nowMonthVisitNumber: 'Page views this month',
+          totalPeopleVisit: 'Total visitors',
+          totalVisitNumber: 'Total page views'
         },
         radio: {
-          'visitor': 'Visitor（IP）',
-          'visits': 'Visitor (PV)'
+          visitor: 'Visitors (IP)',
+          visits: 'Page views (PV)'
         },
-        // 分布
         distribution: {
           title: 'Traffic distribution'
         },
-        // 来源
         source: {
-          title: 'Traffic source'
+          title: 'Traffic sources'
         },
-        // 趋势
         trend: {
-          title: 'Traffic trend'
+          title: 'Traffic trends'
         },
-        // 终端
         terminal: {
-          title: 'Terminal'
+          title: 'Visitor devices'
         }
       },
-      /**
-       * 访问明细
-       */
       visit: {
         tableHeader: {
-          visitTime: '访问时间',
-          country: '国家/地区',
-          source: '访问来源',
-          keyWord: '关键词',
-          url: '访问页面',
-          duration: '访问时长',
-          depth: '访问深度',
-          terminal: '终端',
-          ip: '访问IP'
-
+          visitTime: 'Visit time',
+          country: 'Country/region',
+          source: 'Traffic source',
+          keyWord: 'Keyword',
+          url: 'Visited page',
+          duration: 'Visit duration',
+          depth: 'Pages per visit',
+          terminal: 'Device',
+          ip: 'Visitor IP'
         }
       }
     },
     ga: {
-      title: 'Google Analytics Sync setting',
-      tips: 'Obtain and display more detailed website data by synchronizing Google Analytics account',
-      setting: 'GA Sync setting'
+      title: 'Google Analytics sync settings',
+      tips: 'Connect your Google Analytics account to view more detailed website analytics',
+      setting: 'GA sync settings'
     }
   },
   pageNotFund: {
-    denied: '您的访问被拒绝',
-    a1: '原因1：系统上线了全新的权限系统，请点击退出登录后，再次登录即可。',
-    a2: '原因2：管理员未授与您访问权限。',
-    a3: '点击本页面任何地方重新登录'
+    denied: 'Access denied',
+    a1: 'Reason 1: The permissions system has been updated. Sign out and sign in again.',
+    a2: 'Reason 2: Your administrator has not granted you access.',
+    a3: 'Click anywhere on this page to sign in again'
   }
 }

@@ -1,155 +1,152 @@
 export default {
   seo: {
     paging: {
-      title: 'SEO设置',
-      keyWordExplain: 'Meta关键词批量添加以逗号添加'
+      title: 'SEO settings',
+      keyWordExplain: 'Separate meta keywords with commas to add them in bulk'
     },
     step: {
-      one: '1.选择页面',
-      two: '2.设置SEO元信息',
-      three: '3.发布'
+      one: '1. Select pages',
+      two: '2. Set SEO metadata',
+      three: '3. Publish'
     },
     tabPane: {
-      goods: '产品',
-      goodsCollect: '产品集合',
-      article: '文章',
-      articleCollection: '文章集合',
-      customPage: '自定义页面',
-      page: '页面'
+      goods: 'Product',
+      goodsCollect: 'Product collections',
+      article: 'Article',
+      articleCollection: 'Article collections',
+      customPage: 'Custom pages',
+      page: 'Pages'
     },
     tableHeader: {
-      preview: '预览',
-      coverImage: '图片'
+      preview: 'Preview',
+      coverImage: 'Image'
     },
     entity: {
       seoDescription: {
         label: 'Description',
         tips: '',
-        placeholder: 'Meta描述',
-        required: '请输入Meta描述',
+        placeholder: 'Meta description',
+        required: 'Enter a meta description',
         custom: ''
       },
       seoH1: {
-        label: 'H1 标题',
+        label: 'H1 heading',
         tips: '',
-        placeholder: 'H1 标题',
-        required: '请输入H1 标题',
+        placeholder: 'H1 heading',
+        required: 'Enter an H1 heading',
         custom: ''
       },
       seoKeywords: {
-        label: 'Meta关键词',
+        label: 'Meta keywords',
         tips: '',
-        placeholder: 'Meta关键词',
-        required: '请输入Meta关键词',
+        placeholder: 'Meta keywords',
+        required: 'Enter meta keywords',
         custom: ''
       },
       seoTitle: {
-        label: '页面标题',
+        label: 'Page title',
         tips: '',
-        placeholder: '页面标题',
-        required: '请输入页面标题',
+        placeholder: 'Page title',
+        required: 'Enter a page title',
         custom: ''
       },
       seoUrl: {
-        label: 'URL地址',
+        label: 'URL',
         tips: '',
-        placeholder: 'URL地址',
-        required: '请输入URL地址',
+        placeholder: 'URL',
+        required: 'Enter a URL',
         custom: ''
       },
       title: {
-        label: '文章标题',
+        label: 'Article title',
         tips: '',
-        placeholder: '文章标题',
-        required: '请输入文章标题',
+        placeholder: 'Article title',
+        required: 'Enter an article title',
         custom: ''
       }
     },
     update: {
-      title: '更新SEO',
-      addKey: '添加关键词'
+      title: 'Update SEO',
+      addKey: 'Add keyword'
     }
   },
-  /**
-   * 搜索引擎优化组件
-   */
   searchEngine: {
     heading: 'SEO',
-    tips: 'SEO meta information',
-    engine: 'Google search result preview',
+    tips: "Set this page's SEO metadata",
+    engine: 'Search engine listing preview',
     edit: 'Edit SEO information',
-    visible: 'Add a title and description to understand how this page will appear in search engine listings',
+    visible: 'Add a title and description to preview how this page may appear in search results',
     title: {
       goods: {
-        label: '产品名称',
-        placeholder: '产品名称',
+        label: 'Product name',
+        placeholder: 'Product name',
         required: '',
-        description: '请输入产品名称'
+        description: 'Enter a product name'
       },
       goodsCollection: {
-        label: '集合名称',
-        placeholder: '集合名称',
+        label: 'Collection name',
+        placeholder: 'Collection name',
         required: '',
-        description: '请输入集合名称'
+        description: 'Enter a collection name'
       },
       article: {
-        label: '文章标题',
-        placeholder: '文章标题',
+        label: 'Article title',
+        placeholder: 'Article title',
         required: '',
-        description: '请输入文章标题'
+        description: 'Enter an article title'
       },
       articleCollection: {
-        label: '集合名称',
-        placeholder: '集合名称',
+        label: 'Collection name',
+        placeholder: 'Collection name',
         required: '',
-        description: '请输入集合名称'
+        description: 'Enter a collection name'
       },
       customPage: {
-        label: '页面名称',
-        placeholder: '页面名称',
+        label: 'Page name',
+        placeholder: 'Page name',
         required: '',
-        description: '页面名称'
+        description: 'Page name'
       },
       commonPage: {
-        label: '页面名称',
-        placeholder: '页面名称',
+        label: 'Page name',
+        placeholder: 'Page name',
         required: '',
-        description: '页面名称'
+        description: 'Page name'
       }
     },
     entity: {
       seoTitle: {
         label: 'Page title',
-        placeholder: 'Page title',
-        required: 'Page title can\'t be empty',
-        description: 'Important, page title will be displayed in the search results of the search engine'
+        placeholder: 'Enter a title',
+        required: 'Page title is required',
+        description: 'Important: this content appears in search engine results'
       },
       seoDesc: {
         label: 'Page description',
         placeholder: 'Page description',
         required: '',
-        description: 'Important, page description will be displayed in the search results of the search engine'
+        description: 'Recommended: this content appears in search engine results'
       },
       seoUrl: {
         label: 'URL',
-        placeholder: 'Please enter a semantic URL',
+        placeholder: 'Enter a descriptive URL',
         required: ''
       },
       seoKeywords: {
-        label: 'Meta Keywords',
-        placeholder: '请输入关键词',
+        label: 'Meta keywords',
+        placeholder: 'Enter a keyword',
         required: '',
-        description: 'Most of the search engines except Google will include keywords (such as Baidu), fill in as needed, 3~5 keywords',
+        description: 'Some search engines other than Google, such as Baidu, use this content. Add a few relevant keywords as needed.',
         addTag: '+ Add keyword',
-        batchAddTag: '+ Batch add',
-        batchInfo: 'Multiple keywords are separated by commas',
+        batchAddTag: '+ Add in bulk',
+        batchInfo: 'Separate keywords with commas',
         batchUpdate: 'Update keywords'
       },
       seoH1: {
-        label: 'H1 title',
-        placeholder: 'H1 title',
+        label: 'H1 heading',
+        placeholder: 'H1 heading',
         required: '',
-        description: 'Important, h1 title will be displayed in the search results of the search engine and in the tab of the browser'
+        description: 'Recommended: this content appears in search results and browser tabs'
       }
     }
   }

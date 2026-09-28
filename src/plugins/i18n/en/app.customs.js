@@ -1,5 +1,5 @@
 export default {
   customs: {
-    title: '海关数据'
+    title: 'Customs data'
   }
 }

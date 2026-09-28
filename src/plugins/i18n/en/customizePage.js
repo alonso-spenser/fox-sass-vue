@@ -1,40 +1,45 @@
 export default {
   customizePage: {
     paging: {
-      title: 'Topic page',
-      description: 'Create & design the topic pages',
+      title: 'Custom pages',
+      description: 'Create & design custom pages',
       tips: {
-        one: '创建独立的网站页面，例如“联系我们”、“隐私政策”、“关于我们”等。您可以在 ',
-        tow: '主题 > 设计网站',
-        three: ' 在 "界面设计器" 中增加不同功能的组件来设计个性化的界面。也可以在导航菜单、可点击的图片和按钮等链接到自定义页面。'
+        one: 'Create standalone pages such as Contact us, Privacy policy, or About us. Go to ',
+        tow: 'Themes > Design website',
+        three: ' and add sections in the page designer to customize the layout. You can link to these pages from navigation menus, images, and buttons.'
       },
-      addButton: 'Add Page',
+      addButton: 'Add page',
       empty: {
-        content: '创建独立的网站页面，例如“联系我们”、“隐私政策”、“关于我们”等。您还没有创建添加任何页面，请先添加一个。',
-        buttonLabel: '添加页面'
+        content: 'Create standalone pages such as Contact us, Privacy policy, or About us. You have not created any pages yet. Add one to get started.',
+        buttonLabel: 'Add page'
       }
     },
     tableHeader: {
-      title: 'Page',
-      createTime: 'Updated time',
-      state: 'State'
+      title: 'Page name',
+      createTime: 'Updated at',
+      state: 'Status'
     },
     update: {
-      addTitle: 'Add Page',
-      updateTitle: 'Update Page',
-      pageTitle: '页面详情',
-      viewPage: '查看页面',
-      tips: 'Please design this page in by page designer',
+      addTitle: 'Add custom page',
+      updateTitle: 'Edit custom page',
+      pageTitle: 'Page details',
+      viewPage: 'View page',
+      tips: 'Edit the page content in the theme editor',
       delete: {
-        button: '删除页面',
-        heading: '删除自定义页',
-        subheading: '您确认要删除自定页吗？'
+        button: 'Delete page',
+        heading: 'Delete custom page',
+        subheading: 'Are you sure you want to delete this custom page?'
       },
       entity: {
         title: {
-          label: 'Page title',
-          placeholder: 'eg: contact us, about us, faq',
-          required: '请输入页面名称'
+          label: 'Page name',
+          placeholder: 'For example: Contact us, About us, FAQ',
+          required: 'Enter a page name'
+        },
+        content: {
+          label: 'Page content',
+          placeholder: 'Enter page content',
+          required: 'Enter page content'
         }
       }
     }

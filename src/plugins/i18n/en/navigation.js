@@ -1,111 +1,111 @@
 export default {
   navigation: {
-    aside: '导航菜单',
-    async: '同步菜单',
-    asyncTips: '请求已提交，系统会自动处理',
+    aside: 'Navigation menus',
+    async: 'Sync menus',
+    asyncTips: 'Request submitted. The system will process it automatically.',
     menuType: [
       {
         value: 1,
-        title: 'Header 顶栏菜单',
+        title: 'Header menu',
         limit: 4,
-        subheading: '设置网站页头的导航菜单，通过拖动可以调整排序以及父子菜单关系（最多支持 3 级菜单）',
-        describe: '显示在网站页头的全局菜单'
+        subheading: 'Set up the header navigation. Drag to reorder items or change nesting (up to 3 levels).',
+        describe: 'Global menu displayed in the website header'
       },
       {
         value: 2,
         limit: 1,
-        title: 'Footer 1 底栏菜单',
-        subheading: '设置网站页脚的导航菜单，通过拖动可以调整排序',
-        describe: '显示在网站页脚的全局菜单'
+        title: 'Footer menu 1',
+        subheading: 'Set up the footer navigation. Drag to reorder items.',
+        describe: 'Global menu displayed in the website footer'
       },
       {
         value: 8,
-        title: 'Footer 2 底栏菜单',
+        title: 'Footer menu 2',
         limit: 1,
-        subheading: '设置网站页脚的导航菜单，通过拖动可以调整排序',
-        describe: '显示在网站页脚的全局菜单'
+        subheading: 'Set up the footer navigation. Drag to reorder items.',
+        describe: 'Global menu displayed in the website footer'
       },
       {
         value: 9,
         limit: 1,
-        title: 'Footer 3 底栏菜单',
-        subheading: '设置网站页脚的导航菜单，通过拖动可以调整排序',
-        describe: '显示在网站页脚的全局菜单'
+        title: 'Footer menu 3',
+        subheading: 'Set up the footer navigation. Drag to reorder items.',
+        describe: 'Global menu displayed in the website footer'
       },
       {
         value: 3,
         limit: 3,
-        title: '商品列表页侧栏菜单',
-        subheading: '设置商品列表页侧栏菜单，通过拖动可以调整排序（最多支持 3 级菜单）',
-        describe: '显示在商品集合详情（即商品列表页）的全局菜单'
+        title: 'Product listing sidebar menu',
+        subheading: 'Set up the product listing sidebar menu. Drag to reorder items (up to 3 levels).',
+        describe: 'Global menu displayed on product collection detail pages (product listings)'
       },
       {
         value: 4,
         limit: 3,
-        title: '文章列表页侧栏菜单',
-        subheading: '设置文章列表页侧栏菜单，通过拖动可以调整排序（最多支持 3 级菜单）',
-        describe: '显示在文章集合详情（即文章列表页）的全局菜单'
+        title: 'Article listing sidebar menu',
+        subheading: 'Set up the article listing sidebar menu. Drag to reorder items (up to 3 levels).',
+        describe: 'Global menu displayed on article collection detail pages (article listings)'
       }
     ],
     paging: {
-      title: '网站导航',
+      title: 'Website navigation',
       tableHeader: {
-        title: '菜单名称',
-        describe: '说明'
+        title: 'Menu name',
+        describe: 'Description'
       }
     },
     update: {
-      pageTitle: '网站导航',
+      pageTitle: 'Website navigation',
       heading: '',
       subheading: '',
-      add: '添加菜单',
+      add: 'Add menu',
       tableHeader: {
-        level: '导航菜单级别',
-        link: '链接地址',
-        navType: '导航类型，1为顶部导航，2为底部',
-        parentId: '上级编码',
-        refId: '关联数据ID',
-        refType: '关联数据类型',
-        siteId: '网站编码',
-        sort: '菜单排序',
-        templateId: '模板ID',
-        title: '导航名称'
+        level: 'Menu level',
+        link: 'Link URL',
+        navType: 'Navigation type: 1 for header, 2 for footer',
+        parentId: 'Parent code',
+        refId: 'Linked data ID',
+        refType: 'Linked data type',
+        siteId: 'Website code',
+        sort: 'Menu sort order',
+        templateId: 'Template ID',
+        title: 'Navigation name'
       },
       header: {
-        heading: 'Header顶栏导航',
-        subheading: '设置网站页头的导航菜单，通过拖动可以调整排序以及父子菜单关系'
+        heading: 'Header navigation',
+        subheading: 'Set up the header navigation. Drag to reorder items or change nesting.'
       },
       footer: {
-        heading: 'Footer 底栏导航',
-        subheading: '设置网站页脚的导航菜单，通过拖动可以调整排序（底栏导航不支持父子菜单）'
+        heading: 'Footer navigation',
+        subheading: 'Set up the footer navigation. Drag to reorder items (nested menus are not supported).'
       },
       dialog: {
-        heading: '编辑菜单'
+        heading: 'Edit menu'
       },
       entity: {
         title: {
-          label: '导航名称',
+          label: 'Navigation name',
           tips: '',
-          placeholder: '导航名称',
-          required: '请输入导航名称',
+          placeholder: 'Navigation name',
+          required: 'Enter a navigation name',
           custom: ''
         },
         link: {
-          label: '链接地址',
+          label: 'Link URL',
           tips: '',
-          placeholder: '链接地址',
-          required: '请输入链接地址',
+          placeholder: 'Link URL',
+          required: 'Enter a link URL',
           custom: ''
         },
         target: {
-          label: '打开方式',
+          label: 'Open in',
           tips: '',
-          placeholder: '链接打开方式',
+          placeholder: 'Link target',
           required: '',
           custom: ''
         },
         avatar: {
-          label: '广告图片',
+          label: 'Promotional image',
           tips: '',
           placeholder: '',
           required: '',
@@ -113,110 +113,172 @@ export default {
         }
       }
     },
-    /**
-     * 导航更新
-     */
     navigationUpdate: {
       paging: {
-        title: '导航菜单'
+        title: 'Navigation menus'
       },
       target: {
-        '_blank': '新窗口',
-        '_self': '本窗口'
+        _blank: 'New window',
+        _self: 'Current window'
       },
-      /**
-       * 接链选择器
-       */
       linkPicker: {
-        placeholder: '查找或粘贴链接',
-        records: '条记录',
+        placeholder: 'Search or paste a link',
+        records: 'records',
         menu: {
-          '3': [
+          2: [
             {
-              label: '首页',
+              label: 'Home',
               id: 0,
               sub: false
             },
             {
-              label: '商品',
-              id: 1,
-              sub: true,
-              all: {
-                title: '全部商品',
-                url: '/products#全部商品'
-              }
-            },
-            {
-              label: '商品集合',
-              id: 2,
-              sub: true,
-              all: {
-                title: '全部商品集合',
-                url: '/products/collection#全部商品集合'
-              }
-            },
-            {
-              label: '文章',
-              id: 3,
-              sub: true,
-              all: {
-                title: '全部文章',
-                url: '/articles#全部文章'
-              }
-            },
-            {
-              label: '文章集合',
-              id: 4,
-              sub: true,
-              all: {
-                title: '全部文章集合',
-                url: '/articles/collection#全部文章集合'
-              }
-            },
-            {
-              label: '自定义页',
-              id: 5,
-              sub: true
-            },
-            {
-              label: '表单',
+              label: 'Form',
               id: 6,
               sub: true
             },
             {
-              label: '下载集合',
-              id: 7,
-              sub: true
-            },
-            {
-              label: '法律政策',
+              label: 'Legal policies',
               id: 8,
               sub: true
             },
             {
-              label: '不跳转',
+              label: 'No link',
               id: 99,
               sub: false
             }
           ],
-          '2': [
+          3: [
             {
-              label: '首页',
+              label: 'Home',
               id: 0,
               sub: false
             },
             {
-              label: '表单',
+              label: 'Product',
+              id: 1,
+              sub: true,
+              all: {
+                title: 'All products',
+                url: '/products#All products'
+              }
+            },
+            {
+              label: 'Product collections',
+              id: 2,
+              sub: true,
+              all: {
+                title: 'All product collections',
+                url: '/products/collection#All product collections'
+              }
+            },
+            {
+              label: 'Article',
+              id: 3,
+              sub: true,
+              all: {
+                title: 'All articles',
+                url: '/articles#All articles'
+              }
+            },
+            {
+              label: 'Article collections',
+              id: 4,
+              sub: true,
+              all: {
+                title: 'All article collections',
+                url: '/articles/collection#All article collections'
+              }
+            },
+            {
+              label: 'Custom page',
+              id: 5,
+              sub: true
+            },
+            {
+              label: 'Form',
               id: 6,
               sub: true
             },
             {
-              label: '法律政策',
+              label: 'Download collections',
+              id: 7,
+              sub: true
+            },
+            {
+              label: 'Legal policies',
               id: 8,
               sub: true
             },
             {
-              label: '不跳转',
+              label: 'No link',
+              id: 99,
+              sub: false
+            }
+          ],
+          4: [
+            {
+              label: 'Home',
+              id: 0,
+              sub: false
+            },
+            {
+              label: 'Product',
+              id: 1,
+              sub: true,
+              all: {
+                title: 'All products',
+                url: '/products#All products'
+              }
+            },
+            {
+              label: 'Product collections',
+              id: 2,
+              sub: true,
+              all: {
+                title: 'All product collections',
+                url: '/products/collection#All product collections'
+              }
+            },
+            {
+              label: 'Article',
+              id: 3,
+              sub: true,
+              all: {
+                title: 'All articles',
+                url: '/articles#All articles'
+              }
+            },
+            {
+              label: 'Article collections',
+              id: 4,
+              sub: true,
+              all: {
+                title: 'All article collections',
+                url: '/articles/collection#All article collections'
+              }
+            },
+            {
+              label: 'Custom page',
+              id: 5,
+              sub: true
+            },
+            {
+              label: 'Form',
+              id: 6,
+              sub: true
+            },
+            {
+              label: 'Download collections',
+              id: 7,
+              sub: true
+            },
+            {
+              label: 'Legal policies',
+              id: 8,
+              sub: true
+            },
+            {
+              label: 'No link',
               id: 99,
               sub: false
             }
@@ -224,11 +286,8 @@ export default {
         }
       }
     },
-    /**
-     * 错误提示
-     */
     errorCode: {
-      1507002: '请先删除子模块'
+      1507002: 'Delete the child sections first'
     }
   }
 }

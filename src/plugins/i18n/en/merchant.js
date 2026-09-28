@@ -1,382 +1,358 @@
 export default {
   merchant: {
-    heading: '设置',
+    heading: 'Settings',
     menuList: [
       {
-        title: '个人信息',
-        abbr: '个人',
+        title: 'Personal information',
+        abbr: 'Personal',
         submenu: [],
         icon: 'icon-shouye_o',
-        // icon: 'fo-ico-wangzhanshezhi',
         url: '/account/personal',
-        siteType: [2, 3, 4]
+        siteType: [
+          2,
+          3,
+          4
+        ]
       },
       {
-        title: '公司信息',
-        abbr: '公司',
+        title: 'Company information',
+        abbr: 'Company',
         submenu: [],
         icon: 'icon-zhexiantu_o',
         url: '/site/:siteId:/analytics/data',
-        siteType: [2, 3, 4]
+        siteType: [
+          2,
+          3,
+          4
+        ]
       }
-      // {
-      //   title: '询盘管理',
-      //   abbr: '询盘',
-      //   icon: '',
-      //   url: '/site/:siteId:/enquiry',
-      //   siteType: [2, 3, 4],
-      //   submenu: [
-      //     {
-      //       title: '我的询盘',
-      //       icon: 'icon-xiaoxi_o',
-      //       url: '/site/:siteId:/enquiry',
-      //       siteType: [2, 3, 4]
-      //     },
-      //     {
-      //       title: '询盘表单',
-      //       icon: 'icon-jieshaoxinxi_o',
-      //       url: '/site/:siteId:/enquiry/form',
-      //       siteType: [2, 3, 4]
-      //     },
-      //     {
-      //       title: '收件邮箱',
-      //       icon: 'icon-youjian_o',
-      //       url: '/site/:siteId:/enquiry/email',
-      //       siteType: [2, 3, 4]
-      //     }
-      //   ]
-      // }
     ],
-    welcome: '欢迎您：',
-    manage: '管理您的信息、隐私和安全，让弗米乐更好地为您服务。',
+    welcome: 'Welcome, ',
+    manage: 'Manage your information, privacy, and security to get more from Fomille',
     paging: {
-      title: '商户',
+      title: 'Merchants',
       heading: '',
       subheading: '',
-      add: '添加商户',
+      add: 'Add merchant',
       empty: {
-        content: '添加的商户会被列举在这里。您可以在这里管理所有商户，例如批量删除、修改等。',
-        buttonLabel: '添加商户'
+        content: 'Merchants you add will appear here. You can edit, delete, and manage them in bulk.',
+        buttonLabel: 'Add merchant'
       },
       tableHeader: {
-        address: '详细地址',
-        agentId: '代理商id',
-        breakTime: '断约时间',
-        cityId: '城市ID',
-        cityName: '城市名称',
-        claimTime: '认领时间',
-        contact: '联系人',
-        contactTime: '最近联系时间',
-        countryId: '国家ID',
-        countryName: '国家名称',
-        createTime: '创建时间',
-        email: '邮件地址',
-        entryId: '录入人ID',
-        entryName: '录入人',
-        industryId: '行业id',
-        industryName: '行业名',
-        isAgent: '是否性为代理 0是代理 1 是商户',
-        lastSellerId: '上一个业务员ID',
-        levelId: '客户级别',
-        levelName: '客户级别',
-        mainBusiness: 'main_business',
-        merchantId: '商户ID',
-        mobile: '手机',
-        mobileArea: '国家区号',
-        name: '商户名称',
-        ownerId: '初始用户',
-        platformId: '平台ID',
-        provinceId: '省份ID',
-        provinceName: '省份名称',
-        referralCode: '推荐码',
-        remark: '备注信息',
-        sellerId: '业务员ID',
-        sellerName: '业务员',
-        shortForm: '商户简称',
-        signTime: '签约时间',
+        address: 'Street address',
+        contact: 'Contact person',
+        createTime: 'Created at',
+        email: 'Email address',
+        merchantId: 'Merchant ID',
+        mobile: 'Mobile',
+        name: 'Merchant name',
+        shortForm: 'Merchant short name',
+        signTime: 'Contract date',
+        updateTime: 'Updated at',
+        webQuantity: 'Number of websites',
+        agentId: 'Agent ID',
+        breakTime: 'Contract termination date',
+        cityId: 'City ID',
+        cityName: 'City',
+        claimTime: 'Claimed at',
+        contactTime: 'Last contacted at',
+        countryId: 'Country ID',
+        countryName: 'Country name',
+        entryId: 'Created by (ID)',
+        entryName: 'Created by',
+        industryId: 'Industry ID',
+        industryName: 'Industry',
+        isAgent: 'Account type: 0 for agent, 1 for merchant',
+        lastSellerId: 'Previous salesperson ID',
+        levelId: 'Customer level',
+        levelName: 'Customer level',
+        mainBusiness: 'Main business',
+        mobileArea: 'Country calling code',
+        ownerId: 'Original user',
+        platformId: 'Platform ID',
+        provinceId: 'Province/state ID',
+        provinceName: 'Province/state',
+        referralCode: 'Referral code',
+        remark: 'Notes',
+        sellerId: 'Salesperson ID',
+        sellerName: 'Salesperson',
         skype: 'Skype',
-        sourceId: '客户来源',
-        sourceName: '客户来源',
-        state: '0未审核,1正式',
-        synced: '工商信息同步',
-        updateTime: '更新时间',
-        webQuantity: '网站数量',
-        website: 'website',
-        wechat: '微信',
-        whatsapp: 'What&#39;s app'
+        sourceId: 'Customer source',
+        sourceName: 'Customer source',
+        state: '0: Unreviewed, 1: Approved',
+        synced: 'Business registration information sync',
+        website: 'Website',
+        wechat: 'WeChat',
+        whatsapp: 'WhatsApp'
       }
     },
-    corp: '公司信息',
+    corp: 'Company information',
     employeeState: [
       {
         value: 0,
-        label: '正常'
+        label: 'Active'
       },
       {
         value: 1,
-        label: '禁用'
+        label: 'Disabled'
       }
     ],
     personal: {
-      title: '个人信息'
+      title: 'Personal information'
     },
     account: {
-      dashboard: '管理首页'
+      dashboard: 'Management home'
     },
     update: {
-      addTitle: '添加商户',
-      updateTitle: '编辑商户',
+      addTitle: 'Add merchant',
+      updateTitle: 'Edit merchant',
       entity: {
         name: {
-          label: '公司名',
+          label: 'Company name',
           tips: '',
-          placeholder: '公司名',
-          required: '请输入公司名',
+          placeholder: 'Company name',
+          required: 'Enter a company name',
           custom: ''
         },
         shortForm: {
-          label: '公司简称',
+          label: 'Company short name',
           tips: '',
-          placeholder: '公司简称',
-          required: '请输入公司简称',
+          placeholder: 'Company short name',
+          required: 'Enter a company short name',
           custom: ''
         },
         cityName: {
-          label: '城市名称',
+          label: 'City',
           tips: '',
-          placeholder: '城市名称',
-          required: '请选择城市名称',
+          placeholder: 'City',
+          required: 'Select a city',
           custom: ''
         },
         contact: {
-          label: '联系人',
+          label: 'Contact person',
           tips: '',
-          placeholder: '联系人',
-          required: '请输入联系人',
+          placeholder: 'Contact person',
+          required: 'Enter a contact person',
           custom: ''
         },
         email: {
-          label: '联系邮件',
+          label: 'Contact email',
           tips: '',
-          placeholder: '联系邮件',
-          required: '请输入联系邮件',
+          placeholder: 'Contact email',
+          required: 'Enter a contact email',
           custom: ''
         },
         phone: {
-          label: '手机号码',
+          label: 'Mobile number',
           tips: '',
-          placeholder: '手机号码',
-          required: '请输入手机号码',
+          placeholder: 'Mobile number',
+          required: 'Enter a mobile number',
           custom: '',
-          formatError: '手机格式错误'
+          formatError: 'Invalid mobile number format'
         },
         provinceName: {
-          label: '省份名称',
+          label: 'Province/state',
           tips: '',
-          placeholder: '省份名称',
-          required: '请选择省份名称',
+          placeholder: 'Province/state',
+          required: 'Select a province/state',
           custom: ''
         },
         address: {
-          label: '公司地址',
+          label: 'Company address',
           tips: '',
-          placeholder: '公司地址',
-          required: '请输入公司地址',
+          placeholder: 'Company address',
+          required: 'Enter a company address',
           custom: ''
         }
       }
     },
     password: {
-      title: '修改密码',
-      success: '密码修改成功，下次登录请用新密码',
+      title: 'Change password',
+      success: 'Password changed. Use your new password the next time you sign in.',
       entity: {
         oldPass: {
-          label: '原密码',
-          placeholder: '当前登录密码',
-          required: '请输入原密码'
+          label: 'Current password',
+          placeholder: 'Current sign-in password',
+          required: 'Enter your current password'
         },
         newPass: {
-          label: '新密码',
-          placeholder: '新密码（6-20位字母、数字或下划线）',
-          required: '请输入新密码/ 6-20位字母、数字或下划线'
+          label: 'New password',
+          placeholder: 'New password (6–20 letters, numbers, or underscores)',
+          required: 'Enter a new password using 6–20 letters, numbers, or underscores'
         },
         checkPass: {
-          label: '确认密码',
-          placeholder: '再次输入新密码',
-          required: '请再次输入密码',
-          custom: '密码不一致'
+          label: 'Confirm password',
+          placeholder: 'Enter your new password again',
+          required: 'Enter the password again',
+          custom: 'Passwords do not match'
         }
       }
     },
-    /**
-         * 员工管理
-         */
     employee: {
       paging: {
-        title: '员工管理',
-        heading: '员工',
+        title: 'Employee management',
+        heading: 'Employees',
         subheading: '',
-        add: '新增员工',
+        add: 'Add employee',
         empty: {
-          content: '新增员工会被列举在这里。您可以在这里管理所有员工，例如批量删除、修改等。',
-          buttonLabel: '新增员工'
+          content: 'Employees you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add employee'
         },
         tableHeader: {
-          name: '姓名',
-          roleName: '角色',
-          departmentName: '部门',
-          mobile: '手机/电话号码',
-          email: '邮箱',
-          keepValue: '保留客户最大值',
-          state: '禁用',
-          account: '登录帐号'
+          name: 'Full name',
+          roleName: 'Role',
+          departmentName: 'Department',
+          mobile: 'Mobile/phone number',
+          email: 'Email',
+          keepValue: 'Maximum retained customers',
+          state: 'Disabled',
+          account: 'Sign-in account'
         },
         search: {
-          label: '关键字搜索',
-          placeholder: '输入员工名称关键字进行搜索'
+          label: 'Keyword search',
+          placeholder: 'Search by employee name'
         }
       },
       update: {
-        addTitle: '添加员工',
-        updateTitle: '编辑员工',
+        addTitle: 'Add employee',
+        updateTitle: 'Edit employee',
         entity: {
           avatar: {
-            label: '头像',
+            label: 'Avatar',
             tips: '',
             placeholder: '',
             required: '',
             custom: ''
           },
           account: {
-            label: '帐号',
-            placeholder: '手机/邮箱',
-            required: '请输入手机/邮箱',
-            custom: '请输入正确的手机或邮箱',
-            exists: '邮箱帐号不存在'
+            label: 'Account',
+            placeholder: 'Mobile/email',
+            required: 'Enter a mobile number or email address',
+            custom: 'Enter a valid mobile number or email address',
+            exists: 'No account found for this email address'
           },
           name: {
-            label: '名字',
+            label: 'First name',
             tips: '',
-            placeholder: '名字',
-            required: '请输入名字',
+            placeholder: 'First name',
+            required: 'Enter a first name',
             custom: ''
           },
           firstName: {
-            label: '姓',
+            label: 'Last name',
             tips: '',
-            placeholder: '姓',
-            required: '请输入姓',
+            placeholder: 'Last name',
+            required: 'Enter a last name',
             custom: ''
           },
           lastName: {
-            label: '名',
+            label: 'First name',
             tips: '',
-            placeholder: '名',
-            required: '请输入名',
+            placeholder: 'First name',
+            required: 'Enter a first name',
             custom: ''
           },
           role: {
-            label: '角色',
+            label: 'Role',
             tips: '',
-            placeholder: '角色',
-            required: '请选择角色',
+            placeholder: 'Role',
+            required: 'Select a role',
             custom: ''
           },
           email: {
-            label: '邮箱地址',
+            label: 'Email address',
             tips: '',
-            placeholder: '请输入邮箱，将作为员工登录本系统的账号',
-            required: '请输入邮箱地址',
+            placeholder: "Enter an email address to use as the employee's sign-in account",
+            required: 'Enter an email address',
             custom: ''
           },
           mobile: {
-            label: '手机号码',
+            label: 'Mobile number',
             tips: '',
-            placeholder: '手机号码',
-            required: '请输入手机号码',
-            error: '手机号码错误',
+            placeholder: 'Mobile number',
+            required: 'Enter a mobile number',
+            error: 'Invalid mobile number',
             custom: ''
           },
           phone: {
-            label: '电话',
+            label: 'Phone',
             tips: '',
-            placeholder: '请输入电话',
-            required: '请输入电话',
+            placeholder: 'Enter a phone number',
+            required: 'Enter a phone number',
             custom: ''
           },
           password: {
-            label: '登录密码',
-            placeholder: '密码（6-20位字母、数字或下划线）',
-            required: '请输入密码',
-            custom: '密码格式为（6-20位字母、数字或下划线的组合）'
+            label: 'Sign-in password',
+            placeholder: 'Password (6–20 letters, numbers, or underscores)',
+            required: 'Enter a password',
+            custom: 'Use 6–20 letters, numbers, or underscores'
           },
           passAgain: {
-            label: '确认密码',
-            placeholder: '确认密码',
-            required: '请输入确认密码',
-            custom: '两次密码不一样'
+            label: 'Confirm password',
+            placeholder: 'Confirm password',
+            required: 'Confirm your password',
+            custom: 'The passwords do not match'
           },
           state: {
-            label: '状态',
+            label: 'Status',
             tips: '',
             placeholder: '',
             required: '',
             custom: ''
           }
         },
-        tips: [{
-          content: '如果没输入登录密码，则默认为： 123456 请提醒员工尽快登录本系统修改密码'
-        }]
+        tips: [
+          {
+            content: 'If no password is entered, the default is 123456. Ask the employee to sign in and change it as soon as possible.'
+          }
+        ]
       }
     },
-    /**
-         * 角色管理
-         */
     role: {
-      title: '角色功能',
+      title: 'Role features',
       paging: {
-        title: '角色管理',
+        title: 'Role management',
         heading: '',
         subheading: '',
-        add: '添加角色',
+        add: 'Add role',
         empty: {
-          content: '添加的角色会被列举在这里。您可以在这里管理所有角色，例如批量删除、修改等。',
-          buttonLabel: '添加角色'
+          content: 'Roles you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add role'
         },
         tableHeader: {
-          roleName: '角色名称',
-          roleRemark: '角色描述',
-          keepValue: '保留客户最大值'
+          roleName: 'Role name',
+          roleRemark: 'Role description',
+          keepValue: 'Maximum retained customers'
         }
       },
       update: {
-        addTitle: '添加角色',
-        updateTitle: '编辑角色',
+        addTitle: 'Add role',
+        updateTitle: 'Edit role',
         entity: {
           functionList: {
-            label: '功能',
+            label: 'Features',
             tips: '',
-            placeholder: '功能',
-            required: '请选择功能权限'
+            placeholder: 'Features',
+            required: 'Select feature permissions'
           },
           roleRemark: {
-            label: '备注',
+            label: 'Notes',
             tips: '',
-            placeholder: '角色的功能备注信息',
+            placeholder: "Notes about this role's features",
             required: '',
             custom: ''
           },
           roleName: {
-            label: '角色名称',
+            label: 'Role name',
             tips: '',
-            placeholder: '角色名称',
-            required: '请输入角色名称',
+            placeholder: 'Role name',
+            required: 'Enter a role name',
             custom: ''
           }
         }
       },
       delete: {
-        msg: '删除角色{role},将导致关联的员工无法登录，确定删除吗?'
+        msg: 'Deleting the role {role} will prevent associated employees from signing in. Delete this role?'
       }
     }
   }

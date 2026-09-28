@@ -1,125 +1,125 @@
 export default {
   backstage: {
-    title: '运营中心',
+    title: 'Operations center',
     base: {
-      title: '基础数据'
+      title: 'Reference data'
     },
     ip: {
       paging: {
-        title: 'IP地址',
+        title: 'IP address',
         heading: '',
         subheading: '',
-        add: '添加IP地址',
+        add: 'Add IP address',
         empty: {
-          content: '添加的IP地址会被列举在这里。您可以在这里管理所有IP地址，例如批量删除、修改等。',
-          buttonLabel: '添加IP地址'
+          content: 'IP addresses you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add IP address'
         },
         tableHeader: {
-          createTime: '创建时间',
-          deadline: '截止时间',
-          icp: '备案',
+          createTime: 'Created at',
+          deadline: 'Expiration time',
+          icp: 'ICP registration',
           idc: 'IDC',
-          ipAddress: 'IP地址',
-          ipLocation: '区域',
-          merchantName: '商户名称',
-          ossCatalog: 'OSS目录',
-          quantity: '网站数',
-          status: '状态'
+          ipAddress: 'IP address',
+          ipLocation: 'Region',
+          merchantName: 'Merchant name',
+          ossCatalog: 'OSS directory',
+          quantity: 'Websites',
+          status: 'Status'
         }
       },
       update: {
-        addTitle: '添加IP地址',
-        updateTitle: '编辑IP地址',
+        addTitle: 'Add IP address',
+        updateTitle: 'Edit IP address',
         entity: {
           agentId: {
-            label: '代理商ID',
+            label: 'Agent ID',
             tips: '',
-            placeholder: '代理商ID',
-            required: '请输入代理商ID',
+            placeholder: 'Agent ID',
+            required: 'Enter an agent ID',
             custom: ''
           },
           agentName: {
-            label: '代理商名称',
+            label: 'Agent name',
             tips: '',
-            placeholder: '代理商名称',
-            required: '请输入代理商名称',
+            placeholder: 'Agent name',
+            required: 'Enter an agent name',
             custom: ''
           },
           createTime: {
-            label: '创建时间',
+            label: 'Created at',
             tips: '',
-            placeholder: '创建时间',
-            required: '请输入创建时间',
+            placeholder: 'Created at',
+            required: 'Enter the creation time',
             custom: ''
           },
           deadline: {
-            label: '截止时间',
+            label: 'Expiration time',
             tips: '',
-            placeholder: '截止时间',
-            required: '请输入截止时间',
+            placeholder: 'Expiration time',
+            required: 'Enter an expiration time',
             custom: ''
           },
           icp: {
-            label: '备案需求',
+            label: 'ICP registration requirements',
             tips: '',
-            placeholder: '备案需求',
-            required: '请输入备案需求',
+            placeholder: 'ICP registration requirements',
+            required: 'Enter ICP registration requirements',
             custom: ''
           },
           idc: {
             label: 'IDC',
             tips: '',
             placeholder: 'IDC',
-            required: '请输入IDC',
+            required: 'Enter an IDC',
             custom: ''
           },
           ipAddress: {
-            label: 'IP地址',
+            label: 'IP address',
             tips: '',
-            placeholder: 'IP地址',
-            required: '请输入IP地址',
+            placeholder: 'IP address',
+            required: 'Enter an IP address',
             custom: ''
           },
           ipLocation: {
-            label: '所在区域',
+            label: 'Location',
             tips: '',
-            placeholder: '所在区域',
-            required: '请输入所在区域',
+            placeholder: 'Location',
+            required: 'Enter a location',
             custom: ''
           },
           merchantId: {
-            label: '商户ID',
+            label: 'Merchant ID',
             tips: '',
-            placeholder: '商户ID',
-            required: '请输入商户ID',
+            placeholder: 'Merchant ID',
+            required: 'Enter a merchant ID',
             custom: ''
           },
           merchantName: {
-            label: '商户名称',
+            label: 'Merchant name',
             tips: '',
-            placeholder: '商户名称',
-            required: '请输入商户名称',
+            placeholder: 'Merchant name',
+            required: 'Enter a merchant name',
             custom: ''
           },
           ossCatalog: {
-            label: 'OSS SSL证书目录',
+            label: 'OSS SSL certificate directory',
             tips: '',
-            placeholder: 'OSS SSL证书目录',
-            required: '请输入OSS SSL证书目录',
+            placeholder: 'OSS SSL certificate directory',
+            required: 'Enter an OSS SSL certificate directory',
             custom: ''
           },
           quantity: {
-            label: '网站数量',
+            label: 'Number of websites',
             tips: '',
-            placeholder: '网站数量',
-            required: '请输入网站数量',
+            placeholder: 'Number of websites',
+            required: 'Enter the number of websites',
             custom: ''
           },
           status: {
-            label: '状态',
+            label: 'Status',
             tips: '',
-            placeholder: '状态',
-            required: '请输入状态',
+            placeholder: 'Status',
+            required: 'Enter a status',
             custom: ''
           }
         }

@@ -212,7 +212,6 @@ import {
   fetchGetViewId
 } from '@/plugins/api/dashboard'
 import { mapState } from 'vuex'
-import units from '@/plugins/utility'
 
 export default {
   name: 'index',
@@ -693,8 +692,15 @@ export default {
      * 获取请求参数
      */
     getParams (configObj) {
-      let startTime = this[configObj].day === 'seven' ? units.getBeforeDayTimeString(7) : units.getBeforeDayTimeString(30)
-      let endTime = new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1).getTime()
+      const now = new Date()
+      const days = this[configObj].day === 'thirty' ? 30 : 7
+      const start = new Date(now.getTime())
+      start.setDate(start.getDate() - days)
+      start.setHours(0, 0, 0, 0)
+      const end = new Date(now.getTime())
+      end.setHours(23, 59, 59, 999)
+      const startTime = start.getTime()
+      const endTime = end.getTime()
       let siteId = this.siteId ? this.siteId : this.siteModel.id
       return {
         startTime,

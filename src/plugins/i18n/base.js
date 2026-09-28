@@ -54,6 +54,7 @@ import cnCollect from './zh-CN/collect'
 import cnPlug from './zh-CN/plug'
 import cnDownload from './zh-CN/download'
 import cnGa from './zh-CN/ga'
+import cnMainSite from './zh-CN/main/site'
 
 Vue.use(VueI18n)
 
@@ -87,7 +88,7 @@ const i18n = new VueI18n({
       ...cnDownload,
       ...cnGa,
       main: {
-        ...enMainSite
+        ...cnMainSite
       }
     },
     en: {

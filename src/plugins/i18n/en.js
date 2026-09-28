@@ -1,149 +1,150 @@
 export default {
-  title: 'SUPER CMS',
+  title: 'Operations center',
   agreement: {
     updateBrowser: {
-      heading: '您使用的浏览器版本较低',
-      content: '这可能会导致您在使用过程中出现异常。请更新您的浏览器，以便您享受完整的体验。推荐使用以下的浏览器：',
-      button: '立即更新',
+      heading: 'Your browser is out of date',
+      content: 'An outdated browser may cause problems. Update your browser for the full experience. We recommend the following browsers:',
+      button: 'Update now',
       chrome: 'Google Chrome',
       firefox: 'Mozilla Firefox',
       safari: 'Apple Safari',
       opera: 'Opera'
     },
     desktopBrowser: {
-      title: '温馨提示',
-      content: '为了获得更好的使用体验，请使用电脑上进行网站的管理！'
+      title: 'Notice',
+      content: 'For the best experience, manage your website on a desktop computer.'
     }
   },
   pageAborted: {
-    heading: '抱歉，您访问的页面出错了',
-    subheading: '可能的原因是：',
-    c1: '网站正在进行维护',
-    c2: '网站有程序错误',
-    attempt: '您可以尝试以下操作：',
-    a1: '返回到上一级',
-    a2: '重新进入到本页面',
-    a3: '稍后再重试'
+    heading: 'Sorry, this page encountered an error',
+    subheading: 'Possible reasons:',
+    c1: 'The website is undergoing maintenance',
+    c2: 'The website encountered an application error',
+    attempt: 'You can try the following:',
+    a1: 'Go back to the previous page',
+    a2: 'Reload this page',
+    a3: 'Try again later'
   },
   base: {
-    datePlaceholder: '请选择时间',
-    query: 'SEARCH',
-    home: 'HOME',
-    dataEmpty: 'no data',
+    dataEmpty: 'No data',
+    datePlaceholder: 'Select a date',
+    query: 'Search',
+    home: 'Home',
     leave: {
-      unsaved: 'UNSAVED CHANGES',
-      content: 'The content of the current page has not been saved, leaving will lose the unsaved content. Are you sure?',
+      unsaved: 'Unsaved changes',
+      content: 'You have unsaved changes. Leaving this page will discard them. Are you sure you want to leave?',
       button: 'Leave'
     },
-    cancel: 'Cancel',
-    change: 'Change',
-    language: 'Language',
-    save: 'Save',
-    oops: 'OOPS',
-    orderBy: 'Order by',
-    notData: 'No data',
-    upload: 'Upload',
-    startTime: 'Starting time',
+    startTime: 'Start time',
     endTime: 'End time',
+    cancel: 'Cancel',
+    save: 'Confirm',
+    language: 'Language',
+    oops: 'Notice',
+    orderBy: 'Sort by',
+    notData: 'No data available',
     operate: {
       add: 'Add',
-      setting: 'Setting',
-      label: 'Operate',
+      setting: 'Settings',
+      label: 'Actions',
       loading: 'Loading',
-      complete: 'Complete',
+      complete: 'Done',
       edit: 'Edit',
       more: 'More',
-      back: 'Return',
-      paste: 'Paste',
+      back: 'Back',
       duplicate: 'Duplicate',
       confirm: 'Confirm',
       cancel: 'Cancel',
-      discard: 'Discard',
+      discard: 'Cancel',
       save: 'Save',
       reset: 'Reset',
       view: 'View',
       copy: 'Copy',
-      rename: 'rename',
+      rename: 'Rename',
       preview: 'Preview',
       publish: 'Publish',
       remove: 'Remove',
       apply: 'Apply',
-      lookup: 'Lookup',
-      startUse: 'StartUse',
-      stopUse: 'StopUse'
+      lookup: 'Search',
+      startUse: 'Enable',
+      stopUse: 'Disable',
+      paste: 'Paste'
     },
     file: {
-      size: 'Limit {size} M'
+      size: 'File size must not exceed {size} MB'
     },
     placeholder: {
       label: 'Keyword',
-      input: 'Content',
-      search: 'Please enter a keyword',
-      select: 'Select',
-      date: 'Time'
+      input: 'Enter content',
+      search: 'Enter a keyword',
+      select: 'Select an option',
+      date: 'Select a date'
     },
     addition: {
       button: 'Add',
-      success: 'Add success',
-      failed: 'Add failed'
+      success: 'Added successfully',
+      failed: 'Failed to add'
     },
     update: {
-      button: 'Update',
-      success: 'Update success',
-      failed: 'Update failed'
-    },
-    saveOpt: {
-      button: 'Save',
-      success: 'Save success',
-      failed: 'Save failed'
+      button: 'Edit',
+      success: 'Updated successfully',
+      failed: 'Failed to update'
     },
     delete: {
       button: 'Delete',
-      heading: 'OOPS',
-      subheading: 'Are you sure you want to delete the current record?？',
+      heading: 'Notice',
+      subheading: 'Are you sure you want to delete this record?',
       multiple: 'Are you sure you want to delete {0} items?',
-      success: 'Delete complete',
+      success: 'Deleted successfully',
       failed: 'Failed to delete'
     },
     select: {
-      button: '查找',
-      multiple: '已选中 {0} 个'
+      button: 'Search',
+      multiple: '{0} selected'
     },
     formValidation: {
-      inadequate: 'Please complete the form content'
+      inadequate: 'Complete the required fields'
+    },
+    change: 'Change',
+    upload: 'Upload',
+    saveOpt: {
+      button: 'Save',
+      success: 'Saved successfully',
+      failed: 'Failed to save'
     }
   },
   header: {
-    password: 'Password',
-    personal: 'Personal info',
-    employee: 'Employee management',
-    out: 'Signed out',
+    password: 'Change password',
+    personal: 'Personal information',
+    employee: 'Organization',
+    out: 'Sign out',
     region: {
-      'en': 'English',
-      'zh-CN': '简体中文'
+      en: 'English',
+      'zh-CN': 'Simplified Chinese'
     }
   },
-  /**
-   * 组件
-   */
   components: {
-    /**
-     * 倒计时
-     */
     countdown: {
-      tip: ['\u5929', '\u65f6', '\u5206', '\u79d2'],
-      unit: [8.64E+7, 3.6E+6, 6E+4, 1E+3]
+      tip: [
+        'days',
+        'hours',
+        'minutes',
+        'seconds'
+      ],
+      unit: [
+        86400000,
+        3600000,
+        60000,
+        1000
+      ]
     }
   },
-  /**
-   * 站点类型
-   */
   siteType: {
-    '1': '商品单页',
-    '2': '企业单页',
-    '3': '企业网站',
-    '4': '在线商店',
-    '11': '视频B2B',
-    '12': '视频B2C'
+    1: 'Product landing page',
+    2: 'Business landing page',
+    3: 'Business website',
+    4: 'Online store',
+    11: 'Video B2B',
+    12: 'Video B2C'
   }
 }

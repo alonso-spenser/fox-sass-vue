@@ -1,469 +1,543 @@
 export default {
   settings: {
-    /**
-     * pane nav
-     */
     tabPane: [
       {
-        label: '网站信息',
-        name: 'site-setting-general'
+        label: 'Website information',
+        name: 'site-setting-general',
+        siteType: [
+          1,
+          2,
+          3,
+          4
+        ]
       },
       {
-        label: '域名绑定',
-        name: 'site-setting-domain'
+        label: 'Domain connections',
+        name: 'site-setting-domain',
+        siteType: [
+          1,
+          2,
+          3,
+          4
+        ]
       },
       {
-        label: '法律政策',
-        name: 'site-setting-legal'
+        label: 'Legal policies',
+        name: 'site-setting-legal',
+        siteType: [
+          1,
+          2,
+          3,
+          4
+        ]
       },
       {
-        label: '追踪与分析',
-        name: 'site-setting-tracking'
+        label: 'Tracking & analytics',
+        name: 'site-setting-tracking',
+        siteType: [
+          1,
+          2,
+          3,
+          4
+        ]
       },
       {
-        label: '路由',
-        name: 'site-setting-route'
+        label: 'Routes',
+        name: 'site-setting-route',
+        siteType: [
+          1,
+          2,
+          3,
+          4
+        ]
       }
     ],
-    heading: '网站设置',
-    title: '网站信息',
-    /**
-     * 网站基本信息
-     */
+    heading: 'Website settings',
+    title: 'Website information',
     basic: {
       paging: {
-        title: '网站信息',
-        desc: '平台以及您的用户会通过这些信息来联系您'
+        title: 'Website information',
+        desc: 'The platform and your customers use this information to contact you'
       },
       entity: {
         title: {
-          label: '网站名称',
-          placeholder: '请输入网站名称',
-          required: '请输入网站名称'
+          label: 'Website name',
+          placeholder: 'Enter a website name',
+          required: 'Enter a website name'
         },
         addOnHeader: {
-          label: '网站附加标题',
+          label: 'Website title suffix',
           tips: '',
-          placeholder: '网站附加标题',
-          required: '请输入网站附加标题',
+          placeholder: 'Website title suffix',
+          required: 'Enter a website title suffix',
+          custom: ''
+        },
+        emailSender: {
+          label: 'Email sender',
+          tips: '',
+          placeholder: 'Email sender',
+          required: 'Enter an email sender',
           custom: ''
         },
         email: {
-          label: '联系邮箱',
-          placeholder: '请输入邮箱',
-          required: '请输入邮箱地址',
-          custom: '请输入有效邮箱'
+          label: 'Contact email',
+          placeholder: 'Enter an email address',
+          required: 'Enter an email address',
+          custom: 'Enter a valid email address'
         },
         currencyId: {
-          label: '币种',
-          placeholder: '请选择币种',
-          required: '请选择币种'
+          label: 'Currency',
+          placeholder: 'Select a currency',
+          required: 'Select a currency'
         },
         langId: {
-          label: '网站语言',
-          placeholder: '请选择网站语言',
-          required: '请选择网站语言'
+          label: 'Website language',
+          placeholder: 'Select a website language',
+          required: 'Select a website language'
         },
         timeZone: {
-          label: '时区',
-          placeholder: '请选择时区',
-          required: '请选择时区'
+          label: 'Time zone',
+          placeholder: 'Select a time zone',
+          required: 'Select a time zone'
         },
         lengthUnit: {
-          label: '长度单位',
-          placeholder: '请选择长度单位',
-          required: '请选择长度单位'
+          label: 'Length unit',
+          placeholder: 'Select a length unit',
+          required: 'Select a length unit'
         },
         weightUnit: {
-          label: '重量单位',
-          placeholder: '请选择重量单位',
-          required: '请选择重量单位'
+          label: 'Weight unit',
+          placeholder: 'Select a weight unit',
+          required: 'Select a weight unit'
         },
         unitSystem: {
-          label: '系统单位',
-          placeholder: '请选择系统单位',
-          required: '请选择系统单位'
+          label: 'Unit system',
+          placeholder: 'Select a unit system',
+          required: 'Select a unit system'
         },
         address: {
-          label: 'Address',
+          label: 'Full company address (displayed on the website)',
           tips: '',
-          placeholder: 'Full address for web page display',
-          required: '请输入公司完整地址'
+          placeholder: 'Full company address (displayed on the website)',
+          required: 'Enter the full company address'
         },
         coordinate: {
-          label: '公司坐标',
+          label: 'Company coordinates',
           tips: '',
-          placeholder: '请输入公司地址关键词',
-          required: '请输入公司地址',
+          placeholder: 'Search for the company address',
+          required: 'Enter a company address',
+          custom: ''
+        },
+        currencyCode: {
+          label: 'Currency code, such as CNY',
+          tips: '',
+          placeholder: 'Currency code, such as CNY',
+          required: 'Enter a currency code, such as CNY',
+          custom: ''
+        },
+        currencyName: {
+          label: 'Currency name',
+          tips: '',
+          placeholder: 'Currency name',
+          required: 'Enter a currency name',
+          custom: ''
+        },
+        currencySymbol: {
+          label: 'Currency symbol',
+          tips: '',
+          placeholder: 'Currency symbol',
+          required: 'Enter a currency symbol',
           custom: ''
         },
         company: {
-          label: '公司',
+          label: 'Company',
           tips: '',
-          placeholder: '公司名称',
-          required: '请输入公司名称',
+          placeholder: 'Company name',
+          required: 'Enter a company name',
           custom: ''
         },
         contact: {
-          label: '联系人',
+          label: 'Contact person',
           tips: '',
-          placeholder: '联系人',
-          required: '请输入联系人',
+          placeholder: 'Contact person',
+          required: 'Enter a contact person',
           custom: ''
         },
         phone: {
-          label: '联系电话',
+          label: 'Contact phone',
           tips: '',
-          placeholder: '联系电话',
-          required: '请输入联系电话',
+          placeholder: 'Contact phone',
+          required: 'Enter a contact phone number',
           custom: ''
         },
         cityName: {
-          label: '城市',
+          label: 'City',
           tips: '',
-          placeholder: '城市',
-          required: '请输入城市名称',
+          placeholder: 'City',
+          required: 'Enter a city name',
           custom: ''
         },
         targetMarket: {
-          label: '目标市场',
+          label: 'Target market',
           tips: '',
-          placeholder: '目标市场',
-          required: '请选择目标市场',
+          placeholder: 'Target market',
+          required: 'Select a target market',
           custom: ''
         },
         longitude: {
-          label: '经度',
-          placeholder: '请填写经度',
-          required: '请填写经度',
-          custom: '请填写正确的经度'
+          label: 'Longitude',
+          placeholder: 'Enter a longitude',
+          required: 'Enter a longitude',
+          custom: 'Enter a valid longitude'
         },
         latitude: {
-          label: '纬度',
-          placeholder: '请填写纬度',
-          required: '请填写纬度',
-          custom: '请填写正确的纬度'
+          label: 'Latitude',
+          placeholder: 'Enter a latitude',
+          required: 'Enter a latitude',
+          custom: 'Enter a valid latitude'
         },
         freePhone: {
-          label: '400电话',
+          label: '400 service number',
           tips: '',
-          placeholder: '400电话',
+          placeholder: '400 service number',
           required: '',
           custom: ''
         },
         mobile: {
-          label: '手机号码',
+          label: 'Mobile number',
           tips: '',
-          placeholder: '手机号码',
+          placeholder: 'Mobile number',
           required: '',
           custom: ''
         },
         location: {
-          label: '公司所在区域',
+          label: 'Company region',
           tips: '',
-          placeholder: '公司所在区域',
+          placeholder: 'Company region',
           required: '',
           custom: ''
         },
         downPass: {
-          label: '通用下载密码',
-          tips: '通用下载密码（产品附件）',
-          placeholder: '请输入下载密码(数字 & 英文)',
-          required: '请输入下载密码',
-          custom: '密码由数字、英文组成'
+          label: 'Shared download password',
+          tips: 'Shared download password (product attachments)',
+          placeholder: 'Enter a download password (letters and numbers)',
+          required: 'Enter a download password',
+          custom: 'Use letters and numbers for the password'
         }
       },
       map: {
-        title: '地图标记',
+        title: 'Map marker',
         searchSelect: [
           {
-            label: '通过地址查找',
+            label: 'Find by address',
             value: 1
-          }, {
-            label: '通过经纬度查找',
+          },
+          {
+            label: 'Find by coordinates',
             value: 2
           }
-
         ],
         explain: {
-          label: '通过关键词搜索公司地址，并获取定位信息',
-          content: '由于 "Google地图" 需要翻墙，编辑时使用百度地图用于获取定位，中文版的网页会自动使用"百度地图"，非中文版的网页会自动调用 "Google地图"',
-          primary: '点击地图获取更准确的定位'
+          label: 'Search for your company address to find its location',
+          content: 'Google Maps access is restricted in mainland China, so the editor uses Baidu Maps to select locations. Chinese website pages use Baidu Maps; other languages use Google Maps.',
+          primary: 'Click the map to choose a more precise location'
         }
       },
       langAndCurrency: {
-        heading: '语言和币种',
-        subheading: '网站展示的语言以及商品计价的币种单位',
-        change: '变更币种',
+        heading: 'Language & currency',
+        subheading: 'The language displayed on your website and the currency used for product prices',
+        change: 'Change currency',
         dialog: {
-          heading: '选择币种',
-          subheading: '您的网站中所有关于价格的地方都会使用该币种进行展示和记录，当您的客户下了第一笔订单之后，网站的币种不再支持变更。'
+          heading: 'Select a currency',
+          subheading: 'All prices on your website are displayed and recorded in this currency. The currency cannot be changed after your first customer order.'
         },
         tableHeader: {
-          countryName: '国家或地区',
-          cnName: '中文名称',
-          enName: '英文名称',
-          code: '简写代码',
-          symbol: '符号'
+          countryName: 'Country or region',
+          cnName: 'Chinese name',
+          enName: 'English name',
+          code: 'Abbreviation',
+          symbol: 'Symbol'
         }
       },
       timeAndUnit: {
-        heading: '时间与单位',
-        subheading: '用于计算您的商品价格、物流重量、订单时间'
+        heading: 'Time & units',
+        subheading: 'Used for product pricing, shipping weights, and order times'
       },
       unit: {
-        heading: '度量衡'
+        heading: 'Measurement system'
       },
       siteStatus: {
-        heading: '网站状态',
+        heading: 'Website status',
         normal: {
-          label: '启用中',
-          tips: '网站启用期间，用户可正常访问网站',
-          button: '停用网站',
-          affirm: '网站停用期间，您的访客将暂时无法访问网站。确认停用？',
-          success: '网站已启用'
+          label: 'Enabled',
+          tips: 'Visitors can access your website while it is enabled',
+          button: 'Disable website',
+          affirm: 'Visitors will not be able to access your website while it is disabled. Disable it?',
+          success: 'Website enabled'
         },
         inactive: {
-          label: '已停用',
-          tips: '网站停用期间，用户将暂时无法访问网站',
-          button: '启用网站',
-          expiredButton: '网站已过期，请续费',
-          affirm: '启用网站后，您的访客可以正常访问网站',
-          success: '网站已停用'
+          label: 'Disabled',
+          tips: 'Visitors cannot access your website while it is disabled',
+          button: 'Enable website',
+          expiredButton: 'Your website has expired. Renew your subscription.',
+          affirm: 'Visitors will be able to access your website once it is enabled',
+          success: 'Website disabled'
         },
         freeze: {
-          label: '冻结中',
-          tips: '您的网站已被冻结，请联系我们进行解冻'
+          label: 'Frozen',
+          tips: 'Your website is frozen. Contact us to restore access.'
         }
       }
-
     },
     unpaid: {
-      heading: '未激活',
-      subheading: '该功能需要购买正式服务后才可使用',
-      content: '如果您需要了解更详细的情况请联系我们',
-      cancel: '我知道了',
-      payment: '续费'
+      heading: 'Not activated',
+      subheading: 'Purchase a paid subscription to use this feature',
+      content: 'Contact us for more information',
+      cancel: 'Got it',
+      payment: 'Renew'
     },
-    /**
-     * 域名
-     */
     domain: {
-      add: '添加域名',
-      title: '域名绑定',
-      reConnect: '重连',
+      add: 'Add domain',
+      title: 'Domain connections',
+      reConnect: 'Reconnect',
       primary: {
-        title: '主域名',
-        content: '当您的访客访问所有已连接的域名都会被重定向到此域名'
+        title: 'Primary domain',
+        content: 'Visitors to any connected domain will be redirected to this domain'
       },
       original: {
-        title: '原始域名',
-        content: '网站创建时系统分配的域名'
+        title: 'Original domain',
+        content: 'The domain assigned by the system when the website was created'
       },
       thirdParty: {
-        title: '第三方域名',
-        content: '第三方提供商提供的域名'
+        title: 'Third-party domains',
+        content: 'Domains from third-party providers'
       },
       tableHeader: {
-        name: '域名',
-        status: '状态',
+        name: 'Domain',
+        status: 'Status',
         ssl: 'SSL',
-        date: '添加日期',
-        provider: '提供商',
-        reconnect: '重连'
+        date: 'Added on',
+        provider: 'Provider',
+        reconnect: 'Reconnect'
       },
       status: {
-        unconnected: '未连接',
-        connected: '已连接',
-        exists: '域名已存在，请更换其它域名'
+        unconnected: 'Not connected',
+        connected: 'Connected',
+        exists: 'This domain already exists. Use a different domain.'
       },
       delete: {
-        heading: '删除域名',
-        content: '您确认要删除该域名吗？'
+        heading: 'Delete domain',
+        content: 'Are you sure you want to delete this domain?'
       },
       change: {
-        button: '变更',
-        heading: '变更主域名',
-        content: '您确认变更主域名吗？您的访客以及搜索引擎将会看到这个域名？'
+        button: 'Change',
+        heading: 'Change primary domain',
+        content: 'Change the primary domain? Visitors and search engines will see this domain.'
       },
-      /**
-       *
-       * 添加域名
-       */
       connect: {
-        title: '添加域名',
-        nextStep: '下一步',
-        domain: '网站域名',
-        domainName: '域名',
-        edit: '返回修改',
-        verify: '验证',
-        cname: '使用 <b class="text-primary">CNAME</b> 将域名解析到',
-        guide: '域名设置指引',
-        verifyAgain: '再次验证',
-        settings: '第三方域名设置',
-        settingTips: '您需要登录到您的域名提供商账户后台进行域名连接的设置。',
-        checkTips: '验证连接以确保您的域名设置是正确的（请您完成第三方域名设置后再进行验证） ',
-        reconnectSuccess: '重连完成，现已可以通过该域名正常访问网站',
-        reconnectFailed: '重连失败，请联系您的域名提供商以定位异常问题',
-        success: '解析正确',
+        title: 'Add domain',
+        nextStep: 'Next',
+        domain: 'Website domain',
+        domainName: 'Domain',
+        edit: 'Back to edit',
+        verify: 'Verify',
+        cname: 'Use a <b class="text-primary">CNAME</b> record to point your domain to',
+        guide: 'Domain setup guide',
+        verifyAgain: 'Verify again',
+        settings: 'Third-party domain settings',
+        settingTips: "Sign in to your domain provider's account to configure the domain connection",
+        checkTips: 'Verify the connection after configuring your domain with your provider to confirm the settings are correct',
+        reconnectSuccess: 'Reconnected. Your website is now accessible through this domain.',
+        reconnectFailed: 'Reconnection failed. Contact your domain provider for help.',
+        success: 'DNS configured correctly',
         entity: {
           domain: {
-            label: '域名',
-            placeholder: `例如 www.${process.env.VUE_APP_DESIGN_DOMAIN}`,
-            required: '请输入您需要连接的域名',
-            custom: '域名格式不正确'
+            label: 'Domain',
+            placeholder: `For example, www.${process.env.VUE_APP_DESIGN_DOMAIN}`,
+            required: 'Enter the domain you want to connect',
+            custom: 'Invalid domain format'
           }
         },
         validate: {
-          record: 'CNAME 记录（@）',
-          current: '当前值：',
-          required: '要求值：',
+          record: 'CNAME record (@)',
+          current: 'Current value:',
+          required: 'Required value:',
           success: {
-            heading: '验证完成',
-            subheading: '您的域名已完成添加'
+            heading: 'Verification complete',
+            subheading: 'Your domain has been added'
           },
           failed: {
-            heading: '验证失败',
-            subheading: '请检查您需要设置的参数并确认无误后再进行验证'
+            heading: 'Verification failed',
+            subheading: 'Check the required settings and try verifying again'
           }
         },
         setting: {
-          heading: '第三方域名设置',
-          subheading: '您需要登录到您的域名提供商账户后台进行域名连接的设置。',
-          guide: '域名设置指引'
+          heading: 'Third-party domain settings',
+          subheading: "Sign in to your domain provider's account to configure the domain connection",
+          guide: 'Domain setup guide'
         }
       }
     },
-    /**
-     * 添加域名
-     */
     connect: {
       paging: {
-        title: '添加域名'
+        title: 'Add domain'
       }
     },
-    /**
-     * 法律政策
-     */
     legal: {
       paging: {
-        title: '法律政策'
+        title: 'Legal policies'
       },
       update: {
-        title: '法律政策',
-        template: '从模版中替换',
+        title: 'Legal policies',
+        template: 'Replace with a template',
         entity: {
           privacyPolicy: {
-            label: '隐私政策',
+            label: 'Privacy policy',
             tips: '',
-            placeholder: '隐私政策',
-            required: '请输入隐私政策',
+            placeholder: 'Privacy policy',
+            required: 'Enter a privacy policy',
             custom: ''
           },
           refundPolicy: {
-            label: '退款政策',
+            label: 'Refund policy',
             tips: '',
-            placeholder: '退款政策',
-            required: '请输入退款政策',
+            placeholder: 'Refund policy',
+            required: 'Enter a refund policy',
             custom: ''
           },
           shippingPolicy: {
-            label: '运输政策',
+            label: 'Shipping policy',
             tips: '',
-            placeholder: '运输政策',
-            required: '请输入运输政策',
+            placeholder: 'Shipping policy',
+            required: 'Enter a shipping policy',
             custom: ''
           },
           termsOfService: {
-            label: '服务条款',
+            label: 'Terms of service',
             tips: '',
-            placeholder: '服务条款',
-            required: '请输入服务条款',
+            placeholder: 'Terms of service',
+            required: 'Enter terms of service',
             custom: ''
           }
         }
       }
     },
-
-    /***
-     * 追踪 && 分析
-     */
     tracking: {
       paging: {
-        title: '追踪与分析'
+        title: 'Tracking & analytics'
       },
       update: {
         facebook: {
-          heading: 'Facebook像素',
-          subheading: 'Facebook 像素帮助您创建广告活动，以找到最像您的买家的新客户。<a class="text-primary" target="_blank" href="https://www.facebook.com/business/help/651294705016616">前往Facebook官网进一步了解Facebook 像素</a>'
+          heading: 'Facebook Pixel',
+          subheading: 'Facebook Pixel helps you create ad campaigns to reach people similar to your customers. <a class="text-primary" target="_blank" href="https://www.facebook.com/business/help/651294705016616">Learn more about Facebook Pixel</a>'
         },
         gtag: {
-          heading: 'Google Analytics 谷歌分析',
-          subheading: 'Google Analytics 可以帮助您追踪网站的访问数据并且能够生成帮助您做市场分析的报告。<a class="text-primary" target="_blank" href="https://www.facebook.com/business/help/651294705016616">如何设置？</a>'
+          heading: 'Google Analytics',
+          subheading: 'Google Analytics tracks website traffic and generates reports for marketing analysis. <a class="text-primary" target="_blank" href="https://www.facebook.com/business/help/651294705016616">How do I set it up?</a>'
         },
         entity: {
           facebookPixel: {
-            label: 'Facebook像素ID',
-            placeholder: '请输入Facebook像素ID',
-            required: '请输入Facebook像素ID'
+            label: 'Facebook Pixel ID',
+            placeholder: 'Enter a Facebook Pixel ID',
+            required: 'Enter a Facebook Pixel ID'
           },
           scriptHead: {
-            label: '跟踪代码 <Head>',
-            placeholder: '请输入或粘贴代码',
+            label: 'Tracking code <Head>',
+            placeholder: 'Enter or paste code',
             required: '',
-            info: '此处可以放置 Google Analytics, Google Tag Manager, Facebook像素等三方代码。<br>也可以放置如 Google 域名验证 &lt;meta name="google-site-verification" content="验证码"<br>不同的代码按回车键换行放置。此段代码将放置于网页 <b class="text-primary">Head</b> 中'
+            info: 'Add third-party code such as Google Analytics, Google Tag Manager, or Facebook Pixel here.<p class="m-0">You can also add Google domain verification: &lt;meta name="google-site-verification" content="verification-code"&gt; </p> <p class="m-0">Place each snippet on a new line. This code is inserted into the page <b class="text-primary">Head</b>.</p>'
           },
           scriptBottom: {
-            label: '跟踪代码 <Body>',
-            placeholder: '请输入或粘贴代码',
+            label: 'Tracking code <Body>',
+            placeholder: 'Enter or paste code',
             required: '',
-            info: '此处可放置客户自定义代码，Google Tag Manager 第二段代码，第三方客服代码等。<br>此段代码将放置于网页 <b class="text-primary">Body</b> 结尾处'
+            info: 'Add custom code, the second Google Tag Manager snippet, or third-party chat code here.<p class="m-0">This code is inserted at the end of the page <b class="text-primary">Body</b>.</p>'
           }
         }
       }
     },
     route: {
-      tips: '一条跳转记录一行，旧网址与新网址间用空格间隔。网址使用绝对路径，以 / 开始，不带域名',
+      tips: 'Enter one redirect per line, separating the old and new URLs with a space. Use absolute paths starting with /, without a domain.',
       refType: {
-        '0': '系统',
-        '9': '自定义'
+        0: 'System',
+        9: 'Custom'
       },
       paging: {
-        title: '网站路由',
+        title: 'Website routes',
         heading: '',
         subheading: '',
-        add: '添加网站路由',
+        add: 'Add website route',
         empty: {
-          content: '添加的网站路由会被列举在这里。您可以在这里管理所有网站路由，例如批量删除、修改等。',
-          buttonLabel: '添加网站路由'
+          content: 'Website routes you add will appear here. You can edit, delete, and manage them in bulk.',
+          buttonLabel: 'Add website route'
         },
         tableHeader: {
-          original: '源地址',
-          refId: '原始ID',
-          refType: '类型',
-          siteId: '网站ID',
-          state: '状态',
-          target: '目标地址'
+          original: 'Source URL',
+          refId: 'Original ID',
+          refType: 'Type',
+          siteId: 'Website ID',
+          state: 'Status',
+          target: 'Destination URL'
         }
       },
       update: {
-        addTitle: '添加网站路由',
-        updateTitle: '编辑网站路由',
+        addTitle: 'Add website route',
+        updateTitle: 'Edit website route',
         entity: {
           original: {
-            label: '源地址',
+            label: 'Source URL',
             tips: '',
-            placeholder: '源地址',
-            required: '请输入源地址',
+            placeholder: 'Source URL',
+            required: 'Enter a source URL',
             custom: ''
           },
           target: {
-            label: '目标地址',
+            label: 'Destination URL',
             tips: '',
-            placeholder: '目标地址',
-            required: '请输入目标地址',
+            placeholder: 'Destination URL',
+            required: 'Enter a destination URL',
             custom: ''
           }
+        }
+      }
+    },
+    authorizedLogin: {
+      title: 'Google sign-in',
+      entity: {
+        applicationName: {
+          label: 'Application Name',
+          tips: '',
+          placeholder: 'Application Name',
+          required: 'Enter an application name',
+          custom: ''
+        },
+        clientId: {
+          label: 'Client ID',
+          tips: '',
+          placeholder: 'Client ID',
+          required: 'Enter a client ID',
+          custom: ''
+        },
+        clientSecret: {
+          label: 'Client Secret',
+          tips: '',
+          placeholder: 'Client Secret',
+          required: 'Enter a client secret',
+          custom: ''
+        },
+        scope: {
+          label: 'Scope',
+          tips: '',
+          placeholder: 'openid email profile',
+          required: 'Enter openid email profile',
+          custom: ''
+        },
+        tag: {
+          label: 'Platform',
+          tips: '',
+          placeholder: 'Platform',
+          required: 'Enter a platform',
+          custom: ''
         }
       }
     }
